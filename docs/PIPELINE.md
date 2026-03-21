@@ -3,112 +3,112 @@
 ## Stage Overview
 
 ```
-STAGE 1: SCAFFOLD     init_db.py → seed_from_json.py
-STAGE 2: EXTRACT      extract_dejong.py → extract_secondary.py
-STAGE 3: ENRICH       seed_dictionary.py → seed_timeline.py
+STAGE 1: SCAFFOLD     init_db.py → migrate_v2.py → migrate_v3.py → seed_from_json.py → seed_phase2.py
+STAGE 2: EXTRACT      extract_dejong.py → extract_dejong_pass2.py
+STAGE 3: ENRICH       link_dictionary.py → seed_emblem_analyses.py
 STAGE 4: BUILD        build_site.py
-STAGE 5: VALIDATE     validate.py
+STAGE 5: VALIDATE     (manual preview verification)
 ```
 
 ## Stage 1: Scaffold
 
 ### init_db.py
 - **Input**: None (schema hardcoded)
-- **Output**: `db/atalanta.db` with 18 empty tables
+- **Output**: `db/atalanta.db` with 6 core tables
 - **Idempotent**: Yes (`CREATE TABLE IF NOT EXISTS`)
-- **Dependencies**: None
+
+### migrate_v2.py
+- **Input**: Existing database
+- **Output**: Adds 6 Phase 2-3 tables (scholars, dictionary_terms, timeline_events, etc.)
+- **Idempotent**: Yes (`CREATE TABLE IF NOT EXISTS`)
+
+### migrate_v3.py
+- **Input**: Existing database
+- **Output**: Adds content enrichment columns: `emblems.analysis_html`, `dictionary_terms.label_latin`, `source_authorities.description_long`, `timeline_events.description_long`
+- **Idempotent**: Yes (checks `PRAGMA table_info` before `ALTER TABLE`)
 
 ### seed_from_json.py
 - **Input**: `atalanta_fugiens_seed.json`
-- **Output**: Populates `emblems` (51 rows), `source_authorities`, `scholars`, `bibliography`, `scholarly_refs`, `emblem_sources`, `dictionary_terms`, `timeline_events`
-- **Idempotent**: Yes (`INSERT OR IGNORE`)
-- **Dependencies**: `init_db.py` must have run
+- **Output**: Populates emblems (51), bibliography (10), source_authorities (15 + description_long), scholarly_refs (29), emblem_sources (16)
+- **Idempotent**: Yes (`INSERT OR IGNORE` + conditional `UPDATE`)
 - **Source method**: `SEED_DATA`
+
+### seed_phase2.py
+- **Input**: `atalanta_fugiens_seed.json`
+- **Output**: Populates scholars (11), scholar_works (9), dictionary_terms (23 + label_latin + significance_to_af), term_emblem_refs (47), timeline_events (20 + description_long)
+- **Idempotent**: Yes (`INSERT OR IGNORE` + conditional `UPDATE`)
 
 ## Stage 2: Extract
 
 ### extract_dejong.py
-- **Input**: De Jong markdown file (`atalanta fugiens/Helena Maria Elisabeth Jong...md`, 11,729 lines)
-- **Output**: Updates `emblems` with mottos, epigrams, discourse summaries. Populates `scholarly_refs` and `emblem_sources` from De Jong's emblem-by-emblem analysis.
-- **Method**: Regex boundary detection (`EMBLEM\s+[IVXLCDM]+`) for emblem sections, then structured extraction within each section.
-- **Idempotent**: Yes (updates existing rows, inserts new refs with `INSERT OR IGNORE`)
-- **Dependencies**: Stage 1 complete
-- **Source method**: `CORPUS_EXTRACTION` for regex-parsed data, `LLM_ASSISTED` for semantic summaries
-- **Confidence**: `HIGH` for motto/source identification, `MEDIUM` for discourse summaries
-
-### extract_secondary.py
-- **Input**: All other `.md` files in `atalanta fugiens/`
-- **Output**: Additional `scholarly_refs` from Tilton, Craven, Wescott, Pagel, Miner, etc.
-- **Method**: Source-specific parsing (each file has different structure)
+- **Input**: De Jong markdown (11,729 lines)
+- **Output**: Updates emblems with mottos, epigrams, discourse summaries. Populates scholarly_refs and emblem_sources.
+- **Method**: Regex boundary detection with OCR-tolerant patterns. Recovery pass for garbled headers via `(fig N) MOTTO` pattern.
+- **Dedup**: Position-aware filtering (rejects intro-section false matches at pos < 20000)
 - **Idempotent**: Yes
-- **Dependencies**: `extract_dejong.py` (so emblem rows exist to reference)
-- **Source method**: `CORPUS_EXTRACTION`
-- **Confidence**: `HIGH` for explicit emblem references, `MEDIUM` for thematic matches
+- **Source method**: `CORPUS_EXTRACTION`, confidence `HIGH`
+
+### extract_dejong_pass2.py
+- **Input**: De Jong markdown (same file)
+- **Output**: Fills remaining NULL mottos/discourses using dynamically derived page ranges
+- **Method**: `derive_page_ranges()` maps emblem positions to page numbers, extracts from page-range chunks
+- **Idempotent**: Yes (only updates NULL fields)
+- **Source method**: `CORPUS_EXTRACTION`, confidence `MEDIUM`
 
 ## Stage 3: Enrich
 
-### seed_dictionary.py
-- **Input**: Dictionary entries from seed JSON + De Jong terminology
-- **Output**: `dictionary_terms` (60+ entries), `dictionary_term_links`, `term_emblem_refs`
+### link_dictionary.py
+- **Input**: dictionary_terms + emblems in database
+- **Output**: dictionary_term_links (cross-references between related terms)
 - **Idempotent**: Yes
-- **Dependencies**: Stage 2 (needs emblem IDs for cross-references)
-- **Source method**: `SEED_DATA` for initial terms, `LLM_ASSISTED` for definitions
 
-### seed_timeline.py
-- **Input**: Timeline events from seed JSON + corpus dates
-- **Output**: `timeline_events` (20+ entries)
-- **Idempotent**: Yes
-- **Dependencies**: Stage 1 (needs scholar/bibliography IDs)
-- **Source method**: `SEED_DATA`
+### seed_emblem_analyses.py
+- **Input**: All database tables (emblems, scholarly_refs, emblem_sources, source_authorities, dictionary_terms, term_emblem_refs)
+- **Output**: Assembles `analysis_html` for each emblem from DB fields. Template includes: Overview, Maier's Source Texts (cross-linked to sources page), Alchemical Significance, Related Terms (cross-linked to dictionary).
+- **Idempotent**: Yes (overwrites analysis_html each run)
+- **Source method**: `LLM_ASSISTED` (template assembly, no LLM call)
 
 ## Stage 4: Build
 
 ### build_site.py
 - **Input**: `db/atalanta.db` (fully populated)
-- **Output**: All HTML files in `site/`, plus `site/data.json`
-- **Key functions**:
-  - `page_shell()` — Wraps all pages with header/footer/nav
-  - `nav_html()` — Navigation bar with active state
-  - `export_data_json()` — Gallery data for lightbox
-  - `build_emblem_gallery()` — Home page with stats
-  - `build_emblem_pages()` — 51 comparative-view pages
-  - `build_scholars_pages()` — Index + individual scholar pages
-  - `build_dictionary_pages()` — Index + individual term pages
-  - `build_timeline_page()` — Filterable timeline
-  - `build_sources_page()` — Maier's sources by type
-  - `build_essay_pages()` — Essay index + individual pages
-  - `build_bibliography_page()` — Full citation list
-  - `build_about_page()` — Project statistics
-- **Idempotent**: Yes (overwrites all generated pages)
-- **Dependencies**: All prior stages
+- **Output**: All HTML in `site/`, plus `site/data.json`
+- **Key outputs**: 51 emblem pages (with analysis blocks), dictionary index + 23 term pages (with Latin), sources page (with rich cards + emblem badges), timeline (with rich descriptions), scholars, bibliography, essays index, about
+- **Idempotent**: Yes (overwrites all pages)
 
 ## Stage 5: Validate
 
-### validate.py
-- **Input**: `db/atalanta.db` + `site/` directory
-- **Output**: Validation report (stdout)
-- **Checks**:
-  1. All 51 emblems have at least one scholarly reference
-  2. No duplicate dictionary slugs
-  3. No orphaned term links
-  4. All scholars have at least one linked work
-  5. All bibliography entries have valid `af_relevance`
-  6. All emblem HTML files exist in `site/emblems/`
-  7. All images referenced in `data.json` exist on disk
-  8. No broken internal links in generated HTML
-  9. Confidence distribution report
-  10. Review status summary
-- **Dependencies**: Stage 4
+Manual verification via preview server:
+1. `preview_start` → check console errors, network failures
+2. Spot-check emblem pages (analysis block, cross-links)
+3. Verify dictionary (Latin terms, significance)
+4. Verify sources (descriptions, emblem badges)
+5. Verify timeline (rich descriptions, sticky years)
+
+## Future Stages (Planned)
+
+### Stage 2b: Secondary Extraction
+- `extract_tilton.py` — Parse Tilton (13,881 lines) for emblem-specific commentary
+- `extract_secondary.py` — Parse Craven, Wescott, Pagel, Miner for additional refs
+- **Method**: Single-pass LLM read (corpus fits in context)
+
+### Stage 3b: Vision Analysis
+- `analyze_emblem_images.py` — Batch Claude Vision analysis of emblem plate images
+- **Output**: `emblems.visual_elements` (structured JSON of allegorical figures, symbols, composition)
+- **Method**: Per-image LLM vision call, validated against De Jong's `image_description`
 
 ## Full Rebuild Command
 
 ```bash
+rm -f db/atalanta.db
 python scripts/init_db.py
+python scripts/migrate_v2.py
+python scripts/migrate_v3.py
 python scripts/seed_from_json.py
+python scripts/seed_phase2.py
 python scripts/extract_dejong.py
-python scripts/extract_secondary.py
-python scripts/seed_dictionary.py
-python scripts/seed_timeline.py
+python scripts/extract_dejong_pass2.py
+python scripts/link_dictionary.py
+python scripts/seed_emblem_analyses.py
 python scripts/build_site.py
-python scripts/validate.py
 ```

@@ -43,6 +43,8 @@ The primary organizing unit. 51 rows (frontispiece = 0, emblems I-L = 1-50).
 | alchemical_stage | TEXT | CHECK: NIGREDO/ALBEDO/CITRINITAS/RUBEDO/NULL |
 | fugue_mode | TEXT | Musical mode if known |
 | fugue_interval | TEXT | Canon interval type |
+| analysis_html | TEXT | Structured emblem analysis (AI-assembled from DB fields) |
+| visual_elements | TEXT | JSON: allegorical figures, symbols, composition (future: vision pipeline) |
 | source_method | TEXT | DETERMINISTIC/SEED_DATA/LLM_ASSISTED |
 | review_status | TEXT | DRAFT/REVIEWED/VERIFIED |
 | confidence | TEXT | HIGH/MEDIUM/LOW |
@@ -101,6 +103,7 @@ De Jong's central contribution: Maier's textual sources as navigable entities.
 | author | TEXT | |
 | era | TEXT | |
 | relationship_to_maier | TEXT | |
+| description_long | TEXT | Rich scholarly description of this source's expression in AF |
 
 ### emblem_sources
 Links emblems to their textual sources (De Jong's source identifications).
@@ -171,10 +174,11 @@ The core concordance table: links scholars' interpretations to specific emblems.
 | slug | TEXT UNIQUE | URL-safe identifier |
 | label | TEXT | Display name |
 | category | TEXT | CHECK: PROCESS/SUBSTANCE/FIGURE/CONCEPT/MUSICAL/SOURCE_TEXT |
+| label_latin | TEXT | Latin form as used in AF (e.g., Lapis Philosophorum) |
 | definition_short | TEXT | One-line definition |
 | definition_long | TEXT | Extended definition |
 | registers | TEXT | JSON: {alchemical, medical, spiritual, cosmological} |
-| significance_to_af | TEXT | |
+| significance_to_af | TEXT | AF-specific usage paragraph |
 | source_basis | TEXT | |
 | review_status | TEXT | DRAFT/REVIEWED/VERIFIED |
 
@@ -194,7 +198,8 @@ Links dictionary terms to emblems where they appear.
 | year_end | INTEGER | |
 | event_type | TEXT | CHECK: PUBLICATION/EDITION/SCHOLARSHIP/BIOGRAPHY/DIGITAL/FACSIMILE |
 | title | TEXT | |
-| description | TEXT | |
+| description | TEXT | Short description |
+| description_long | TEXT | Rich historical context paragraph |
 | scholar_id | INTEGER FK | |
 | bib_id | INTEGER FK | |
 | confidence | TEXT | HIGH/MEDIUM/LOW |
