@@ -37,7 +37,9 @@ function renderGallery() {
     if (!gallery) return;
     gallery.innerHTML = filteredEntries.map((entry, i) => `
         <div class="card" onclick="openLightbox(${i})">
-            <div class="card-placeholder">${entry.roman || 'F'}</div>
+            ${entry.image
+                ? `<img src="${entry.image}" alt="Emblem ${entry.roman || 'F'}" style="width:100%;display:block">`
+                : `<div class="card-placeholder">${entry.roman || 'F'}</div>`}
             <div class="card-body">
                 <div class="card-sig">${entry.roman ? 'Emblem ' + entry.roman : 'Frontispiece'}</div>
                 <div class="card-label">${escapeHtml(entry.label)}</div>

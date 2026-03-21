@@ -109,6 +109,8 @@ def export_data_json(conn):
     for r in rows:
         num = r[0]
         page = 'frontispiece.html' if num == 0 else f'emblem-{num:02d}.html'
+        img_file = f'images/emblems/emblem-{num:02d}.jpg'
+        has_image = (SITE_DIR / img_file).exists()
         entries.append({
             'number': num,
             'roman': r[1],
@@ -117,6 +119,7 @@ def export_data_json(conn):
             'discourse': r[4],
             'confidence': r[5],
             'page': page,
+            'image': img_file if has_image else None,
         })
 
     stats = {
