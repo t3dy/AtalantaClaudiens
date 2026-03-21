@@ -31,6 +31,45 @@ This is the canonical index of all 51 emblems. It contains:
 - Do NOT guess image mappings — update the manifest only with verified data.
 - Any agent working with emblems should read this file FIRST.
 
+## Data Flow Direction
+
+```
+data/emblem_manifest.json  ←  AGENTS EDIT HERE (canonical)
+        ↓
+seed_identity.py           →  emblem_identity table in SQLite
+        ↓
+build_site.py              →  static HTML (reads from DB)
+```
+
+The manifest is the single source of truth for emblem identity. Agents and humans edit the manifest. The pipeline syncs it to SQLite. The build reads from SQLite. Changes flow ONE direction: manifest → DB → HTML.
+
+## Seed Data Structure
+
+Seed data is split into domain-specific files in `data/`:
+- `data/emblem_manifest.json` — Emblem identity (canonical, 51 entries)
+- `atalanta_fugiens_seed.json` — All other seed data (emblems, bibliography, scholars, dictionary, timeline, source authorities)
+
+When the seed JSON grows beyond manageable size, split further into `data/scholars.json`, `data/dictionary.json`, etc.
+
+## Corpus Reading Pattern (for agents)
+
+When an agent needs to consult the source PDFs/markdown for research:
+
+1. **Grep** for keywords in `atalanta fugiens/*.md` to find relevant passages
+2. **Read** the relevant section (with offset/limit to stay focused)
+3. **Synthesize** a scholarly paragraph from what was read
+4. **Store** with `source_method='LLM_ASSISTED'`, `confidence='MEDIUM'`, `review_status='DRAFT'`
+
+The entire corpus (~547K tokens) fits in Claude's 1M context window. No RAG, no embeddings, no chunking. Just read the files.
+
+## Vision Analysis (on-demand, not every build)
+
+`scripts/analyze_emblem_images.py` (planned) runs Claude Vision on emblem plates to generate visual element descriptions. This script:
+- Reads the manifest to find emblems with images but no visual_elements
+- Sends each plate to Claude Vision for structured description
+- Stores results in `emblems.visual_elements` (JSON)
+- Is called EXPLICITLY when new images are added, NOT on every build
+
 ## Architecture Constraints
 
 1. **SQLite is the source of truth.** Python scripts generate JSON and static HTML pages. No runtime dependencies.
