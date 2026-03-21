@@ -1,67 +1,87 @@
 # ROADMAP.md — AtalantaClaudiens Phase Status
 
-## Phase 1: Extraction Core (Minimal Viable Pipeline)
+*Updated 2026-03-21. See HIROREBUILD.md for detailed next-phase plan.*
 
-Goal: init_db → seed → extract_dejong → verify data in SQLite. No site generation yet.
-
-| Slice | Status | Notes |
-|-------|--------|-------|
-| 1A: Minimal schema (5 tables) | IN PROGRESS | `emblems`, `bibliography`, `source_authorities`, `scholarly_refs`, `emblem_sources` |
-| 1B: Seed ingestion (emblems + authorities + bib) | READY | From `atalanta_fugiens_seed.json` — only emblem stubs, authorities, bibliography. Dict/timeline/scholars deferred. |
-| 1C: De Jong extraction loop | READY | Parse De Jong .md, populate `scholarly_refs` and `emblem_sources` for all 50 emblems |
-| 1D: Extraction verification | READY | SQL queries to verify coverage: refs per emblem, source counts, confidence distribution |
-
-## Phase 2: Site Shell + Emblem Pages
+## Phase 1: Extraction Core — COMPLETE
 
 | Slice | Status | Notes |
 |-------|--------|-------|
-| 2A: CSS + JS + page_shell | DEFERRED | Copy from HPMarginalia after extraction is solid |
-| 2B: build_site.py (gallery + emblem pages) | DEFERRED | Needs Phase 1 data |
-| 2C: Scholar + bibliography pages | DEFERRED | Needs `scholars` table (not in minimal schema) |
+| 1A: Schema (v1-v4, 13 tables) | BUILT | init_db → migrate_v2 → migrate_v3 → migrate_v3_identity |
+| 1B: Seed ingestion | BUILT | 51 emblems, 10 bib, 15 authorities, 38 dict terms, 29 timeline, 11 scholars |
+| 1C: De Jong extraction | BUILT | 49 sections by regex, 50/50 mottos, 50/50 discourses |
+| 1D: Pass 2 gap filling | BUILT | Dynamic page ranges, 3 hard cases resolved by end-boundary widening |
 
-## Phase 3: Reference Apparatus
-
-| Slice | Status | Notes |
-|-------|--------|-------|
-| 3A: Dictionary (60+ terms) | DEFERRED | Needs `dictionary_terms` table |
-| 3B: Timeline (20+ events) | DEFERRED | Needs `timeline_events` table |
-| 3C: Sources browsing page | DEFERRED | Source authorities exist in Phase 1; page generation deferred |
-| 3D: Secondary scholar extraction | DEFERRED | Needs `scholars` table |
-
-## Phase 4: Essays + Images + Deploy
+## Phase 2: Site Shell — COMPLETE
 
 | Slice | Status | Notes |
 |-------|--------|-------|
-| 4A: Image acquisition | BLOCKED | Public domain scans from BSB or similar |
-| 4B: Essays (5 AI-drafted) | DEFERRED | Needs `essays` table |
-| 4C: Validation + about page | DEFERRED | Needs build_site.py |
-| 4D: GitHub Pages deploy | DEFERRED | Needs built site |
+| 2A: CSS + JS + page_shell | BUILT | Parchment theme, gallery, lightbox, comparative view, badges |
+| 2B: Emblem pages (51) | BUILT | Analysis blocks, cross-links to sources + dictionary |
+| 2C: Scholar pages (11) | BUILT | Profiles with overviews and linked works |
+| 2D: Dictionary (38 terms) | BUILT | Latin forms, AF significance, emblem links |
+| 2E: Timeline (29 events) | BUILT | Rich descriptions, Rosicrucian context events |
+| 2F: Sources page | BUILT | Rich cards, emblem badges, type-colored borders |
+| 2G: Bibliography (10) | BUILT | Annotated entries with relevance badges |
+| 2H: Biography page | BUILT | 6 sections on Maier's life |
+| 2I: GitHub Pages deploy | BUILT | t3dy/AtalantaClaudiens, CI via Actions |
 
-## Deferred Schema (added when needed)
+## Phase 3A: Identity + Enrichment — COMPLETE
 
-| Table | Deferred To | Reason |
-|-------|------------|--------|
-| `scholars` | Phase 2C | Not needed for extraction loop |
-| `scholar_works` | Phase 2C | Join table for scholars ↔ bibliography |
-| `dictionary_terms` | Phase 3A | Dictionary is downstream of extraction |
-| `dictionary_term_links` | Phase 3A | Cross-references between terms |
-| `term_emblem_refs` | Phase 3A | Term ↔ emblem links |
-| `timeline_events` | Phase 3B | Timeline is downstream |
-| `editions` | Phase 3B | Edition history is downstream |
-| `alchemical_processes` | Phase 3C+ | Multi-register model, needs extraction first |
-| `emblem_processes` | Phase 3C+ | Join table |
-| `visual_elements` | Phase 4+ | Image-text concordance, needs images |
-| `mythological_figures` | Phase 4+ | Figure entities, needs full extraction |
-| `emblem_figures` | Phase 4+ | Join table |
-| `essays` | Phase 4B | AI-drafted essays |
+| Slice | Status | Notes |
+|-------|--------|-------|
+| 3A1: Emblem identity layer | BUILT | 51 rows, 10 HIGH confidence images |
+| 3A2: Analysis blocks (50/50) | BUILT | Template assembly with cross-links |
+| 3A3: Alchemical stage classification | BUILT | 31/50 classified |
+| 3A4: Home page intro + Start Here | BUILT | Introductory paragraph + button |
 
-## Research Artifacts (Completed)
+## Phase 3B: Secondary Sources — READY
 
-| Artifact | Status | Location |
-|----------|--------|----------|
-| SCHOLARSHIPREPORT.md | BUILT | Root directory |
-| atalanta_fugiens_seed.json | BUILT | Root directory |
-| GPTAF.txt | BUILT | Root directory (prior session) |
-| GPTPIPE.txt | BUILT | Root directory (prior session) |
-| Furnace & Fugue analysis | BUILT | In conversation history |
-| HPMarginalia architecture study | BUILT | In conversation history |
+| Slice | Status | Notes |
+|-------|--------|-------|
+| 3B1: Tilton extraction (13,881 lines) | READY | Script needed, single-pass LLM read |
+| 3B2: Craven extraction (6,483 lines) | READY | Biographical detail for Maier |
+| 3B3: Other scholars (Wescott, Pagel, Miner) | READY | Smaller files, targeted extraction |
+
+## Phase 4: Content Enrichment — READY
+
+| Slice | Status | Notes |
+|-------|--------|-------|
+| 4A: Latin mottos (49/50 missing) | READY | Extract from OCR or seed manually |
+| 4B: definition_long (38/38 empty) | READY | Writing swarm for extended definitions |
+| 4C: Multi-register definitions | READY | Schema needs `registers` column |
+| 4D: Visual element descriptions | BLOCKED | Needs image analysis pipeline or manual |
+| 4E: Remaining 19 alchemical stages | READY | Manual/LLM classification |
+
+## Phase 5: Images — BLOCKED
+
+| Slice | Status | Notes |
+|-------|--------|-------|
+| 5A: Source 41 missing emblem plates | BLOCKED | Multi-method swarm planned (Wikipedia, F&F, de Bry PDF, online collections) |
+| 5B: Image-emblem verification | BLOCKED | Needs 5A |
+| 5C: Vision analysis pipeline | BLOCKED | Needs 5A + Claude Vision |
+
+## Phase 6: Pedagogical Layer — PLANNED
+
+| Slice | Status | Notes |
+|-------|--------|-------|
+| 6A: 5 thematic essays | PLANNED | After Tilton extraction |
+| 6B: Source x Emblem matrix visualization | PLANNED | JS + existing data |
+| 6C: Thematic browse modes | PLANNED | By stage, source, figure |
+| 6D: Search functionality | PLANNED | Client-side JS |
+| 6E: Guided pathways ("How to Read") | PLANNED | After essays |
+
+## Reports & Analysis (23 documents)
+
+| Report | Purpose |
+|--------|---------|
+| HIROREBUILD.md | Master architecture plan (8 layers, 43 atoms) |
+| DESIREDIMPROVEMENTS.md | 20-priority improvement list |
+| PRISPEDAGOGYREPORT.md | Section-by-section pedagogical audit |
+| AFSTYLING.md | Template and style guide |
+| DOWEREALLYNEEDARAG.md | RAG analysis (verdict: No) |
+| DECKARDTILT.md | Tilton ingestion boundary plan |
+| HARDOCRCASES.md | OCR method analysis |
+| SWARMWRITING.md | Swarm methodology |
+| Swarm*Audit.md (4) | Schema, pipeline, content, provenance audits |
+| HIRO321TUNEUP.md | Infrastructure audit |
+| Others (7) | TRIALANDERROR, REFLAYERAF1, DECKARDAF1, HANDOVER, etc. |

@@ -118,14 +118,19 @@ C:\Dev\Claudiens/
 ├── db/
 │   └── atalanta.db                # SQLite database (generated)
 ├── scripts/
-│   ├── init_db.py                 # Stage 1: Schema creation
+│   ├── init_db.py                 # Stage 1: Schema creation (v1)
+│   ├── migrate_v2.py              # Stage 1: Add Phase 2-3 tables
+│   ├── migrate_v3.py              # Stage 1: Content enrichment columns
+│   ├── migrate_v3_identity.py     # Stage 1: Emblem identity table
 │   ├── seed_from_json.py          # Stage 1: Ingest seed data
+│   ├── seed_phase2.py             # Stage 1: Scholars, dictionary, timeline
+│   ├── seed_identity.py           # Stage 1: Emblem identity layer
 │   ├── extract_dejong.py          # Stage 2: Parse De Jong markdown
-│   ├── extract_secondary.py       # Stage 2: Parse other scholars
-│   ├── seed_dictionary.py         # Stage 3: Populate dictionary
-│   ├── seed_timeline.py           # Stage 3: Populate timeline
+│   ├── extract_dejong_pass2.py    # Stage 2: Fill gaps by page range
+│   ├── link_dictionary.py         # Stage 3: Cross-link dictionary terms
+│   ├── seed_emblem_analyses.py    # Stage 3: Assemble analysis HTML
 │   ├── build_site.py              # Stage 4: Generate static HTML
-│   └── validate.py                # Stage 5: QA audit
+│   └── validate_identity.py       # Stage 5: Identity layer validation
 ├── docs/
 │   ├── SYSTEM.md                  # Architecture + provenance model
 │   ├── ONTOLOGY.md                # Database schema catalog
@@ -137,24 +142,24 @@ C:\Dev\Claudiens/
 │   ├── TIMELINE_SPEC.md           # Timeline event model
 │   └── archive/                   # Past planning artifacts
 ├── data/
-│   └── sources/                   # Symlinks to source .md files
-├── staging/                       # LLM outputs before promotion
+│   └── emblem_identity_seed.json  # Emblem identity layer seed
+├── staging/                       # Swarm agent outputs before merge
 ├── site/
-│   ├── index.html                 # Gallery home
+│   ├── index.html                 # Gallery home (intro + Start Here)
 │   ├── data.json                  # Gallery data (generated)
 │   ├── style.css                  # Main styles
-│   ├── components.css             # Component styles
 │   ├── script.js                  # Gallery + lightbox JS
 │   ├── scholars.html
 │   ├── bibliography.html
+│   ├── biography.html             # Maier biography (6 sections)
 │   ├── timeline.html
 │   ├── sources.html
 │   ├── about.html
-│   ├── emblems/                   # 51 emblem pages
-│   ├── scholar/                   # Individual scholar pages
-│   ├── dictionary/                # Dictionary index + term pages
-│   ├── essays/                    # Essay index + individual essays
-│   └── images/emblems/            # Emblem plate images
+│   ├── emblems/                   # 51 emblem pages + index
+│   ├── scholar/                   # 11 individual scholar pages
+│   ├── dictionary/                # 38 term pages + index
+│   ├── essays/                    # Essay index (5 planned)
+│   └── images/emblems/            # 10 confirmed emblem plate images
 └── atalanta fugiens/              # Source corpus (read-only)
     ├── *.pdf                      # Original PDFs
     └── *.md                       # OCR markdown conversions
