@@ -70,6 +70,24 @@ def seed_dictionary(conn, seed):
             ', '.join(entry.get("sources", [])),
         ))
 
+        # Update optional enrichment fields (latin, significance)
+        latin = entry.get("latin")
+        sig = entry.get("significance_to_af")
+        if latin or sig:
+            updates = []
+            values = []
+            if latin:
+                updates.append("label_latin = ?")
+                values.append(latin)
+            if sig:
+                updates.append("significance_to_af = ?")
+                values.append(sig)
+            values.append(slug)
+            conn.execute(
+                f"UPDATE dictionary_terms SET {', '.join(updates)} WHERE slug = ?",
+                values
+            )
+
         # Link to emblems
         term_row = conn.execute("SELECT id FROM dictionary_terms WHERE slug = ?", (slug,)).fetchone()
         if term_row:
@@ -106,6 +124,14 @@ def seed_timeline(conn, seed):
             scholar_id,
             bib_id,
         ))
+
+        # Update description_long if provided
+        desc_long = event.get("description_long")
+        if desc_long:
+            conn.execute(
+                "UPDATE timeline_events SET description_long = ? WHERE year = ? AND title = ?",
+                (desc_long, event["year"], event["title"])
+            )
 
     count = conn.execute("SELECT COUNT(*) FROM timeline_events").fetchone()[0]
     print(f"  timeline_events: {count} rows")

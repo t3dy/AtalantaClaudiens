@@ -171,7 +171,7 @@ def build_emblem_pages(conn):
         SELECT id, number, roman_numeral, canonical_label,
                motto_latin, motto_english, epigram_english,
                discourse_summary, image_description,
-               alchemical_stage, confidence
+               alchemical_stage, confidence, analysis_html
         FROM emblems ORDER BY number
     """).fetchall()
 
@@ -179,6 +179,7 @@ def build_emblem_pages(conn):
         eid, num, roman, label = e[0], e[1], e[2], e[3]
         motto_lat, motto_en, epigram = e[4], e[5], e[6]
         discourse, img_desc, stage, conf = e[7], e[8], e[9], e[10]
+        analysis_html = e[11]
 
         # Navigation
         prev_link = ''
@@ -254,6 +255,7 @@ def build_emblem_pages(conn):
                 {f'<div class="motto-block">{motto_en}</div>' if motto_en else '<p style="color:var(--text-muted)"><em>Motto not yet extracted</em></p>'}
                 {f'<details style="margin-bottom:1.5rem"><summary style="cursor:pointer;color:var(--accent);font-family:var(--font-sans)">Epigram</summary><div class="epigram-block">{epigram}</div></details>' if epigram else ''}
                 {f'<div class="discourse-block"><h3 style="font-size:1rem;color:var(--accent);margin-bottom:0.5rem">Discourse Summary</h3><p style="font-size:0.92rem">{discourse[:1500]}{"..." if discourse and len(discourse) > 1500 else ""}</p></div>' if discourse else ''}
+                {analysis_html if analysis_html else ''}
                 {f'<p><span class="badge badge-stage">{stage}</span></p>' if stage else ''}
             </div>
 
@@ -502,9 +504,17 @@ def build_dictionary_pages(conn):
 
     terms = conn.execute("""
         SELECT id, slug, label, category, definition_short, definition_long,
-               significance_to_af, source_basis, review_status
+               significance_to_af, source_basis, review_status, label_latin
         FROM dictionary_terms ORDER BY label
     """).fetchall()
+
+    # Count emblem refs per term
+    emblem_counts = {}
+    for t in terms:
+        cnt = conn.execute(
+            "SELECT COUNT(*) FROM term_emblem_refs WHERE term_id = ?", (t[0],)
+        ).fetchone()[0]
+        emblem_counts[t[0]] = cnt
 
     # Group by category
     categories = {}
@@ -512,24 +522,35 @@ def build_dictionary_pages(conn):
         cat = t[3] or 'UNCATEGORIZED'
         categories.setdefault(cat, []).append(t)
 
-    # Index page
+    # Index page with rich cards
     cat_html = ''
     for cat in sorted(categories.keys()):
         cat_terms = categories[cat]
-        links = ' '.join(
-            f'<a href="dictionary/{t[1]}.html" class="source-link">{t[2]}</a>'
-            for t in cat_terms
-        )
+        cards = ''
+        for t in cat_terms:
+            tid, slug, label, tcat, def_short = t[0], t[1], t[2], t[3], t[4]
+            label_latin = t[9]
+            ecnt = emblem_counts.get(tid, 0)
+            latin_line = f'<div class="dict-latin">{label_latin}</div>' if label_latin and label_latin != label else ''
+            cards += f"""
+            <a href="{slug}.html" class="dict-card">
+                <div class="dict-label">{label}
+                    <span class="badge badge-stage">{tcat}</span>
+                    {f'<span class="badge badge-contextual">{ecnt} emblems</span>' if ecnt else ''}
+                </div>
+                {latin_line}
+                <div class="dict-def">{def_short or ""}</div>
+            </a>"""
         cat_html += f"""
-        <div style="margin-bottom:1.5rem">
-            <h3 style="font-size:1rem;color:var(--accent);margin-bottom:0.5rem">{cat} <span class="badge badge-contextual">{len(cat_terms)}</span></h3>
-            <div>{links}</div>
+        <div style="margin-bottom:2rem">
+            <h3 style="font-size:1.1rem;color:var(--accent);margin-bottom:0.75rem">{cat} <span class="badge badge-contextual">{len(cat_terms)}</span></h3>
+            {cards}
         </div>"""
 
     body = f"""
     <div class="page-content">
-        <h2>Alchemical Dictionary</h2>
-        <p>{len(terms)} terms across {len(categories)} categories.</p>
+        <h2>Dictionary of <em>Atalanta Fugiens</em></h2>
+        <p>Key alchemical terms as they appear in Maier's text, with Latin originals. {len(terms)} terms across {len(categories)} categories.</p>
         {cat_html}
     </div>"""
     html = page_shell('Dictionary', body, active_nav='Dictionary')
@@ -537,7 +558,7 @@ def build_dictionary_pages(conn):
 
     # Individual term pages
     for t in terms:
-        tid, slug, label, cat, def_short, def_long, sig, basis, status = t
+        tid, slug, label, cat, def_short, def_long, sig, basis, status, label_latin = t
 
         # Find linked emblems
         emblem_refs = conn.execute("""
@@ -565,15 +586,18 @@ def build_dictionary_pages(conn):
             for r in related
         )
 
+        latin_display = f'<div class="term-latin">{label_latin}</div>' if label_latin and label_latin != label else ''
+
         body = f"""
         <div class="page-content">
-            <a href="index.html" class="back-link">&larr; Dictionary</a>
+            <a href="index.html" class="back-link">&larr; Dictionary of <em>Atalanta Fugiens</em></a>
             <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{label}
                 <span class="badge badge-stage">{cat}</span>
             </h1>
+            {latin_display}
             {f'<div class="motto-block">{def_short}</div>' if def_short else ''}
-            {f'<div style="margin-bottom:1.5rem">{def_long}</div>' if def_long else ''}
-            {f'<h2>Significance to Atalanta Fugiens</h2><p>{sig}</p>' if sig else ''}
+            {f'<div style="margin-bottom:1.5rem"><p style="font-size:0.95rem;line-height:1.7">{def_long}</p></div>' if def_long else ''}
+            {f'<h2>In <em>Atalanta Fugiens</em></h2><p style="font-size:0.95rem;line-height:1.7">{sig}</p>' if sig else ''}
             {f'<h2>Appears in Emblems</h2><div>{emblem_links}</div>' if emblem_links else ''}
             {f'<h2>Related Terms</h2><div>{related_html}</div>' if related_html else ''}
             {f'<p style="margin-top:1.5rem;font-size:0.8rem;color:var(--text-muted)">Source: {basis}</p>' if basis else ''}
@@ -590,7 +614,8 @@ def build_dictionary_pages(conn):
 
 def build_timeline(conn):
     events = conn.execute("""
-        SELECT year, year_end, event_type, title, description, confidence
+        SELECT year, year_end, event_type, title, description, confidence,
+               description_long
         FROM timeline_events ORDER BY year
     """).fetchall()
 
@@ -602,13 +627,14 @@ def build_timeline(conn):
     events_html = ''
     prev_year = None
     for e in events:
-        year, year_end, etype, title, desc, conf = e
+        year, year_end, etype, title, desc, conf, desc_long = e
         color = TYPE_COLORS.get(etype, '#7f8c8d')
-        year_header = f'<div style="font-size:1.4rem;font-weight:700;color:var(--accent);margin-top:2rem;margin-bottom:0.5rem">{year}</div>' if year != prev_year else ''
+        year_header = f'<div class="timeline-year">{year}</div>' if year != prev_year else ''
+        display_desc = desc_long or desc or ''
         events_html += f"""{year_header}
-        <div class="ref-card" style="border-left:4px solid {color}">
+        <div class="timeline-card" style="border-left:4px solid {color}">
             <h4><span class="badge" style="background:{color};color:white">{etype}</span> {title}</h4>
-            <p style="font-size:0.9rem">{desc or ''}</p>
+            <div class="event-desc">{display_desc}</div>
         </div>"""
         prev_year = year
 
@@ -630,7 +656,7 @@ def build_timeline(conn):
 def build_sources(conn):
     authorities = conn.execute("""
         SELECT sa.id, sa.authority_id, sa.name, sa.type, sa.author,
-               sa.relationship_to_maier,
+               sa.relationship_to_maier, sa.description_long,
                COUNT(es.id) as emblem_count
         FROM source_authorities sa
         LEFT JOIN emblem_sources es ON es.authority_id = sa.id
@@ -658,20 +684,23 @@ def build_sources(conn):
         auths = by_type[stype]
         cards = ''
         for a in auths:
-            aid, auth_id, name, atype, author, rel, count = a
-            # Find which emblems use this authority
-            emblem_nums = conn.execute("""
-                SELECT e.roman_numeral FROM emblem_sources es
+            aid, auth_id, name, atype, author, rel, desc_long, count = a
+            # Find which emblems use this authority with numbers for links
+            emblem_data = conn.execute("""
+                SELECT e.number, e.roman_numeral FROM emblem_sources es
                 JOIN emblems e ON es.emblem_id = e.id
                 WHERE es.authority_id = ? AND e.number > 0
                 ORDER BY e.number
             """, (aid,)).fetchall()
-            emblem_list = ', '.join(r[0] for r in emblem_nums if r[0])
+            emblem_badges = ' '.join(
+                f'<a href="emblems/emblem-{ed[0]:02d}.html" class="emblem-link-badge">{ed[1]}</a>'
+                for ed in emblem_data if ed[1]
+            )
             cards += f"""
-            <div class="ref-card">
+            <div class="source-card" id="{auth_id}" style="border-left:4px solid {color}">
                 <h4>{name} <span class="badge" style="background:{color};color:white">{count} emblems</span></h4>
-                {f'<p style="font-size:0.9rem">{rel}</p>' if rel else ''}
-                {f'<p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem">Emblems: {emblem_list}</p>' if emblem_list else ''}
+                {f'<div class="source-desc">{desc_long}</div>' if desc_long else (f'<p style="font-size:0.9rem">{rel}</p>' if rel else '')}
+                {f'<div class="emblem-links" style="margin-top:0.5rem">{emblem_badges}</div>' if emblem_badges else ''}
             </div>"""
         sections_html += f"""
         <h2 style="margin-top:2rem"><span class="badge" style="background:{color};color:white;font-size:0.8rem">{stype}</span> {stype.title()} Sources</h2>

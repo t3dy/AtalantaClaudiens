@@ -94,6 +94,42 @@ header h1 em { font-style: italic; }
 .placeholder-img { width: 100%; aspect-ratio: 4/3; background: linear-gradient(135deg, #e8e0d0 0%, #d4c5a9 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--accent); font-weight: 700; border-radius: 4px; margin-bottom: 1.5rem; }
 .emblem-plate { width: 100%; max-width: 600px; height: auto; border-radius: 4px; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
 
+/* ===== Emblem Analysis Block ===== */
+.emblem-analysis { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--border); }
+.emblem-analysis h3 { font-size: 1.05rem; color: var(--accent); margin: 1.5rem 0 0.5rem; font-family: var(--font-sans); }
+.emblem-analysis h3:first-of-type { margin-top: 0.5rem; }
+.emblem-analysis p { font-size: 0.92rem; line-height: 1.7; margin-bottom: 0.75rem; }
+.emblem-analysis dl { margin: 0.5rem 0 1rem; }
+.emblem-analysis dt { font-weight: 600; font-size: 0.85rem; color: var(--accent); font-family: var(--font-sans); margin-top: 0.75rem; }
+.emblem-analysis dd { font-size: 0.9rem; line-height: 1.6; margin-left: 0; padding-left: 1rem; border-left: 2px solid var(--border); }
+.ai-banner { background: #fdf8e8; border: 1px solid #e8d8a0; border-radius: 4px; padding: 0.6rem 1rem; font-size: 0.78rem; color: #6b5420; font-family: var(--font-sans); margin-bottom: 1rem; }
+
+/* ===== Source Authority Cards ===== */
+.source-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; margin-bottom: 1.25rem; }
+.source-card h4 { font-size: 1rem; color: var(--accent); font-family: var(--font-sans); margin-bottom: 0.5rem; }
+.source-card .source-desc { font-size: 0.9rem; line-height: 1.65; margin-bottom: 0.75rem; }
+.source-card .emblem-links { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
+
+/* ===== Timeline Cards ===== */
+.timeline-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 1.25rem; margin-bottom: 1rem; }
+.timeline-card h4 { font-size: 0.95rem; color: var(--accent); font-family: var(--font-sans); margin-bottom: 0.4rem; }
+.timeline-card .event-desc { font-size: 0.9rem; line-height: 1.65; color: var(--text); }
+.timeline-year { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-top: 2rem; margin-bottom: 0.5rem; position: sticky; top: 0; background: var(--bg); padding: 0.3rem 0; z-index: 10; }
+
+/* ===== Dictionary Cards ===== */
+.dict-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; text-decoration: none; color: inherit; display: block; transition: transform 0.15s, box-shadow 0.15s; }
+.dict-card:hover { transform: translateY(-1px); box-shadow: 0 3px 12px var(--shadow); }
+.dict-card .dict-label { font-size: 1rem; font-weight: 600; color: var(--accent); }
+.dict-card .dict-latin { font-style: italic; font-size: 0.88rem; color: var(--text-muted); margin-top: 0.15rem; }
+.dict-card .dict-def { font-size: 0.85rem; color: var(--text); margin-top: 0.4rem; line-height: 1.5; }
+.term-latin { font-style: italic; font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.25rem; }
+
+/* ===== Cross-Links ===== */
+.emblem-link-badge { display: inline-block; padding: 0.15rem 0.45rem; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; font-size: 0.72rem; font-weight: 600; font-family: var(--font-sans); color: var(--accent); text-decoration: none; transition: all 0.15s; }
+.emblem-link-badge:hover { background: var(--accent); color: white; border-color: var(--accent); }
+.cross-link { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent-light); }
+.cross-link:hover { border-bottom-style: solid; }
+
 /* ===== Content Pages ===== */
 .page-content { max-width: 900px; margin: 2rem auto; padding: 0 2rem; }
 .page-content h2 { color: var(--accent); border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; margin: 2rem 0 1rem; }

@@ -120,6 +120,14 @@ def seed_authorities(conn, seed):
             auth.get("relationship"),
         ))
 
+        # Update description_long if provided
+        desc_long = auth.get("description_long")
+        if desc_long:
+            conn.execute(
+                "UPDATE source_authorities SET description_long = ? WHERE authority_id = ?",
+                (desc_long, auth["authority_id"])
+            )
+
     count = conn.execute("SELECT COUNT(*) FROM source_authorities").fetchone()[0]
     print(f"  source_authorities: {count} rows")
 
