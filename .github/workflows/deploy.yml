@@ -24,22 +24,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Build site
-        run: |
-          python scripts/init_db.py
-          python scripts/migrate_v2.py
-          python scripts/seed_from_json.py
-          python scripts/seed_phase2.py
-          python scripts/extract_dejong.py
-          python scripts/extract_dejong_pass2.py
-          python scripts/link_dictionary.py
-          python scripts/build_site.py
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
