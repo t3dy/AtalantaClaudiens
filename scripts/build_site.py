@@ -16,6 +16,41 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "db" / "atalanta.db"
 SITE_DIR = BASE_DIR / "site"
 
+
+def load_identity_map(conn):
+    """Load emblem_identity table into a dict keyed by emblem_number.
+
+    Returns {emblem_number: {'image_filename': str|None, 'alignment_confidence': str|None, ...}}
+    All image rendering must flow through this map — no hardcoded filename assumptions.
+    """
+    rows = conn.execute("""
+        SELECT emblem_number, roman_label, image_filename,
+               image_source, alignment_confidence
+        FROM emblem_identity
+        ORDER BY emblem_number
+    """).fetchall()
+    identity = {}
+    for r in rows:
+        identity[r[0]] = {
+            'image_filename': r[2],
+            'image_source': r[3],
+            'alignment_confidence': r[4],
+        }
+    return identity
+
+
+def resolve_image(identity_map, emblem_number):
+    """Resolve image path for an emblem via the identity layer.
+
+    Returns (relative_path, exists) tuple. Returns (None, False) if no image mapped.
+    """
+    entry = identity_map.get(emblem_number)
+    if not entry or not entry['image_filename']:
+        return None, False
+    rel_path = f"images/emblems/{entry['image_filename']}"
+    exists = (SITE_DIR / rel_path).exists()
+    return rel_path, exists
+
 ROMAN_MAP = [
     (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
     (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
@@ -98,7 +133,7 @@ def confidence_badge(level):
 # Data Export
 # ============================================================
 
-def export_data_json(conn):
+def export_data_json(conn, identity_map):
     rows = conn.execute("""
         SELECT e.number, e.roman_numeral, e.canonical_label,
                e.motto_english, e.discourse_summary, e.confidence
@@ -109,8 +144,7 @@ def export_data_json(conn):
     for r in rows:
         num = r[0]
         page = 'frontispiece.html' if num == 0 else f'emblem-{num:02d}.html'
-        img_file = f'images/emblems/emblem-{num:02d}.jpg'
-        has_image = (SITE_DIR / img_file).exists()
+        img_path, img_exists = resolve_image(identity_map, num)
         entries.append({
             'number': num,
             'roman': r[1],
@@ -119,7 +153,7 @@ def export_data_json(conn):
             'discourse': r[4],
             'confidence': r[5],
             'page': page,
-            'image': img_file if has_image else None,
+            'image': img_path if img_exists else None,
         })
 
     stats = {
@@ -163,7 +197,7 @@ def build_gallery(conn):
 # Emblem Detail Pages
 # ============================================================
 
-def build_emblem_pages(conn):
+def build_emblem_pages(conn, identity_map):
     emblems_dir = SITE_DIR / 'emblems'
     emblems_dir.mkdir(exist_ok=True)
 
@@ -251,7 +285,7 @@ def build_emblem_pages(conn):
         <div class="comparative-view">
             <div class="source-panel">
                 <h2>Original Source</h2>
-                {f'<img src="../images/emblems/emblem-{num:02d}.jpg" alt="Emblem {display_num}" class="emblem-plate">' if (SITE_DIR / f"images/emblems/emblem-{num:02d}.jpg").exists() else f'<div class="placeholder-img">{display_num}</div>'}
+                {(lambda p, e: f'<img src="../{p}" alt="Emblem {display_num}" class="emblem-plate">' if e else f'<div class="placeholder-img">{display_num}</div>')(*resolve_image(identity_map, num))}
                 {f'<div class="motto-block">{motto_en}</div>' if motto_en else '<p style="color:var(--text-muted)"><em>Motto not yet extracted</em></p>'}
                 {f'<details style="margin-bottom:1.5rem"><summary style="cursor:pointer;color:var(--accent);font-family:var(--font-sans)">Epigram</summary><div class="epigram-block">{epigram}</div></details>' if epigram else ''}
                 {f'<div class="discourse-block"><h3 style="font-size:1rem;color:var(--accent);margin-bottom:0.5rem">Discourse Summary</h3><p style="font-size:0.92rem">{discourse[:1500]}{"..." if discourse and len(discourse) > 1500 else ""}</p></div>' if discourse else ''}
@@ -280,10 +314,9 @@ def build_emblem_pages(conn):
         fname = 'frontispiece.html' if num == 0 else f'emblem-{num:02d}.html'
         display = roman or 'F'
         has_data = '&#10003;' if e[5] else '&middot;'
-        img_file = f'images/emblems/emblem-{num:02d}.jpg'
-        img_path = SITE_DIR / img_file
-        if img_path.exists():
-            img_tag = f'<img src="../{img_file}" alt="Emblem {display}" style="width:100%;aspect-ratio:auto;display:block">'
+        img_path, img_exists = resolve_image(identity_map, num)
+        if img_exists:
+            img_tag = f'<img src="../{img_path}" alt="Emblem {display}" style="width:100%;aspect-ratio:auto;display:block">'
         else:
             img_tag = f'<div class="card-placeholder" style="aspect-ratio:1;font-size:2rem">{display}</div>'
         grid_html += f"""
@@ -767,9 +800,10 @@ def build_essays(conn):
 def main():
     conn = sqlite3.connect(DB_PATH)
     print("Building site...")
-    export_data_json(conn)
+    identity_map = load_identity_map(conn)
+    export_data_json(conn, identity_map)
     build_gallery(conn)
-    build_emblem_pages(conn)
+    build_emblem_pages(conn, identity_map)
     build_scholars_pages(conn)
     build_bibliography(conn)
     build_dictionary_pages(conn)

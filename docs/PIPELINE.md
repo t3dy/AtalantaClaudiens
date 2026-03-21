@@ -3,11 +3,11 @@
 ## Stage Overview
 
 ```
-STAGE 1: SCAFFOLD     init_db.py → migrate_v2.py → migrate_v3.py → seed_from_json.py → seed_phase2.py
+STAGE 1: SCAFFOLD     init_db.py → migrate_v2.py → migrate_v3.py → migrate_v3_identity.py → seed_from_json.py → seed_phase2.py → seed_identity.py
 STAGE 2: EXTRACT      extract_dejong.py → extract_dejong_pass2.py
 STAGE 3: ENRICH       link_dictionary.py → seed_emblem_analyses.py
 STAGE 4: BUILD        build_site.py
-STAGE 5: VALIDATE     (manual preview verification)
+STAGE 5: VALIDATE     validate_identity.py
 ```
 
 ## Stage 1: Scaffold
@@ -104,11 +104,14 @@ rm -f db/atalanta.db
 python scripts/init_db.py
 python scripts/migrate_v2.py
 python scripts/migrate_v3.py
+python scripts/migrate_v3_identity.py
 python scripts/seed_from_json.py
 python scripts/seed_phase2.py
+python scripts/seed_identity.py
 python scripts/extract_dejong.py
 python scripts/extract_dejong_pass2.py
 python scripts/link_dictionary.py
 python scripts/seed_emblem_analyses.py
 python scripts/build_site.py
+python scripts/validate_identity.py
 ```
