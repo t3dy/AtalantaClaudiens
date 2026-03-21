@@ -91,7 +91,7 @@ def extract_epigram_from_chunk(chunk):
 def extract_summary_from_chunk(chunk):
     """Try to find SUMMARY OF THE DISCOURSE content."""
     # OCR-tolerant: handle garbled SUMMARY (e.g., "SUl\'IMA.RYOF")
-    m = re.search(r'(?:SUMMARY|SU.{0,6}ARY)\s*(?:OF)?\s*THE\s*DIS\s*COURSE\s*(.*?)(?:SOURCE\s+OF|COM\s*M?\s*ENTARY|$)',
+    m = re.search(r'(?:SUMMARY|SU.{0,8}ARY)\s*(?:OF)?\s*THE\s*DIS\s*COURSE\s*(.*?)(?:SOURCE\s+OF|COM\s*M?\s*ENTARY|$)',
                   chunk, re.DOTALL | re.IGNORECASE)
     if m:
         text = m.group(1).strip()

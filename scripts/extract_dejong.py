@@ -154,7 +154,7 @@ def find_emblem_sections(text):
     # These have OCR damage to the word EMBLEM itself but valid (fig N) MOTTO nearby.
     # Pattern: "(fig/fie NN) MOTTO" or "(fig NN) M OTTO" preceded by garbled text
     fig_motto_pattern = re.compile(
-        r'\(fi[eg]\s*(\d+)\)\s*M\s*O\s*T\s*T\s*O', re.IGNORECASE
+        r'\(fi[eg]\.?\s*(\d+)\)\s*M\s*O\s*T\s*T\s*O', re.IGNORECASE
     )
     found_numbers = {s['number'] for s in sections}
     for m in fig_motto_pattern.finditer(text):
@@ -244,7 +244,7 @@ def parse_emblem_section(text, section, next_start=None):
     # OCR-tolerant section header patterns
     # XXXIX has "SUl\'IMA.RYOF" for SUMMARY, XLI has "THEDISCOURSE" (no space)
     PAT_EPIGRAM = r'E\s*P\s*I\s*G\s*R\s*A\s*M'
-    PAT_SUMMARY = r'(?:SUMMARY|SU.{0,6}ARY)\s*(?:OF)?\s*THE\s*DIS\s*COURSE'
+    PAT_SUMMARY = r'(?:SUMMARY|SU.{0,8}ARY)\s*(?:OF)?\s*THE\s*DIS\s*COURSE'
     PAT_SOURCE = r'SOURCE\s+OF\s+THE\s*M\s*O\s*T\s*T\s*O'
     PAT_COMMENTARY = r'COM\s*M?\s*ENTARY'
 
