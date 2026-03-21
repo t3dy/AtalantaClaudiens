@@ -17,6 +17,20 @@ Digital humanities website showcasing H.M.E. De Jong's scholarship on Michael Ma
 | `SCHOLARSHIPREPORT.md` | Corpus analysis, ontology design recommendations |
 | `atalanta_fugiens_seed.json` | Structured seed data for database ingestion |
 
+## Emblem Manifest (Single Source of Truth)
+
+Before working with any emblem, **read `data/emblem_manifest.json`**.
+This is the canonical index of all 51 emblems. It contains:
+- Emblem number (0-50), Roman numeral, Latin and English mottos
+- Confirmed image filename and source (`image_confirmed: true/false`)
+- Slots for page mapping, Wikimedia file, and Furnace & Fugue URL
+
+**Rules:**
+- If the manifest says an image is confirmed, trust it — do not re-source.
+- If `image_confirmed` is false, the emblem needs an image sourced.
+- Do NOT guess image mappings — update the manifest only with verified data.
+- Any agent working with emblems should read this file FIRST.
+
 ## Architecture Constraints
 
 1. **SQLite is the source of truth.** Python scripts generate JSON and static HTML pages. No runtime dependencies.
