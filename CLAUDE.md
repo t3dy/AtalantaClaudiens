@@ -17,9 +17,12 @@ Digital humanities website showcasing H.M.E. De Jong's scholarship on Michael Ma
 | `SCHOLARSHIPREPORT.md` | Corpus analysis, ontology design recommendations |
 | `atalanta_fugiens_seed.json` | Structured seed data for database ingestion |
 
-## Emblem Manifest (Single Source of Truth)
+## Emblem Reference (read these before emblem work)
 
-Before working with any emblem, **read `data/emblem_manifest.json`**.
+- **`EMBLEMGUIDE.md`** — Complete agent reference: all 51 emblems table, data flow, how to find/add/update emblem data, image sourcing status, cross-reference patterns
+- **`data/emblem_manifest.json`** — Canonical identity index (JSON, machine-readable)
+
+Before working with any emblem, **read `EMBLEMGUIDE.md` first, then `data/emblem_manifest.json`**.
 This is the canonical index of all 51 emblems. It contains:
 - Emblem number (0-50), Roman numeral, Latin and English mottos
 - Confirmed image filename and source (`image_confirmed: true/false`)
