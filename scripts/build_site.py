@@ -83,6 +83,7 @@ NAV_ITEMS = [
     ('Sources', 'sources.html'),
     ('Essays', 'essays/index.html'),
     ('Bibliography', 'bibliography.html'),
+    ('Biography', 'biography.html'),
     ('About', 'about.html'),
 ]
 
@@ -175,7 +176,15 @@ def export_data_json(conn, identity_map):
 
 def build_gallery(conn):
     stats = conn.execute("SELECT COUNT(*) FROM emblems WHERE number > 0").fetchone()[0]
+    terms = conn.execute("SELECT COUNT(*) FROM dictionary_terms").fetchone()[0]
+    sources = conn.execute("SELECT COUNT(*) FROM source_authorities").fetchone()[0]
     body = f"""
+    <div style="max-width:700px;margin:2rem auto;padding:0 2rem;text-align:center">
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--text)">In 1617, the physician and alchemist Michael Maier published fifty emblems combining engraved plates, Latin mottos, poetic epigrams, philosophical discourses, and three-voice musical fugues &mdash; a work without parallel in the history of the emblem book. In 1969, the Dutch art historian H.M.E. De Jong unlocked these emblems by tracing each one to its ancient and medieval sources. This site presents her findings.</p>
+        <div style="margin-top:1.5rem">
+            <a href="emblems/frontispiece.html" style="display:inline-block;padding:0.6rem 1.5rem;background:var(--accent);color:white;text-decoration:none;border-radius:4px;font-family:var(--font-sans);font-size:0.9rem">Start with the Frontispiece &rarr;</a>
+        </div>
+    </div>
     <div class="stats" id="stats"></div>
     <div class="gallery" id="gallery"></div>
     <div class="lightbox" id="lightbox">
