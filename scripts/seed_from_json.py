@@ -101,6 +101,14 @@ def seed_bibliography(conn, seed):
             src.get("af_relevance", "CONTEXTUAL"),
         ))
 
+        # Update annotation if provided
+        annotation = src.get("annotation")
+        if annotation:
+            conn.execute(
+                "UPDATE bibliography SET annotation = ? WHERE source_id = ?",
+                (annotation, src.get("source_id"))
+            )
+
     count = conn.execute("SELECT COUNT(*) FROM bibliography").fetchone()[0]
     print(f"  bibliography: {count} rows")
 

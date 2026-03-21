@@ -41,6 +41,14 @@ def seed_scholars(conn, seed):
             VALUES (?, ?, ?)
         """, (s["name"], s.get("specialization"), s.get("af_focus")))
 
+        # Update overview if provided
+        overview = s.get("overview")
+        if overview:
+            conn.execute(
+                "UPDATE scholars SET overview = ? WHERE name = ? AND (overview IS NULL OR overview = '')",
+                (overview, s["name"])
+            )
+
         # Link to bibliography
         scholar_row = conn.execute("SELECT id FROM scholars WHERE name = ?", (s["name"],)).fetchone()
         if scholar_row:

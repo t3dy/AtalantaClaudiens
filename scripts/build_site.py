@@ -479,7 +479,8 @@ def build_scholars_pages(conn):
             <a href="../scholars.html" class="back-link">&larr; All Scholars</a>
             <h1 style="font-size:1.8rem;margin-bottom:0.5rem">{name}</h1>
             <p style="color:var(--text-muted);font-family:var(--font-sans);margin-bottom:1.5rem">{spec or ''}</p>
-            {f'<p style="margin-bottom:1.5rem">{focus}</p>' if focus else ''}
+            {f'<p style="margin-bottom:1rem">{focus}</p>' if focus else ''}
+            {f'<div style="margin-bottom:1.5rem;font-size:0.95rem;line-height:1.7">{overview}</div>' if overview else ''}
             {f'<h2>Works in Archive</h2>{works_html}' if works_html else '<p style="color:var(--text-muted)"><em>No works linked yet.</em></p>'}
         </div>"""
         html = page_shell(name, body, active_nav='Scholars', depth=1)
@@ -494,13 +495,13 @@ def build_scholars_pages(conn):
 
 def build_bibliography(conn):
     entries = conn.execute("""
-        SELECT source_id, author, title, year, journal, publisher, pub_type, af_relevance, in_collection
+        SELECT source_id, author, title, year, journal, publisher, pub_type, af_relevance, in_collection, annotation
         FROM bibliography ORDER BY year
     """).fetchall()
 
     rows_html = ''
     for e in entries:
-        src_id, author, title, year, journal, pub, ptype, rel, incoll = e
+        src_id, author, title, year, journal, pub, ptype, rel, incoll, annotation = e
         rel_badge = f'<span class="badge badge-{"primary" if rel == "PRIMARY" else "direct" if rel == "DIRECT" else "contextual"}">{rel}</span>'
         venue = journal or pub or ''
         rows_html += f"""
@@ -508,6 +509,7 @@ def build_bibliography(conn):
             <h4>{author} ({year or '?'}) {rel_badge}</h4>
             <p><em>{title}</em></p>
             <p style="font-size:0.8rem;color:var(--text-muted)">{venue} &middot; {ptype or ''}</p>
+            {f'<p style="font-size:0.88rem;line-height:1.6;margin-top:0.5rem">{annotation}</p>' if annotation else ''}
         </div>"""
 
     primary = len([e for e in entries if e[7] == 'PRIMARY'])
@@ -794,6 +796,46 @@ def build_essays(conn):
 
 
 # ============================================================
+# Biography Page
+# ============================================================
+
+def build_biography():
+    """Build Maier biography page from seed JSON."""
+    seed_path = BASE_DIR / 'atalanta_fugiens_seed.json'
+    if not seed_path.exists():
+        print("  biography: skipped (no seed JSON)")
+        return
+
+    seed = json.loads(seed_path.read_text(encoding='utf-8'))
+    bio = seed.get('biography')
+    if not bio:
+        print("  biography: skipped (no biography data)")
+        return
+
+    sections_html = ''
+    for section in bio.get('sections', []):
+        heading = section.get('heading', '')
+        content = section.get('content', '')
+        # Convert newlines to paragraphs
+        paragraphs = [p.strip() for p in content.split('\n\n') if p.strip()]
+        para_html = ''.join(f'<p style="font-size:0.95rem;line-height:1.7;margin-bottom:1rem">{p}</p>' for p in paragraphs)
+        sections_html += f"""
+        <h2>{heading}</h2>
+        {para_html}"""
+
+    body = f"""
+    <div class="page-content">
+        <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{bio.get('title', 'Michael Maier')}</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:2rem;font-style:italic">{bio.get('subtitle', '')}</p>
+        <div class="ai-banner">Biography assembled from Craven (1910), Tilton (2003), and De Jong (1969). Not reviewed by a human scholar.</div>
+        {sections_html}
+    </div>"""
+    html = page_shell('Biography', body, active_nav='About')
+    (SITE_DIR / 'biography.html').write_text(html, encoding='utf-8')
+    print(f"  biography.html: {len(bio.get('sections', []))} sections")
+
+
+# ============================================================
 # Main
 # ============================================================
 
@@ -810,6 +852,7 @@ def main():
     build_timeline(conn)
     build_sources(conn)
     build_essays(conn)
+    build_biography()
     build_about(conn)
     conn.close()
     print("Site build complete.")

@@ -32,6 +32,8 @@ def main():
         added.append("source_authorities.description_long")
     if add_column_if_missing(conn, "timeline_events", "description_long"):
         added.append("timeline_events.description_long")
+    if add_column_if_missing(conn, "bibliography", "annotation"):
+        added.append("bibliography.annotation")
 
     conn.execute("""
         INSERT OR IGNORE INTO schema_version (version, description)

@@ -9,7 +9,8 @@
       "publisher": "E.J. Brill / Nicolas-Hays",
       "type": "monograph",
       "af_relevance": "PRIMARY",
-      "emblem_coverage": "ALL"
+      "emblem_coverage": "ALL",
+      "annotation": "De Jong's monograph is the foundational study of Atalanta Fugiens, providing emblem-by-emblem source-critical analysis of all fifty emblems plus the frontispiece. Her method identifies the specific textual antecedents for each motto, epigram, and discourse, demonstrating that Maier's innovation lies not in doctrinal originality but in the sophisticated synthesis and multimedia presentation of inherited alchemical traditions. Published in 1969 and reprinted in 2002, the work remains the indispensable point of departure for all subsequent AF scholarship."
     },
     {
       "source_id": "tilton_2003",
@@ -18,7 +19,8 @@
       "year": 2003,
       "type": "monograph",
       "af_relevance": "DIRECT",
-      "emblem_coverage": "SELECTIVE"
+      "emblem_coverage": "SELECTIVE",
+      "annotation": "Tilton situates Atalanta Fugiens within the broader arc of Maier's philosophical and Rosicrucian commitments, arguing against reductive Paracelsian or purely Jungian readings in favor of a nuanced middle ground where material and spiritual registers are inseparable. His monograph selectively treats emblems including XXI, XXVIII, XLIV, and XLVIII, reframing them through an Aristotelian elemental transmutation scheme rather than the iatrochemical lens favored by earlier interpreters. The work provides the most important historiographic corrective to De Jong's source-critical method by foregrounding the philosophical context that shaped Maier's compositional choices."
     },
     {
       "source_id": "craven_1910",
@@ -27,7 +29,8 @@
       "year": 1910,
       "type": "biography",
       "af_relevance": "DIRECT",
-      "emblem_coverage": "GENERAL"
+      "emblem_coverage": "GENERAL",
+      "annotation": "Craven's biography, published in 1910, represents the first substantial English-language account of Maier's life and works, assembling primary documents and bibliographic details that remained the standard reference for decades. While the biographical treatment predates modern historiographic methods and does not offer systematic emblem analysis, it provides essential context on Maier's career as imperial physician, his relationship to Rudolf II's court, and the publication history of Atalanta Fugiens. The work's gathering of archival sources continues to serve as a foundational resource for scholars reconstructing Maier's intellectual milieu."
     },
     {
       "source_id": "wescott_nd",
@@ -36,7 +39,8 @@
       "year": null,
       "type": "article",
       "af_relevance": "DIRECT",
-      "emblem_coverage": "SELECTIVE"
+      "emblem_coverage": "SELECTIVE",
+      "annotation": "Wescott's undated article proposes a musical-modal-planetary framework for interpreting Atalanta Fugiens, analyzing emblems including I, IV, XXIV, XXVIII, XXXI, and XLIV through correspondences between fugal mode, planetary association, and alchemical content. The study treats the fifty three-voice fugues not as decorative accompaniment but as structurally integral to the emblem program, with the three voices enacting the pursuit narrative of Atalanta, Hippomenes, and the golden apple. This approach complements De Jong's textual method by demonstrating that the musical dimension carries independent symbolic meaning."
     },
     {
       "source_id": "de_jong_1964",
@@ -46,7 +50,8 @@
       "journal": "Netherlands Yearbook for History of Art",
       "type": "article",
       "af_relevance": "PRIMARY",
-      "emblem_coverage": "SELECTIVE"
+      "emblem_coverage": "SELECTIVE",
+      "annotation": "De Jong's 1964 article on Emblem XLVIII, published in the Netherlands Yearbook for History of Art, serves as the methodological prototype for her later monograph. The article traces the King Duenech steam-bath narrative to the medieval Merlini allegory, demonstrating the source-critical approach that would become the hallmark of her comprehensive 1969 study. It remains significant as the earliest articulation of De Jong's interpretive method and as a detailed case study of one of the most richly layered emblems in the sequence."
     },
     {
       "source_id": "pagel_1973",
@@ -56,7 +61,8 @@
       "journal": "Medical History",
       "type": "review",
       "af_relevance": "DIRECT",
-      "emblem_coverage": "SELECTIVE"
+      "emblem_coverage": "SELECTIVE",
+      "annotation": "Pagel's review of De Jong's monograph, published in Medical History in 1973, brings the perspective of a distinguished historian of medicine to Atalanta Fugiens, emphasizing the humoral and iatrochemical dimensions that De Jong's source-critical method touches but does not foreground. His selective commentary on emblems including II, XIII, XVI, XXVIII, and XLVIII reads alchemical imagery through the lens of Paracelsian and Galenic medical practice, identifying therapeutic meanings in the purging, bathing, and healing motifs. The review demonstrates how the same emblems yield distinct but complementary interpretations when approached from a medical-historical rather than philological standpoint."
     },
     {
       "source_id": "miner_2012",
@@ -66,7 +72,8 @@
       "journal": "Notes and Queries",
       "type": "article",
       "af_relevance": "CONTEXTUAL",
-      "emblem_coverage": "SELECTIVE"
+      "emblem_coverage": "SELECTIVE",
+      "annotation": "Miner's 2012 article in Notes and Queries investigates William Blake's possible engagement with Atalanta Fugiens, focusing on iconographic parallels between Blake's designs and the hermaphrodite emblems XXXIII, XXXIV, and XXXVIII. The study contributes to AF reception history by proposing that Maier's emblem plates circulated as visual sources for later artists working in esoteric and visionary traditions. While the conjectures are necessarily speculative, the article extends the scholarly conversation beyond the alchemical-historical core into the broader territory of artistic influence and cultural transmission."
     },
     {
       "source_id": "leedy_1991",
@@ -76,7 +83,8 @@
       "journal": "Notes",
       "type": "review",
       "af_relevance": "CONTEXTUAL",
-      "emblem_coverage": "GENERAL"
+      "emblem_coverage": "GENERAL",
+      "annotation": "Leedy's 1991 review of Joscelyn Godwin's edition of Atalanta Fugiens, published in Notes, offers the most technically informed assessment of the musical component in the secondary literature, evaluating the editorial decisions involved in transcribing and performing the fifty fugues. The review addresses questions of mensuration, modal interpretation, and archaic contrapuntal technique, providing a specialist musicological perspective that most AF scholarship lacks. It serves as a key reference for understanding what the 1989 Godwin edition contributes to and omits from the musical dimension of Maier's work."
     },
     {
       "source_id": "smith_2009",
@@ -86,7 +94,8 @@
       "journal": "Medical History",
       "type": "review",
       "af_relevance": "CONTEXTUAL",
-      "emblem_coverage": "GENERAL"
+      "emblem_coverage": "GENERAL",
+      "annotation": "Smith's 2009 review of the Hofmeier edition, published in Medical History, advances the crucial observation that Atalanta Fugiens contains little sign of the laboratory or workshop, positioning the work instead as a synthesis engine where meaning proliferates simultaneously across material, medical, spiritual, and cosmological registers. This historiographic framing, informed by Smith's expertise in early modern material culture, argues against any single-axis classification of the emblems and supports a polyvalent interpretive model. The review provides an essential methodological caution for any digital project attempting to categorize AF content."
     },
     {
       "source_id": "maier_1617",
@@ -95,7 +104,8 @@
       "year": 1617,
       "type": "primary_source",
       "af_relevance": "PRIMARY",
-      "emblem_coverage": "ALL"
+      "emblem_coverage": "ALL",
+      "annotation": "Atalanta Fugiens is the primary source itself: a multimedia alchemical emblem book comprising fifty emblems, each combining an engraved plate, a Latin motto, a three-voice fugue, a Latin and German epigram, and a two-page Latin discourse. Published in Oppenheim by Johann Theodor de Bry in 1617-1618, the work draws on Hermetic, alchemical, classical, and biblical source traditions to encode the stages of the alchemical opus in an unprecedented fusion of image, text, and music. All secondary scholarship in this bibliography takes the AF as its object of study."
     }
   ],
   "source_authorities": [
@@ -103,108 +113,171 @@
       "authority_id": "AUTH_TABULA_SMARAGDINA",
       "name": "Tabula Smaragdina (Emerald Tablet)",
       "type": "HERMETIC",
-      "emblems_using": ["I", "II"],
+      "emblems_using": [
+        "I",
+        "II"
+      ],
       "relationship": "Cosmological foundation; motto source for early emblems",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "The Tabula Smaragdina, or Emerald Tablet, is a brief Hermetic text attributed to Hermes Trismegistus that circulated widely in Latin translation from the twelfth century onward, encoding the foundational principle that operations in the macrocosm mirror those in the microcosm. De Jong (1969) demonstrates that Maier deliberately derives the mottos of Emblems I and II from the Tabula's dictum that the earth is the nurse of the philosophical child, establishing the Hermetic cosmological framework as the opening gesture of Atalanta Fugiens. These two emblems anchor the entire work in the tradition of Hermetic correspondence between celestial and terrestrial processes."
     },
     {
       "authority_id": "AUTH_TURBA",
       "name": "Turba Philosophorum",
       "type": "ALCHEMICAL",
-      "emblems_using": ["III", "XXII", "XXXIII", "L"],
+      "emblems_using": [
+        "III",
+        "XXII",
+        "XXXIII",
+        "L"
+      ],
       "relationship": "Major direct source; 9 mottos derive from Turba per De Jong",
-      "scholars_identifying": ["de_jong_1969", "tilton_2003"],
+      "scholars_identifying": [
+        "de_jong_1969",
+        "tilton_2003"
+      ],
       "description_long": "The Turba Philosophorum (Assembly of Philosophers) is a Latin translation of an Arabic alchemical compilation dating to approximately the ninth century, presenting alchemical doctrine as a series of speeches by ancient sages. De Jong (1969) identifies it as the single most prolific source for Atalanta Fugiens, attributing nine emblem mottos directly to the Turba's teachings on dissolution, washing, and the union of opposites. Its influence is most prominent in Emblem III (the washing woman), Emblem XXXIII (the hermaphrodite needing fire), and Emblem L (the dragon and woman in mutual destruction), where Theophilus's speech provides the concluding image of the entire work."
     },
     {
       "authority_id": "AUTH_ROSARIUM",
       "name": "Rosarium Philosophorum",
       "type": "ALCHEMICAL",
-      "emblems_using": ["XXI", "XXII", "XXVI", "XXVII"],
+      "emblems_using": [
+        "XXI",
+        "XXII",
+        "XXVI",
+        "XXVII"
+      ],
       "relationship": "Source for geometric formula, sapiential framing, washing themes",
-      "scholars_identifying": ["de_jong_1969", "tilton_2003"],
+      "scholars_identifying": [
+        "de_jong_1969",
+        "tilton_2003"
+      ],
       "description_long": "The Rosarium Philosophorum (Rose Garden of Philosophers) is a major fourteenth-century alchemical compilation attributed to Pseudo-Arnald of Villanova, widely circulated in manuscript and print as a compendium of practical and symbolic alchemical wisdom. De Jong (1969) shows that Maier draws from the Rosarium the geometric circle-square-triangle formula central to Emblem XXI and the sapiential-biblical framework of Emblems XXVI and XXVII, where Proverbs is accessed not directly but through the Rosarium's mediation. Tilton (2003) further argues that the Rosarium's Aristotelian elemental transmutation scheme, rather than a Paracelsian reading, best explains Maier's use of these emblems."
     },
     {
       "authority_id": "AUTH_PSEUDO_ARISTOTLE",
       "name": "Pseudo-Aristotle, Tractatulus de Practica Lapidis",
       "type": "ALCHEMICAL",
-      "emblems_using": ["IV", "V"],
+      "emblems_using": [
+        "IV",
+        "V"
+      ],
       "relationship": "Direct motto source for union of elements and toad/woman",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "The Tractatulus de Practica Lapidis Philosophici is a short Latin alchemical treatise falsely attributed to Aristotle, transmitted through the Artis Auriferae compilation and widely known in early modern alchemical circles. De Jong (1969) identifies it as the direct motto source for Emblems IV and V, providing both the brother-sister marriage imagery (the union of hot/dry and cold/moist principles) and the striking image of the toad suckling at the woman's breast. These two emblems draw their central conceit of elemental union through mutual transformation directly from the Pseudo-Aristotelian text."
     },
     {
       "authority_id": "AUTH_SENIOR",
       "name": "Senior Zadith (Muhammad ibn Umail), Tabula Chimica",
       "type": "ALCHEMICAL",
-      "emblems_using": ["VII"],
+      "emblems_using": [
+        "VII"
+      ],
       "relationship": "Source for winged/wingless bird symbolism",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "The Tabula Chimica is a Latin translation of an alchemical work by the tenth-century Arabic author Muhammad ibn Umail, known in the Latin West as Senior Zadith, whose visionary imagery profoundly influenced medieval and early modern alchemical symbolism. De Jong (1969) traces the winged and wingless bird motif of Emblem VII directly to Senior's text, where the two birds represent the volatile (Mercury) and fixed (Sulphur) principles that must be bonded despite their contrasting natures. Emblem VII's depiction of the young bird flying from the nest and falling back encodes this teaching in Maier's characteristic fusion of natural observation and alchemical allegory."
     },
     {
       "authority_id": "AUTH_OVID",
       "name": "Ovid, Metamorphoses X.560-704",
       "type": "CLASSICAL",
-      "emblems_using": ["Frontispiece"],
+      "emblems_using": [
+        "Frontispiece"
+      ],
       "relationship": "Narrative source for Atalanta-Hippomenes frame story",
-      "scholars_identifying": ["de_jong_1969", "craven_1910"],
+      "scholars_identifying": [
+        "de_jong_1969",
+        "craven_1910"
+      ],
       "description_long": "Ovid's Metamorphoses, composed in the first century CE, provides the mythological narrative of Atalanta and Hippomenes that Maier adopts as the overarching frame story for his entire emblem book. De Jong (1969) demonstrates that Maier reads the footrace allegorically: Hippomenes represents the fixed Sulphur pursuing the volatile Mercury (Atalanta), while Venus's golden apples serve as the catalytic agent enabling their union. The frontispiece engraving by Merian depicts this race alongside the couple's transformation into lions by Cybele, signaling that the mythological narrative encodes the complete alchemical process from pursuit to transmutation."
     },
     {
       "authority_id": "AUTH_AURORA",
       "name": "Aurora Consurgens",
       "type": "ALCHEMICAL",
-      "emblems_using": ["XXVI", "XXVII"],
+      "emblems_using": [
+        "XXVI",
+        "XXVII"
+      ],
       "relationship": "Sapiential-Christological reading via Rosarium",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "The Aurora Consurgens is a late medieval alchemical text attributed (probably falsely) to Thomas Aquinas, remarkable for its systematic fusion of Solomonic wisdom literature with alchemical symbolism through a Christological lens. De Jong (1969) shows that Maier accesses this text indirectly through the Rosarium Philosophorum, which transmits its sapiential-Christological reading of alchemy into the dense scriptural apparatus of Emblems XXVI and XXVII. These emblems, positioned at the structural midpoint of Atalanta Fugiens, draw on the Aurora's identification of alchemical Wisdom with the biblical Sapientia of Proverbs."
     },
     {
       "authority_id": "AUTH_SOLOMONIC",
       "name": "Solomonic / Biblical Wisdom Tradition (Proverbs)",
       "type": "BIBLICAL",
-      "emblems_using": ["XXVI", "XXVII"],
+      "emblems_using": [
+        "XXVI",
+        "XXVII"
+      ],
       "relationship": "Religious foundation for sapiential alchemy",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "The Solomonic wisdom tradition, centered on the Book of Proverbs and its personification of Wisdom as a tree of life, provides the religious-philosophical foundation for the sapiential dimension of Atalanta Fugiens. De Jong (1969) demonstrates that the motto of Emblem XXVI derives from Proverbs 3:18, though Maier receives this biblical text not through direct exegesis but through the mediating tradition of the Rosarium Philosophorum. The unusually dense scriptural marginalia of Emblems XXVI and XXVII signals that Maier intends these central emblems as a theological grounding for the entire alchemical enterprise."
     },
     {
       "authority_id": "AUTH_LAMBSPRINCK",
       "name": "Lambsprinck, De Lapide Philosophico",
       "type": "ALCHEMICAL",
-      "emblems_using": ["VII"],
+      "emblems_using": [
+        "VII"
+      ],
       "relationship": "Visual emblem tradition prototype",
-      "scholars_identifying": ["de_jong_1969", "pagel_1973"],
+      "scholars_identifying": [
+        "de_jong_1969",
+        "pagel_1973"
+      ],
       "description_long": "Lambsprinck's De Lapide Philosophico is a late sixteenth-century alchemical emblem book that pairs symbolic engravings with verse explanations, establishing a visual tradition of alchemical emblems upon which Maier builds. De Jong (1969) and Pagel (1973) both identify Lambsprinck as a prototype for Maier's method of encoding alchemical doctrine in pictorial form, with Emblem VII's winged and wingless bird imagery drawing on a shared symbolic vocabulary. Lambsprinck's work thus represents a key link in the genealogy of the alchemical emblem tradition that culminates in Atalanta Fugiens."
     },
     {
       "authority_id": "AUTH_MERLINI",
       "name": "Merlini Allegory",
       "type": "ALCHEMICAL",
-      "emblems_using": ["XLVIII"],
+      "emblems_using": [
+        "XLVIII"
+      ],
       "relationship": "Narrative source for King Duenech",
-      "scholars_identifying": ["de_jong_1964", "de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1964",
+        "de_jong_1969"
+      ],
       "description_long": "The Merlini Allegory is a medieval alchemical narrative in which a king suffering from a wasting disease is cured through a sequence of purgative and transformative operations, serving as an extended parable for the purification of base metal. De Jong first analyzed this source in his 1964 article on Emblem XLVIII and expanded the treatment in his 1969 monograph, demonstrating that Maier draws the entire King Duenech narrative from this tradition. Emblem XLVIII depicts the king accepting a curative potion, with the medical-humoral allegory encoding the alchemical process of purging impurities from the philosophical matter."
     },
     {
       "authority_id": "AUTH_LULLIUS",
       "name": "Lullius tradition (via Harmonica Chemica)",
       "type": "ALCHEMICAL",
-      "emblems_using": ["V"],
+      "emblems_using": [
+        "V"
+      ],
       "relationship": "Parallel for suckling/dissolution/coagulation",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "The Pseudo-Lullian alchemical tradition, transmitted through compilations such as the Harmonica Chemica, attributes a body of practical and theoretical alchemical writings to the Catalan philosopher Ramon Llull, though most are late medieval pseudepigrapha. De Jong (1969) identifies a thematic parallel between Emblem V's image of the toad suckling at the woman's breast and the Lullian teaching on dissolution and coagulation as reciprocal operations. This connection reinforces Maier's point that one nature can only coagulate through the dissolution of another, a principle central to the logic of Atalanta Fugiens."
     },
     {
       "authority_id": "AUTH_LACTANTIUS",
       "name": "Lactantius",
       "type": "PATRISTIC",
-      "emblems_using": ["XXVI"],
+      "emblems_using": [
+        "XXVI"
+      ],
       "relationship": "Wisdom as food of the soul",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "Lactantius is a fourth-century Christian apologist whose writings on divine wisdom and the nourishment of the soul provided patristic authority for the identification of alchemical knowledge with spiritual sustenance. De Jong (1969) identifies Lactantius as one of the sources feeding into the dense scriptural apparatus of Emblem XXVI, where the concept of wisdom as the food of the soul bridges the gap between Christian theology and alchemical practice. This patristic strand reinforces Maier's presentation of alchemy as a legitimate form of religious knowledge at the structural midpoint of Atalanta Fugiens."
     },
     {
@@ -213,25 +286,37 @@
       "type": "MOVEMENT",
       "emblems_using": [],
       "relationship": "Ideological framework; AF expresses Rosicrucian conceptions",
-      "scholars_identifying": ["de_jong_1969", "tilton_2003", "craven_1910"],
+      "scholars_identifying": [
+        "de_jong_1969",
+        "tilton_2003",
+        "craven_1910"
+      ],
       "description_long": "The Rosicrucian manifestarian tradition, inaugurated by the publication of the Fama Fraternitatis (1614) and Confessio Fraternitatis (1615), proposed a universal reformation of knowledge through the synthesis of alchemy, medicine, and spiritual illumination. Tilton (2003) argues extensively that Maier's Atalanta Fugiens expresses Rosicrucian conceptions of spiritual alchemy, while De Jong (1969) and Craven (1910) both situate Maier within this intellectual movement. Though no single emblem derives its motto from Rosicrucian texts, the movement provides the ideological framework within which Maier's synthesis of art, music, and alchemical philosophy becomes intelligible."
     },
     {
       "authority_id": "AUTH_ROBERTUS_VALLENSIS",
       "name": "Robertus Vallensis, De Veritate et Antiquitate Artis Chemicae",
       "type": "ALCHEMICAL",
-      "emblems_using": ["Frontispiece"],
+      "emblems_using": [
+        "Frontispiece"
+      ],
       "relationship": "Source for frontispiece commentary",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "Robertus Vallensis's De Veritate et Antiquitate Artis Chemicae is a sixteenth-century treatise defending the antiquity and legitimacy of alchemy, which includes an allegorical interpretation of the Atalanta myth as an alchemical parable. De Jong (1969) identifies this text as a direct source for Maier's frontispiece commentary, where the race between Atalanta and Hippomenes is read as the pursuit of the volatile by the fixed principle. The frontispiece engraving thus draws its interpretive framework in part from Vallensis's defense of alchemical hermeneutics applied to classical mythology."
     },
     {
       "authority_id": "AUTH_JODOCUS_GREVERUS",
       "name": "Jodocus Greverus, Secretum Nobilissimorum",
       "type": "ALCHEMICAL",
-      "emblems_using": ["Frontispiece"],
+      "emblems_using": [
+        "Frontispiece"
+      ],
       "relationship": "Source for frontispiece commentary",
-      "scholars_identifying": ["de_jong_1969"],
+      "scholars_identifying": [
+        "de_jong_1969"
+      ],
       "description_long": "Jodocus Greverus's Secretum Nobilissimorum is a sixteenth-century alchemical text that includes allegorical readings of classical myths as encoded alchemical teachings, contributing to the tradition of mythological alchemy that Maier inherits. De Jong (1969) identifies Greverus alongside Robertus Vallensis as a source for the frontispiece commentary of Atalanta Fugiens, where the Ovidian race narrative receives its alchemical interpretation. Together these two authorities establish the hermeneutic precedent for Maier's central conceit of reading the Atalanta-Hippomenes myth as an allegory of the volatile-fixed dynamic in the Great Work."
     }
   ],
@@ -242,14 +327,35 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Frame around title showing fleeing Atalanta. Right: Venus gives Hippomenes golden apples. Lower left: race between Hippomenes and Atalanta. Lower right: round temple of Cybele.",
-      "symbols": ["golden apples", "race", "Venus", "temple of Cybele", "lion", "lioness"],
-      "alchemical_processes": ["pursuit of the volatile by the fixed", "catalysis", "transformation of opposites"],
-      "mythological_figures": ["Atalanta", "Hippomenes", "Venus", "Cybele", "Hercules"],
+      "symbols": [
+        "golden apples",
+        "race",
+        "Venus",
+        "temple of Cybele",
+        "lion",
+        "lioness"
+      ],
+      "alchemical_processes": [
+        "pursuit of the volatile by the fixed",
+        "catalysis",
+        "transformation of opposites"
+      ],
+      "mythological_figures": [
+        "Atalanta",
+        "Hippomenes",
+        "Venus",
+        "Cybele",
+        "Hercules"
+      ],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Frontispiece signals the secret of the opus. Golden apples are catalytic lures. Hippomenes = Sulphur (fixed), Atalanta = Mercury (volatile). Race = difficulty of combining volatile with non-volatile. Lion/lioness = final product.",
-          "source_texts": ["AUTH_OVID", "AUTH_ROBERTUS_VALLENSIS", "AUTH_JODOCUS_GREVERUS"],
+          "source_texts": [
+            "AUTH_OVID",
+            "AUTH_ROBERTUS_VALLENSIS",
+            "AUTH_JODOCUS_GREVERUS"
+          ],
           "confidence": "HIGH",
           "citation": "Frontispiece section"
         }
@@ -261,14 +367,28 @@
       "motto_latin": "Nutrix ejus terra est",
       "motto_english": "His nurse is the Earth",
       "image_description": "Earth nourishing the philosophical child; wolf nursing Romulus and goat nursing Jupiter referenced in epigram.",
-      "symbols": ["nursing", "earth", "wolf", "goat", "philosophical child"],
-      "alchemical_processes": ["nourishment", "assimilation of philosophical matter"],
-      "mythological_figures": ["Romulus", "Jupiter"],
+      "symbols": [
+        "nursing",
+        "earth",
+        "wolf",
+        "goat",
+        "philosophical child"
+      ],
+      "alchemical_processes": [
+        "nourishment",
+        "assimilation of philosophical matter"
+      ],
+      "mythological_figures": [
+        "Romulus",
+        "Jupiter"
+      ],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Motto derives from Tabula Smaragdina. Food becomes substance of the nourished. Alchemical work mirrors nature's processes.",
-          "source_texts": ["AUTH_TABULA_SMARAGDINA"],
+          "source_texts": [
+            "AUTH_TABULA_SMARAGDINA"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem I section"
         }
@@ -280,14 +400,25 @@
       "motto_latin": null,
       "motto_english": "Its nurse is the Earth",
       "image_description": "Pregnant female with terrestrial globe imagery; retort with moderate warmth.",
-      "symbols": ["retort", "earth", "warmth", "nursing"],
-      "alchemical_processes": ["combination in retort", "moderate heating", "nourishment"],
+      "symbols": [
+        "retort",
+        "earth",
+        "warmth",
+        "nursing"
+      ],
+      "alchemical_processes": [
+        "combination in retort",
+        "moderate heating",
+        "nourishment"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Retort (artificial) and nature work together. Art serves Nature as teacher.",
-          "source_texts": ["AUTH_TABULA_SMARAGDINA"],
+          "source_texts": [
+            "AUTH_TABULA_SMARAGDINA"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem II section"
         },
@@ -306,14 +437,29 @@
       "motto_latin": null,
       "motto_english": "Go to the woman who washes the sheets and do as she does",
       "image_description": "Woman washing/bleaching sheets; washing as calcination metaphor.",
-      "symbols": ["washing", "sheets", "bleaching", "water"],
-      "alchemical_processes": ["calcination", "purification", "washing", "dissolving", "distillation", "precipitation", "coagulation"],
+      "symbols": [
+        "washing",
+        "sheets",
+        "bleaching",
+        "water"
+      ],
+      "alchemical_processes": [
+        "calcination",
+        "purification",
+        "washing",
+        "dissolving",
+        "distillation",
+        "precipitation",
+        "coagulation"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Washing represents all purification processes. Removal of black (nigredo), purification to white (albedo). Medical connection to Saturn's melancholy. Relates to dyeing techniques where bleaching precedes dyeing.",
-          "source_texts": ["AUTH_TURBA"],
+          "source_texts": [
+            "AUTH_TURBA"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem III section"
         }
@@ -325,14 +471,25 @@
       "motto_latin": null,
       "motto_english": "Join brother and sister, and hand them the cup with the love potion",
       "image_description": "Brother and sister joined; cup with love potion. Incestuous union symbolizing union of like with like.",
-      "symbols": ["brother", "sister", "cup", "love potion", "union"],
-      "alchemical_processes": ["conjunction", "union of opposites"],
+      "symbols": [
+        "brother",
+        "sister",
+        "cup",
+        "love potion",
+        "union"
+      ],
+      "alchemical_processes": [
+        "conjunction",
+        "union of opposites"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Brother (hot, dry, choleric) = Fire. Sister (cold, moist, phlegmatic) = Water. Union of contrasts per Empedocles. Related to Emblems XXXIX (Oedipus/mother), XLI (Myrrha/father), XLIV (Osiris/Isis).",
-          "source_texts": ["AUTH_PSEUDO_ARISTOTLE"],
+          "source_texts": [
+            "AUTH_PSEUDO_ARISTOTLE"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem IV section"
         }
@@ -344,14 +501,31 @@
       "motto_latin": null,
       "motto_english": "Put a toad to the breasts of a woman, that she may feed it, and the woman may die, and the toad grows big from the milk",
       "image_description": "Nursing woman feeds a toad at her breasts. Transformation through feeding and depletion.",
-      "symbols": ["toad", "woman", "breasts", "milk", "death", "growth"],
-      "alchemical_processes": ["coagulation", "dissolution", "decomposition", "purification", "formation", "hardening"],
+      "symbols": [
+        "toad",
+        "woman",
+        "breasts",
+        "milk",
+        "death",
+        "growth"
+      ],
+      "alchemical_processes": [
+        "coagulation",
+        "dissolution",
+        "decomposition",
+        "purification",
+        "formation",
+        "hardening"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Four stages: decomposition, purification, formation into pliable substance (woman dies, toad grows), hardening into stone. Toad = earth, Woman = water. One nature coagulates only through dissolution of another. Catena Aurea linking microcosm to macrocosm.",
-          "source_texts": ["AUTH_PSEUDO_ARISTOTLE", "AUTH_LULLIUS"],
+          "source_texts": [
+            "AUTH_PSEUDO_ARISTOTLE",
+            "AUTH_LULLIUS"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem V section"
         }
@@ -363,8 +537,17 @@
       "motto_latin": null,
       "motto_english": "Sow your gold in the white foliated earth",
       "image_description": "Agricultural scene; sowing, ploughing. Gold scattered over white fields.",
-      "symbols": ["gold", "white earth", "sowing", "ploughing", "farming"],
-      "alchemical_processes": ["sowing", "cultivation of the Work"],
+      "symbols": [
+        "gold",
+        "white earth",
+        "sowing",
+        "ploughing",
+        "farming"
+      ],
+      "alchemical_processes": [
+        "sowing",
+        "cultivation of the Work"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
@@ -382,14 +565,31 @@
       "motto_latin": null,
       "motto_english": "A young bird came into being, flying up from the nest, and fell back into the nest again",
       "image_description": "Winged and wingless bird; falcon and heron in struggle. Phoenix symbolism.",
-      "symbols": ["bird", "nest", "wings", "falcon", "heron", "phoenix"],
-      "alchemical_processes": ["volatilization", "fixation", "dissolution", "resurrection"],
-      "mythological_figures": ["Phoenix"],
+      "symbols": [
+        "bird",
+        "nest",
+        "wings",
+        "falcon",
+        "heron",
+        "phoenix"
+      ],
+      "alchemical_processes": [
+        "volatilization",
+        "fixation",
+        "dissolution",
+        "resurrection"
+      ],
+      "mythological_figures": [
+        "Phoenix"
+      ],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Winged = volatile/Mercury/Moon/female. Wingless = fixed/Sulphur/Sun/male. Elements bonded despite contrasts. Phoenix symbolism: resurrection through fire and dissolution.",
-          "source_texts": ["AUTH_SENIOR", "AUTH_LAMBSPRINCK"],
+          "source_texts": [
+            "AUTH_SENIOR",
+            "AUTH_LAMBSPRINCK"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem VII section"
         }
@@ -401,9 +601,20 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Ore afflicted with dropsy; purifying water; Jordan healing Naaman.",
-      "symbols": ["dropsy", "Jordan", "healing water", "Naaman"],
-      "alchemical_processes": ["purification", "baptism", "washing"],
-      "mythological_figures": ["Naaman"],
+      "symbols": [
+        "dropsy",
+        "Jordan",
+        "healing water",
+        "Naaman"
+      ],
+      "alchemical_processes": [
+        "purification",
+        "baptism",
+        "washing"
+      ],
+      "mythological_figures": [
+        "Naaman"
+      ],
       "scholarly_refs": [
         {
           "scholar": "pagel_1973",
@@ -420,8 +631,15 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Winged lion and wingless lion joined. Mercury and Sulphur union.",
-      "symbols": ["winged lion", "wingless lion", "Mercury", "Sulphur"],
-      "alchemical_processes": ["union of volatile and fixed"],
+      "symbols": [
+        "winged lion",
+        "wingless lion",
+        "Mercury",
+        "Sulphur"
+      ],
+      "alchemical_processes": [
+        "union of volatile and fixed"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
@@ -439,14 +657,29 @@
       "motto_latin": null,
       "motto_english": "A fourfold fire-ball controls this work.",
       "image_description": "Four fire-balls representing the four grades of fire in the alchemical work.",
-      "symbols": ["fire-ball", "Vulcan", "Mercury", "fourfold fire"],
-      "alchemical_processes": ["fire regulation", "calcination", "sublimation"],
-      "mythological_figures": ["Vulcan", "Mercury"],
+      "symbols": [
+        "fire-ball",
+        "Vulcan",
+        "Mercury",
+        "fourfold fire"
+      ],
+      "alchemical_processes": [
+        "fire regulation",
+        "calcination",
+        "sublimation"
+      ],
+      "mythological_figures": [
+        "Vulcan",
+        "Mercury"
+      ],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Four kinds of fire: common fire (Vulcan), fire contrary to nature (Mercury/dragon), fire against nature, and natural fire. Derived from Lullius and the Turba tradition.",
-          "source_texts": ["AUTH_LULLIUS", "AUTH_TURBA"],
+          "source_texts": [
+            "AUTH_LULLIUS",
+            "AUTH_TURBA"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem XVII section"
         }
@@ -458,21 +691,36 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Geometric emblem: man and woman transformed through circle, square, triangle, restored to circle.",
-      "symbols": ["circle", "square", "triangle", "man", "woman", "geometric shapes"],
-      "alchemical_processes": ["conjunction", "elemental transmutation", "return to monad"],
+      "symbols": [
+        "circle",
+        "square",
+        "triangle",
+        "man",
+        "woman",
+        "geometric shapes"
+      ],
+      "alchemical_processes": [
+        "conjunction",
+        "elemental transmutation",
+        "return to monad"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Rosarium formula: make circle from man and woman, derive square and triangle, return to circle. Four elements within unity. Body/spirit/soul triad.",
-          "source_texts": ["AUTH_ROSARIUM"],
+          "source_texts": [
+            "AUTH_ROSARIUM"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem XXI section"
         },
         {
           "scholar": "tilton_2003",
           "summary": "Interprets through Aristotelian elemental transmutation: black Saturn/lead = body/earth, white phase = spirit/water, yellowness = soul/air, final redness = perfected unity of the stone. Not simply Paracelsian tria prima.",
-          "source_texts": ["AUTH_ROSARIUM"],
+          "source_texts": [
+            "AUTH_ROSARIUM"
+          ],
           "confidence": "HIGH",
           "citation": "Discussion of Emblem XXI"
         }
@@ -484,8 +732,15 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "King in garb; beginning of alchemical king transformation sequence.",
-      "symbols": ["king", "garments", "crown"],
-      "alchemical_processes": ["putrefaction", "beginning of transformation"],
+      "symbols": [
+        "king",
+        "garments",
+        "crown"
+      ],
+      "alchemical_processes": [
+        "putrefaction",
+        "beginning of transformation"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
@@ -503,14 +758,30 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Wisdom-centered emblem at the book's midpoint. Dense scriptural marginalia. Sapientia as personification of alchemical knowledge joined with practice.",
-      "symbols": ["wisdom", "tree of life", "Sapientia", "Proverbs", "scriptural references"],
-      "alchemical_processes": ["alchemy as cognitionem chymiae cum praxi", "reason joined to experience"],
-      "mythological_figures": ["Lady Wisdom / Sapientia"],
+      "symbols": [
+        "wisdom",
+        "tree of life",
+        "Sapientia",
+        "Proverbs",
+        "scriptural references"
+      ],
+      "alchemical_processes": [
+        "alchemy as cognitionem chymiae cum praxi",
+        "reason joined to experience"
+      ],
+      "mythological_figures": [
+        "Lady Wisdom / Sapientia"
+      ],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Central emblem of the book. Motto from Proverbs 3:18 but through Rosarium, not arbitrary biblical selection. Unusually dense scriptural marginalia. Maier foregrounds religious-sapiential basis of entire work. Links to Emblem XXVII.",
-          "source_texts": ["AUTH_SOLOMONIC", "AUTH_ROSARIUM", "AUTH_AURORA", "AUTH_LACTANTIUS"],
+          "source_texts": [
+            "AUTH_SOLOMONIC",
+            "AUTH_ROSARIUM",
+            "AUTH_AURORA",
+            "AUTH_LACTANTIUS"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem XXVI section"
         }
@@ -522,14 +793,24 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Companion to Emblem XXVI in the wisdom-salvation complex.",
-      "symbols": ["wisdom", "Old Testament"],
-      "alchemical_processes": ["continuation of sapiential opus", "doctrine of salvation"],
+      "symbols": [
+        "wisdom",
+        "Old Testament"
+      ],
+      "alchemical_processes": [
+        "continuation of sapiential opus",
+        "doctrine of salvation"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Explicitly linked to Emblem XXVI. Coupling with Old Testament texts based on Rosarium.",
-          "source_texts": ["AUTH_SOLOMONIC", "AUTH_ROSARIUM", "AUTH_AURORA"],
+          "source_texts": [
+            "AUTH_SOLOMONIC",
+            "AUTH_ROSARIUM",
+            "AUTH_AURORA"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem XXVII section"
         }
@@ -541,9 +822,21 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "King in Turkish bath or canopied bed. Purging black bile. Steam rising.",
-      "symbols": ["king", "bath", "steam", "black bile", "melancholy"],
-      "alchemical_processes": ["purification", "purging melancholy", "color progression from black to red"],
-      "mythological_figures": ["King Duenech"],
+      "symbols": [
+        "king",
+        "bath",
+        "steam",
+        "black bile",
+        "melancholy"
+      ],
+      "alchemical_processes": [
+        "purification",
+        "purging melancholy",
+        "color progression from black to red"
+      ],
+      "mythological_figures": [
+        "King Duenech"
+      ],
       "scholarly_refs": [
         {
           "scholar": "wescott_nd",
@@ -567,8 +860,14 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Continuation of King transformation sequence.",
-      "symbols": ["king", "transformation"],
-      "alchemical_processes": ["albification", "continuation of purification"],
+      "symbols": [
+        "king",
+        "transformation"
+      ],
+      "alchemical_processes": [
+        "albification",
+        "continuation of purification"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
@@ -586,14 +885,29 @@
       "motto_latin": null,
       "motto_english": "The Hermaphrodite lying in the dark needs fire",
       "image_description": "Blackened hermaphrodite under waxing moon, engulfed in flames. Double-sexed figure with closed eyes.",
-      "symbols": ["hermaphrodite", "moon", "flames", "darkness", "fire"],
-      "alchemical_processes": ["conjunction of opposites", "fire as transformation agent", "rebalancing of solar dryness and lunar moisture", "metallic transmutation"],
-      "mythological_figures": ["Hermaphrodite"],
+      "symbols": [
+        "hermaphrodite",
+        "moon",
+        "flames",
+        "darkness",
+        "fire"
+      ],
+      "alchemical_processes": [
+        "conjunction of opposites",
+        "fire as transformation agent",
+        "rebalancing of solar dryness and lunar moisture",
+        "metallic transmutation"
+      ],
+      "mythological_figures": [
+        "Hermaphrodite"
+      ],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Hermaphroditic imagery tied to transmutation of metals through balancing lunar moisture and solar dryness.",
-          "source_texts": ["AUTH_TURBA"],
+          "source_texts": [
+            "AUTH_TURBA"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem XXXIII section"
         },
@@ -612,14 +926,29 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Foetus emerging head-first from womb of supine nude female among clouds. Lower scene: erotic union of sun and moon figures kissing and embracing.",
-      "symbols": ["foetus", "birth", "clouds", "sun figure", "moon figure", "embrace"],
-      "alchemical_processes": ["conception", "generation of philosophical product", "solar-lunar conjunction", "hierogamic union"],
+      "symbols": [
+        "foetus",
+        "birth",
+        "clouds",
+        "sun figure",
+        "moon figure",
+        "embrace"
+      ],
+      "alchemical_processes": [
+        "conception",
+        "generation of philosophical product",
+        "solar-lunar conjunction",
+        "hierogamic union"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
           "scholar": "miner_2012",
           "summary": "Birth image above, solar-lunar erotic embrace below. Read as alchemical conjunction. Provides prototype for Blake's Jerusalem 99.",
-          "source_texts": ["AUTH_TURBA", "AUTH_TABULA_SMARAGDINA"],
+          "source_texts": [
+            "AUTH_TURBA",
+            "AUTH_TABULA_SMARAGDINA"
+          ],
           "confidence": "HIGH",
           "citation": "Discussion of Emblem XXXIV"
         }
@@ -631,9 +960,17 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Standing nude hermaphrodite figure.",
-      "symbols": ["hermaphrodite", "standing figure"],
-      "alchemical_processes": ["stable conjunction of opposites", "embodied union of principles"],
-      "mythological_figures": ["Hermaphrodite"],
+      "symbols": [
+        "hermaphrodite",
+        "standing figure"
+      ],
+      "alchemical_processes": [
+        "stable conjunction of opposites",
+        "embodied union of principles"
+      ],
+      "mythological_figures": [
+        "Hermaphrodite"
+      ],
       "scholarly_refs": [
         {
           "scholar": "miner_2012",
@@ -650,9 +987,24 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "Osiris killed by Typhon and resurrected by Isis.",
-      "symbols": ["Osiris", "Typhon", "Isis", "death", "resurrection", "dismemberment"],
-      "alchemical_processes": ["dissolution", "death and resurrection", "reconstitution"],
-      "mythological_figures": ["Osiris", "Typhon", "Isis"],
+      "symbols": [
+        "Osiris",
+        "Typhon",
+        "Isis",
+        "death",
+        "resurrection",
+        "dismemberment"
+      ],
+      "alchemical_processes": [
+        "dissolution",
+        "death and resurrection",
+        "reconstitution"
+      ],
+      "mythological_figures": [
+        "Osiris",
+        "Typhon",
+        "Isis"
+      ],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
@@ -676,14 +1028,28 @@
       "motto_latin": null,
       "motto_english": null,
       "image_description": "King Duenech suffering from melancholic illness (dropsy, discoloration). Accepts potion for purification.",
-      "symbols": ["king", "potion", "melancholy", "dropsy", "purification"],
-      "alchemical_processes": ["purification", "humoral cure", "metal disease cured through purification"],
-      "mythological_figures": ["King Duenech"],
+      "symbols": [
+        "king",
+        "potion",
+        "melancholy",
+        "dropsy",
+        "purification"
+      ],
+      "alchemical_processes": [
+        "purification",
+        "humoral cure",
+        "metal disease cured through purification"
+      ],
+      "mythological_figures": [
+        "King Duenech"
+      ],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1964",
           "summary": "Detailed analysis of King Duenech's melancholic illness. Medical-humoral alchemical analogy. Draws on Merlini allegory. Parallel with Emblem XXVIII.",
-          "source_texts": ["AUTH_MERLINI"],
+          "source_texts": [
+            "AUTH_MERLINI"
+          ],
           "confidence": "HIGH",
           "citation": "Netherlands Yearbook article"
         },
@@ -702,14 +1068,27 @@
       "motto_latin": null,
       "motto_english": "The Dragon kills the woman, and she kills it, and together they bathe in the blood",
       "image_description": "Dragon and woman in mutual destruction. Bathing in blood. Final union of earth/fire and air/water.",
-      "symbols": ["dragon", "woman", "blood", "mutual destruction", "bath"],
-      "alchemical_processes": ["final dissolution", "mutual destruction and reconstitution", "return to primary matter", "completion of the Work"],
+      "symbols": [
+        "dragon",
+        "woman",
+        "blood",
+        "mutual destruction",
+        "bath"
+      ],
+      "alchemical_processes": [
+        "final dissolution",
+        "mutual destruction and reconstitution",
+        "return to primary matter",
+        "completion of the Work"
+      ],
       "mythological_figures": [],
       "scholarly_refs": [
         {
           "scholar": "de_jong_1969",
           "summary": "Final emblem. Dragon = earth/fire, Woman/Eagle = air/water. Complete dissolution and transformation into primary matter. Source: Turba (Theophilus).",
-          "source_texts": ["AUTH_TURBA"],
+          "source_texts": [
+            "AUTH_TURBA"
+          ],
           "confidence": "HIGH",
           "citation": "Emblem L section"
         }
@@ -717,84 +1096,1089 @@
     }
   ],
   "dictionary_entries": [
-    {"term": "Coniunctio", "definition": "Union of opposites (male/female, volatile/fixed, Sun/Moon). The central operation of the Great Work.", "related_emblems": ["IV", "XXI", "XXXIII", "XXXIV", "XXXVIII", "XLIV", "L"], "category": "PROCESS", "sources": ["de_jong_1969"], "latin": "Coniunctio Oppositorum", "significance_to_af": "Maier presents the union of opposites as the central mystery of the Work, depicting it through the marriage of brother and sister (Emblem IV) and the hermaphrodite figure (Emblem XXXIII). De Jong traces this theme across 14 emblems, identifying it as the structural backbone of the entire emblem sequence."},
-    {"term": "Nigredo", "definition": "The blackening; first stage of the Work involving putrefaction, decomposition, death of the old form.", "related_emblems": ["XXVIII", "XXXIII"], "category": "PROCESS", "sources": ["de_jong_1969", "craven_1910"], "latin": "Nigredo", "significance_to_af": "The blackening stage appears in Maier's depictions of death, putrefaction, and burial, particularly in Emblems XXVIII and XLIII. De Jong identifies these as drawing from the Rosarium Philosophorum's death-of-the-king sequence, where the darkened hermaphrodite of Emblem XXXIII signals the necessary dissolution before renewal."},
-    {"term": "Albedo", "definition": "The whitening; second stage involving washing, purification, removal of impurities.", "related_emblems": ["III", "VI"], "category": "PROCESS", "sources": ["de_jong_1969", "craven_1910"], "latin": "Albedo", "significance_to_af": "Maier figures the whitening primarily through washing imagery in Emblem III, where the laundress bleaching sheets represents the purification of matter from its blackened state. De Jong connects this to the sowing of gold in white foliated earth (Emblem VI), establishing albedo as the preparatory ground for the final reddening."},
-    {"term": "Citrinitas", "definition": "The yellowing; intermediate stage of vivification between whiteness and redness.", "related_emblems": [], "category": "PROCESS", "sources": ["de_jong_1969"], "latin": "Citrinitas", "significance_to_af": "Maier treats citrinitas as a transitional moment rather than a fully dramatized stage, and no single emblem is devoted to it exclusively. De Jong notes that Tilton reads the yellowing into the geometric progression of Emblem XXI, where the soul-as-air phase corresponds to the intermediate vivification between albedo and rubedo."},
-    {"term": "Rubedo", "definition": "The reddening; final stage of completion, perfection, achievement of the Philosopher's Stone.", "related_emblems": ["XXI"], "category": "PROCESS", "sources": ["de_jong_1969", "craven_1910"], "latin": "Rubedo", "significance_to_af": "Maier represents the final reddening as the culmination of the geometric formula in Emblem XXI, where the return to the circle signifies perfected unity. De Jong identifies the color progression from black through white to red as structuring the entire second half of the emblem sequence, reaching completion in Emblem L."},
-    {"term": "Mercurius", "definition": "Mercury; the volatile, feminine, lunar principle. Liquid primary matter, primordial water, water of destruction and resurrection.", "related_emblems": ["VII", "XVI", "Frontispiece"], "category": "SUBSTANCE", "sources": ["de_jong_1969"], "latin": "Mercurius Philosophorum", "significance_to_af": "Maier encodes Mercurius as the volatile, fleeing principle throughout Atalanta Fugiens, most explicitly in the frontispiece where Atalanta herself represents the volatile Mercury that Hippomenes (Sulphur) must pursue and fix. De Jong shows that the winged figures in Emblems VII and XVI consistently signify the Mercurial principle in its lunar, feminine aspect."},
-    {"term": "Sulphur", "definition": "The fixed, masculine, solar principle. Paired with Mercury as the two fundamental alchemical substances.", "related_emblems": ["VII", "XVI", "Frontispiece"], "category": "SUBSTANCE", "sources": ["de_jong_1969"], "latin": "Sulphur", "significance_to_af": "Maier consistently figures Sulphur as the fixed, pursuing principle, embodied in the frontispiece by Hippomenes who chases Atalanta with golden apples as catalytic lures. De Jong demonstrates that the wingless figures in Emblems VII and XVI represent Sulphur's solar, masculine nature, which must bond with its volatile counterpart to complete the Work."},
-    {"term": "Philosophical Egg", "definition": "The sealed vessel containing prima materia; unity of opposites before differentiation.", "related_emblems": ["VIII"], "category": "CONCEPT", "sources": ["de_jong_1969"], "latin": "Ovum Philosophicum", "significance_to_af": "Maier uses the philosophical egg in Emblem VIII as the sealed vessel within which the prima materia undergoes transformation, requiring careful regulation of heat. De Jong interprets the egg as Maier's image for the unity of all opposites before differentiation, a microcosm of the entire alchemical process contained in a single figure."},
-    {"term": "Philosopher's Stone", "definition": "The perfected product of the Great Work; agent of transmutation. Achieved through union and fixation.", "related_emblems": ["V", "XXI", "L"], "category": "CONCEPT", "sources": ["de_jong_1969", "tilton_2003"], "latin": "Lapis Philosophorum", "significance_to_af": "Maier presents the Stone not as a single emblem but as the telos toward which the entire fifty-emblem sequence converges, with the geometric formula of Emblem XXI and the mutual destruction of Emblem L both pointing to its achievement. De Jong argues that Maier understands the Lapis as the perfected union of fixed and volatile, achieved through the complete cycle of dissolution and reconstitution."},
-    {"term": "Putrefaction", "definition": "Controlled decomposition; the death of old form that enables new creation. Associated with nigredo.", "related_emblems": ["XXIV", "XXVIII", "XLIV"], "category": "PROCESS", "sources": ["de_jong_1969", "wescott_nd"], "latin": "Putrefactio", "significance_to_af": "Maier dramatizes putrefaction through the suffering of King Duenech in Emblem XXVIII and the death of Osiris in Emblem XLIV, both representing the necessary death of the old form before resurrection. De Jong and Wescott both identify the four-emblem King sequence (XXIV, XXVIII, XXXI, XLIV) as Maier's extended meditation on controlled decomposition as the gateway to renewal."},
-    {"term": "Calcination", "definition": "Heating to ash; burning away impurities. Part of the washing/purification complex.", "related_emblems": ["III"], "category": "PROCESS", "sources": ["de_jong_1969"], "latin": "Calcinatio", "significance_to_af": "Maier subsumes calcination within the broader washing metaphor of Emblem III, where the laundress's work represents all purificatory operations including burning away impurities. De Jong notes that Maier treats calcination not as an isolated laboratory step but as part of a symbolic cluster linking washing, bleaching, and the removal of the black (nigredo) from impure matter."},
-    {"term": "Coagulation", "definition": "Solidification; fixing the volatile. One nature coagulates only through dissolution of another.", "related_emblems": ["V"], "category": "PROCESS", "sources": ["de_jong_1969"], "latin": "Coagulatio", "significance_to_af": "Maier illustrates coagulation most vividly in Emblem V, where the toad grows large from the woman's milk as one nature solidifies through the dissolution of another. De Jong traces this reciprocal logic to the Pseudo-Aristotelian and Lullian traditions, showing that Maier understood fixation and dissolution as inseparable complementary operations."},
-    {"term": "Dissolution", "definition": "Breaking down solid form into liquid; releasing the fixed into the volatile.", "related_emblems": ["V", "L"], "category": "PROCESS", "sources": ["de_jong_1969"], "latin": "Dissolutio", "significance_to_af": "Maier frames dissolution as both destructive and generative, from the woman's death in Emblem V to the mutual annihilation of dragon and woman in Emblem L. De Jong identifies the final emblem's return to primary matter as the culminating dissolution that completes the Work, drawing on the Turba's teaching that all creation begins in liquefaction."},
-    {"term": "Hermaphrodite", "definition": "The perfect union of male and female principles in one body. Represents the completed coniunctio.", "related_emblems": ["XXXIII", "XXXIV", "XXXVIII"], "category": "FIGURE", "sources": ["de_jong_1969", "miner_2012"], "latin": "Hermaphroditus", "significance_to_af": "Maier devotes three emblems to the hermaphrodite figure (XXXIII, XXXIV, XXXVIII), presenting it as the embodied result of the coniunctio oppositorum in which male and female principles achieve stable union. De Jong reads the darkened hermaphrodite of Emblem XXXIII as requiring fire to complete its transformation, while Miner connects these images to a broader iconographic tradition extending to William Blake."},
-    {"term": "Tabula Smaragdina", "definition": "The Emerald Tablet; foundational Hermetic text attributed to Hermes Trismegistus. 'As above, so below' cosmology.", "related_emblems": ["I", "II"], "category": "SOURCE_TEXT", "sources": ["de_jong_1969"], "latin": "Tabula Smaragdina", "significance_to_af": "Maier opens Atalanta Fugiens by deriving the mottos of Emblems I and II directly from the Tabula Smaragdina, establishing the Hermetic cosmological framework as the foundation for the entire work. De Jong demonstrates that this deliberate placement signals Maier's allegiance to the Hermetic tradition and its principle that earthly processes mirror celestial ones."},
-    {"term": "Turba Philosophorum", "definition": "Assembly of Philosophers; major alchemical compilation of Arabic origin. Source for 9 AF mottos per De Jong.", "related_emblems": ["III", "XXII", "XXXIII", "L"], "category": "SOURCE_TEXT", "sources": ["de_jong_1969"], "latin": "Turba Philosophorum", "significance_to_af": "Maier draws more motto material from the Turba Philosophorum than from any other single source, with De Jong attributing nine emblem mottos to this Arabic-Latin compilation. The Turba's influence is particularly prominent in the washing emblems (III), the hermaphrodite sequence (XXXIII), and the final emblem (L), where Theophilus's teaching on mutual destruction provides the culminating image."},
-    {"term": "Rosarium Philosophorum", "definition": "Rose Garden of Philosophers; major alchemical compilation. Source for geometric, sapiential, and washing themes.", "related_emblems": ["XXI", "XXII", "XXVI", "XXVII"], "category": "SOURCE_TEXT", "sources": ["de_jong_1969", "tilton_2003"], "latin": "Rosarium Philosophorum", "significance_to_af": "Maier draws the geometric circle-square-triangle formula of Emblem XXI and the sapiential framework of Emblems XXVI-XXVII directly from the Rosarium Philosophorum. De Jong demonstrates that the Rosarium serves as the mediating text through which Maier accesses biblical wisdom literature and the Aurora Consurgens, making it the primary conduit for the religious-philosophical dimension of Atalanta Fugiens."},
-    {"term": "Sapientia", "definition": "Wisdom personified; alchemy as knowledge joined with practice. Central to Emblem XXVI.", "related_emblems": ["XXVI", "XXVII"], "category": "CONCEPT", "sources": ["de_jong_1969"], "latin": "Sapientia", "significance_to_af": "Maier places Sapientia at the structural midpoint of Atalanta Fugiens in Emblem XXVI, presenting wisdom as the tree of life and defining true alchemy as knowledge joined with practice (cognitionem chymiae cum praxi). De Jong identifies the unusually dense scriptural marginalia of this emblem as evidence that Maier foregrounds the religious-sapiential basis of the entire alchemical enterprise."},
-    {"term": "Catena Aurea", "definition": "Golden Chain linking Microcosm to Macrocosm; continuous thread of transmutation from base to divine.", "related_emblems": ["V"], "category": "CONCEPT", "sources": ["de_jong_1969"], "latin": "Catena Aurea", "significance_to_af": "Maier invokes the golden chain in the context of Emblem V to articulate the continuous link between microcosmic and macrocosmic processes of transformation. De Jong reads this as Maier's expression of the Hermetic principle that alchemical transmutation participates in a cosmic hierarchy extending from base matter to the divine, with each stage of the Work mirroring a corresponding celestial operation."},
-    {"term": "Fugue", "definition": "Three-voice musical canon accompanying each emblem. Voices represent Atalanta (fleeing/volatile), Hippomenes (pursuing/fixed), and Golden Apple (catalyst).", "related_emblems": ["ALL"], "category": "MUSICAL", "sources": ["wescott_nd", "leedy_1991"], "latin": "Fuga", "significance_to_af": "Maier assigns each of the fifty emblems a three-voice fugue in which the voices allegorically represent Atalanta (the fleeing volatile principle), Hippomenes (the pursuing fixed principle), and the golden apple (the catalytic agent that enables their union). This unprecedented synthesis of music, image, and text makes Atalanta Fugiens unique in the history of emblem literature, as both Wescott and Leedy have demonstrated."},
-    {"term": "Tria Prima", "definition": "Paracelsian three principles: Mercury, Sulphur, Salt. Tilton argues AF should not be reduced to this framework.", "related_emblems": ["XXI"], "category": "CONCEPT", "sources": ["tilton_2003"], "latin": "Tria Prima", "significance_to_af": "Maier's relationship to the Paracelsian tria prima is contested in the scholarship on Atalanta Fugiens. Tilton argues that reducing Emblem XXI's geometric formula to a straightforward Paracelsian reading misses Maier's deeper engagement with Aristotelian elemental transmutation and the Rosarium tradition, positioning the work within a pre-Paracelsian alchemical lineage."},
-    {"term": "King Duenech", "definition": "Alchemical king figure suffering from melancholic disease. Cured through purification. Appears in XXVIII and XLVIII.", "related_emblems": ["XXVIII", "XLVIII"], "category": "FIGURE", "sources": ["de_jong_1964", "pagel_1973"], "latin": "Rex Duenech", "significance_to_af": "Maier uses the figure of King Duenech in Emblems XXVIII and XLVIII to dramatize the alchemical process as a medical cure, in which the king's melancholic illness (black bile, dropsy) requires purging through steam and potion. De Jong's 1964 article traces this figure to the Merlini allegory, while Pagel emphasizes the three-level physiological correspondence between the king's cure and metallurgical coctions."},
-    {"term": "Ouroboros", "definition": "Serpent eating its own tail; symbol of eternal return, cyclical process, and self-enclosed transformation.", "related_emblems": [], "category": "SYMBOL", "sources": ["de_jong_1969"], "latin": "Ouroboros", "significance_to_af": "Maier draws on the ouroboros as an emblem of self-enclosed cyclical transformation, reinforcing the idea that the Work returns to its own beginning through repeated dissolution and reconstitution. De Jong situates this symbol within Maier's broader Hermetic framework, where the serpent devouring itself represents the unity of beginning and end in the alchemical process."},
-    {"term": "White Lead", "definition": "Purified matter; the white earth into which gold must be sown. Product of the albedo stage.", "related_emblems": ["VI"], "category": "SUBSTANCE", "sources": ["de_jong_1969"], "latin": "Plumbum Album", "significance_to_af": "Maier uses white lead in Emblem VI as the purified substrate into which gold must be sown, drawing an extended analogy between agricultural cultivation and the alchemical work. De Jong identifies this as Maier's image for the product of the albedo stage, the white foliated earth that serves as the receptive ground for the final reddening and multiplication of the Stone."}
+    {
+      "term": "Coniunctio",
+      "definition": "Union of opposites (male/female, volatile/fixed, Sun/Moon). The central operation of the Great Work.",
+      "related_emblems": [
+        "IV",
+        "XXI",
+        "XXXIII",
+        "XXXIV",
+        "XXXVIII",
+        "XLIV",
+        "L"
+      ],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Coniunctio Oppositorum",
+      "significance_to_af": "Maier presents the union of opposites as the central mystery of the Work, depicting it through the marriage of brother and sister (Emblem IV) and the hermaphrodite figure (Emblem XXXIII). De Jong traces this theme across 14 emblems, identifying it as the structural backbone of the entire emblem sequence."
+    },
+    {
+      "term": "Nigredo",
+      "definition": "The blackening; first stage of the Work involving putrefaction, decomposition, death of the old form.",
+      "related_emblems": [
+        "XXVIII",
+        "XXXIII"
+      ],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969",
+        "craven_1910"
+      ],
+      "latin": "Nigredo",
+      "significance_to_af": "The blackening stage appears in Maier's depictions of death, putrefaction, and burial, particularly in Emblems XXVIII and XLIII. De Jong identifies these as drawing from the Rosarium Philosophorum's death-of-the-king sequence, where the darkened hermaphrodite of Emblem XXXIII signals the necessary dissolution before renewal."
+    },
+    {
+      "term": "Albedo",
+      "definition": "The whitening; second stage involving washing, purification, removal of impurities.",
+      "related_emblems": [
+        "III",
+        "VI"
+      ],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969",
+        "craven_1910"
+      ],
+      "latin": "Albedo",
+      "significance_to_af": "Maier figures the whitening primarily through washing imagery in Emblem III, where the laundress bleaching sheets represents the purification of matter from its blackened state. De Jong connects this to the sowing of gold in white foliated earth (Emblem VI), establishing albedo as the preparatory ground for the final reddening."
+    },
+    {
+      "term": "Citrinitas",
+      "definition": "The yellowing; intermediate stage of vivification between whiteness and redness.",
+      "related_emblems": [],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Citrinitas",
+      "significance_to_af": "Maier treats citrinitas as a transitional moment rather than a fully dramatized stage, and no single emblem is devoted to it exclusively. De Jong notes that Tilton reads the yellowing into the geometric progression of Emblem XXI, where the soul-as-air phase corresponds to the intermediate vivification between albedo and rubedo."
+    },
+    {
+      "term": "Rubedo",
+      "definition": "The reddening; final stage of completion, perfection, achievement of the Philosopher's Stone.",
+      "related_emblems": [
+        "XXI"
+      ],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969",
+        "craven_1910"
+      ],
+      "latin": "Rubedo",
+      "significance_to_af": "Maier represents the final reddening as the culmination of the geometric formula in Emblem XXI, where the return to the circle signifies perfected unity. De Jong identifies the color progression from black through white to red as structuring the entire second half of the emblem sequence, reaching completion in Emblem L."
+    },
+    {
+      "term": "Mercurius",
+      "definition": "Mercury; the volatile, feminine, lunar principle. Liquid primary matter, primordial water, water of destruction and resurrection.",
+      "related_emblems": [
+        "VII",
+        "XVI",
+        "Frontispiece"
+      ],
+      "category": "SUBSTANCE",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Mercurius Philosophorum",
+      "significance_to_af": "Maier encodes Mercurius as the volatile, fleeing principle throughout Atalanta Fugiens, most explicitly in the frontispiece where Atalanta herself represents the volatile Mercury that Hippomenes (Sulphur) must pursue and fix. De Jong shows that the winged figures in Emblems VII and XVI consistently signify the Mercurial principle in its lunar, feminine aspect."
+    },
+    {
+      "term": "Sulphur",
+      "definition": "The fixed, masculine, solar principle. Paired with Mercury as the two fundamental alchemical substances.",
+      "related_emblems": [
+        "VII",
+        "XVI",
+        "Frontispiece"
+      ],
+      "category": "SUBSTANCE",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Sulphur",
+      "significance_to_af": "Maier consistently figures Sulphur as the fixed, pursuing principle, embodied in the frontispiece by Hippomenes who chases Atalanta with golden apples as catalytic lures. De Jong demonstrates that the wingless figures in Emblems VII and XVI represent Sulphur's solar, masculine nature, which must bond with its volatile counterpart to complete the Work."
+    },
+    {
+      "term": "Philosophical Egg",
+      "definition": "The sealed vessel containing prima materia; unity of opposites before differentiation.",
+      "related_emblems": [
+        "VIII"
+      ],
+      "category": "CONCEPT",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Ovum Philosophicum",
+      "significance_to_af": "Maier uses the philosophical egg in Emblem VIII as the sealed vessel within which the prima materia undergoes transformation, requiring careful regulation of heat. De Jong interprets the egg as Maier's image for the unity of all opposites before differentiation, a microcosm of the entire alchemical process contained in a single figure."
+    },
+    {
+      "term": "Philosopher's Stone",
+      "definition": "The perfected product of the Great Work; agent of transmutation. Achieved through union and fixation.",
+      "related_emblems": [
+        "V",
+        "XXI",
+        "L"
+      ],
+      "category": "CONCEPT",
+      "sources": [
+        "de_jong_1969",
+        "tilton_2003"
+      ],
+      "latin": "Lapis Philosophorum",
+      "significance_to_af": "Maier presents the Stone not as a single emblem but as the telos toward which the entire fifty-emblem sequence converges, with the geometric formula of Emblem XXI and the mutual destruction of Emblem L both pointing to its achievement. De Jong argues that Maier understands the Lapis as the perfected union of fixed and volatile, achieved through the complete cycle of dissolution and reconstitution."
+    },
+    {
+      "term": "Putrefaction",
+      "definition": "Controlled decomposition; the death of old form that enables new creation. Associated with nigredo.",
+      "related_emblems": [
+        "XXIV",
+        "XXVIII",
+        "XLIV"
+      ],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969",
+        "wescott_nd"
+      ],
+      "latin": "Putrefactio",
+      "significance_to_af": "Maier dramatizes putrefaction through the suffering of King Duenech in Emblem XXVIII and the death of Osiris in Emblem XLIV, both representing the necessary death of the old form before resurrection. De Jong and Wescott both identify the four-emblem King sequence (XXIV, XXVIII, XXXI, XLIV) as Maier's extended meditation on controlled decomposition as the gateway to renewal."
+    },
+    {
+      "term": "Calcination",
+      "definition": "Heating to ash; burning away impurities. Part of the washing/purification complex.",
+      "related_emblems": [
+        "III"
+      ],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Calcinatio",
+      "significance_to_af": "Maier subsumes calcination within the broader washing metaphor of Emblem III, where the laundress's work represents all purificatory operations including burning away impurities. De Jong notes that Maier treats calcination not as an isolated laboratory step but as part of a symbolic cluster linking washing, bleaching, and the removal of the black (nigredo) from impure matter."
+    },
+    {
+      "term": "Coagulation",
+      "definition": "Solidification; fixing the volatile. One nature coagulates only through dissolution of another.",
+      "related_emblems": [
+        "V"
+      ],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Coagulatio",
+      "significance_to_af": "Maier illustrates coagulation most vividly in Emblem V, where the toad grows large from the woman's milk as one nature solidifies through the dissolution of another. De Jong traces this reciprocal logic to the Pseudo-Aristotelian and Lullian traditions, showing that Maier understood fixation and dissolution as inseparable complementary operations."
+    },
+    {
+      "term": "Dissolution",
+      "definition": "Breaking down solid form into liquid; releasing the fixed into the volatile.",
+      "related_emblems": [
+        "V",
+        "L"
+      ],
+      "category": "PROCESS",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Dissolutio",
+      "significance_to_af": "Maier frames dissolution as both destructive and generative, from the woman's death in Emblem V to the mutual annihilation of dragon and woman in Emblem L. De Jong identifies the final emblem's return to primary matter as the culminating dissolution that completes the Work, drawing on the Turba's teaching that all creation begins in liquefaction."
+    },
+    {
+      "term": "Hermaphrodite",
+      "definition": "The perfect union of male and female principles in one body. Represents the completed coniunctio.",
+      "related_emblems": [
+        "XXXIII",
+        "XXXIV",
+        "XXXVIII"
+      ],
+      "category": "FIGURE",
+      "sources": [
+        "de_jong_1969",
+        "miner_2012"
+      ],
+      "latin": "Hermaphroditus",
+      "significance_to_af": "Maier devotes three emblems to the hermaphrodite figure (XXXIII, XXXIV, XXXVIII), presenting it as the embodied result of the coniunctio oppositorum in which male and female principles achieve stable union. De Jong reads the darkened hermaphrodite of Emblem XXXIII as requiring fire to complete its transformation, while Miner connects these images to a broader iconographic tradition extending to William Blake."
+    },
+    {
+      "term": "Tabula Smaragdina",
+      "definition": "The Emerald Tablet; foundational Hermetic text attributed to Hermes Trismegistus. 'As above, so below' cosmology.",
+      "related_emblems": [
+        "I",
+        "II"
+      ],
+      "category": "SOURCE_TEXT",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Tabula Smaragdina",
+      "significance_to_af": "Maier opens Atalanta Fugiens by deriving the mottos of Emblems I and II directly from the Tabula Smaragdina, establishing the Hermetic cosmological framework as the foundation for the entire work. De Jong demonstrates that this deliberate placement signals Maier's allegiance to the Hermetic tradition and its principle that earthly processes mirror celestial ones."
+    },
+    {
+      "term": "Turba Philosophorum",
+      "definition": "Assembly of Philosophers; major alchemical compilation of Arabic origin. Source for 9 AF mottos per De Jong.",
+      "related_emblems": [
+        "III",
+        "XXII",
+        "XXXIII",
+        "L"
+      ],
+      "category": "SOURCE_TEXT",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Turba Philosophorum",
+      "significance_to_af": "Maier draws more motto material from the Turba Philosophorum than from any other single source, with De Jong attributing nine emblem mottos to this Arabic-Latin compilation. The Turba's influence is particularly prominent in the washing emblems (III), the hermaphrodite sequence (XXXIII), and the final emblem (L), where Theophilus's teaching on mutual destruction provides the culminating image."
+    },
+    {
+      "term": "Rosarium Philosophorum",
+      "definition": "Rose Garden of Philosophers; major alchemical compilation. Source for geometric, sapiential, and washing themes.",
+      "related_emblems": [
+        "XXI",
+        "XXII",
+        "XXVI",
+        "XXVII"
+      ],
+      "category": "SOURCE_TEXT",
+      "sources": [
+        "de_jong_1969",
+        "tilton_2003"
+      ],
+      "latin": "Rosarium Philosophorum",
+      "significance_to_af": "Maier draws the geometric circle-square-triangle formula of Emblem XXI and the sapiential framework of Emblems XXVI-XXVII directly from the Rosarium Philosophorum. De Jong demonstrates that the Rosarium serves as the mediating text through which Maier accesses biblical wisdom literature and the Aurora Consurgens, making it the primary conduit for the religious-philosophical dimension of Atalanta Fugiens."
+    },
+    {
+      "term": "Sapientia",
+      "definition": "Wisdom personified; alchemy as knowledge joined with practice. Central to Emblem XXVI.",
+      "related_emblems": [
+        "XXVI",
+        "XXVII"
+      ],
+      "category": "CONCEPT",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Sapientia",
+      "significance_to_af": "Maier places Sapientia at the structural midpoint of Atalanta Fugiens in Emblem XXVI, presenting wisdom as the tree of life and defining true alchemy as knowledge joined with practice (cognitionem chymiae cum praxi). De Jong identifies the unusually dense scriptural marginalia of this emblem as evidence that Maier foregrounds the religious-sapiential basis of the entire alchemical enterprise."
+    },
+    {
+      "term": "Catena Aurea",
+      "definition": "Golden Chain linking Microcosm to Macrocosm; continuous thread of transmutation from base to divine.",
+      "related_emblems": [
+        "V"
+      ],
+      "category": "CONCEPT",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Catena Aurea",
+      "significance_to_af": "Maier invokes the golden chain in the context of Emblem V to articulate the continuous link between microcosmic and macrocosmic processes of transformation. De Jong reads this as Maier's expression of the Hermetic principle that alchemical transmutation participates in a cosmic hierarchy extending from base matter to the divine, with each stage of the Work mirroring a corresponding celestial operation."
+    },
+    {
+      "term": "Fugue",
+      "definition": "Three-voice musical canon accompanying each emblem. Voices represent Atalanta (fleeing/volatile), Hippomenes (pursuing/fixed), and Golden Apple (catalyst).",
+      "related_emblems": [
+        "ALL"
+      ],
+      "category": "MUSICAL",
+      "sources": [
+        "wescott_nd",
+        "leedy_1991"
+      ],
+      "latin": "Fuga",
+      "significance_to_af": "Maier assigns each of the fifty emblems a three-voice fugue in which the voices allegorically represent Atalanta (the fleeing volatile principle), Hippomenes (the pursuing fixed principle), and the golden apple (the catalytic agent that enables their union). This unprecedented synthesis of music, image, and text makes Atalanta Fugiens unique in the history of emblem literature, as both Wescott and Leedy have demonstrated."
+    },
+    {
+      "term": "Tria Prima",
+      "definition": "Paracelsian three principles: Mercury, Sulphur, Salt. Tilton argues AF should not be reduced to this framework.",
+      "related_emblems": [
+        "XXI"
+      ],
+      "category": "CONCEPT",
+      "sources": [
+        "tilton_2003"
+      ],
+      "latin": "Tria Prima",
+      "significance_to_af": "Maier's relationship to the Paracelsian tria prima is contested in the scholarship on Atalanta Fugiens. Tilton argues that reducing Emblem XXI's geometric formula to a straightforward Paracelsian reading misses Maier's deeper engagement with Aristotelian elemental transmutation and the Rosarium tradition, positioning the work within a pre-Paracelsian alchemical lineage."
+    },
+    {
+      "term": "King Duenech",
+      "definition": "Alchemical king figure suffering from melancholic disease. Cured through purification. Appears in XXVIII and XLVIII.",
+      "related_emblems": [
+        "XXVIII",
+        "XLVIII"
+      ],
+      "category": "FIGURE",
+      "sources": [
+        "de_jong_1964",
+        "pagel_1973"
+      ],
+      "latin": "Rex Duenech",
+      "significance_to_af": "Maier uses the figure of King Duenech in Emblems XXVIII and XLVIII to dramatize the alchemical process as a medical cure, in which the king's melancholic illness (black bile, dropsy) requires purging through steam and potion. De Jong's 1964 article traces this figure to the Merlini allegory, while Pagel emphasizes the three-level physiological correspondence between the king's cure and metallurgical coctions."
+    },
+    {
+      "term": "Ouroboros",
+      "definition": "Serpent eating its own tail; symbol of eternal return, cyclical process, and self-enclosed transformation.",
+      "related_emblems": [],
+      "category": "SYMBOL",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Ouroboros",
+      "significance_to_af": "Maier draws on the ouroboros as an emblem of self-enclosed cyclical transformation, reinforcing the idea that the Work returns to its own beginning through repeated dissolution and reconstitution. De Jong situates this symbol within Maier's broader Hermetic framework, where the serpent devouring itself represents the unity of beginning and end in the alchemical process."
+    },
+    {
+      "term": "White Lead",
+      "definition": "Purified matter; the white earth into which gold must be sown. Product of the albedo stage.",
+      "related_emblems": [
+        "VI"
+      ],
+      "category": "SUBSTANCE",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "latin": "Plumbum Album",
+      "significance_to_af": "Maier uses white lead in Emblem VI as the purified substrate into which gold must be sown, drawing an extended analogy between agricultural cultivation and the alchemical work. De Jong identifies this as Maier's image for the product of the albedo stage, the white foliated earth that serves as the receptive ground for the final reddening and multiplication of the Stone."
+    },
+    {
+      "term": "Prima Materia",
+      "category": "SUBSTANCE",
+      "definition": "The first matter from which all metals arise; the undifferentiated starting material of the Work.",
+      "latin": "Prima Materia",
+      "significance_to_af": "Maier treats prima materia as the hidden substrate underlying the entire emblem sequence, the formless potential that must be identified and worked upon before any transformation can begin. De Jong shows that Maier draws on both Aristotelian hylomorphism and the Turba's teachings on primary matter, particularly in the opening emblems where the cosmological framework is established.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "I",
+        "II",
+        "L"
+      ],
+      "related_terms": [
+        "Philosopher's Stone",
+        "Mercurius",
+        "Dissolution"
+      ]
+    },
+    {
+      "term": "Lapis",
+      "category": "CONCEPT",
+      "definition": "Shorthand for Lapis Philosophorum; the perfected Stone that transmutes base metals and heals all disease.",
+      "latin": "Lapis",
+      "significance_to_af": "Maier uses Lapis as the culminating goal toward which the fifty-emblem sequence converges, with the geometric formula of Emblem XXI encoding the method of its production. De Jong identifies the Stone as Maier's image for the perfected union of all opposites, achieved only after the complete cycle of dissolution, purification, and reconstitution.",
+      "sources": [
+        "de_jong_1969",
+        "tilton_2003"
+      ],
+      "related_emblems": [
+        "XXI",
+        "L"
+      ],
+      "related_terms": [
+        "Philosopher's Stone",
+        "Opus Magnum",
+        "Rubedo"
+      ]
+    },
+    {
+      "term": "Aqua Vitae",
+      "category": "SUBSTANCE",
+      "definition": "The water of life; the purified mercurial water that dissolves impure matter and vivifies the dead body of the Work.",
+      "latin": "Aqua Vitae",
+      "significance_to_af": "Maier invokes the water of life in connection with the curative and restorative operations depicted in the King Duenech sequence, where the sick king is restored through liquid medicines. De Jong traces Maier's aqua vitae imagery to the Turba Philosophorum and the Rosarium tradition, where mercurial water serves as both solvent and elixir.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "XXVIII",
+        "XLVIII"
+      ],
+      "related_terms": [
+        "Mercurius",
+        "Dissolution",
+        "King Duenech"
+      ]
+    },
+    {
+      "term": "Rex",
+      "category": "FIGURE",
+      "definition": "The King figure representing Sol, gold, or the masculine fixed principle in alchemical allegory.",
+      "latin": "Rex",
+      "significance_to_af": "Maier deploys the King figure across a sustained four-emblem sequence (XXIV, XXVIII, XXXI, XLVIII) that De Jong and Wescott identify as the Alchemical King cycle, dramatizing the sickness, death, and resurrection of the solar principle. The King's suffering and cure encode the entire Work in miniature, from nigredo through rubedo.",
+      "sources": [
+        "de_jong_1969",
+        "de_jong_1964",
+        "wescott_nd"
+      ],
+      "related_emblems": [
+        "XXIV",
+        "XXVIII",
+        "XXXI",
+        "XLVIII"
+      ],
+      "related_terms": [
+        "King Duenech",
+        "Sol",
+        "Sulphur",
+        "Regina"
+      ]
+    },
+    {
+      "term": "Regina",
+      "category": "FIGURE",
+      "definition": "The Queen figure representing Luna, silver, or the feminine volatile principle in alchemical allegory.",
+      "latin": "Regina",
+      "significance_to_af": "Maier pairs the Queen with the King as the feminine lunar counterpart necessary for the coniunctio, appearing in the marriage and union emblems where male and female principles must join. De Jong reads the Queen as Maier's figure for the receptive mercurial principle that completes the King's solar fixity.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "IV",
+        "XXXIII"
+      ],
+      "related_terms": [
+        "Rex",
+        "Luna",
+        "Mercurius",
+        "Coniunctio"
+      ]
+    },
+    {
+      "term": "Sol",
+      "category": "SUBSTANCE",
+      "definition": "Gold; the solar principle; the masculine active agent in alchemical transmutation.",
+      "latin": "Sol",
+      "significance_to_af": "Maier consistently identifies Sol with gold and the masculine fixed principle throughout Atalanta Fugiens, particularly in Emblem VI where gold must be sown in white foliated earth and in the frontispiece where Hippomenes carries golden apples. De Jong demonstrates that Maier's Sol operates simultaneously as metal, planet, and philosophical principle.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "VI",
+        "VII",
+        "Frontispiece"
+      ],
+      "related_terms": [
+        "Sulphur",
+        "Rex",
+        "Luna",
+        "Coniunctio"
+      ]
+    },
+    {
+      "term": "Luna",
+      "category": "SUBSTANCE",
+      "definition": "Silver; the lunar principle; the feminine receptive agent in alchemical transmutation.",
+      "latin": "Luna",
+      "significance_to_af": "Maier figures Luna as the volatile, feminine counterpart to Sol, embodied in the fleeing Atalanta of the frontispiece and the winged figures of Emblems VII and XVI. De Jong traces Maier's lunar symbolism to the Senior Zadith tradition, where Moon and Sun must unite to produce the perfected Stone.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "VII",
+        "XVI",
+        "Frontispiece"
+      ],
+      "related_terms": [
+        "Mercurius",
+        "Regina",
+        "Sol",
+        "Coniunctio"
+      ]
+    },
+    {
+      "term": "Fixatio",
+      "category": "PROCESS",
+      "definition": "Fixing the volatile; rendering the mercurial spirit permanent and stable through repeated operations.",
+      "latin": "Fixatio",
+      "significance_to_af": "Maier presents fixation as the essential counterpart to volatilization throughout Atalanta Fugiens, encoding it in the frontispiece narrative where Hippomenes must capture and fix the fleeing Atalanta. De Jong identifies the pursuit-and-capture motif as Maier's master allegory for the fixation of Mercury by Sulphur, the operation without which the Stone cannot be achieved.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "Frontispiece",
+        "VII"
+      ],
+      "related_terms": [
+        "Sulphur",
+        "Mercurius",
+        "Coagulation"
+      ]
+    },
+    {
+      "term": "Sublimatio",
+      "category": "PROCESS",
+      "definition": "Raising the gross to the subtle; purification through elevation of volatile spirits from dense matter.",
+      "latin": "Sublimatio",
+      "significance_to_af": "Maier figures sublimation through the winged and ascending imagery that recurs across the emblem sequence, where volatile substances rise above their earthly matrix. De Jong connects this operation to Maier's hierarchical cosmology in which the Work proceeds by elevating base matter toward its celestial archetype.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "XVI"
+      ],
+      "related_terms": [
+        "Mercurius",
+        "Dissolution",
+        "Calcination"
+      ]
+    },
+    {
+      "term": "Multiplicatio",
+      "category": "PROCESS",
+      "definition": "Multiplying the Stone's power; the final augmentation that increases the perfected product's transmutative capacity.",
+      "latin": "Multiplicatio",
+      "significance_to_af": "Maier treats multiplication as the final operation following the achievement of the Stone, extending the agricultural metaphor of Emblem VI where sowing gold in white earth yields an abundant harvest. De Jong reads the multiplication as Maier's figure for the self-propagating nature of the perfected Stone, which can transmute quantities far exceeding its own mass.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "VI",
+        "L"
+      ],
+      "related_terms": [
+        "Philosopher's Stone",
+        "Rubedo",
+        "Fermentatio"
+      ]
+    },
+    {
+      "term": "Atalanta",
+      "category": "FIGURE",
+      "definition": "The fleeing maiden of the frontispiece; represents volatile Mercury that must be captured by the fixed principle.",
+      "latin": "Atalanta",
+      "significance_to_af": "Maier makes Atalanta the titular figure of his entire work, drawing on Ovid's Metamorphoses X to allegorize the volatile mercurial principle as a swift maiden who can only be overtaken through cunning rather than force. De Jong demonstrates that Atalanta's flight structures the allegorical logic of all fifty emblems, each of which dramatizes some aspect of the pursuit between volatile and fixed.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "Frontispiece"
+      ],
+      "related_terms": [
+        "Mercurius",
+        "Hippomenes",
+        "Fugue",
+        "Luna"
+      ]
+    },
+    {
+      "term": "Hippomenes",
+      "category": "FIGURE",
+      "definition": "The pursuer in the frontispiece race; represents fixed Sulphur pursuing volatile Mercury with golden apples as catalysts.",
+      "latin": "Hippomenes",
+      "significance_to_af": "Maier casts Hippomenes as the alchemical adept who must use strategy and the golden apples of Art to slow and fix the fleeing volatile principle. De Jong reads the golden apples as the catalytic agents of the Work, without which brute pursuit of Mercury would be futile, making Hippomenes a figure for the disciplined application of alchemical knowledge.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "Frontispiece"
+      ],
+      "related_terms": [
+        "Sulphur",
+        "Atalanta",
+        "Fugue",
+        "Sol",
+        "Fixatio"
+      ]
+    },
+    {
+      "term": "Opus Magnum",
+      "category": "CONCEPT",
+      "definition": "The Great Work; the entire alchemical project of transmutation from base matter to the perfected Stone.",
+      "latin": "Opus Magnum",
+      "significance_to_af": "Maier conceives Atalanta Fugiens itself as a guide to the Opus Magnum, with the fifty-emblem sequence mapping the stages of the Work from cosmological foundation through purification, conjunction, and final perfection. De Jong argues that the deliberate ordering of emblems reflects the sequential logic of the Great Work, making the book a symbolic enactment of the alchemical process it describes.",
+      "sources": [
+        "de_jong_1969",
+        "tilton_2003"
+      ],
+      "related_emblems": [
+        "I",
+        "XXI",
+        "L"
+      ],
+      "related_terms": [
+        "Philosopher's Stone",
+        "Lapis",
+        "Nigredo",
+        "Rubedo"
+      ]
+    },
+    {
+      "term": "Vas Hermeticum",
+      "category": "CONCEPT",
+      "definition": "The hermetically sealed vessel; the closed system in which all alchemical transformation occurs.",
+      "latin": "Vas Hermeticum",
+      "significance_to_af": "Maier figures the sealed vessel through the philosophical egg of Emblem VIII and the enclosed spaces where transformations occur throughout the sequence. De Jong identifies the vas hermeticum as the operational prerequisite for the entire Work, since only a perfectly sealed system can prevent the loss of volatile spirits during heating and dissolution.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "VIII"
+      ],
+      "related_terms": [
+        "Philosophical Egg",
+        "Mercurius",
+        "Fixatio"
+      ]
+    },
+    {
+      "term": "Fermentatio",
+      "category": "PROCESS",
+      "definition": "Fermentation; the penultimate operation that introduces the ferment completing the Stone's transformation.",
+      "latin": "Fermentatio",
+      "significance_to_af": "Maier treats fermentation as the vivifying operation that brings the nearly completed Stone to life, analogous to the leavening of bread or the action of a seed in prepared earth. De Jong connects this to the agricultural metaphors of Emblem VI, where the ferment of gold activates the receptive white earth to produce the final multiplication.",
+      "sources": [
+        "de_jong_1969"
+      ],
+      "related_emblems": [
+        "VI"
+      ],
+      "related_terms": [
+        "Multiplicatio",
+        "Rubedo",
+        "Philosopher's Stone"
+      ]
+    }
   ],
   "source_map": [
-    {"emblem": "Frontispiece", "source_text": "Metamorphoses X.560-704", "author": "Ovid", "relationship": "NARRATIVE_SOURCE"},
-    {"emblem": "Frontispiece", "source_text": "De Veritate et Antiquitate Artis Chemicae", "author": "Robertus Vallensis", "relationship": "CITATION"},
-    {"emblem": "Frontispiece", "source_text": "Secretum Nobilissimorum", "author": "Jodocus Greverus", "relationship": "CITATION"},
-    {"emblem": "I", "source_text": "Tabula Smaragdina", "author": "Hermes Trismegistus", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "II", "source_text": "Tabula Smaragdina", "author": "Hermes Trismegistus", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "III", "source_text": "Turba Philosophorum", "author": "Anonymous (Arabic compilation)", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "IV", "source_text": "Tractatulus in Art. Aurif. I, 387-399", "author": "Pseudo-Aristotle", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "V", "source_text": "Tractatulus in Art. Aurif. I, 394-395", "author": "Pseudo-Aristotle", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "V", "source_text": "Harmonica Chemica / Lullius tradition", "author": "Pseudo-Lull", "relationship": "THEMATIC_PARALLEL"},
-    {"emblem": "VII", "source_text": "Tabula Chimica", "author": "Senior Zadith", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "VII", "source_text": "De Lapide Philosophico", "author": "Lambsprinck", "relationship": "THEMATIC_PARALLEL"},
-    {"emblem": "XXI", "source_text": "Rosarium Philosophorum", "author": "Pseudo-Arnald", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "XXVI", "source_text": "Proverbs 3:18 (via Rosarium)", "author": "Biblical / Rosarium", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "XXVI", "source_text": "Aurora Consurgens", "author": "Pseudo-Aquinas", "relationship": "THEMATIC_PARALLEL"},
-    {"emblem": "XXVII", "source_text": "Rosarium Philosophorum", "author": "Pseudo-Arnald", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "XXXIII", "source_text": "Turba Philosophorum", "author": "Anonymous", "relationship": "MOTTO_SOURCE"},
-    {"emblem": "XLVIII", "source_text": "Merlini Allegory", "author": "Anonymous medieval", "relationship": "NARRATIVE_SOURCE"},
-    {"emblem": "L", "source_text": "Turba Philosophorum (Theophilus)", "author": "Anonymous", "relationship": "MOTTO_SOURCE"}
+    {
+      "emblem": "Frontispiece",
+      "source_text": "Metamorphoses X.560-704",
+      "author": "Ovid",
+      "relationship": "NARRATIVE_SOURCE"
+    },
+    {
+      "emblem": "Frontispiece",
+      "source_text": "De Veritate et Antiquitate Artis Chemicae",
+      "author": "Robertus Vallensis",
+      "relationship": "CITATION"
+    },
+    {
+      "emblem": "Frontispiece",
+      "source_text": "Secretum Nobilissimorum",
+      "author": "Jodocus Greverus",
+      "relationship": "CITATION"
+    },
+    {
+      "emblem": "I",
+      "source_text": "Tabula Smaragdina",
+      "author": "Hermes Trismegistus",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "II",
+      "source_text": "Tabula Smaragdina",
+      "author": "Hermes Trismegistus",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "III",
+      "source_text": "Turba Philosophorum",
+      "author": "Anonymous (Arabic compilation)",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "IV",
+      "source_text": "Tractatulus in Art. Aurif. I, 387-399",
+      "author": "Pseudo-Aristotle",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "V",
+      "source_text": "Tractatulus in Art. Aurif. I, 394-395",
+      "author": "Pseudo-Aristotle",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "V",
+      "source_text": "Harmonica Chemica / Lullius tradition",
+      "author": "Pseudo-Lull",
+      "relationship": "THEMATIC_PARALLEL"
+    },
+    {
+      "emblem": "VII",
+      "source_text": "Tabula Chimica",
+      "author": "Senior Zadith",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "VII",
+      "source_text": "De Lapide Philosophico",
+      "author": "Lambsprinck",
+      "relationship": "THEMATIC_PARALLEL"
+    },
+    {
+      "emblem": "XXI",
+      "source_text": "Rosarium Philosophorum",
+      "author": "Pseudo-Arnald",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "XXVI",
+      "source_text": "Proverbs 3:18 (via Rosarium)",
+      "author": "Biblical / Rosarium",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "XXVI",
+      "source_text": "Aurora Consurgens",
+      "author": "Pseudo-Aquinas",
+      "relationship": "THEMATIC_PARALLEL"
+    },
+    {
+      "emblem": "XXVII",
+      "source_text": "Rosarium Philosophorum",
+      "author": "Pseudo-Arnald",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "XXXIII",
+      "source_text": "Turba Philosophorum",
+      "author": "Anonymous",
+      "relationship": "MOTTO_SOURCE"
+    },
+    {
+      "emblem": "XLVIII",
+      "source_text": "Merlini Allegory",
+      "author": "Anonymous medieval",
+      "relationship": "NARRATIVE_SOURCE"
+    },
+    {
+      "emblem": "L",
+      "source_text": "Turba Philosophorum (Theophilus)",
+      "author": "Anonymous",
+      "relationship": "MOTTO_SOURCE"
+    }
   ],
   "timeline_events": [
-    {"year": 1568, "event_type": "BIOGRAPHY", "title": "Michael Maier born", "description": "Born in Rendsburg, Holstein", "description_long": "Michael Maier is born in Rendsburg, in the Duchy of Holstein, then part of the Holy Roman Empire. Little is known of his early life, but he will go on to become one of the most prolific alchemical writers of the early seventeenth century, producing over twenty works that synthesize classical learning, Hermetic philosophy, and Rosicrucian ideals. His birthplace in the culturally dynamic border region between German and Danish territories prefigures the cosmopolitan intellectual range of his later career."},
-    {"year": 1597, "event_type": "BIOGRAPHY", "title": "Maier receives MD", "description": "Medical degree from University of Rostock", "description_long": "Michael Maier receives his medical degree from the University of Rostock, establishing the medical-philosophical training that will profoundly shape his alchemical thought. His medical education grounds his later work in the Galenic humoral tradition, which De Jong identifies as central to the medical allegories of Atalanta Fugiens, particularly the King Duenech emblems where disease and cure mirror alchemical dissolution and reconstitution. The MD also provides Maier with the professional credentials that enable his later appointment to the imperial court."},
-    {"year": 1608, "event_type": "BIOGRAPHY", "title": "Maier joins Rudolf II court", "description": "Court physician and secretary to Emperor Rudolf II in Prague", "description_long": "Maier enters the service of Emperor Rudolf II in Prague as court physician and personal secretary, joining the most important center of alchemical patronage in early modern Europe. Rudolf's court attracts alchemists, astronomers, and natural philosophers from across Europe, providing Maier with access to libraries, manuscript collections, and a network of learned practitioners. This period of courtly service exposes Maier to the range of alchemical traditions he will later synthesize in Atalanta Fugiens."},
-    {"year": 1617, "event_type": "PUBLICATION", "title": "Atalanta Fugiens first published", "description": "Published at Oppenheim by Hieronymus Gallerus at expense of J.T. de Bry. Contains 50 emblems with copperplate engravings by Matthaeus Merian.", "description_long": "Michael Maier publishes Atalanta Fugiens at the press of Hieronymus Gallerus in Oppenheim, at the expense of the publisher Johann Theodor de Bry. The work combines fifty emblematic engravings by Matthaeus Merian the Elder with Latin mottos, epigrams, discourses, and three-voice musical fugues, creating an unprecedented synthesis of visual, textual, and musical art in the service of alchemical philosophy. Each emblem draws its motto from a specific source authority, which De Jong will later systematically identify in his 1969 monograph."},
-    {"year": 1618, "event_type": "PUBLICATION", "title": "Atalanta Fugiens second state", "description": "Second typographic state (not separate edition). More widely extant; preferred by modern scholars.", "description_long": "A second typographic state of Atalanta Fugiens appears, distinguished from the 1617 first state by minor textual corrections and typographical variants rather than constituting a wholly new edition. This second state is more widely extant in surviving copies and has become the preferred basis for modern scholarly editions and facsimiles. The close proximity of the two states testifies to the immediate demand for the work in the intellectual marketplace of the early Thirty Years' War period."},
-    {"year": 1622, "event_type": "BIOGRAPHY", "title": "Michael Maier dies", "description": "Maier dies in Magdeburg", "description_long": "Michael Maier dies in Magdeburg at approximately fifty-four years of age, leaving behind one of the most substantial corpora of alchemical writing produced in the early seventeenth century. The circumstances of his final years remain obscure, though Craven (1910) records that he had returned to Germany after a period in England where he sought Rosicrucian contacts. His death comes just four years before the devastating sack of Magdeburg in 1631, a catastrophe that would destroy much of the city's archival record."},
-    {"year": 1687, "event_type": "EDITION", "title": "Frankfurt German edition", "description": "German-language edition published in Frankfurt", "description_long": "A German-language edition of Atalanta Fugiens appears in Frankfurt, making Maier's work accessible to a vernacular readership for the first time, seven decades after the original Latin publication. This translation testifies to the enduring interest in alchemical emblem literature in the German-speaking world during the late seventeenth century. The Frankfurt edition participates in the broader wave of vernacular alchemical publishing that democratized access to previously Latinate esoteric knowledge."},
-    {"year": 1708, "event_type": "EDITION", "title": "Chymisches Cabinet edition", "description": "Vernacular German edition published Frankfurt. Later reviewed by Smith/Hofmeier 2009.", "description_long": "The Chymisches Cabinet edition of Atalanta Fugiens appears in Frankfurt, presenting a vernacular German version of Maier's work that adapts the emblem book for an eighteenth-century readership interested in chemical and alchemical knowledge. This edition will later be the subject of a critical review by Pamela H. Smith in Medical History (2009), based on the modern Hofmeier edition. The continued republication of the work nearly a century after Maier's death demonstrates the lasting appeal of his multimedia approach to alchemical instruction."},
-    {"year": 1910, "event_type": "SCHOLARSHIP", "title": "Craven biography published", "description": "J.B. Craven publishes Count Michael Maier, the first modern biographical study", "description_long": "J.B. Craven publishes Count Michael Maier: Doctor of Philosophy and of Medicine, Alchemist, Rosicrucian, Mystic, 1568-1622, the first modern biographical study of Maier and a foundational work for all subsequent scholarship. Craven assembles the scattered documentary evidence of Maier's life, travels, and publications into a coherent narrative, situating him within the Rosicrucian movement and the intellectual culture of Rudolf II's Prague. This biography remains an essential reference for contextualizing the production and reception of Atalanta Fugiens."},
-    {"year": 1964, "event_type": "SCHOLARSHIP", "title": "De Jong article on Emblem XLVIII", "description": "H.M.E. de Jong publishes analysis of Emblem XLVIII in Netherlands Yearbook for History of Art", "description_long": "H.M.E. de Jong publishes a detailed analysis of Emblem XLVIII (King Duenech receiving the curative potion) in the Netherlands Yearbook for History of Art, establishing the source-critical method he will extend to all fifty emblems in his 1969 monograph. This article traces the King Duenech narrative to the Merlini Allegory and demonstrates the medical-humoral dimension of Maier's alchemical symbolism. It represents the first sustained scholarly attempt to identify the specific textual sources behind individual emblems in Atalanta Fugiens."},
-    {"year": 1965, "event_type": "SCHOLARSHIP", "title": "De Jong reviews Wuethrich facsimile", "description": "De Jong reviews the 1964 Baerenreiter facsimile edition in The Art Bulletin", "description_long": "De Jong reviews the 1964 Baerenreiter facsimile edition of Atalanta Fugiens prepared by Lucas Heinrich Wuethrich in The Art Bulletin, assessing the reproduction quality and scholarly apparatus of this important new resource. The review demonstrates De Jong's growing expertise on the work and provides an early statement of the interpretive principles he will develop fully in his 1969 monograph. The availability of a reliable facsimile marks a turning point in the modern scholarly reception of Atalanta Fugiens by making the complete visual and textual program widely accessible."},
-    {"year": 1969, "event_type": "SCHOLARSHIP", "title": "De Jong monograph published", "description": "H.M.E. de Jong publishes Michael Maier's Atalanta fugiens: Sources of an Alchemical Book of Emblems (E.J. Brill). Foundational source-critical study of all 50 emblems.", "description_long": "H.M.E. de Jong publishes Michael Maier's Atalanta fugiens: Sources of an Alchemical Book of Emblems with E.J. Brill in Leiden, completing the foundational source-critical study of all fifty emblems plus the frontispiece. De Jong systematically identifies the textual authorities behind each motto, traces the iconographic traditions informing each engraving, and maps the network of cross-references linking emblems to one another. This monograph remains the indispensable scholarly resource for understanding Atalanta Fugiens and has shaped every subsequent interpretation of the work."},
-    {"year": 1973, "event_type": "SCHOLARSHIP", "title": "Pagel review published", "description": "Walter Pagel reviews De Jong's monograph in Medical History, emphasizing medical/humoral dimensions", "description_long": "The distinguished historian of medicine Walter Pagel reviews De Jong's monograph in Medical History, bringing his expertise in Paracelsian and Helmontian medicine to bear on the alchemical emblems. Pagel's review emphasizes the medical and humoral dimensions of Atalanta Fugiens that complement De Jong's primarily art-historical and source-critical approach, highlighting the King Duenech emblems and the physiological correspondences between alchemical and medical processes. This review establishes the importance of medical history as a lens for interpreting Maier's work."},
-    {"year": 1989, "event_type": "EDITION", "title": "Godwin musical edition", "description": "Joscelyn Godwin publishes Atalanta Fugiens: An Edition of the Fugues, Emblems and Epigrams, first modern edition with full musical transcriptions", "description_long": "Joscelyn Godwin publishes Atalanta Fugiens: An Edition of the Fugues, Emblems and Epigrams, providing the first modern edition to include full musical transcriptions of all fifty three-voice fugues alongside the emblematic engravings and Latin texts. This edition makes the musical dimension of Maier's work accessible to performers and musicologists for the first time since the seventeenth century, revealing the sophistication of the canonic writing. Godwin's work complements De Jong's source-critical approach by restoring the auditory component of Maier's multimedia synthesis."},
-    {"year": 1991, "event_type": "SCHOLARSHIP", "title": "Leedy reviews Godwin edition", "description": "Douglas Leedy reviews Godwin's edition in Notes, assessing musical transcriptions", "description_long": "Douglas Leedy reviews Godwin's musical edition of Atalanta Fugiens in the journal Notes, providing a musicologist's assessment of the transcription accuracy and the compositional quality of the fifty fugues. Leedy's review addresses questions of modal assignment, voice leading, and the relationship between musical structure and alchemical symbolism in the canons. This is one of the few scholarly evaluations of Atalanta Fugiens to engage substantively with its musical content on its own technical terms."},
-    {"year": 2002, "event_type": "EDITION", "title": "De Jong monograph reprinted", "description": "Nicolas-Hays reprints De Jong's 1969 monograph", "description_long": "The publishing house Nicolas-Hays reprints De Jong's 1969 monograph, making this long-out-of-print foundational study available to a new generation of scholars and readers interested in alchemical emblem literature. The reprint testifies to the enduring authority of De Jong's source-critical approach and the continued centrality of his work to all serious study of Atalanta Fugiens. No subsequent scholar has attempted a comprehensive revision of his emblem-by-emblem analysis, though several have supplemented and contested his interpretive framework."},
-    {"year": 2003, "event_type": "SCHOLARSHIP", "title": "Tilton Quest for the Phoenix", "description": "Hereward Tilton publishes major monograph on Maier's spiritual alchemy and Rosicrucianism", "description_long": "Hereward Tilton publishes The Quest for the Phoenix: Spiritual Alchemy and Rosicrucianism in the Work of Count Michael Maier, a major monograph that resituates Maier within the Rosicrucian movement and argues for a spiritual-alchemical rather than laboratory reading of his works. Tilton challenges reductive Paracelsian interpretations of Atalanta Fugiens, particularly the tria prima reading of Emblem XXI, and instead emphasizes Aristotelian elemental transmutation and the Rosarium tradition. This work represents the most significant reinterpretation of Maier since De Jong."},
-    {"year": 2009, "event_type": "SCHOLARSHIP", "title": "Smith reviews Hofmeier edition", "description": "Pamela H. Smith reviews German edition in Medical History, emphasizing AF as synthesis engine", "description_long": "Pamela H. Smith reviews the Hofmeier edition of the Chymisches Cabinet version of Atalanta Fugiens in Medical History, bringing her expertise in early modern material culture and the history of science to the assessment. Smith characterizes Atalanta Fugiens as a synthesis engine that integrates visual, textual, and musical modes of instruction into a unified pedagogical program. Her review contributes to the growing scholarly recognition of Maier's work as a sophisticated multimedia artifact rather than a simple repository of alchemical symbolism."},
-    {"year": 2012, "event_type": "SCHOLARSHIP", "title": "Miner Blake article", "description": "Paul Miner publishes 'Blake and Atalanta Fugiens' in Notes and Queries, connecting AF iconography to William Blake", "description_long": "Paul Miner publishes a short article in Notes and Queries arguing that William Blake drew directly on the engravings of Atalanta Fugiens for at least two of his own plates, specifically connecting the hermaphrodite of Emblem XXXIII and the celestial birth of Emblem XXXIV to plates in The Gates of Paradise and Jerusalem. Miner's conjectures extend the reception history of Atalanta Fugiens into the Romantic period and suggest that Maier's emblematic imagery circulated more widely among British artists than previously recognized."},
-    {"year": 2020, "event_type": "DIGITAL", "title": "Furnace and Fugue published", "description": "Tara Nummedal and Donna Bilak publish digital scholarly edition through UVA Press with interactive text, music, and images", "description_long": "Tara Nummedal and Donna Bilak publish Furnace and Fugue: A Digital Edition of Michael Maier's Atalanta fugiens (1618) with Scholarly Commentary through the University of Virginia Press, creating the first born-digital scholarly edition of the work. The edition provides interactive access to all fifty emblems with synchronized text, music, and images, accompanied by essays on steganography, materiality, and musical structure. This publication marks the entry of Atalanta Fugiens into the digital humanities, making the full multimedia experience of Maier's work available to scholars and the public for the first time."}
+    {
+      "year": 1568,
+      "event_type": "BIOGRAPHY",
+      "title": "Michael Maier born",
+      "description": "Born in Rendsburg, Holstein",
+      "description_long": "Michael Maier is born in Rendsburg, in the Duchy of Holstein, then part of the Holy Roman Empire. Little is known of his early life, but he will go on to become one of the most prolific alchemical writers of the early seventeenth century, producing over twenty works that synthesize classical learning, Hermetic philosophy, and Rosicrucian ideals. His birthplace in the culturally dynamic border region between German and Danish territories prefigures the cosmopolitan intellectual range of his later career."
+    },
+    {
+      "year": 1597,
+      "event_type": "BIOGRAPHY",
+      "title": "Maier receives MD",
+      "description": "Medical degree from University of Rostock",
+      "description_long": "Michael Maier receives his medical degree from the University of Rostock, establishing the medical-philosophical training that will profoundly shape his alchemical thought. His medical education grounds his later work in the Galenic humoral tradition, which De Jong identifies as central to the medical allegories of Atalanta Fugiens, particularly the King Duenech emblems where disease and cure mirror alchemical dissolution and reconstitution. The MD also provides Maier with the professional credentials that enable his later appointment to the imperial court."
+    },
+    {
+      "year": 1608,
+      "event_type": "BIOGRAPHY",
+      "title": "Maier joins Rudolf II court",
+      "description": "Court physician and secretary to Emperor Rudolf II in Prague",
+      "description_long": "Maier enters the service of Emperor Rudolf II in Prague as court physician and personal secretary, joining the most important center of alchemical patronage in early modern Europe. Rudolf's court attracts alchemists, astronomers, and natural philosophers from across Europe, providing Maier with access to libraries, manuscript collections, and a network of learned practitioners. This period of courtly service exposes Maier to the range of alchemical traditions he will later synthesize in Atalanta Fugiens."
+    },
+    {
+      "year": 1611,
+      "event_type": "BIOGRAPHY",
+      "title": "Maier appointed Imperial Count Palatine",
+      "description": "Rudolf II grants Maier the title of Imperial Count Palatine",
+      "description_long": "Emperor Rudolf II grants Michael Maier the title of Imperial Count Palatine (Comes Palatinus Caesareus), reflecting his standing as physician and alchemical advisor at the Prague court. The title confers significant social prestige and legal privileges, including the right to create notaries and legitimize births, marking Maier's elevation from court physician to a figure of political consequence. This recognition at the highest level of imperial patronage provides the institutional authority that underwrites Maier's subsequent prolific publishing career."
+    },
+    {
+      "year": 1612,
+      "event_type": "BIOGRAPHY",
+      "title": "Death of Rudolf II",
+      "description": "Maier's imperial patron dies, ending the Prague court's alchemical golden age",
+      "description_long": "Emperor Rudolf II dies in Prague on January 20, ending the most extraordinary period of alchemical, artistic, and scientific patronage in early modern Europe. Maier loses both his employer and his most powerful protector, forcing him to seek new patrons and institutional affiliations across the continent. The dispersal of Rudolf's court circle scatters a generation of alchemical practitioners and thinkers, many of whom carry the Prague synthesis of Hermetic philosophy and natural magic into new networks that will shape the Rosicrucian movement."
+    },
+    {
+      "year": 1614,
+      "event_type": "PUBLICATION",
+      "title": "Fama Fraternitatis published",
+      "description": "First Rosicrucian manifesto appears in Kassel",
+      "description_long": "The Fama Fraternitatis, the first of three Rosicrucian manifestos, is published in Kassel, announcing the existence of the Brotherhood of the Rose Cross and calling for a universal reformation of knowledge. The tract describes the legendary founder Christian Rosenkreutz and his secret brotherhood of learned men dedicated to healing and philosophical renewal. Maier's Atalanta Fugiens, published three years later, responds directly to this Rosicrucian moment, and Tilton (2003) argues that Maier actively sought contact with the Brotherhood during his English travels."
+    },
+    {
+      "year": 1614,
+      "event_type": "BIOGRAPHY",
+      "title": "Maier travels to England",
+      "description": "Maier visits England seeking Rosicrucian connections and new patronage",
+      "description_long": "Michael Maier travels to England, where he seeks Rosicrucian connections and engages with English alchemical networks in the circle around Francis Bacon and other learned figures. Craven (1910) documents Maier's correspondence with English patrons and his efforts to establish himself within the vibrant culture of Jacobean natural philosophy. This English sojourn exposes Maier to a different tradition of empirical inquiry that complements his continental Hermetic training, and the connections he forges will later facilitate the circulation of Atalanta Fugiens in British intellectual circles."
+    },
+    {
+      "year": 1615,
+      "event_type": "PUBLICATION",
+      "title": "Confessio Fraternitatis published",
+      "description": "Second Rosicrucian manifesto elaborates the Brotherhood's alchemical philosophy",
+      "description_long": "The Confessio Fraternitatis, the second Rosicrucian manifesto, is published in Kassel, elaborating the philosophical and theological program sketched in the Fama. The Confessio explicitly positions alchemy as a path to spiritual and natural knowledge, providing the immediate intellectual context for the surge of alchemical publishing that includes Maier's works. Its vision of a reformed natural philosophy grounded in Hermetic wisdom and Paracelsian medicine maps closely onto the synthesis Maier attempts in Atalanta Fugiens."
+    },
+    {
+      "year": 1616,
+      "event_type": "PUBLICATION",
+      "title": "Chymische Hochzeit (Chemical Wedding) published",
+      "description": "Andreae's allegorical romance completes the Rosicrucian trilogy",
+      "description_long": "Johann Valentin Andreae publishes the Chymische Hochzeit Christiani Rosencreutz Anno 1459, an elaborate allegorical romance that completes the trilogy of Rosicrucian manifestos. The Chemical Wedding's central conceit of alchemical marriage and transformation through symbolic trial draws on the same reservoir of Hermetic imagery that Maier deploys in Atalanta Fugiens the following year. The shared symbolic vocabulary of royal weddings, philosophical mercury, and death-and-rebirth cycles links the two works as parallel expressions of the Rosicrucian cultural moment."
+    },
+    {
+      "year": 1617,
+      "event_type": "PUBLICATION",
+      "title": "Atalanta Fugiens first published",
+      "description": "Published at Oppenheim by Hieronymus Gallerus at expense of J.T. de Bry. Contains 50 emblems with copperplate engravings by Matthaeus Merian.",
+      "description_long": "Michael Maier publishes Atalanta Fugiens at the press of Hieronymus Gallerus in Oppenheim, at the expense of the publisher Johann Theodor de Bry. The work combines fifty emblematic engravings by Matthaeus Merian the Elder with Latin mottos, epigrams, discourses, and three-voice musical fugues, creating an unprecedented synthesis of visual, textual, and musical art in the service of alchemical philosophy. Each emblem draws its motto from a specific source authority, which De Jong will later systematically identify in his 1969 monograph."
+    },
+    {
+      "year": 1617,
+      "event_type": "PUBLICATION",
+      "title": "Symbola Aureae Mensae published",
+      "description": "Maier publishes his study of twelve alchemical authorities",
+      "description_long": "Michael Maier publishes Symbola Aureae Mensae Duodecim Nationum, a study of twelve alchemical authorities seated at a golden table, each representing a different national tradition. The work establishes the comparative method of source identification that Maier applies systematically in Atalanta Fugiens, where each emblem motto is traced to a specific textual authority. De Jong's monograph builds directly on this framework, demonstrating how Maier's source network in the Symbola anticipates and illuminates the emblem program of Atalanta Fugiens."
+    },
+    {
+      "year": 1618,
+      "event_type": "PUBLICATION",
+      "title": "Atalanta Fugiens second state",
+      "description": "Second typographic state (not separate edition). More widely extant; preferred by modern scholars.",
+      "description_long": "A second typographic state of Atalanta Fugiens appears, distinguished from the 1617 first state by minor textual corrections and typographical variants rather than constituting a wholly new edition. This second state is more widely extant in surviving copies and has become the preferred basis for modern scholarly editions and facsimiles. The close proximity of the two states testifies to the immediate demand for the work in the intellectual marketplace of the early Thirty Years' War period."
+    },
+    {
+      "year": 1619,
+      "event_type": "PUBLICATION",
+      "title": "Viatorium published",
+      "description": "Maier's guide to the alchemical mountains extends AF's geographical allegory",
+      "description_long": "Michael Maier publishes Viatorium, hoc est, De Montibus Planetarum Septem, a guide to the seven planetary mountains of alchemical geography. The work extends the geographical and cosmological allegory found in several Atalanta Fugiens emblems, particularly those mapping alchemical processes onto planetary correspondences and terrestrial landscapes. Viatorium demonstrates Maier's continued development of the symbolic system first synthesized in Atalanta Fugiens, translating the emblem book's concentrated imagery into an extended narrative of philosophical pilgrimage."
+    },
+    {
+      "year": 1620,
+      "event_type": "BIOGRAPHY",
+      "title": "Battle of White Mountain",
+      "description": "Defeat of the Winter King ends Rosicrucian political hopes in Bohemia",
+      "description_long": "The Battle of White Mountain on November 8 ends the brief reign of Frederick V, the Winter King, and destroys the Rosicrucian political hopes that had been invested in the Palatinate court. The Catholic imperial victory precipitates the broader catastrophe of the Thirty Years' War, scattering the network of Protestant intellectuals, alchemists, and Hermetic philosophers who had constituted Maier's world. The intellectual movement that nourished Atalanta Fugiens collapses into exile, persecution, and war, making the work a monument to a vanished moment of Rosicrucian optimism."
+    },
+    {
+      "year": 1622,
+      "event_type": "BIOGRAPHY",
+      "title": "Michael Maier dies",
+      "description": "Maier dies in Magdeburg",
+      "description_long": "Michael Maier dies in Magdeburg at approximately fifty-four years of age, leaving behind one of the most substantial corpora of alchemical writing produced in the early seventeenth century. The circumstances of his final years remain obscure, though Craven (1910) records that he had returned to Germany after a period in England where he sought Rosicrucian contacts. His death comes just four years before the devastating sack of Magdeburg in 1631, a catastrophe that would destroy much of the city's archival record."
+    },
+    {
+      "year": 1687,
+      "event_type": "EDITION",
+      "title": "Frankfurt German edition",
+      "description": "German-language edition published in Frankfurt",
+      "description_long": "A German-language edition of Atalanta Fugiens appears in Frankfurt, making Maier's work accessible to a vernacular readership for the first time, seven decades after the original Latin publication. This translation testifies to the enduring interest in alchemical emblem literature in the German-speaking world during the late seventeenth century. The Frankfurt edition participates in the broader wave of vernacular alchemical publishing that democratized access to previously Latinate esoteric knowledge."
+    },
+    {
+      "year": 1708,
+      "event_type": "EDITION",
+      "title": "Chymisches Cabinet edition",
+      "description": "Vernacular German edition published Frankfurt. Later reviewed by Smith/Hofmeier 2009.",
+      "description_long": "The Chymisches Cabinet edition of Atalanta Fugiens appears in Frankfurt, presenting a vernacular German version of Maier's work that adapts the emblem book for an eighteenth-century readership interested in chemical and alchemical knowledge. This edition will later be the subject of a critical review by Pamela H. Smith in Medical History (2009), based on the modern Hofmeier edition. The continued republication of the work nearly a century after Maier's death demonstrates the lasting appeal of his multimedia approach to alchemical instruction."
+    },
+    {
+      "year": 1910,
+      "event_type": "SCHOLARSHIP",
+      "title": "Craven biography published",
+      "description": "J.B. Craven publishes Count Michael Maier, the first modern biographical study",
+      "description_long": "J.B. Craven publishes Count Michael Maier: Doctor of Philosophy and of Medicine, Alchemist, Rosicrucian, Mystic, 1568-1622, the first modern biographical study of Maier and a foundational work for all subsequent scholarship. Craven assembles the scattered documentary evidence of Maier's life, travels, and publications into a coherent narrative, situating him within the Rosicrucian movement and the intellectual culture of Rudolf II's Prague. This biography remains an essential reference for contextualizing the production and reception of Atalanta Fugiens."
+    },
+    {
+      "year": 1964,
+      "event_type": "SCHOLARSHIP",
+      "title": "De Jong article on Emblem XLVIII",
+      "description": "H.M.E. de Jong publishes analysis of Emblem XLVIII in Netherlands Yearbook for History of Art",
+      "description_long": "H.M.E. de Jong publishes a detailed analysis of Emblem XLVIII (King Duenech receiving the curative potion) in the Netherlands Yearbook for History of Art, establishing the source-critical method he will extend to all fifty emblems in his 1969 monograph. This article traces the King Duenech narrative to the Merlini Allegory and demonstrates the medical-humoral dimension of Maier's alchemical symbolism. It represents the first sustained scholarly attempt to identify the specific textual sources behind individual emblems in Atalanta Fugiens."
+    },
+    {
+      "year": 1965,
+      "event_type": "SCHOLARSHIP",
+      "title": "De Jong reviews Wuethrich facsimile",
+      "description": "De Jong reviews the 1964 Baerenreiter facsimile edition in The Art Bulletin",
+      "description_long": "De Jong reviews the 1964 Baerenreiter facsimile edition of Atalanta Fugiens prepared by Lucas Heinrich Wuethrich in The Art Bulletin, assessing the reproduction quality and scholarly apparatus of this important new resource. The review demonstrates De Jong's growing expertise on the work and provides an early statement of the interpretive principles he will develop fully in his 1969 monograph. The availability of a reliable facsimile marks a turning point in the modern scholarly reception of Atalanta Fugiens by making the complete visual and textual program widely accessible."
+    },
+    {
+      "year": 1969,
+      "event_type": "SCHOLARSHIP",
+      "title": "De Jong monograph published",
+      "description": "H.M.E. de Jong publishes Michael Maier's Atalanta fugiens: Sources of an Alchemical Book of Emblems (E.J. Brill). Foundational source-critical study of all 50 emblems.",
+      "description_long": "H.M.E. de Jong publishes Michael Maier's Atalanta fugiens: Sources of an Alchemical Book of Emblems with E.J. Brill in Leiden, completing the foundational source-critical study of all fifty emblems plus the frontispiece. De Jong systematically identifies the textual authorities behind each motto, traces the iconographic traditions informing each engraving, and maps the network of cross-references linking emblems to one another. This monograph remains the indispensable scholarly resource for understanding Atalanta Fugiens and has shaped every subsequent interpretation of the work."
+    },
+    {
+      "year": 1973,
+      "event_type": "SCHOLARSHIP",
+      "title": "Pagel review published",
+      "description": "Walter Pagel reviews De Jong's monograph in Medical History, emphasizing medical/humoral dimensions",
+      "description_long": "The distinguished historian of medicine Walter Pagel reviews De Jong's monograph in Medical History, bringing his expertise in Paracelsian and Helmontian medicine to bear on the alchemical emblems. Pagel's review emphasizes the medical and humoral dimensions of Atalanta Fugiens that complement De Jong's primarily art-historical and source-critical approach, highlighting the King Duenech emblems and the physiological correspondences between alchemical and medical processes. This review establishes the importance of medical history as a lens for interpreting Maier's work."
+    },
+    {
+      "year": 1989,
+      "event_type": "EDITION",
+      "title": "Godwin musical edition",
+      "description": "Joscelyn Godwin publishes Atalanta Fugiens: An Edition of the Fugues, Emblems and Epigrams, first modern edition with full musical transcriptions",
+      "description_long": "Joscelyn Godwin publishes Atalanta Fugiens: An Edition of the Fugues, Emblems and Epigrams, providing the first modern edition to include full musical transcriptions of all fifty three-voice fugues alongside the emblematic engravings and Latin texts. This edition makes the musical dimension of Maier's work accessible to performers and musicologists for the first time since the seventeenth century, revealing the sophistication of the canonic writing. Godwin's work complements De Jong's source-critical approach by restoring the auditory component of Maier's multimedia synthesis."
+    },
+    {
+      "year": 1991,
+      "event_type": "SCHOLARSHIP",
+      "title": "Leedy reviews Godwin edition",
+      "description": "Douglas Leedy reviews Godwin's edition in Notes, assessing musical transcriptions",
+      "description_long": "Douglas Leedy reviews Godwin's musical edition of Atalanta Fugiens in the journal Notes, providing a musicologist's assessment of the transcription accuracy and the compositional quality of the fifty fugues. Leedy's review addresses questions of modal assignment, voice leading, and the relationship between musical structure and alchemical symbolism in the canons. This is one of the few scholarly evaluations of Atalanta Fugiens to engage substantively with its musical content on its own technical terms."
+    },
+    {
+      "year": 2002,
+      "event_type": "EDITION",
+      "title": "De Jong monograph reprinted",
+      "description": "Nicolas-Hays reprints De Jong's 1969 monograph",
+      "description_long": "The publishing house Nicolas-Hays reprints De Jong's 1969 monograph, making this long-out-of-print foundational study available to a new generation of scholars and readers interested in alchemical emblem literature. The reprint testifies to the enduring authority of De Jong's source-critical approach and the continued centrality of his work to all serious study of Atalanta Fugiens. No subsequent scholar has attempted a comprehensive revision of his emblem-by-emblem analysis, though several have supplemented and contested his interpretive framework."
+    },
+    {
+      "year": 2003,
+      "event_type": "SCHOLARSHIP",
+      "title": "Tilton Quest for the Phoenix",
+      "description": "Hereward Tilton publishes major monograph on Maier's spiritual alchemy and Rosicrucianism",
+      "description_long": "Hereward Tilton publishes The Quest for the Phoenix: Spiritual Alchemy and Rosicrucianism in the Work of Count Michael Maier, a major monograph that resituates Maier within the Rosicrucian movement and argues for a spiritual-alchemical rather than laboratory reading of his works. Tilton challenges reductive Paracelsian interpretations of Atalanta Fugiens, particularly the tria prima reading of Emblem XXI, and instead emphasizes Aristotelian elemental transmutation and the Rosarium tradition. This work represents the most significant reinterpretation of Maier since De Jong."
+    },
+    {
+      "year": 2009,
+      "event_type": "SCHOLARSHIP",
+      "title": "Smith reviews Hofmeier edition",
+      "description": "Pamela H. Smith reviews German edition in Medical History, emphasizing AF as synthesis engine",
+      "description_long": "Pamela H. Smith reviews the Hofmeier edition of the Chymisches Cabinet version of Atalanta Fugiens in Medical History, bringing her expertise in early modern material culture and the history of science to the assessment. Smith characterizes Atalanta Fugiens as a synthesis engine that integrates visual, textual, and musical modes of instruction into a unified pedagogical program. Her review contributes to the growing scholarly recognition of Maier's work as a sophisticated multimedia artifact rather than a simple repository of alchemical symbolism."
+    },
+    {
+      "year": 2012,
+      "event_type": "SCHOLARSHIP",
+      "title": "Miner Blake article",
+      "description": "Paul Miner publishes 'Blake and Atalanta Fugiens' in Notes and Queries, connecting AF iconography to William Blake",
+      "description_long": "Paul Miner publishes a short article in Notes and Queries arguing that William Blake drew directly on the engravings of Atalanta Fugiens for at least two of his own plates, specifically connecting the hermaphrodite of Emblem XXXIII and the celestial birth of Emblem XXXIV to plates in The Gates of Paradise and Jerusalem. Miner's conjectures extend the reception history of Atalanta Fugiens into the Romantic period and suggest that Maier's emblematic imagery circulated more widely among British artists than previously recognized."
+    },
+    {
+      "year": 2020,
+      "event_type": "DIGITAL",
+      "title": "Furnace and Fugue published",
+      "description": "Tara Nummedal and Donna Bilak publish digital scholarly edition through UVA Press with interactive text, music, and images",
+      "description_long": "Tara Nummedal and Donna Bilak publish Furnace and Fugue: A Digital Edition of Michael Maier's Atalanta fugiens (1618) with Scholarly Commentary through the University of Virginia Press, creating the first born-digital scholarly edition of the work. The edition provides interactive access to all fifty emblems with synchronized text, music, and images, accompanied by essays on steganography, materiality, and musical structure. This publication marks the entry of Atalanta Fugiens into the digital humanities, making the full multimedia experience of Maier's work available to scholars and the public for the first time."
+    }
   ],
   "scholars": [
-    {"name": "H.M.E. de Jong", "specialization": "Art history, source criticism, alchemical iconography", "af_focus": "Source identification for all 50 emblems; meaning, sources, and interconnections", "key_works": ["de_jong_1969", "de_jong_1964"]},
-    {"name": "Hereward Tilton", "specialization": "History of alchemy, Rosicrucianism, historiography", "af_focus": "Spiritual alchemy vs. laboratory debate; philosophical positioning of Maier", "key_works": ["tilton_2003"]},
-    {"name": "J.B. Craven", "specialization": "Biography, bibliography", "af_focus": "Maier's life, works, edition history", "key_works": ["craven_1910"]},
-    {"name": "C. Morris Wescott", "specialization": "Music theory, alchemical symbolism", "af_focus": "Musical-modal-planetary correspondences in the fugues; Alchemical King sequence", "key_works": ["wescott_nd"]},
-    {"name": "Walter Pagel", "specialization": "History of medicine, medical alchemy", "af_focus": "Medical/humoral dimensions of AF emblems", "key_works": ["pagel_1973"]},
-    {"name": "Paul Miner", "specialization": "Literary history, iconography", "af_focus": "AF influence on William Blake; hermaphrodite emblems", "key_works": ["miner_2012"]},
-    {"name": "Douglas Leedy", "specialization": "Musicology", "af_focus": "Musical construction of the 50 canons", "key_works": ["leedy_1991"]},
-    {"name": "Pamela H. Smith", "specialization": "History of science, material culture", "af_focus": "AF as symbolic synthesis, not laboratory manual", "key_works": ["smith_2009"]},
-    {"name": "Joscelyn Godwin", "specialization": "Musicology, esoteric studies", "af_focus": "Musical edition and transcription of all 50 fugues", "key_works": []},
-    {"name": "Tara Nummedal", "specialization": "History of science, digital humanities", "af_focus": "Co-editor of Furnace and Fugue digital edition", "key_works": []},
-    {"name": "Donna Bilak", "specialization": "Art history, steganography", "af_focus": "Co-editor of Furnace and Fugue; Maier and steganography", "key_works": []}
-  ]
+    {
+      "name": "H.M.E. de Jong",
+      "specialization": "Art history, source criticism, alchemical iconography",
+      "af_focus": "Source identification for all 50 emblems; meaning, sources, and interconnections",
+      "key_works": [
+        "de_jong_1969",
+        "de_jong_1964"
+      ],
+      "overview": "H.M.E. de Jong is a Dutch art historian whose 1969 dissertation, Michael Maier's Atalanta fugiens: Sources of an Alchemical Book of Emblems, remains the foundational work in Atalanta Fugiens scholarship. Her method is rigorously source-critical: she systematically identifies the ancient and medieval texts from which Maier drew each emblem's motto, imagery, and doctrinal content, revealing the Atalanta Fugiens as a work of sophisticated synthesis rather than original invention. De Jong demonstrates that the motto of each emblem can be traced to specific textual antecedents in the Turba Philosophorum, the Rosarium Philosophorum, the Tabula Smaragdina, Pseudo-Aristotle, and other alchemical compilations. Her interpretive framework treats the motto as the primary key to each emblem, with the engraved plate, epigram, and discourse functioning as successive layers of elaboration. She further maps the emblem sequence onto the four classical stages of the alchemical opus -- nigredo, albedo, citrinitas, and rubedo -- establishing a pedagogical logic that runs through the entire work. Her earlier 1964 article on Emblem XLVIII, which traces the Merlini allegory through the King Duenech narrative, exemplifies the depth of her emblem-by-emblem analysis. De Jong's source identifications provide the interpretive skeleton upon which all subsequent Atalanta Fugiens scholarship builds."
+    },
+    {
+      "name": "Hereward Tilton",
+      "specialization": "History of alchemy, Rosicrucianism, historiography",
+      "af_focus": "Spiritual alchemy vs. laboratory debate; philosophical positioning of Maier",
+      "key_works": [
+        "tilton_2003"
+      ],
+      "overview": "Hereward Tilton is a historian of alchemy and Rosicrucianism whose 2003 monograph The Quest for the Phoenix situates Michael Maier within the intellectual currents of early seventeenth-century spiritual alchemy. His reading of the Atalanta Fugiens emphasizes its philosophical and Rosicrucian dimensions, arguing that Maier occupies a middle ground between purely symbolic Jungian interpretations and the strictly laboratory-focused readings advanced by William Newman and Lawrence Principe. Tilton engages closely with De Jong's source identifications while offering a more nuanced assessment of Maier's Rosicrucian commitments than her work provides. His analyses of individual emblems, particularly XXIII, XXVIII, XXXIX, XLIV, and XLVIII, demonstrate how material and spiritual registers operate as inseparable dimensions of Maier's alchemical thought."
+    },
+    {
+      "name": "J.B. Craven",
+      "specialization": "Biography, bibliography",
+      "af_focus": "Maier's life, works, edition history",
+      "key_works": [
+        "craven_1910"
+      ],
+      "overview": "J.B. Craven was an early twentieth-century scholar whose 1910 biography Count Michael Maier assembled the first comprehensive account of Maier's life, travels, and published works. His contribution is primarily biographical and bibliographic: he gathered primary documents, traced Maier's movements between Prague, London, and Germany, and cataloged the editions and printings of the Atalanta Fugiens and other works. Craven's research established the factual foundation upon which later interpretive scholarship, including De Jong's source-critical analysis, was built. His treatment of the frontispiece engraving and edition history remains a useful reference point for understanding the publication context of the work."
+    },
+    {
+      "name": "C. Morris Wescott",
+      "specialization": "Music theory, alchemical symbolism",
+      "af_focus": "Musical-modal-planetary correspondences in the fugues; Alchemical King sequence",
+      "key_works": [
+        "wescott_nd"
+      ],
+      "overview": "C. Morris Wescott is a scholar of alchemical symbolism and music theory whose article on the Atalanta Fugiens provides the most detailed analysis of the planetary-modal correspondences governing the fifty fugues. His work demonstrates that the three voices of each fugue structurally enact the pursuit narrative -- Atalanta as the volatile principle, Hippomenes as the fixed, and the golden apple as the catalyst -- making the musical dimension integral rather than decorative. Wescott traces the transformation sequence of the Alchemical King through emblems I, IV, XXIV, XXVIII, XXXI, and XLIV, complementing De Jong's source identifications with a layer of musical-symbolic analysis that her text-focused method does not address."
+    },
+    {
+      "name": "Walter Pagel",
+      "specialization": "History of medicine, medical alchemy",
+      "af_focus": "Medical/humoral dimensions of AF emblems",
+      "key_works": [
+        "pagel_1973"
+      ],
+      "overview": "Walter Pagel was a distinguished historian of medicine whose 1973 review of De Jong's monograph in Medical History brought a specifically humoral and iatrochemical perspective to bear on the Atalanta Fugiens. He highlights the medical register operating within emblems that De Jong reads primarily through alchemical and mythological lenses, drawing attention to imagery of dropsical ore, healing baths, and the balancing of bodily humors in emblems such as II, XIII, XVI, XXVIII, and XLVIII. Pagel's reading complements De Jong's source-critical method by demonstrating that Maier's symbolic language simultaneously encodes Paracelsian medical theory. His review stands as the primary argument for treating the Atalanta Fugiens as a work of medical as well as alchemical significance."
+    },
+    {
+      "name": "Paul Miner",
+      "specialization": "Literary history, iconography",
+      "af_focus": "AF influence on William Blake; hermaphrodite emblems",
+      "key_works": [
+        "miner_2012"
+      ],
+      "overview": "Paul Miner is a literary historian and Blake scholar whose 2012 article in Notes and Queries argues that William Blake drew directly upon the engraved plates of the Atalanta Fugiens for elements of his own visual imagery. His iconographic analysis concentrates on the hermaphrodite emblems XXXIII, XXXIV, and XXXVIII, tracing specific compositional parallels between Maier's engravings and Blake's designs. Miner's work extends the reception history of the Atalanta Fugiens into Romantic-era art, demonstrating the lasting visual influence of its emblem plates beyond the alchemical tradition that De Jong documents."
+    },
+    {
+      "name": "Douglas Leedy",
+      "specialization": "Musicology",
+      "af_focus": "Musical construction of the 50 canons",
+      "key_works": [
+        "leedy_1991"
+      ],
+      "overview": "Douglas Leedy was a musicologist whose 1991 review of Joscelyn Godwin's edition in Notes provided a technically rigorous assessment of the musical construction of the fifty canons. His review evaluates Godwin's transcription choices and editorial decisions while offering independent observations on the archaic contrapuntal techniques Maier employed, including retrograde motion, inversion, and mensuration canons. Leedy's analysis, together with Wescott's, constitutes one of the few sustained engagements with the musical dimension of the Atalanta Fugiens that most scholars, including De Jong, treat as secondary to the visual and textual components."
+    },
+    {
+      "name": "Pamela H. Smith",
+      "specialization": "History of science, material culture",
+      "af_focus": "AF as symbolic synthesis, not laboratory manual",
+      "key_works": [
+        "smith_2009"
+      ],
+      "overview": "Pamela H. Smith is a historian of science and material culture whose 2009 review of the Hofmeier edition of the Atalanta Fugiens in Medical History makes the influential observation that the work contains little evidence of laboratory or workshop practice. She argues that the Atalanta Fugiens functions as a synthesis engine in which meaning proliferates simultaneously across moral, spiritual, cosmic, and material registers, rather than serving as a guide to physical transmutation. Smith's reading reinforces De Jong's textual findings while pushing the interpretive framework toward the polyvalent, multi-register model that shapes current understanding of Maier's project."
+    },
+    {
+      "name": "Joscelyn Godwin",
+      "specialization": "Musicology, esoteric studies",
+      "af_focus": "Musical edition and transcription of all 50 fugues",
+      "key_works": [],
+      "overview": "Joscelyn Godwin is a musicologist and scholar of Western esoteric traditions who published the first modern musical edition of the Atalanta Fugiens in 1989, making all fifty three-voice fugues accessible to performers and analysts for the first time. His edition includes transcriptions of the canons into modern notation alongside condensed summaries of the Latin discourses, providing a crucial complement to De Jong's textual scholarship. Godwin's work foregrounds the multimedia character of the Atalanta Fugiens as a unified emblem book integrating image, text, and sound. His edition remains the standard reference for scholars seeking to engage with the musical dimension of Maier's work."
+    },
+    {
+      "name": "Tara Nummedal",
+      "specialization": "History of science, digital humanities",
+      "af_focus": "Co-editor of Furnace and Fugue digital edition",
+      "key_works": [],
+      "overview": "Tara Nummedal is a historian of science who co-edited Furnace and Fugue (2020) alongside Donna Bilak, bringing expertise in the social and institutional history of early modern alchemy to the digital edition of the Atalanta Fugiens. Her scholarship situates Maier's work within the broader landscape of alchemical practice, patronage, and knowledge circulation in the Holy Roman Empire. As co-editor, Nummedal helped frame the Furnace and Fugue project as a digital humanities experiment, extending the interpretive tradition anchored by De Jong's monograph into new modes of interactive, multimedia scholarly presentation."
+    },
+    {
+      "name": "Donna Bilak",
+      "specialization": "Art history, steganography",
+      "af_focus": "Co-editor of Furnace and Fugue; Maier and steganography",
+      "key_works": [],
+      "overview": "Donna Bilak is a material culture scholar and art historian who co-edited Furnace and Fugue (2020), the first born-digital scholarly edition of the Atalanta Fugiens. Her research emphasizes Maier's use of steganographic techniques -- the embedding of hidden messages within the multimedia structure of the emblem book -- and approaches the work through the lens of making, craft, and material practice. Bilak's digital edition, built on open-access principles, represents a significant methodological departure from De Jong's print-based source criticism, offering interactive tools for exploring the relationships among image, text, and music that Maier designed as a unified sensory experience."
+    }
+  ],
+  "biography": {
+    "title": "Michael Maier (1568-1622)",
+    "subtitle": "Physician, Alchemist, Rosicrucian",
+    "sections": [
+      {
+        "heading": "Early Life and Education",
+        "content": "Michael Maier was born in 1568 in Rendsburg, a town in the Duchy of Holstein, then part of the Holy Roman Empire. The culturally dynamic border region between German and Danish territories would later be reflected in the cosmopolitan range of his intellectual pursuits. Little is known of his early years, and much of what survives comes from the biographical reconstruction assembled by J.B. Craven in his 1910 study, the first modern attempt to piece together the scattered documentary evidence of Maier's life.\n\nMaier pursued medical studies and received his doctorate of medicine from the University of Rostock in 1597. This training in Galenic humoral medicine proved foundational for his later alchemical writings, where the language of disease and cure, purgation and restoration, became a persistent register of meaning. As H.M.E. de Jong demonstrated in his 1969 monograph, the medical allegories running through Atalanta Fugiens -- particularly the King Duenech emblems depicting a monarch cured through alchemical therapy -- draw directly on the traditions Maier absorbed during his medical education. The physician and the alchemist, in Maier's view, practiced fundamentally the same art: both imitated and perfected nature."
+      },
+      {
+        "heading": "At the Court of Rudolf II",
+        "content": "Around 1608, Maier entered the service of Emperor Rudolf II in Prague as court physician and personal secretary. Rudolf's court was the most important center of alchemical patronage in early modern Europe, attracting natural philosophers, astronomers, and practitioners of the chemical arts from across the continent. In this extraordinary milieu, Maier gained access to manuscript collections, libraries, and a network of learned correspondents that would furnish the vast erudition displayed in his published works.\n\nThe Prague years exposed Maier to the full range of alchemical traditions he would later synthesize: Hermetic philosophy rooted in the Emerald Tablet, the Arabic-Latin compilations of the Turba Philosophorum and the writings attributed to Senior Zadith, the Rosarium Philosophorum with its geometric and sapiential frameworks, and the Pseudo-Aristotelian treatises on elemental transformation. De Jong's source-critical analysis of Atalanta Fugiens reveals a mind steeped in these traditions, capable of weaving them into a coherent symbolic program that spans fifty emblems.\n\nRudolf II died in 1612, and with the emperor's passing Maier lost both his patron and his position at the center of Central European intellectual life. The years that followed would see him turn increasingly to publication as the primary vehicle for his alchemical philosophy."
+      },
+      {
+        "heading": "The Rosicrucian Moment",
+        "content": "The publication of the Fama Fraternitatis in 1614 and the Confessio Fraternitatis in 1615 announced a secret brotherhood dedicated to the universal reformation of knowledge through the synthesis of alchemy, medicine, and spiritual illumination. Maier was drawn powerfully to this vision. He traveled to England around 1614 seeking Rosicrucian connections, and he produced several works that engaged directly with the Rosicrucian manifestos, including Silentium post Clamores (1617) and Themis Aurea (1618).\n\nThe degree of Maier's commitment to the Rosicrucian cause has been debated by scholars. De Jong argued that Atalanta Fugiens is genuinely Rosicrucian in its intellectual framework, while Hereward Tilton, in The Quest for the Phoenix (2003), offered a more nuanced assessment, situating Maier within the Rosicrucian movement without reducing his thought to any single ideological program. What is clear is that the Rosicrucian ideal of a reformed, spiritually grounded natural philosophy provided the cultural moment into which Maier launched his most ambitious work.\n\nMaier's English sojourn remains one of the more tantalizing episodes in his biography. Craven records fragmentary evidence of contacts with English intellectuals, but the details are sparse. What Maier brought back from England -- whether contacts, manuscripts, or simply a heightened sense of the international scope of the Rosicrucian project -- fed into the extraordinary burst of publishing activity that followed his return to the Continent."
+      },
+      {
+        "heading": "Atalanta Fugiens (1617)",
+        "content": "Atalanta Fugiens was published in 1617 at the press of Hieronymus Gallerus in Oppenheim, at the expense of the publisher Johann Theodor de Bry. A second typographic state appeared in 1618, distinguished by minor textual corrections rather than constituting a new edition; the 1618 state is more widely extant in surviving copies and has become the preferred basis for modern scholarship, including the Furnace and Fugue digital edition of 2020.\n\nThe work is unique in the history of the emblem book tradition. It contains fifty emblems, each comprising a Latin motto drawn from an identifiable source authority, an engraved plate by Matthaeus Merian the Elder, a Latin and German epigram, a two-page Latin discourse, and a three-voice musical fugue. No other early modern publication achieves this synthesis of visual, textual, and auditory modes of instruction within a single unified program. The overarching narrative is drawn from Ovid's Metamorphoses: the footrace between Atalanta and Hippomenes, in which golden apples thrown by the suitor delay the swift huntress long enough for him to win the race and her hand. Maier reads this myth as an alchemical allegory in which Hippomenes represents the fixed principle (Sulphur), Atalanta the volatile principle (Mercury), and the golden apples the catalytic agent that enables their union.\n\nDe Jong's 1969 monograph, published by E.J. Brill, established the source-critical method for reading the work. His central finding was that Maier's dependency on earlier authorities is extensive: each motto can be traced to a specific textual antecedent, from the Turba Philosophorum (the single most prolific source, contributing nine mottos) to the Emerald Tablet, the Rosarium Philosophorum, and Pseudo-Aristotelian treatises. Maier's originality lies not in doctrinal invention but in the act of synthesis -- the combination of inherited teachings into a multimedia presentation without precedent.\n\nThe fifty fugues, composed for three voices, are not decorative additions. As C. Morris Wescott and Douglas Leedy have shown, the three voices enact the pursuit narrative in sound: Atalanta as the fleeing volatile principle, Hippomenes as the pursuing fixed principle, and the golden apple as the catalytic delay. The cantus firmus derives from the liturgical chant tradition, and the canons employ archaic compositional techniques including retrograde motion and mensural manipulation. Joscelyn Godwin's 1989 edition made these fugues accessible to modern performers for the first time, revealing a level of musical sophistication that most literary and art-historical scholarship had overlooked."
+      },
+      {
+        "heading": "Later Works and Death",
+        "content": "Atalanta Fugiens was only the most celebrated of Maier's approximately twenty published works. His other major titles include Symbola Aureae Mensae Duodecim Nationum (1617), which presents alchemical wisdom organized by national traditions; Viatorium (1618), a guide to the alchemical mountain; and Arcana Arcanissima, which offers an alchemical reading of Egyptian and Greek mythology. Taken together, these works constitute one of the most substantial bodies of alchemical writing produced in the early seventeenth century, remarkable for their range of classical learning and their systematic effort to demonstrate the antiquity and universality of the alchemical art.\n\nMaier died in Magdeburg in 1622, at approximately fifty-four years of age. The circumstances of his final years remain obscure. Craven records that he had returned to Germany after his English sojourn and continued writing and publishing, but the documentary trail thins in the years immediately before his death. He did not live to see the catastrophic sack of Magdeburg in 1631, which destroyed much of the city's archival record and may have consumed documents that could have illuminated his later life."
+      },
+      {
+        "heading": "Legacy and Scholarship",
+        "content": "For centuries after his death, Maier was known primarily to collectors of alchemical curiosities and to occultist readers who mined his emblems for esoteric symbolism without engaging the textual traditions that informed them. The modern scholarly recovery of Atalanta Fugiens begins with Craven's 1910 biography, which assembled the first coherent narrative of Maier's life and situated him within the Rosicrucian movement. But it was H.M.E. de Jong's 1969 monograph that transformed the study of the work. By systematically identifying the source authorities behind each of the fifty mottos and tracing the iconographic traditions informing each engraving, De Jong demonstrated that Atalanta Fugiens is not a work of mystical free association but a highly structured synthesis of identifiable textual traditions. His source-critical method remains the indispensable foundation for all subsequent scholarship.\n\nHereward Tilton's The Quest for the Phoenix (2003) represents the most significant reinterpretation of Maier since De Jong. Tilton challenged both reductive laboratory readings and purely Jungian symbolic approaches, arguing instead for a spiritual alchemy grounded in Aristotelian elemental transmutation and the Rosarium tradition. His work repositioned Maier within the broader intellectual history of early modern Rosicrucianism and offered careful correctives to De Jong's interpretive framework without displacing the source-critical foundation. Walter Pagel's 1973 review had earlier opened the medical-humoral dimension of the emblems, while Pamela H. Smith's 2009 assessment characterized the work as a synthesis engine operating simultaneously across material, medical, spiritual, and cosmological registers.\n\nThe twenty-first century has brought Atalanta Fugiens into new media. Tara Nummedal and Donna Bilak's Furnace and Fugue (2020), published by the University of Virginia Press, is the first born-digital scholarly edition, offering interactive access to synchronized text, music, and images with accompanying essays on steganography, materiality, and musical structure. Paul Miner's 2012 article tracing the influence of Merian's engravings on William Blake extended the reception history into the Romantic period. The scholarly conversation around the work continues to expand, yet De Jong's foundational insight holds: the key to Atalanta Fugiens lies in the identification of its sources, and Maier's genius resides in the act of combining inherited wisdom into a form that no predecessor had imagined."
+      }
+    ]
+  }
 }
