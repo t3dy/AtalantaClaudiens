@@ -1,0 +1,785 @@
+{
+  "corpus": [
+    {
+      "source_id": "de_jong_1969",
+      "title": "Michael Maier's Atalanta fugiens: Sources of an Alchemical Book of Emblems",
+      "author": "H.M.E. de Jong",
+      "year": 1969,
+      "reprint_year": 2002,
+      "publisher": "E.J. Brill / Nicolas-Hays",
+      "type": "monograph",
+      "af_relevance": "PRIMARY",
+      "emblem_coverage": "ALL"
+    },
+    {
+      "source_id": "tilton_2003",
+      "title": "The Quest for the Phoenix: Spiritual Alchemy and Rosicrucianism in the Work of Count Michael Maier",
+      "author": "Hereward Tilton",
+      "year": 2003,
+      "type": "monograph",
+      "af_relevance": "DIRECT",
+      "emblem_coverage": "SELECTIVE"
+    },
+    {
+      "source_id": "craven_1910",
+      "title": "Count Michael Maier: Doctor of Philosophy and of Medicine, Alchemist, Rosicrucian, Mystic, 1568-1622",
+      "author": "J.B. Craven",
+      "year": 1910,
+      "type": "biography",
+      "af_relevance": "DIRECT",
+      "emblem_coverage": "GENERAL"
+    },
+    {
+      "source_id": "wescott_nd",
+      "title": "Atalanta Fugiens: The Alchemical King in Transformation",
+      "author": "C. Morris Wescott",
+      "year": null,
+      "type": "article",
+      "af_relevance": "DIRECT",
+      "emblem_coverage": "SELECTIVE"
+    },
+    {
+      "source_id": "de_jong_1964",
+      "title": "Michael Maier's Atalanta Fugiens: Commentary on Emblem XLVIII",
+      "author": "H.M.E. de Jong",
+      "year": 1964,
+      "journal": "Netherlands Yearbook for History of Art",
+      "type": "article",
+      "af_relevance": "PRIMARY",
+      "emblem_coverage": "SELECTIVE"
+    },
+    {
+      "source_id": "pagel_1973",
+      "title": "Review of De Jong's Atalanta Fugiens",
+      "author": "Walter Pagel",
+      "year": 1973,
+      "journal": "Medical History",
+      "type": "review",
+      "af_relevance": "DIRECT",
+      "emblem_coverage": "SELECTIVE"
+    },
+    {
+      "source_id": "miner_2012",
+      "title": "Blake and Atalanta Fugiens: Two Plates, Three Conjectures",
+      "author": "Paul Miner",
+      "year": 2012,
+      "journal": "Notes and Queries",
+      "type": "article",
+      "af_relevance": "CONTEXTUAL",
+      "emblem_coverage": "SELECTIVE"
+    },
+    {
+      "source_id": "leedy_1991",
+      "title": "Review of Godwin's Edition of Atalanta Fugiens",
+      "author": "Douglas Leedy",
+      "year": 1991,
+      "journal": "Notes",
+      "type": "review",
+      "af_relevance": "CONTEXTUAL",
+      "emblem_coverage": "GENERAL"
+    },
+    {
+      "source_id": "smith_2009",
+      "title": "Review of Hofmeier Edition of Atalanta Fugiens",
+      "author": "Pamela H. Smith",
+      "year": 2009,
+      "journal": "Medical History",
+      "type": "review",
+      "af_relevance": "CONTEXTUAL",
+      "emblem_coverage": "GENERAL"
+    },
+    {
+      "source_id": "maier_1617",
+      "title": "Atalanta fugiens",
+      "author": "Michael Maier",
+      "year": 1617,
+      "type": "primary_source",
+      "af_relevance": "PRIMARY",
+      "emblem_coverage": "ALL"
+    }
+  ],
+  "source_authorities": [
+    {
+      "authority_id": "AUTH_TABULA_SMARAGDINA",
+      "name": "Tabula Smaragdina (Emerald Tablet)",
+      "type": "HERMETIC",
+      "emblems_using": ["I", "II"],
+      "relationship": "Cosmological foundation; motto source for early emblems",
+      "scholars_identifying": ["de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_TURBA",
+      "name": "Turba Philosophorum",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["III", "XXII", "XXXIII", "L"],
+      "relationship": "Major direct source; 9 mottos derive from Turba per De Jong",
+      "scholars_identifying": ["de_jong_1969", "tilton_2003"]
+    },
+    {
+      "authority_id": "AUTH_ROSARIUM",
+      "name": "Rosarium Philosophorum",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["XXI", "XXII", "XXVI", "XXVII"],
+      "relationship": "Source for geometric formula, sapiential framing, washing themes",
+      "scholars_identifying": ["de_jong_1969", "tilton_2003"]
+    },
+    {
+      "authority_id": "AUTH_PSEUDO_ARISTOTLE",
+      "name": "Pseudo-Aristotle, Tractatulus de Practica Lapidis",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["IV", "V"],
+      "relationship": "Direct motto source for union of elements and toad/woman",
+      "scholars_identifying": ["de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_SENIOR",
+      "name": "Senior Zadith (Muhammad ibn Umail), Tabula Chimica",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["VII"],
+      "relationship": "Source for winged/wingless bird symbolism",
+      "scholars_identifying": ["de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_OVID",
+      "name": "Ovid, Metamorphoses X.560-704",
+      "type": "CLASSICAL",
+      "emblems_using": ["Frontispiece"],
+      "relationship": "Narrative source for Atalanta-Hippomenes frame story",
+      "scholars_identifying": ["de_jong_1969", "craven_1910"]
+    },
+    {
+      "authority_id": "AUTH_AURORA",
+      "name": "Aurora Consurgens",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["XXVI", "XXVII"],
+      "relationship": "Sapiential-Christological reading via Rosarium",
+      "scholars_identifying": ["de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_SOLOMONIC",
+      "name": "Solomonic / Biblical Wisdom Tradition (Proverbs)",
+      "type": "BIBLICAL",
+      "emblems_using": ["XXVI", "XXVII"],
+      "relationship": "Religious foundation for sapiential alchemy",
+      "scholars_identifying": ["de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_LAMBSPRINCK",
+      "name": "Lambsprinck, De Lapide Philosophico",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["VII"],
+      "relationship": "Visual emblem tradition prototype",
+      "scholars_identifying": ["de_jong_1969", "pagel_1973"]
+    },
+    {
+      "authority_id": "AUTH_MERLINI",
+      "name": "Merlini Allegory",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["XLVIII"],
+      "relationship": "Narrative source for King Duenech",
+      "scholars_identifying": ["de_jong_1964", "de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_LULLIUS",
+      "name": "Lullius tradition (via Harmonica Chemica)",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["V"],
+      "relationship": "Parallel for suckling/dissolution/coagulation",
+      "scholars_identifying": ["de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_LACTANTIUS",
+      "name": "Lactantius",
+      "type": "PATRISTIC",
+      "emblems_using": ["XXVI"],
+      "relationship": "Wisdom as food of the soul",
+      "scholars_identifying": ["de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_ROSICRUCIAN",
+      "name": "Rosicrucian Manifestarian Tradition",
+      "type": "MOVEMENT",
+      "emblems_using": [],
+      "relationship": "Ideological framework; AF expresses Rosicrucian conceptions",
+      "scholars_identifying": ["de_jong_1969", "tilton_2003", "craven_1910"]
+    },
+    {
+      "authority_id": "AUTH_ROBERTUS_VALLENSIS",
+      "name": "Robertus Vallensis, De Veritate et Antiquitate Artis Chemicae",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["Frontispiece"],
+      "relationship": "Source for frontispiece commentary",
+      "scholars_identifying": ["de_jong_1969"]
+    },
+    {
+      "authority_id": "AUTH_JODOCUS_GREVERUS",
+      "name": "Jodocus Greverus, Secretum Nobilissimorum",
+      "type": "ALCHEMICAL",
+      "emblems_using": ["Frontispiece"],
+      "relationship": "Source for frontispiece commentary",
+      "scholars_identifying": ["de_jong_1969"]
+    }
+  ],
+  "emblems": [
+    {
+      "emblem_number": "Frontispiece",
+      "canonical_label": "The Fleeing Atalanta",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Frame around title showing fleeing Atalanta. Right: Venus gives Hippomenes golden apples. Lower left: race between Hippomenes and Atalanta. Lower right: round temple of Cybele.",
+      "symbols": ["golden apples", "race", "Venus", "temple of Cybele", "lion", "lioness"],
+      "alchemical_processes": ["pursuit of the volatile by the fixed", "catalysis", "transformation of opposites"],
+      "mythological_figures": ["Atalanta", "Hippomenes", "Venus", "Cybele", "Hercules"],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Frontispiece signals the secret of the opus. Golden apples are catalytic lures. Hippomenes = Sulphur (fixed), Atalanta = Mercury (volatile). Race = difficulty of combining volatile with non-volatile. Lion/lioness = final product.",
+          "source_texts": ["AUTH_OVID", "AUTH_ROBERTUS_VALLENSIS", "AUTH_JODOCUS_GREVERUS"],
+          "confidence": "HIGH",
+          "citation": "Frontispiece section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "I",
+      "canonical_label": "His nurse is the Earth",
+      "motto_latin": "Nutrix ejus terra est",
+      "motto_english": "His nurse is the Earth",
+      "image_description": "Earth nourishing the philosophical child; wolf nursing Romulus and goat nursing Jupiter referenced in epigram.",
+      "symbols": ["nursing", "earth", "wolf", "goat", "philosophical child"],
+      "alchemical_processes": ["nourishment", "assimilation of philosophical matter"],
+      "mythological_figures": ["Romulus", "Jupiter"],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Motto derives from Tabula Smaragdina. Food becomes substance of the nourished. Alchemical work mirrors nature's processes.",
+          "source_texts": ["AUTH_TABULA_SMARAGDINA"],
+          "confidence": "HIGH",
+          "citation": "Emblem I section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "II",
+      "canonical_label": "Its nurse is the Earth",
+      "motto_latin": null,
+      "motto_english": "Its nurse is the Earth",
+      "image_description": "Pregnant female with terrestrial globe imagery; retort with moderate warmth.",
+      "symbols": ["retort", "earth", "warmth", "nursing"],
+      "alchemical_processes": ["combination in retort", "moderate heating", "nourishment"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Retort (artificial) and nature work together. Art serves Nature as teacher.",
+          "source_texts": ["AUTH_TABULA_SMARAGDINA"],
+          "confidence": "HIGH",
+          "citation": "Emblem II section"
+        },
+        {
+          "scholar": "pagel_1973",
+          "summary": "Notes the pregnant female with terrestrial globe as 'nurse of tender child.'",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Review discussion"
+        }
+      ]
+    },
+    {
+      "emblem_number": "III",
+      "canonical_label": "Go to the woman who washes the sheets",
+      "motto_latin": null,
+      "motto_english": "Go to the woman who washes the sheets and do as she does",
+      "image_description": "Woman washing/bleaching sheets; washing as calcination metaphor.",
+      "symbols": ["washing", "sheets", "bleaching", "water"],
+      "alchemical_processes": ["calcination", "purification", "washing", "dissolving", "distillation", "precipitation", "coagulation"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Washing represents all purification processes. Removal of black (nigredo), purification to white (albedo). Medical connection to Saturn's melancholy. Relates to dyeing techniques where bleaching precedes dyeing.",
+          "source_texts": ["AUTH_TURBA"],
+          "confidence": "HIGH",
+          "citation": "Emblem III section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "IV",
+      "canonical_label": "Join brother and sister",
+      "motto_latin": null,
+      "motto_english": "Join brother and sister, and hand them the cup with the love potion",
+      "image_description": "Brother and sister joined; cup with love potion. Incestuous union symbolizing union of like with like.",
+      "symbols": ["brother", "sister", "cup", "love potion", "union"],
+      "alchemical_processes": ["conjunction", "union of opposites"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Brother (hot, dry, choleric) = Fire. Sister (cold, moist, phlegmatic) = Water. Union of contrasts per Empedocles. Related to Emblems XXXIX (Oedipus/mother), XLI (Myrrha/father), XLIV (Osiris/Isis).",
+          "source_texts": ["AUTH_PSEUDO_ARISTOTLE"],
+          "confidence": "HIGH",
+          "citation": "Emblem IV section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "V",
+      "canonical_label": "Woman suckling the toad",
+      "motto_latin": null,
+      "motto_english": "Put a toad to the breasts of a woman, that she may feed it, and the woman may die, and the toad grows big from the milk",
+      "image_description": "Nursing woman feeds a toad at her breasts. Transformation through feeding and depletion.",
+      "symbols": ["toad", "woman", "breasts", "milk", "death", "growth"],
+      "alchemical_processes": ["coagulation", "dissolution", "decomposition", "purification", "formation", "hardening"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Four stages: decomposition, purification, formation into pliable substance (woman dies, toad grows), hardening into stone. Toad = earth, Woman = water. One nature coagulates only through dissolution of another. Catena Aurea linking microcosm to macrocosm.",
+          "source_texts": ["AUTH_PSEUDO_ARISTOTLE", "AUTH_LULLIUS"],
+          "confidence": "HIGH",
+          "citation": "Emblem V section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "VI",
+      "canonical_label": "Sow your gold in the white foliated earth",
+      "motto_latin": null,
+      "motto_english": "Sow your gold in the white foliated earth",
+      "image_description": "Agricultural scene; sowing, ploughing. Gold scattered over white fields.",
+      "symbols": ["gold", "white earth", "sowing", "ploughing", "farming"],
+      "alchemical_processes": ["sowing", "cultivation of the Work"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Agricultural metaphor. Physician's work = Chemist's work, both imitate and perfect Nature. Gold must be scattered over white fields (white lead/purified matter).",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Emblem VI section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "VII",
+      "canonical_label": "Young bird flying from nest and falling back",
+      "motto_latin": null,
+      "motto_english": "A young bird came into being, flying up from the nest, and fell back into the nest again",
+      "image_description": "Winged and wingless bird; falcon and heron in struggle. Phoenix symbolism.",
+      "symbols": ["bird", "nest", "wings", "falcon", "heron", "phoenix"],
+      "alchemical_processes": ["volatilization", "fixation", "dissolution", "resurrection"],
+      "mythological_figures": ["Phoenix"],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Winged = volatile/Mercury/Moon/female. Wingless = fixed/Sulphur/Sun/male. Elements bonded despite contrasts. Phoenix symbolism: resurrection through fire and dissolution.",
+          "source_texts": ["AUTH_SENIOR", "AUTH_LAMBSPRINCK"],
+          "confidence": "HIGH",
+          "citation": "Emblem VII section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XIII",
+      "canonical_label": "Dropsical ore washed in Jordan",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Ore afflicted with dropsy; purifying water; Jordan healing Naaman.",
+      "symbols": ["dropsy", "Jordan", "healing water", "Naaman"],
+      "alchemical_processes": ["purification", "baptism", "washing"],
+      "mythological_figures": ["Naaman"],
+      "scholarly_refs": [
+        {
+          "scholar": "pagel_1973",
+          "summary": "Dropsy cure with purifying water. Jordan healing Naaman as alchemical purification parallel.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Review discussion"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XVI",
+      "canonical_label": "Winged and wingless lion",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Winged lion and wingless lion joined. Mercury and Sulphur union.",
+      "symbols": ["winged lion", "wingless lion", "Mercury", "Sulphur"],
+      "alchemical_processes": ["union of volatile and fixed"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "pagel_1973",
+          "summary": "Union of winged (Mercury) and wingless (Sulphur) lions.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Review discussion"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XVII",
+      "canonical_label": "Fourfold fire-ball",
+      "motto_latin": null,
+      "motto_english": "A fourfold fire-ball controls this work.",
+      "image_description": "Four fire-balls representing the four grades of fire in the alchemical work.",
+      "symbols": ["fire-ball", "Vulcan", "Mercury", "fourfold fire"],
+      "alchemical_processes": ["fire regulation", "calcination", "sublimation"],
+      "mythological_figures": ["Vulcan", "Mercury"],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Four kinds of fire: common fire (Vulcan), fire contrary to nature (Mercury/dragon), fire against nature, and natural fire. Derived from Lullius and the Turba tradition.",
+          "source_texts": ["AUTH_LULLIUS", "AUTH_TURBA"],
+          "confidence": "HIGH",
+          "citation": "Emblem XVII section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXI",
+      "canonical_label": "Circle-square-triangle-circle formula",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Geometric emblem: man and woman transformed through circle, square, triangle, restored to circle.",
+      "symbols": ["circle", "square", "triangle", "man", "woman", "geometric shapes"],
+      "alchemical_processes": ["conjunction", "elemental transmutation", "return to monad"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Rosarium formula: make circle from man and woman, derive square and triangle, return to circle. Four elements within unity. Body/spirit/soul triad.",
+          "source_texts": ["AUTH_ROSARIUM"],
+          "confidence": "HIGH",
+          "citation": "Emblem XXI section"
+        },
+        {
+          "scholar": "tilton_2003",
+          "summary": "Interprets through Aristotelian elemental transmutation: black Saturn/lead = body/earth, white phase = spirit/water, yellowness = soul/air, final redness = perfected unity of the stone. Not simply Paracelsian tria prima.",
+          "source_texts": ["AUTH_ROSARIUM"],
+          "confidence": "HIGH",
+          "citation": "Discussion of Emblem XXI"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXIV",
+      "canonical_label": "Alchemical King (garbed)",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "King in garb; beginning of alchemical king transformation sequence.",
+      "symbols": ["king", "garments", "crown"],
+      "alchemical_processes": ["putrefaction", "beginning of transformation"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "wescott_nd",
+          "summary": "Part of the Alchemical King transformation sequence (XXIV, XXVIII, XXXI, XLIV). King undergoes transformation representing the Philosopher's Stone and Christ allegory.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Figures 1-4 discussion"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXVI",
+      "canonical_label": "Lady Sapientia / Tree of Life",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Wisdom-centered emblem at the book's midpoint. Dense scriptural marginalia. Sapientia as personification of alchemical knowledge joined with practice.",
+      "symbols": ["wisdom", "tree of life", "Sapientia", "Proverbs", "scriptural references"],
+      "alchemical_processes": ["alchemy as cognitionem chymiae cum praxi", "reason joined to experience"],
+      "mythological_figures": ["Lady Wisdom / Sapientia"],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Central emblem of the book. Motto from Proverbs 3:18 but through Rosarium, not arbitrary biblical selection. Unusually dense scriptural marginalia. Maier foregrounds religious-sapiential basis of entire work. Links to Emblem XXVII.",
+          "source_texts": ["AUTH_SOLOMONIC", "AUTH_ROSARIUM", "AUTH_AURORA", "AUTH_LACTANTIUS"],
+          "confidence": "HIGH",
+          "citation": "Emblem XXVI section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXVII",
+      "canonical_label": "Companion to Sapientia sequence",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Companion to Emblem XXVI in the wisdom-salvation complex.",
+      "symbols": ["wisdom", "Old Testament"],
+      "alchemical_processes": ["continuation of sapiential opus", "doctrine of salvation"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Explicitly linked to Emblem XXVI. Coupling with Old Testament texts based on Rosarium.",
+          "source_texts": ["AUTH_SOLOMONIC", "AUTH_ROSARIUM", "AUTH_AURORA"],
+          "confidence": "HIGH",
+          "citation": "Emblem XXVII section"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXVIII",
+      "canonical_label": "King Duenech in steam bath",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "King in Turkish bath or canopied bed. Purging black bile. Steam rising.",
+      "symbols": ["king", "bath", "steam", "black bile", "melancholy"],
+      "alchemical_processes": ["purification", "purging melancholy", "color progression from black to red"],
+      "mythological_figures": ["King Duenech"],
+      "scholarly_refs": [
+        {
+          "scholar": "wescott_nd",
+          "summary": "Part of Alchemical King sequence. Saturn = Lead = Putrefaction stage. King undergoes purification.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Figure 2 discussion"
+        },
+        {
+          "scholar": "pagel_1973",
+          "summary": "King in Turkish bath, purging black bile. Color progression black to red represents alchemical stages.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Review discussion"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXXI",
+      "canonical_label": "King transformation continued",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Continuation of King transformation sequence.",
+      "symbols": ["king", "transformation"],
+      "alchemical_processes": ["albification", "continuation of purification"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "wescott_nd",
+          "summary": "Third emblem in the Alchemical King sequence (XXIV, XXVIII, XXXI, XLIV).",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Figure 3 discussion"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXXIII",
+      "canonical_label": "Hermaphrodite lying in darkness needs fire",
+      "motto_latin": null,
+      "motto_english": "The Hermaphrodite lying in the dark needs fire",
+      "image_description": "Blackened hermaphrodite under waxing moon, engulfed in flames. Double-sexed figure with closed eyes.",
+      "symbols": ["hermaphrodite", "moon", "flames", "darkness", "fire"],
+      "alchemical_processes": ["conjunction of opposites", "fire as transformation agent", "rebalancing of solar dryness and lunar moisture", "metallic transmutation"],
+      "mythological_figures": ["Hermaphrodite"],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Hermaphroditic imagery tied to transmutation of metals through balancing lunar moisture and solar dryness.",
+          "source_texts": ["AUTH_TURBA"],
+          "confidence": "HIGH",
+          "citation": "Emblem XXXIII section"
+        },
+        {
+          "scholar": "miner_2012",
+          "summary": "Describes blackened hermaphrodite under waxing moon, engulfed in flames. Links to Blake's Gates of Paradise plate 5.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Discussion of Emblem XXXIII"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXXIV",
+      "canonical_label": "Celestial conception / hierogamy",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Foetus emerging head-first from womb of supine nude female among clouds. Lower scene: erotic union of sun and moon figures kissing and embracing.",
+      "symbols": ["foetus", "birth", "clouds", "sun figure", "moon figure", "embrace"],
+      "alchemical_processes": ["conception", "generation of philosophical product", "solar-lunar conjunction", "hierogamic union"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "miner_2012",
+          "summary": "Birth image above, solar-lunar erotic embrace below. Read as alchemical conjunction. Provides prototype for Blake's Jerusalem 99.",
+          "source_texts": ["AUTH_TURBA", "AUTH_TABULA_SMARAGDINA"],
+          "confidence": "HIGH",
+          "citation": "Discussion of Emblem XXXIV"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XXXVIII",
+      "canonical_label": "Standing hermaphrodite",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Standing nude hermaphrodite figure.",
+      "symbols": ["hermaphrodite", "standing figure"],
+      "alchemical_processes": ["stable conjunction of opposites", "embodied union of principles"],
+      "mythological_figures": ["Hermaphrodite"],
+      "scholarly_refs": [
+        {
+          "scholar": "miner_2012",
+          "summary": "Another hermaphrodite image in the same symbolic family as Emblem XXXIII.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Reference to Emblem XXXVIII"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XLIV",
+      "canonical_label": "Osiris killed and resurrected",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "Osiris killed by Typhon and resurrected by Isis.",
+      "symbols": ["Osiris", "Typhon", "Isis", "death", "resurrection", "dismemberment"],
+      "alchemical_processes": ["dissolution", "death and resurrection", "reconstitution"],
+      "mythological_figures": ["Osiris", "Typhon", "Isis"],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Related to Emblem IV (brother-sister union). Osiris/Isis = male/female alchemical principles. Death and resurrection = dissolution and reconstitution of matter.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Emblem XLIV section"
+        },
+        {
+          "scholar": "wescott_nd",
+          "summary": "Final emblem in the Alchemical King sequence (XXIV, XXVIII, XXXI, XLIV).",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Figure 4 discussion"
+        }
+      ]
+    },
+    {
+      "emblem_number": "XLVIII",
+      "canonical_label": "King Duenech receives potion",
+      "motto_latin": null,
+      "motto_english": null,
+      "image_description": "King Duenech suffering from melancholic illness (dropsy, discoloration). Accepts potion for purification.",
+      "symbols": ["king", "potion", "melancholy", "dropsy", "purification"],
+      "alchemical_processes": ["purification", "humoral cure", "metal disease cured through purification"],
+      "mythological_figures": ["King Duenech"],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1964",
+          "summary": "Detailed analysis of King Duenech's melancholic illness. Medical-humoral alchemical analogy. Draws on Merlini allegory. Parallel with Emblem XXVIII.",
+          "source_texts": ["AUTH_MERLINI"],
+          "confidence": "HIGH",
+          "citation": "Netherlands Yearbook article"
+        },
+        {
+          "scholar": "pagel_1973",
+          "summary": "King accepting potion. Three-level physiological correspondence: stomach/liver/veins = three metallurgic coctions.",
+          "source_texts": [],
+          "confidence": "HIGH",
+          "citation": "Review discussion"
+        }
+      ]
+    },
+    {
+      "emblem_number": "L",
+      "canonical_label": "The Dragon kills the woman",
+      "motto_latin": null,
+      "motto_english": "The Dragon kills the woman, and she kills it, and together they bathe in the blood",
+      "image_description": "Dragon and woman in mutual destruction. Bathing in blood. Final union of earth/fire and air/water.",
+      "symbols": ["dragon", "woman", "blood", "mutual destruction", "bath"],
+      "alchemical_processes": ["final dissolution", "mutual destruction and reconstitution", "return to primary matter", "completion of the Work"],
+      "mythological_figures": [],
+      "scholarly_refs": [
+        {
+          "scholar": "de_jong_1969",
+          "summary": "Final emblem. Dragon = earth/fire, Woman/Eagle = air/water. Complete dissolution and transformation into primary matter. Source: Turba (Theophilus).",
+          "source_texts": ["AUTH_TURBA"],
+          "confidence": "HIGH",
+          "citation": "Emblem L section"
+        }
+      ]
+    }
+  ],
+  "dictionary_entries": [
+    {"term": "Coniunctio", "definition": "Union of opposites (male/female, volatile/fixed, Sun/Moon). The central operation of the Great Work.", "related_emblems": ["IV", "XXI", "XXXIII", "XXXIV", "XXXVIII", "XLIV", "L"], "category": "PROCESS", "sources": ["de_jong_1969"]},
+    {"term": "Nigredo", "definition": "The blackening; first stage of the Work involving putrefaction, decomposition, death of the old form.", "related_emblems": ["XXVIII", "XXXIII"], "category": "PROCESS", "sources": ["de_jong_1969", "craven_1910"]},
+    {"term": "Albedo", "definition": "The whitening; second stage involving washing, purification, removal of impurities.", "related_emblems": ["III", "VI"], "category": "PROCESS", "sources": ["de_jong_1969", "craven_1910"]},
+    {"term": "Citrinitas", "definition": "The yellowing; intermediate stage of vivification between whiteness and redness.", "related_emblems": [], "category": "PROCESS", "sources": ["de_jong_1969"]},
+    {"term": "Rubedo", "definition": "The reddening; final stage of completion, perfection, achievement of the Philosopher's Stone.", "related_emblems": ["XXI"], "category": "PROCESS", "sources": ["de_jong_1969", "craven_1910"]},
+    {"term": "Mercurius", "definition": "Mercury; the volatile, feminine, lunar principle. Liquid primary matter, primordial water, water of destruction and resurrection.", "related_emblems": ["VII", "XVI", "Frontispiece"], "category": "SUBSTANCE", "sources": ["de_jong_1969"]},
+    {"term": "Sulphur", "definition": "The fixed, masculine, solar principle. Paired with Mercury as the two fundamental alchemical substances.", "related_emblems": ["VII", "XVI", "Frontispiece"], "category": "SUBSTANCE", "sources": ["de_jong_1969"]},
+    {"term": "Philosophical Egg", "definition": "The sealed vessel containing prima materia; unity of opposites before differentiation.", "related_emblems": ["VIII"], "category": "CONCEPT", "sources": ["de_jong_1969"]},
+    {"term": "Philosopher's Stone", "definition": "The perfected product of the Great Work; agent of transmutation. Achieved through union and fixation.", "related_emblems": ["V", "XXI", "L"], "category": "CONCEPT", "sources": ["de_jong_1969", "tilton_2003"]},
+    {"term": "Putrefaction", "definition": "Controlled decomposition; the death of old form that enables new creation. Associated with nigredo.", "related_emblems": ["XXIV", "XXVIII", "XLIV"], "category": "PROCESS", "sources": ["de_jong_1969", "wescott_nd"]},
+    {"term": "Calcination", "definition": "Heating to ash; burning away impurities. Part of the washing/purification complex.", "related_emblems": ["III"], "category": "PROCESS", "sources": ["de_jong_1969"]},
+    {"term": "Coagulation", "definition": "Solidification; fixing the volatile. One nature coagulates only through dissolution of another.", "related_emblems": ["V"], "category": "PROCESS", "sources": ["de_jong_1969"]},
+    {"term": "Dissolution", "definition": "Breaking down solid form into liquid; releasing the fixed into the volatile.", "related_emblems": ["V", "L"], "category": "PROCESS", "sources": ["de_jong_1969"]},
+    {"term": "Hermaphrodite", "definition": "The perfect union of male and female principles in one body. Represents the completed coniunctio.", "related_emblems": ["XXXIII", "XXXIV", "XXXVIII"], "category": "FIGURE", "sources": ["de_jong_1969", "miner_2012"]},
+    {"term": "Tabula Smaragdina", "definition": "The Emerald Tablet; foundational Hermetic text attributed to Hermes Trismegistus. 'As above, so below' cosmology.", "related_emblems": ["I", "II"], "category": "SOURCE_TEXT", "sources": ["de_jong_1969"]},
+    {"term": "Turba Philosophorum", "definition": "Assembly of Philosophers; major alchemical compilation of Arabic origin. Source for 9 AF mottos per De Jong.", "related_emblems": ["III", "XXII", "XXXIII", "L"], "category": "SOURCE_TEXT", "sources": ["de_jong_1969"]},
+    {"term": "Rosarium Philosophorum", "definition": "Rose Garden of Philosophers; major alchemical compilation. Source for geometric, sapiential, and washing themes.", "related_emblems": ["XXI", "XXII", "XXVI", "XXVII"], "category": "SOURCE_TEXT", "sources": ["de_jong_1969", "tilton_2003"]},
+    {"term": "Sapientia", "definition": "Wisdom personified; alchemy as knowledge joined with practice. Central to Emblem XXVI.", "related_emblems": ["XXVI", "XXVII"], "category": "CONCEPT", "sources": ["de_jong_1969"]},
+    {"term": "Catena Aurea", "definition": "Golden Chain linking Microcosm to Macrocosm; continuous thread of transmutation from base to divine.", "related_emblems": ["V"], "category": "CONCEPT", "sources": ["de_jong_1969"]},
+    {"term": "Fugue", "definition": "Three-voice musical canon accompanying each emblem. Voices represent Atalanta (fleeing/volatile), Hippomenes (pursuing/fixed), and Golden Apple (catalyst).", "related_emblems": ["ALL"], "category": "MUSICAL", "sources": ["wescott_nd", "leedy_1991"]},
+    {"term": "Tria Prima", "definition": "Paracelsian three principles: Mercury, Sulphur, Salt. Tilton argues AF should not be reduced to this framework.", "related_emblems": ["XXI"], "category": "CONCEPT", "sources": ["tilton_2003"]},
+    {"term": "King Duenech", "definition": "Alchemical king figure suffering from melancholic disease. Cured through purification. Appears in XXVIII and XLVIII.", "related_emblems": ["XXVIII", "XLVIII"], "category": "FIGURE", "sources": ["de_jong_1964", "pagel_1973"]},
+    {"term": "Ouroboros", "definition": "Serpent eating its own tail; symbol of eternal return, cyclical process, and self-enclosed transformation.", "related_emblems": [], "category": "SYMBOL", "sources": ["de_jong_1969"]},
+    {"term": "White Lead", "definition": "Purified matter; the white earth into which gold must be sown. Product of the albedo stage.", "related_emblems": ["VI"], "category": "SUBSTANCE", "sources": ["de_jong_1969"]}
+  ],
+  "source_map": [
+    {"emblem": "Frontispiece", "source_text": "Metamorphoses X.560-704", "author": "Ovid", "relationship": "NARRATIVE_SOURCE"},
+    {"emblem": "Frontispiece", "source_text": "De Veritate et Antiquitate Artis Chemicae", "author": "Robertus Vallensis", "relationship": "CITATION"},
+    {"emblem": "Frontispiece", "source_text": "Secretum Nobilissimorum", "author": "Jodocus Greverus", "relationship": "CITATION"},
+    {"emblem": "I", "source_text": "Tabula Smaragdina", "author": "Hermes Trismegistus", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "II", "source_text": "Tabula Smaragdina", "author": "Hermes Trismegistus", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "III", "source_text": "Turba Philosophorum", "author": "Anonymous (Arabic compilation)", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "IV", "source_text": "Tractatulus in Art. Aurif. I, 387-399", "author": "Pseudo-Aristotle", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "V", "source_text": "Tractatulus in Art. Aurif. I, 394-395", "author": "Pseudo-Aristotle", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "V", "source_text": "Harmonica Chemica / Lullius tradition", "author": "Pseudo-Lull", "relationship": "THEMATIC_PARALLEL"},
+    {"emblem": "VII", "source_text": "Tabula Chimica", "author": "Senior Zadith", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "VII", "source_text": "De Lapide Philosophico", "author": "Lambsprinck", "relationship": "THEMATIC_PARALLEL"},
+    {"emblem": "XXI", "source_text": "Rosarium Philosophorum", "author": "Pseudo-Arnald", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "XXVI", "source_text": "Proverbs 3:18 (via Rosarium)", "author": "Biblical / Rosarium", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "XXVI", "source_text": "Aurora Consurgens", "author": "Pseudo-Aquinas", "relationship": "THEMATIC_PARALLEL"},
+    {"emblem": "XXVII", "source_text": "Rosarium Philosophorum", "author": "Pseudo-Arnald", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "XXXIII", "source_text": "Turba Philosophorum", "author": "Anonymous", "relationship": "MOTTO_SOURCE"},
+    {"emblem": "XLVIII", "source_text": "Merlini Allegory", "author": "Anonymous medieval", "relationship": "NARRATIVE_SOURCE"},
+    {"emblem": "L", "source_text": "Turba Philosophorum (Theophilus)", "author": "Anonymous", "relationship": "MOTTO_SOURCE"}
+  ],
+  "timeline_events": [
+    {"year": 1568, "event_type": "BIOGRAPHY", "title": "Michael Maier born", "description": "Born in Rendsburg, Holstein"},
+    {"year": 1597, "event_type": "BIOGRAPHY", "title": "Maier receives MD", "description": "Medical degree from University of Rostock"},
+    {"year": 1608, "event_type": "BIOGRAPHY", "title": "Maier joins Rudolf II court", "description": "Court physician and secretary to Emperor Rudolf II in Prague"},
+    {"year": 1617, "event_type": "PUBLICATION", "title": "Atalanta Fugiens first published", "description": "Published at Oppenheim by Hieronymus Gallerus at expense of J.T. de Bry. Contains 50 emblems with copperplate engravings by Matthaeus Merian."},
+    {"year": 1618, "event_type": "PUBLICATION", "title": "Atalanta Fugiens second state", "description": "Second typographic state (not separate edition). More widely extant; preferred by modern scholars."},
+    {"year": 1622, "event_type": "BIOGRAPHY", "title": "Michael Maier dies", "description": "Maier dies in Magdeburg"},
+    {"year": 1687, "event_type": "EDITION", "title": "Frankfurt German edition", "description": "German-language edition published in Frankfurt"},
+    {"year": 1708, "event_type": "EDITION", "title": "Chymisches Cabinet edition", "description": "Vernacular German edition published Frankfurt. Later reviewed by Smith/Hofmeier 2009."},
+    {"year": 1910, "event_type": "SCHOLARSHIP", "title": "Craven biography published", "description": "J.B. Craven publishes Count Michael Maier, the first modern biographical study"},
+    {"year": 1964, "event_type": "SCHOLARSHIP", "title": "De Jong article on Emblem XLVIII", "description": "H.M.E. de Jong publishes analysis of Emblem XLVIII in Netherlands Yearbook for History of Art"},
+    {"year": 1965, "event_type": "SCHOLARSHIP", "title": "De Jong reviews Wuethrich facsimile", "description": "De Jong reviews the 1964 Baerenreiter facsimile edition in The Art Bulletin"},
+    {"year": 1969, "event_type": "SCHOLARSHIP", "title": "De Jong monograph published", "description": "H.M.E. de Jong publishes Michael Maier's Atalanta fugiens: Sources of an Alchemical Book of Emblems (E.J. Brill). Foundational source-critical study of all 50 emblems."},
+    {"year": 1973, "event_type": "SCHOLARSHIP", "title": "Pagel review published", "description": "Walter Pagel reviews De Jong's monograph in Medical History, emphasizing medical/humoral dimensions"},
+    {"year": 1989, "event_type": "EDITION", "title": "Godwin musical edition", "description": "Joscelyn Godwin publishes Atalanta Fugiens: An Edition of the Fugues, Emblems and Epigrams, first modern edition with full musical transcriptions"},
+    {"year": 1991, "event_type": "SCHOLARSHIP", "title": "Leedy reviews Godwin edition", "description": "Douglas Leedy reviews Godwin's edition in Notes, assessing musical transcriptions"},
+    {"year": 2002, "event_type": "EDITION", "title": "De Jong monograph reprinted", "description": "Nicolas-Hays reprints De Jong's 1969 monograph"},
+    {"year": 2003, "event_type": "SCHOLARSHIP", "title": "Tilton Quest for the Phoenix", "description": "Hereward Tilton publishes major monograph on Maier's spiritual alchemy and Rosicrucianism"},
+    {"year": 2009, "event_type": "SCHOLARSHIP", "title": "Smith reviews Hofmeier edition", "description": "Pamela H. Smith reviews German edition in Medical History, emphasizing AF as synthesis engine"},
+    {"year": 2012, "event_type": "SCHOLARSHIP", "title": "Miner Blake article", "description": "Paul Miner publishes 'Blake and Atalanta Fugiens' in Notes and Queries, connecting AF iconography to William Blake"},
+    {"year": 2020, "event_type": "DIGITAL", "title": "Furnace and Fugue published", "description": "Tara Nummedal and Donna Bilak publish digital scholarly edition through UVA Press with interactive text, music, and images"}
+  ],
+  "scholars": [
+    {"name": "H.M.E. de Jong", "specialization": "Art history, source criticism, alchemical iconography", "af_focus": "Source identification for all 50 emblems; meaning, sources, and interconnections", "key_works": ["de_jong_1969", "de_jong_1964"]},
+    {"name": "Hereward Tilton", "specialization": "History of alchemy, Rosicrucianism, historiography", "af_focus": "Spiritual alchemy vs. laboratory debate; philosophical positioning of Maier", "key_works": ["tilton_2003"]},
+    {"name": "J.B. Craven", "specialization": "Biography, bibliography", "af_focus": "Maier's life, works, edition history", "key_works": ["craven_1910"]},
+    {"name": "C. Morris Wescott", "specialization": "Music theory, alchemical symbolism", "af_focus": "Musical-modal-planetary correspondences in the fugues; Alchemical King sequence", "key_works": ["wescott_nd"]},
+    {"name": "Walter Pagel", "specialization": "History of medicine, medical alchemy", "af_focus": "Medical/humoral dimensions of AF emblems", "key_works": ["pagel_1973"]},
+    {"name": "Paul Miner", "specialization": "Literary history, iconography", "af_focus": "AF influence on William Blake; hermaphrodite emblems", "key_works": ["miner_2012"]},
+    {"name": "Douglas Leedy", "specialization": "Musicology", "af_focus": "Musical construction of the 50 canons", "key_works": ["leedy_1991"]},
+    {"name": "Pamela H. Smith", "specialization": "History of science, material culture", "af_focus": "AF as symbolic synthesis, not laboratory manual", "key_works": ["smith_2009"]},
+    {"name": "Joscelyn Godwin", "specialization": "Musicology, esoteric studies", "af_focus": "Musical edition and transcription of all 50 fugues", "key_works": []},
+    {"name": "Tara Nummedal", "specialization": "History of science, digital humanities", "af_focus": "Co-editor of Furnace and Fugue digital edition", "key_works": []},
+    {"name": "Donna Bilak", "specialization": "Art history, steganography", "af_focus": "Co-editor of Furnace and Fugue; Maier and steganography", "key_works": []}
+  ]
+}

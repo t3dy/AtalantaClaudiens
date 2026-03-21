@@ -1,0 +1,9 @@
+# AtalantaClaudiens dependencies
+# Core pipeline uses Python stdlib only (sqlite3, json, pathlib, re)
+# Optional dependencies below:
+
+# PDF image extraction (Phase 4 — image acquisition)
+# PyMuPDF==1.24.0
+
+# Image optimization (Phase 4)
+# Pillow==10.4.0

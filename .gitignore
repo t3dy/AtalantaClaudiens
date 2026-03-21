@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# PDFs (copyright — do not commit)
+*.pdf
+
+# Large image assets (keep .jpg committed for GitHub Pages)
+# site/images/emblems/*.jpg
+site/images/emblems/*.png
+
+# Source corpus (copyright — do not commit)
+atalanta fugiens/
+
+# Generated database (rebuilt by CI pipeline)
+db/
+
+# Session artifacts and reference files
+DECKARDAF1.md
+REFLAYERAF1.md
+TRIALANDERROR.md
+HANDOVER.md
+MISSINGEMBLEMS.md
+FIRSTNITE.md
+GPTAF.txt
+GPTPIPE.txt
+HPDEEPRESEARCH.txt
+
+# Extracted/generated intermediates
+md/
+chunks/
+staging/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Claude Code local settings
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# SQLite WAL/journal
+*.db-wal
+*.db-shm

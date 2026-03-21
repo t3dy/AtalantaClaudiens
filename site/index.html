@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emblem Gallery — Atalanta Fugiens</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><em>Atalanta Fugiens</em></h1>
+            <div class="subtitle">The Scholarship of H.M.E. De Jong on Michael Maier's Alchemical Emblems</div>
+            <nav class="site-nav">
+                <a href="index.html" class="active">Home</a>
+            <a href="emblems/index.html">Emblems</a>
+            <a href="scholars.html">Scholars</a>
+            <a href="dictionary/index.html">Dictionary</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="sources.html">Sources</a>
+            <a href="essays/index.html">Essays</a>
+            <a href="bibliography.html">Bibliography</a>
+            <a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="stats" id="stats"></div>
+    <div class="gallery" id="gallery"></div>
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&lsaquo;</button>
+        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&rsaquo;</button>
+        <div class="lightbox-content">
+            <div class="lightbox-details"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <footer>
+        <p>AtalantaClaudiens &middot; A digital humanities project &middot;
+        <a href="https://github.com/t3dy/AtalantaClaudiens">GitHub</a></p>
+    </footer>
+</body>
+</html>
