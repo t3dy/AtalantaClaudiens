@@ -330,11 +330,11 @@
     "label": "Emblem XXV",
     "latin_motto": null,
     "english_motto": "'.l‘he Dragondoesnotdie, if itis notkilledby its brot her and sister, i.e. Sol and Luna.",
-    "image_file": null,
-    "image_confirmed": false,
-    "image_source": null,
+    "image_file": "emblem-25.jpg",
+    "image_confirmed": true,
+    "image_source": "wikimedia_commons",
     "page_in_1618_edition": null,
-    "wikimedia_file": null,
+    "wikimedia_file": "Atalanta_Fugiens_25_Dragon.jpg",
     "furnace_fugue_url": "https://furnaceandfugue.org/atalanta-fugiens/emblem25.html"
   },
   {

@@ -27,6 +27,7 @@ def main():
     conn.execute("PRAGMA foreign_keys = ON")
 
     inserted = 0
+    updated = 0
     for entry in seed:
         result = conn.execute("""
             INSERT OR IGNORE INTO emblem_identity
@@ -46,6 +47,21 @@ def main():
         ))
         if result.rowcount > 0:
             inserted += 1
+        else:
+            # Row exists — sync image fields from manifest
+            conn.execute("""
+                UPDATE emblem_identity
+                SET image_filename = ?, image_source = ?,
+                    image_url = ?, alignment_confidence = ?
+                WHERE emblem_number = ?
+            """, (
+                entry.get("image_filename"),
+                entry.get("image_source"),
+                entry.get("image_url"),
+                'HIGH' if entry.get("image_confirmed") else entry.get("alignment_confidence"),
+                entry["emblem_number"],
+            ))
+            updated += 1
 
     conn.commit()
 
@@ -58,7 +74,7 @@ def main():
     ).fetchone()[0]
     conn.close()
 
-    print(f"  emblem_identity: {total} rows ({inserted} inserted), "
+    print(f"  emblem_identity: {total} rows ({inserted} inserted, {updated} synced), "
           f"{with_image} with images, {high} HIGH confidence")
     return 0
 
