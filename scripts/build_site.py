@@ -631,21 +631,25 @@ def build_scholars_pages(conn):
 
 def build_bibliography(conn):
     entries = conn.execute("""
-        SELECT source_id, author, title, year, journal, publisher, pub_type, af_relevance, in_collection, annotation
+        SELECT source_id, author, title, year, journal, publisher, pub_type, af_relevance, in_collection, annotation, url
         FROM bibliography ORDER BY year
     """).fetchall()
 
     rows_html = ''
     for e in entries:
-        src_id, author, title, year, journal, pub, ptype, rel, incoll, annotation = e
+        src_id, author, title, year, journal, pub, ptype, rel, incoll, annotation = e[:10]
+        url = e[10] if len(e) > 10 else None
         rel_badge = f'<span class="badge badge-{"primary" if rel == "PRIMARY" else "direct" if rel == "DIRECT" else "contextual"}">{rel}</span>'
         venue = journal or pub or ''
+        title_html = f'<a href="{url}" target="_blank" rel="noopener">{title}</a>' if url else title
+        link_html = f'<p style="font-size:0.8rem;margin-top:0.3rem"><a href="{url}" target="_blank" rel="noopener" style="color:var(--accent)">View online &rarr;</a></p>' if url else ''
         rows_html += f"""
         <div class="ref-card">
-            <h4>{author} ({year or '?'}) {rel_badge}</h4>
-            <p><em>{title}</em></p>
+            <h4>{author} ({year or 'n.d.'}) {rel_badge}</h4>
+            <p><em>{title_html}</em></p>
             <p style="font-size:0.8rem;color:var(--text-muted)">{venue} &middot; {ptype or ''}</p>
             {f'<p style="font-size:0.88rem;line-height:1.6;margin-top:0.5rem">{annotation}</p>' if annotation else ''}
+            {link_html}
         </div>"""
 
     primary = len([e for e in entries if e[7] == 'PRIMARY'])
