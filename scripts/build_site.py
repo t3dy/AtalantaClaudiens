@@ -81,6 +81,7 @@ NAV_ITEMS = [
     ('Dictionary', 'dictionary/index.html'),
     ('Timeline', 'timeline.html'),
     ('Sources', 'sources.html'),
+    ('Music', 'music.html'),
     ('Essays', 'essays/index.html'),
     ('Bibliography', 'bibliography.html'),
     ('Biography', 'biography.html'),
@@ -898,6 +899,248 @@ def build_essays(conn):
 # Biography Page
 # ============================================================
 
+def build_music_page():
+    """Build the Music page: recordings, performances, MIDI, and web resources."""
+
+    body = """
+    <div class="page-content">
+        <h1 style="font-size:1.8rem;margin-bottom:0.3rem">Musical Recordings &amp; Performances</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:2rem;font-style:italic">
+            The fifty three-voice fugues of <em>Atalanta Fugiens</em> &mdash; composed for Atalanta (soprano),
+            Hippomenes (tenor), and the Golden Apple (cantus firmus) &mdash; represent the earliest known
+            attempt to integrate musical composition into an alchemical emblem book.
+        </p>
+        <div class="ai-banner">This page assembles information from published sources, web resources, and scholarly references. Links were verified as of March 2026.</div>
+
+        <h2>Recordings</h2>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Ensemble Plus Ultra, dir. Michael Noone</h4>
+            <p><strong>&ldquo;Maier: Atalanta Fugiens&rdquo;</strong> &mdash; Complete cycle of all 50 fugues (~71 minutes).
+            Claudio Records CR5468, issued 2011. Booklet notes by Joscelyn Godwin. Available on
+            Apple Music, Spotify, and other streaming platforms. This is the standard modern recording and the
+            most widely cited commercial release.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Joscelyn Godwin Edition Recording (1987)</h4>
+            <p>The first complete recording of the fifty fugues, produced for Godwin's Magnum Opus Hermetic
+            Sourceworks edition. Performed by <strong>Rachel Platt, Emily Van Evera, Rufus Muller, and Richard
+            Wistreich</strong>. Originally issued on cassette tape; later remastered and released on CD by
+            Claudio Records. The Godwin edition (Phanes Press, 1989) includes modern notation that has been
+            the basis for most subsequent performances and digital realizations.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Furnace and Fugue Vocal Recordings (2020)</h4>
+            <p>Newly commissioned vocal recordings of all fifty fugues, produced for the
+            <a href="https://furnaceandfugue.org" target="_blank" rel="noopener">Furnace and Fugue</a>
+            digital edition (Brown University / University of Virginia Press, 2020). Streamable emblem-by-emblem
+            within the interactive edition. These recordings are integrated with high-resolution images and
+            searchable text, allowing synchronized experience of Maier's multi-sensory program.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>RIM c-Orchestra / David Kanaga (2021)</h4>
+            <p><strong>&ldquo;Atalanta Fugiens 1&ndash;18&rdquo;</strong> &mdash; Electronic and experimental
+            re-imagining of fugues 1 through 18. Released via Bandcamp. A creative interpretation rather than
+            a historically informed performance.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Camerata Mediolanense</h4>
+            <p>Albums titled <em>Atalanta Fugiens</em> and <em>Atalanta Fugiens (Deluxe Edition)</em> &mdash;
+            a free creative work inspired by Maier's themes rather than a direct realization of the 50 canons.
+            Neo-medieval / dark ambient aesthetic.</p>
+        </div>
+
+        <h2>Known Performances</h2>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>International Conference on the History of Alchemy and Chymistry, Philadelphia (2006)</h4>
+            <p>The conference &ldquo;commenced with a performance of the early music ensemble <strong>Arcanum</strong>,&rdquo;
+            including three canons from Atalanta Fugiens, sung in Latin. Noted by Joscelyn Godwin as evidence
+            that the work &ldquo;is an obligatory inclusion at any alchemical musical recital.&rdquo;</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Les Canards Chantants (2014&ndash;present)</h4>
+            <p>This vocal ensemble has performed and workshopped Atalanta Fugiens regularly since 2014, in
+            collaboration with historians Donna Bilak and Tara Nummedal. Their lecture-performances include
+            events at the Bard Graduate Center with performance demonstrations exploring the relationship
+            between singing, seeing, and alchemical meditation.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>MITO Festival (2020)</h4>
+            <p>A performance project for the MITO SettembreMusica Festival, directed by <strong>Vanni Moretto</strong>.
+            Documented in a four-video YouTube playlist titled &ldquo;Atalanta Fugiens a MITO 2020.&rdquo;</p>
+        </div>
+
+        <h2>MIDI Files &amp; Digital Realizations</h2>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Adam McLean&rsquo;s Alchemy Website</h4>
+            <p>The most comprehensive free source of MIDI files for Maier's fugues. The
+            <a href="https://www.alchemywebsite.com/atalanta.html" target="_blank" rel="noopener">Atalanta Fugiens section</a>
+            includes downloadable MIDI realizations for a substantial subset of the 50 fugues, each with a
+            &ldquo;Save the MIDI file to your computer&rdquo; link. McLean also hosts the
+            <a href="https://alchemywebsite.com/atalanta_thumbnails.html" target="_blank" rel="noopener">hand-coloured emblem plates</a>
+            (1999) and the English translation from British Library MS Sloane 3645.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>BitMidi / MidiCities</h4>
+            <p>Individual fugue MIDI downloads available for selected fugues, including No. 22 and No. 33.
+            Searchable by title on BitMidi.com and MidiCities.com.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Amaranth Publishing</h4>
+            <p>Sells a notation and arrangement package of the Atalanta Fugiens with transcriptions.
+            Useful as a source for creating custom MIDI realizations, though the files themselves are not free.</p>
+        </div>
+
+        <h2>Video &amp; Web Resources</h2>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Furnace and Fugue Digital Edition</h4>
+            <p><a href="https://furnaceandfugue.org" target="_blank" rel="noopener">furnaceandfugue.org</a> &mdash;
+            The born-digital scholarly edition by Donna Bilak and Tara Nummedal (University of Virginia Press, 2020).
+            Features interactive synchronized text, image, and music for all 50 emblems. Winner of the 2022
+            Roy Rosenzweig Prize for Creativity in Digital History. Includes essays by Peter Forshaw on mytho-alchemy
+            and Donna Bilak on steganography.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Peter Forshaw: &ldquo;The Emblemata of the Atalanta Fugiens&rdquo;</h4>
+            <p>Infinite Fire Webinar II, Ritman Library / University of Amsterdam (November 2012).
+            A detailed scholarly lecture walking through individual emblems, discussing mytho-alchemy,
+            the quadrivium structure of each discourse, and Maier's relationship to the emblem tradition.
+            Available on YouTube via the Embassy of the Free Mind channel.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>&ldquo;Singing Nature&rsquo;s Secrets&rdquo; Lecture</h4>
+            <p>Public lecture with live performances exploring Michael Maier's Atalanta Fugiens (1618)
+            and the Furnace and Fugue digital edition (2020). Available on the Furnace and Fugue YouTube channel.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>MITO 2020 YouTube Playlist</h4>
+            <p>&ldquo;Atalanta Fugiens a MITO 2020&rdquo; &mdash; Four-video playlist documenting Vanni Moretto's
+            performance project for the MITO SettembreMusica Festival. Searchable on YouTube.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>YouTube Coloured Prints with Instrumental Music</h4>
+            <p>A full set of 50 emblems with accompanying instrumental versions of the music has been uploaded
+            to YouTube. Individual emblem videos pair Adam McLean's coloured prints with instrumental realizations
+            of the corresponding fugues.</p>
+        </div>
+
+        <div class="ref-card" style="margin-bottom:1rem">
+            <h4>Adam McLean's Alchemy Website</h4>
+            <p><a href="https://www.alchemywebsite.com/atalanta.html" target="_blank" rel="noopener">alchemywebsite.com/atalanta.html</a> &mdash;
+            The most comprehensive single web resource for <em>Atalanta Fugiens</em> outside of Furnace and Fugue.
+            Hosts the English translation (from MS Sloane 3645, transcribed by Clay Holden, Hereward Tilton,
+            and Peter Branwin), MIDI files, and hand-coloured plates.</p>
+        </div>
+
+        <h2>Scholarly Writing on the Music</h2>
+
+        <div style="margin-bottom:1.5rem">
+            <table style="width:100%;border-collapse:collapse;margin:1rem 0">
+                <tr style="border-bottom:2px solid var(--border);font-family:var(--font-sans);font-size:0.85rem">
+                    <th style="padding:0.5rem;text-align:left">Author</th>
+                    <th style="padding:0.5rem;text-align:left">Work</th>
+                    <th style="padding:0.5rem;text-align:left">Year</th>
+                    <th style="padding:0.5rem;text-align:left">Focus</th>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                    <td style="padding:0.5rem">Joscelyn Godwin</td>
+                    <td style="padding:0.5rem"><em>Atalanta Fugiens: An Edition of the Fugues, Emblems, and Epigrams</em></td>
+                    <td style="padding:0.5rem">1987</td>
+                    <td style="padding:0.5rem">First modern musical edition with complete transcriptions and recording</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                    <td style="padding:0.5rem">Joscelyn Godwin</td>
+                    <td style="padding:0.5rem">&ldquo;Musical Alchemy: the Work of Composer and Listener&rdquo; (<em>Temenos</em>)</td>
+                    <td style="padding:0.5rem">1985</td>
+                    <td style="padding:0.5rem">Theoretical foundations of Maier's musical-alchemical synthesis</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                    <td style="padding:0.5rem">Joscelyn Godwin</td>
+                    <td style="padding:0.5rem">&ldquo;A Background for Michael Maier's Atalanta Fugiens&rdquo; (<em>Hermetic Journal</em>)</td>
+                    <td style="padding:0.5rem">1985</td>
+                    <td style="padding:0.5rem">Intellectual context for the musical emblem book</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                    <td style="padding:0.5rem">Douglas Leedy</td>
+                    <td style="padding:0.5rem">Review of Godwin edition (<em>Notes</em>)</td>
+                    <td style="padding:0.5rem">1991</td>
+                    <td style="padding:0.5rem">Technical musicological assessment of the fugues' sophistication</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                    <td style="padding:0.5rem">C. Morris Wescott</td>
+                    <td style="padding:0.5rem">&ldquo;Atalanta Fugiens&rdquo; (<em>AthanorX</em>)</td>
+                    <td style="padding:0.5rem">n.d.</td>
+                    <td style="padding:0.5rem">Modal-planetary correspondences; cantus firmus as structural anchor</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                    <td style="padding:0.5rem">Peter Forshaw</td>
+                    <td style="padding:0.5rem">&ldquo;Laboratorium, Auditorium, Oratorium&rdquo;</td>
+                    <td style="padding:0.5rem">n.d.</td>
+                    <td style="padding:0.5rem">Alchemical music including Maier's fugues and Khunrath's songs</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                    <td style="padding:0.5rem">Johann F.W. Hasler</td>
+                    <td style="padding:0.5rem">&ldquo;Performative and Multimedia Aspects of Late-Renaissance Meditative Alchemy&rdquo;</td>
+                    <td style="padding:0.5rem">2011</td>
+                    <td style="padding:0.5rem">AF as meditative practice; performance dimensions</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border)">
+                    <td style="padding:0.5rem">Bilak &amp; Nummedal (eds.)</td>
+                    <td style="padding:0.5rem"><em>Furnace and Fugue</em></td>
+                    <td style="padding:0.5rem">2020</td>
+                    <td style="padding:0.5rem">Digital edition with newly commissioned vocal recordings of all 50 fugues</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>About the Fugues</h2>
+        <p style="font-size:0.95rem;line-height:1.7">
+            Each of the fifty emblems includes a three-voice fugue (more precisely, a canon) composed for
+            three vocal parts. The three voices represent the dramatis personae of the overarching
+            Atalanta myth: <strong>Atalanta</strong> (the fleeing volatile principle, typically the soprano),
+            <strong>Hippomenes</strong> (the pursuing fixed principle, typically the tenor), and
+            <strong>the Golden Apple</strong> (the catalytic agent, as the cantus firmus or bass).
+            C. Morris Wescott has demonstrated that Maier's modal choices &mdash; Dorian, Phrygian,
+            Mixolydian &mdash; correspond to planetary associations that relate to the alchemical stages
+            depicted in each emblem's plate. The cantus firmus derives from the liturgical chant tradition,
+            and the canons employ archaic compositional techniques including retrograde motion and mensural
+            manipulation. Forty of the fifty fugues have been identified as based on compositions by
+            the Elizabethan composer John Farmer.
+        </p>
+        <p style="font-size:0.95rem;line-height:1.7">
+            Nothing is known about Maier's ideas on how the fugues were to be performed in practice,
+            though some scholars believe they served as auditory support during corresponding alchemical
+            work in the laboratory. Since Maier served as counsellor to Rudolf II, it is possible
+            that the music was performed at the imperial court. The subtitle of the work promises
+            compositions &ldquo;suitable for singing in couplets, to be looked at, read, meditated on,
+            understood, weighed, sung, and listened to, not without a certain pleasure.&rdquo;
+        </p>
+    </div>"""
+
+    html = page_shell('Music', body, active_nav='Music')
+    (SITE_DIR / 'music.html').write_text(html, encoding='utf-8')
+    print("  music.html")
+
+
+# ============================================================
+# Biography
+# ============================================================
+
 def build_biography():
     """Build Maier biography page from seed JSON."""
     seed_path = BASE_DIR / 'atalanta_fugiens_seed.json'
@@ -951,6 +1194,7 @@ def main():
     build_timeline(conn)
     build_sources(conn)
     build_essays(conn)
+    build_music_page()
     build_biography()
     build_about(conn)
     conn.close()

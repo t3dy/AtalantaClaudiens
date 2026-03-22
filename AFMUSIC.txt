@@ -1,0 +1,163 @@
+
+I want a bibliography of all the musical recordings of Atalanta Fugiens including midi files, as well as dates of known performances such as what I saw sung in Latin at the CHF alchemy conference about 20 years ago. I know Godwin produced a recording and there were recordings connected with Furnace and Fugue. I'd also like links to all youtube videos connected with Atalanta Fugiens and any other web sites, and a full biography of scholarly writing on the text
+Completed 2 steps
+Here is what can currently be reconstructed; unfortunately, no single resource gives the exhaustive, “one‑stop” bibliography and performance history you are asking for, so this is necessarily partial but focused.
+
+1. Audio recordings of Atalanta fugiens
+Known modern commercial or complete‑cycle recordings:
+
+Ensemble Plus Ultra, dir. Michael Noone, “Maier: Atalanta Fugiens” (50 fugues; ca. 71 minutes). Issued 2011 (Claudio/Apple Music, also on Spotify and other platforms).
+
+Claudio Records issue “The 50 Fugues of Atalanta Fugiens – Michael Maier – CR5468” (with booklet notes by Joscelyn Godwin; the label’s page is often cited as the main modern recording reference).
+​
+
+RIM c‑Orchestra / David Kanaga, “Atalanta Fugiens 1–18” (electronic/experimental re‑imagining of fugues 1–18, released via Bandcamp, 2021).
+​
+
+Camerata Mediolanense, albums titled “Atalanta Fugiens” and “Atalanta Fugiens (Deluxe Edition)” (a free creative work inspired by Maier rather than a straight liturgical‑style realization of the 50 canons).
+​
+
+These, plus scattered tracks and partial realizations on streaming platforms, are as close as I can get to a discography of recordings explicitly marketed as Atalanta fugiens.
+
+Godwin‑related recordings
+Claudio Records’ “The 50 Fugues of Atalanta Fugiens – Michael Maier – CR5468” includes a program note by Joscelyn Godwin and is usually taken as the “Godwin” realization you have in mind, even though the performers are Ensemble Plus Ultra under Michael Noone.
+
+Godwin’s English translation (Phanes Press, 1989, Magnum Opus Hermetic Sourceworks 22) includes modern notation of the music, which has been the basis for many later performances and digital realizations.
+​
+
+2. MIDI files and online audio realizations
+The main systematic source of MIDI for Maier’s canons is Adam McLean’s “Alchemy Website”:
+
+“Music from ‘Atalanta fugiens’ emblem 1” (with description and a MIDI realization of emblem 1’s fugue).
+​
+
+The “Alchemical Music” index has a section with multiple Atalanta fugiens fugues as auto‑playing MIDI, with “Save the midi file to your computer / Play fugue 15 … Play fugue 16 … Play fugue 17 … Play fugue 18 …” and additional fugues beyond those listed in the snippet.
+​
+
+Those pages collectively provide downloadable MIDI files for a substantial subset of the 50 fugues (and in practice are the easiest “library” of MIDI for Atalanta fugiens currently online).
+
+Furnace and Fugue also includes commissioned vocal recordings (streamable, not MIDI) for all fifty fugues, accessible emblem‑by‑emblem:
+
+Furnace and Fugue: A Digital Edition of Michael Maier’s Atalanta fugiens (1618) with Scholarly Commentary (Brown University / University of Virginia Press, 2020). The edition presents each emblem with a modern digital recording of its three‑voice canon.
+
+3. Known modern performances and events
+Concrete dated performance references I can find:
+
+International Conference on the History of Alchemy and Chymistry, Philadelphia, 2006: Joscelyn Godwin notes that Atalanta Fugiens “is an obligatory inclusion at any alchemical musical recital,” and specifically mentions that the conference “commenced with a performance of the early music ensemble, Arcanum … and three canons from Michael Maier’s Atalanta Fugiens.”
+​
+
+Les Canards Chantants have performed and workshopped Atalanta fugiens regularly since 2014, in collaboration with historians (Donna Bilak, Tara Nummedal, etc.); their project page indicates lecture‑performances, including a Bard Graduate Center event with performance demonstrations.
+​
+
+The “Atalanta Fugiens a MITO 2020” YouTube playlist documents a performance project for the 2020 MITO Festival, directed by Vanni Moretto (four videos in the playlist).
+​
+
+On the specific event you recall—Latin singing at a CHF‑related “alchemy conference” about twenty years ago—what I can locate is indirect:
+
+An NEH application mentions a project titled “Alchemy: Michael Maier’s Atalanta fugiens (1618)” connected to The Huntington and the Chicago Humanities Festival’s “Age of Alchemy Game Project,” with Tara Nummedal listed as a humanities advisor. This confirms CHF and Atalanta fugiens as connected, but the document does not give performance programs, repertoire lists, or exact dates of musical realizations.
+​
+
+I have not been able to retrieve a program listing that explicitly ties a CHF event 20± years ago (early‑mid 2000s) to a specific Atalanta fugiens performance in Latin; archival programs for CHF events around that time are not surfacing with enough detail in open web search, so that particular performance remains undocumented in what I can see.
+
+4. YouTube and other web video
+There is no master index of all YouTube items tagged Atalanta fugiens, but several prominent clusters are:
+
+“Atalanta Fugiens a MITO 2020” playlist (Vanni Moretto): four videos of a performance project.
+​
+
+“Singing Nature’s Secrets: Michael Maier’s Atalanta fugiens (1618) and Furnace and Fugue (2020)” – public lecture with performances, on the Furnace and Fugue YouTube channel.
+​
+
+“The Emblemata of the Atalanta Fugiens” by Peter J. Forshaw – a detailed lecture/webinar through the Ritman Library / Infinite Fire Webinar series, focusing on emblems and including discussion of the multimedia structure.
+​
+
+Various lecture series and explorations, for instance “Atalanta Fugiens – 01 – Alchemical Journey” (Modus Concordiae, 2026) which introduces the book rather than performing the full cycle.
+​
+
+Wikipedia’s Atalanta fugiens entry also points to “YouTube colored prints with instrumental version of the music for each emblem,” indicating that at some point a full set of 50 emblems with accompanying instrumental tracks has been uploaded; YouTube search via the general web index currently only exposes some of these, not a clean list of all 50.
+​
+
+So: I can point you to major curated series (Furnace and Fugue channel, MITO playlist, Infinite Fire webinars), but I cannot reliably enumerate literally “all” YouTube videos connected with Atalanta fugiens.
+
+5. Scholarly bibliography on Atalanta fugiens
+The core modern scholarly literature (partial but representative) is:
+
+H. M. E. de Jong, Michael Maier’s Atalanta Fugiens: Sources of an Alchemical Book of Emblems (Leiden: E. J. Brill, 1969). Foundational monograph analyzing sources and structure.
+
+H. M. E. de Jong, modern critical edition and English translation (published 2002) of Atalanta fugiens, providing text, notes, and contextual information; the RIDE review notes that Furnace and Fugue builds on De Jong’s 1969 study and her 2002 edition.
+​
+
+H. M. E. de Jong, various articles on Maier and Atalanta in journal literature; these are summarized but not fully listed in the RIDE review.
+​
+
+Hofmeier edition (2007) of Atalanta fugiens (with abundant indices), cited as an important source for Furnace and Fugue.
+​
+
+Tara Nummedal and Donna Bilak (eds.), Furnace and Fugue: A Digital Edition of Michael Maier’s “Atalanta fugiens” (1618) with Scholarly Commentary (Brown University Digital Publications / University of Virginia Press, 2020). This includes multiple essays that treat images, music, and textual commentary from different disciplinary angles.
+
+Articles and book chapters on “alchemy and music” that include sections on Maier’s book; the RIDE review notes that “a number of publications revolving around the topic of ‘alchemy and music’ exist, most of which at least mention Maier’s Atalanta fugiens,” and specifically cites Rola (1988), Gaudio (2020), and Wagner (2021) among emblem‑studies contributions that engage with Maier.
+​
+
+Earlier emblem‑studies and alchemy‑studies work, such as Figala and Neumann’s characterization of Atalanta as “one of the most beautiful books of alchemical literature of all time,” often cited as a touchstone description.
+​
+
+Because these bibliographic details are described in secondary summaries (like the RIDE review) rather than in a dedicated open bibliographic database, and because I cannot see paywalled or full‑text academic databases, I cannot produce a truly complete “full biography of scholarly writing” on the text; what I can give you is this skeleton:
+
+Type	Author / Editor	Work	Year	Note
+Monograph	H. M. E. de Jong	Michael Maier’s Atalanta Fugiens: Sources of an Alchemical Book of Emblems	1969	Foundational study of sources and context. 
+Critical edition	H. M. E. de Jong	Edition/translation of Atalanta fugiens	2002	Basis for later work like Furnace and Fugue. 
+​
+Edition with indices	Hofmeier	Edition of Atalanta fugiens	2007	Detailed indices often used by scholars. 
+​
+Digital edition	Nummedal & Bilak (eds.)	Furnace and Fugue	2020	Open‑access multimedia edition with essays. 
+Translation	Joscelyn Godwin	Atalanta Fugiens (Magnum Opus Hermetic Sourceworks 22)	1989	English translation with modern music notation. 
+​
+Articles (emblem studies, alchemy & music)	Rola; Gaudio; Wagner; others	Various articles & chapters	1988–2020s	Engage Atalanta in emblem, music, alchemy contexts. 
+​
+For a more exhaustive scholarly bibliography, your best bet is actually the Furnace and Fugue site itself, which includes references for each essay and sometimes per‑emblem; combined, those notes approach the “biography” of scholarship you are asking for.
+
+If you would like, I can do a second pass focused narrowly on (a) reconstructing as many of the individual scholarly article citations (Rola, Gaudio, Wagner, etc.) as are visible in open abstracts, or (b) extracting all the Atalanta‑related MIDI links from Adam McLean’s site one by one and organizing them into a table by emblem number.
+
+Follow-ups
+
+Monitor performances and new recordings of Michael Maier's Atalanta Fugiens and send me weekly alerts with details and links
+Computer
+
+Where to download free MIDI files of Atalanta Fugiens fugues
+
+Compare sound quality of Camerata Mediolanense vs Les Canards Chantants recordings
+
+Upcoming live performances of Atalanta Fugiens in 2026
+
+How to perform Atalanta Fugiens canons with modern ensembles
+Where to download free MIDI files of Atalanta Fugiens fugues
+Completed 1 step
+The most complete free MIDI source is Adam McLean’s Alchemy Website, with a few others hosting individual fugues.
+
+Main MIDI collection (multiple fugues)
+Alchemy Website – “Alchemical Music” (Adam McLean):
+This page has links for “Play fugue 1 from Atalanta fugiens / Save the midi file to your computer” through at least fugue 18, each with a “Save the midi file” link you can right‑click to download.
+​
+Link: search “Alchemical Music Atalanta fugiens McLean” and open the Atalanta section on the Alchemy Website.
+​
+
+Individual fugue MIDI downloads
+BitMidi – No. 22:
+“Atalanta Fugiens No.22.mid — free MIDI — BitMidi” (stream or download directly).
+​
+
+MidiCities – No. 22:
+“Atalanta Fugiens No.22 Maier – Free Midi Download” with MIDI, MP3, and score.
+​
+
+BitMidi – No. 33:
+“Atalanta Fugiens No.33.mid — Free MIDI — BitMidi.”
+​
+
+Other relevant resources (not bulk MIDI)
+Amaranth Publishing: sells a notation/arrangement package of Atalanta fugiens; the page describes transcriptions but does not itself offer free MIDI, so it is useful if you want scores to create your own MIDI.
+​
+
+YouTube modular/MIDI realizations: some videos (e.g., “Atalanta Fugiens Emblema n°I (Alchemical Modular Music)”) are based on programmed MIDI, but they only expose audio/video, not direct MIDI download links.
+
+If you like, I can next map out exactly which fugue numbers are covered by McLean’s page and the BitMidi/MidiCities files in a small table so you know where gaps remain.
