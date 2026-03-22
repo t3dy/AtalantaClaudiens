@@ -85,6 +85,7 @@ NAV_ITEMS = [
     ('Creatures', 'creatures.html'),
     ('Music', 'music.html'),
     ('Works', 'works.html'),
+    ('21st Century', 'modern-scholarship.html'),
     ('Szulakowska', 'szulakowska.html'),
     ('Essays', 'essays/index.html'),
     ('Bibliography', 'bibliography.html'),
@@ -129,11 +130,13 @@ def page_shell(title, body, active_nav='', depth=0):
 </html>"""
 
 
-def autolink_emblems(text):
-    """Convert 'Emblem XXIV', 'Emblem 24', 'Emblems XXIV and XXV' references into clickable links."""
+def autolink_emblems(text, depth=1):
+    """Convert 'Emblem XXIV', 'Emblem 24' references into clickable links.
+    depth=0 for root pages, depth=1 for subdirectory pages."""
     if not text:
         return text
     import re
+    prefix = '../' if depth > 0 else ''
     roman_map = {'I':1,'II':2,'III':3,'IV':4,'V':5,'VI':6,'VII':7,'VIII':8,'IX':9,'X':10,
                  'XI':11,'XII':12,'XIII':13,'XIV':14,'XV':15,'XVI':16,'XVII':17,'XVIII':18,
                  'XIX':19,'XX':20,'XXI':21,'XXII':22,'XXIII':23,'XXIV':24,'XXV':25,'XXVI':26,
@@ -145,13 +148,13 @@ def autolink_emblems(text):
         roman = m.group(1)
         num = roman_map.get(roman)
         if num is not None:
-            return f'<a href="../emblems/emblem-{num:02d}.html" class="cross-link">Emblem {roman}</a>'
+            return f'<a href="{prefix}emblems/emblem-{num:02d}.html" class="cross-link">Emblem {roman}</a>'
         return m.group(0)
     def replace_arabic(m):
         num = int(m.group(1))
         if 0 <= num <= 50:
             href = f'emblem-{num:02d}.html' if num > 0 else 'frontispiece.html'
-            return f'<a href="../emblems/{href}" class="cross-link">Emblem {num}</a>'
+            return f'<a href="{prefix}emblems/{href}" class="cross-link">Emblem {num}</a>'
         return m.group(0)
     # Match "Emblem XXIV" (roman), longest match first
     text = re.sub(r'Emblem\s+(XLVIII|XXXVIII|XXXIII|XXVIII|XXIII|XVIII|XLVII|XXXVII|XXXIV|XXXII|XXVII|XXXIX|XXXVI|XXXV|XXVI|XXIV|XXII|XVII|XLVI|XLIV|XLIII|XLII|XIII|XXXI|XXIX|XVI|XLV|XLI|XII|XXX|XIV|XXV|XIX|XV|XXI|XX|XI|IX|XL|IV|VI|II|VIII|VII|III|XLIX|I|V|X|L)',
@@ -1717,6 +1720,121 @@ def build_essay_pages(conn):
     print(f"  essays/: {len(ESSAYS)} essays + {len(planned)} planned")
 
 
+def build_modern_scholarship(conn):
+    """Build 21st-century Maier studies showcase page."""
+
+    body = """
+    <div class="page-content">
+        <h1 style="font-size:1.8rem;margin-bottom:0.3rem">Maier Studies in the 21st Century</h1>
+        <p style="font-size:1.05rem;color:var(--text-muted);margin-bottom:1.5rem;font-style:italic">
+            How a Renaissance Alchemist Became a Subject of Digital Humanities
+        </p>
+        <div class="ai-banner">This page synthesizes information from our scholarly corpus. Not reviewed by a human scholar.</div>
+
+        <h2>A Renaissance in Maier Scholarship</h2>
+        <p>For three centuries after his death in 1622, Michael Maier was known primarily to collectors of alchemical
+        curiosities and to occultist readers who mined his emblems for esoteric symbolism. The modern scholarly recovery
+        began with Craven's 1910 biography and De Jong's transformative 1969 monograph, but it was the twenty-first
+        century that saw Maier scholarship explode into a genuinely interdisciplinary field. Since 2000, the Atalanta
+        Fugiens has been the subject of at least twenty major scholarly publications spanning art history, musicology,
+        history of science, digital humanities, religious studies, and literary criticism. The work has been performed
+        in concert halls, analyzed by neuroscientists, re-encoded in digital formats, and read through lenses that
+        Maier — and De Jong — could never have imagined.</p>
+
+        <h2>The Tilton Revolution (2003)</h2>
+        <p>Hereward Tilton's <em>The Quest for the Phoenix</em> (Walter de Gruyter, 2003) was the first full-length
+        study of Maier since De Jong. Where De Jong had focused narrowly on the textual sources of the Atalanta Fugiens,
+        Tilton placed Maier's entire bibliography of twenty-five published works within the broader context of
+        Rosicrucianism, spiritual alchemy, and Habsburg court politics. Tilton corrected Maier's birth year from
+        1568 to 1569, revealed his claim to have produced the Universal Medicine, traced the reception of his work
+        through the Gold- und Rosenkreutz order to Jung, and proposed a nuanced "spiritual alchemy" that challenged
+        both Jungian and laboratory-reductive readings. His monograph opened the door to the interdisciplinary
+        approaches that followed.</p>
+
+        <h2>New Dimensions: Music, Medicine, Multimedia (2011-2012)</h2>
+        <p>Three publications in 2011-2012 opened entirely new dimensions of AF scholarship. Johann F.W. Hasler argued
+        that the work is a genuine precursor to modern multimedia, requiring performative engagement (singing) for
+        its original purpose to be accomplished. Kathleen Perry Long connected the fugues to Ficinian music therapy
+        and contemporary neuroscience, proposing that Maier intended his musical program as a therapeutic intervention
+        against melancholy and political disorder. And Peter Forshaw's Infinite Fire webinar for the Ritman Library
+        introduced the concept of "mytho-alchemy" and revealed the quadrivium structure of each discourse — a
+        systematic mapping of alchemical concepts across arithmetic, music, geometry, and astronomy that no previous
+        scholar had identified.</p>
+
+        <h2>The Religious-Political Turn: Szulakowska (2000-2011)</h2>
+        <p>Urszula Szulakowska's three monographs — <em>The Alchemy of Light</em> (2000), <em>The Sacrificial Body</em>
+        (2006), and <em>The Alchemical Virgin Mary</em> (2011) — added a dimension absent from both De Jong and
+        Tilton: the religious politics of alchemical illustration. Szulakowska argued that Maier, Khunrath, and Fludd
+        regarded their chemical procedures as essentially the same rite as the Catholic mass, and that Maier's
+        classical mythological surface concealed a fundamentally Eucharistic understanding of alchemical transformation.
+        Her analysis of the Pythagorean structure of the fugues and the optical geometry of Emblem VIII pushed
+        interpretive boundaries, while her identification of the "Turkish Madonna" tradition in the Symbola Aureae
+        Mensae connected Maier's imagery to Habsburg court politics and the Ottoman wars.</p>
+
+        <h2>The Digital Turn: Furnace and Fugue (2020)</h2>
+        <p>The most ambitious twenty-first-century engagement with the Atalanta Fugiens is Donna Bilak and Tara
+        Nummedal's <em>Furnace and Fugue</em> (University of Virginia Press, 2020), the first born-digital scholarly
+        edition. Built through Brown University's Digital Publications Initiative with Mellon Foundation support, the
+        interactive edition allows users to hear, see, manipulate, and investigate the Atalanta Fugiens in ways that
+        Maier imagined but that were technically impossible before digital publication. The MEI music player with
+        piano-roll visualization lets users without musical training see the contrapuntal structure of the fugues
+        in real time. The edition won the 2022 Roy Rosenzweig Prize for Creativity in Digital History from the
+        American Historical Association.</p>
+        <p>Bilak's own contribution — her steganography thesis proposing that the fifty emblems conceal a magic square
+        — represents the most radical structural claim about the Atalanta Fugiens since De Jong's source identifications.
+        Maximilian Ludwig's discovery that forty of the fifty fugues derive from compositions by the Elizabethan
+        composer John Farmer (published in <em>Divers and Sundry Waies</em>, 1591) transformed understanding of
+        Maier's compositional method: he was primarily an arranger and adapter, not an original composer. Peter
+        Forshaw's essay on mytho-alchemy defined a new scholarly category for understanding Maier's method.</p>
+
+        <h2>Performance and Recording (2006-2021)</h2>
+        <p>The twenty-first century also saw the Atalanta Fugiens move from the page to the stage. The 2006 performance
+        by the early music ensemble Arcanum at the International Conference on the History of Alchemy in Philadelphia
+        initiated a tradition of live AF performances at scholarly gatherings. Les Canards Chantants have performed
+        and workshopped the fugues regularly since 2014, in collaboration with Bilak and Nummedal, exploring the
+        relationship between singing, seeing, and alchemical meditation. Ensemble Plus Ultra's 2011 recording for
+        Claudio Records — the first commercial complete-cycle recording — made all fifty fugues available on streaming
+        platforms. And the RIM c-Orchestra's 2021 electronic reimagining on Bandcamp extended the musical afterlife
+        of Maier's compositions into contemporary electronic music.</p>
+
+        <h2>Emerging Directions</h2>
+        <p>The most recent scholarship suggests several emerging directions. Amber Rozenrichter's 2024 SHAC conference
+        paper on "hidden dryads" in the AF emblems opens a feminist iconographic approach, arguing that concealed
+        feminine figures serve as guiding forces for the alchemist. Sarah Lang's computational approaches at the
+        University of Graz point toward digital methods for analyzing the structural patterns of emblem sequences.
+        Paul Miner's 2012 study of Blake's visual borrowings from Maier demonstrates the reception-history approach,
+        tracing the influence of the AF plates across two centuries of English art. And the continued availability
+        of the work through Adam McLean's Alchemy Website (founded 1995, with hand-coloured plates from 1999) and
+        the Furnace and Fugue digital edition ensures that Maier's multi-sensory masterpiece is more accessible
+        to a global audience than at any point in its four-hundred-year history.</p>
+
+        <h2>What We Now Know</h2>
+        <p>Twenty-first-century scholarship has established several facts and frameworks that were unavailable to
+        earlier generations of readers:</p>
+        <ul style="font-size:0.95rem;line-height:1.7;margin-bottom:1.5rem">
+            <li><strong>Biography</strong>: Maier was born in Kiel in 1569 (not 1568), his father was a gold embroiderer,
+            he claimed to have produced the Universal Medicine of "bright lemon color," he was left an unlanded nobleman
+            by Rudolf II, and his English sojourn was likely a diplomatic mission (Tilton, Godwin, Figala-Neumann)</li>
+            <li><strong>Sources</strong>: The Artis Auriferae was Maier's primary reference anthology; 40 of 50 fugues
+            derive from John Farmer's 1591 collection; the Rosarium Philosophorum provided the structural model
+            (De Jong, Ludwig, Forshaw)</li>
+            <li><strong>Method</strong>: Maier practiced "mytho-alchemy" — reading classical myths as encoded chemical
+            knowledge — and structured each discourse around the four disciplines of the quadrivium (Forshaw)</li>
+            <li><strong>Music</strong>: The fugues' modal choices correspond to planetary-alchemical associations, with
+            the cantus firmus derived from the Christe eleison of Mass IV (Wescott, Leedy, Sleeper)</li>
+            <li><strong>Politics</strong>: The AF conceals sacramental theology beneath its classical surface, and
+            Maier's imagery connects to Reformation Eucharistic controversy (Szulakowska)</li>
+            <li><strong>Reception</strong>: Blake borrowed visually from the AF plates; the AF influenced alchemical
+            illustration for three centuries; and Jung's psychological reading was itself a form of alchemical
+            practice, not scientific analysis (Miner, Szulakowska, Tilton)</li>
+        </ul>
+    </div>"""
+
+    html = page_shell('Maier Studies in the 21st Century', body, active_nav='21st Century')
+    (SITE_DIR / 'modern-scholarship.html').write_text(html, encoding='utf-8')
+    print("  modern-scholarship.html")
+
+
 def build_creatures_page():
     """Build the Creatures page — Maier's alchemical bestiary with essays on each creature."""
     creatures_path = BASE_DIR / 'staging' / 'creatures_essays.json'
@@ -1754,7 +1872,7 @@ def build_creatures_page():
             <p style="font-size:0.95rem;font-style:italic;color:var(--text-muted);margin-bottom:1rem">{subtitle}</p>
             <div style="display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:1.5rem;align-items:start">
                 <div>{emblem_figures}</div>
-                <div style="font-size:0.95rem;line-height:1.7">{autolink_emblems(body)}</div>
+                <div style="font-size:0.95rem;line-height:1.7">{autolink_emblems(body, depth=0)}</div>
             </div>
         </div>"""
         else:
@@ -1763,7 +1881,7 @@ def build_creatures_page():
         <div class="ref-card" style="margin-bottom:2.5rem;padding:1.5rem" id="{slug}">
             <h3 style="font-size:1.2rem;color:var(--accent);margin-bottom:0.2rem">{title}</h3>
             <p style="font-size:0.95rem;font-style:italic;color:var(--text-muted);margin-bottom:1rem">{subtitle}</p>
-            <div style="font-size:0.95rem;line-height:1.7">{autolink_emblems(body)}</div>
+            <div style="font-size:0.95rem;line-height:1.7">{autolink_emblems(body, depth=0)}</div>
         </div>"""
 
     body = f"""
@@ -1832,7 +1950,7 @@ def build_maier_page(conn):
             discourse_html = f"""
                 <div>
                     <h4 style="font-size:0.9rem;color:var(--accent);margin-bottom:0.4rem;font-family:var(--font-sans)">Maier's Discourse</h4>
-                    <div style="font-size:0.92rem;line-height:1.7">{autolink_emblems(discourse)}</div>
+                    <div style="font-size:0.92rem;line-height:1.7">{autolink_emblems(discourse, depth=0)}</div>
                 </div>"""
 
         # Motto block
@@ -2247,6 +2365,7 @@ def main():
     build_timeline(conn)
     build_sources(conn)
     # build_essays(conn)  # Replaced by build_essay_pages
+    build_modern_scholarship(conn)
     build_maier_page(conn)
     build_creatures_page()
     build_essay_pages(conn)
