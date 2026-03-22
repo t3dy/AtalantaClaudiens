@@ -2,16 +2,17 @@
 
 ## Navigation
 
-9 tabs, consistent across all pages. Active tab highlighted with `--accent` color.
+10 tabs, consistent across all pages. Active tab highlighted with `--accent` color.
 
 ```
-Home | Emblems | Scholars | Dictionary | Timeline | Sources | Essays | Bibliography | About
+Home | Emblems | Scholars | Dictionary | Timeline | Sources | Biography | Essays | Bibliography | About
 ```
 
 ## Page Types
 
 ### 1. Home / Emblem Gallery (`/index.html`)
 
+- **Intro section**: Introductory paragraph + "Start with the Frontispiece" CTA button
 - **Stats bar**: Total emblems, scholars, sources, dictionary terms
 - **Filter buttons**: By alchemical stage (Nigredo/Albedo/Citrinitas/Rubedo), by source tradition, "All"
 - **Gallery grid**: CSS Grid `repeat(auto-fill, minmax(320px, 1fr))`
@@ -62,9 +63,9 @@ Home | Emblems | Scholars | Dictionary | Timeline | Sources | Essays | Bibliogra
 - "Emblem Coverage" — which emblems this scholar analyzes, with links
 - Provenance section
 
-### 4. Dictionary (`/dictionary/index.html` + `/dictionary/*.html`)
+### 4. Dictionary of Atalanta Fugiens (`/dictionary/index.html` + `/dictionary/*.html`)
 
-**Index**: Grouped by category (PROCESS, SUBSTANCE, FIGURE, CONCEPT, MUSICAL, SOURCE_TEXT). Category headers with count badges.
+**Index**: Grouped by category (PROCESS, SUBSTANCE, FIGURE, CONCEPT, MUSICAL, SOURCE_TEXT). Category headers with count badges. 38 terms with Latin forms and AF significance.
 
 **Term page**:
 - Back link to dictionary index
@@ -79,7 +80,8 @@ Home | Emblems | Scholars | Dictionary | Timeline | Sources | Essays | Bibliogra
 
 ### 5. Timeline (`/timeline.html`)
 
-- Vertical timeline with year markers
+- Vertical timeline with sticky year headers and rich descriptions
+- 29 events including Rosicrucian manifesto context
 - Color-coded event type badges:
   - PUBLICATION (green)
   - EDITION (blue)
@@ -93,10 +95,11 @@ Home | Emblems | Scholars | Dictionary | Timeline | Sources | Essays | Bibliogra
 
 ### 6. Sources (`/sources.html`)
 
-- Grouped by source type: CLASSICAL, ALCHEMICAL, BIBLICAL, MEDICAL, PATRISTIC, HERMETIC
-- Each source authority: name, author, era, relationship to Maier
-- "Used in Emblems" — linked emblem numbers
-- "Identified by" — scholar attribution
+- Rich source cards with type-colored borders, emblem badges, long descriptions
+- Grouped by source type: CLASSICAL, ALCHEMICAL, BIBLICAL, MEDICAL, PATRISTIC, HERMETIC, MOVEMENT
+- Each source authority: name, author, era, relationship to Maier, description_long
+- "Used in Emblems" — linked emblem number badges
+- 15 source authorities, all with `description_long` populated
 
 ### 7. Essays (`/essays/index.html` + `/essays/*.html`)
 
@@ -116,14 +119,21 @@ Home | Emblems | Scholars | Dictionary | Timeline | Sources | Essays | Bibliogra
 4. "The Rosicrucian Context"
 5. "Reception History: From 1618 to Digital Humanities"
 
-### 8. Bibliography (`/bibliography.html`)
+### 8. Biography (`/biography.html`)
+
+- Standalone page for Michael Maier (1568-1622)
+- 6 sections covering early life, education, imperial service, alchemical works, AF, and legacy
+- Added to nav bar in build_site.py
+- Content assembled from corpus (Craven, Tilton, De Jong biographical references)
+
+### 9. Bibliography (`/bibliography.html`)
 
 - Stats bar: total works, in-collection count, by relevance
 - Relevance badges: PRIMARY (red), DIRECT (blue), CONTEXTUAL (gray)
 - Full citation for each work
 - Link to scholar page if author is in scholars table
 
-### 9. About (`/about.html`)
+### 10. About (`/about.html`)
 
 - Project statistics (counts from all tables)
 - Methodology description
@@ -145,7 +155,12 @@ Home | Emblems | Scholars | Dictionary | Timeline | Sources | Essays | Bibliogra
 | `.dict-detail` | Dictionary | Max-width readability |
 | `.timeline` | Timeline | Vertical line with events |
 | `.bib-entry` | Bibliography | Citation with badges |
+| `.source-card` | Sources | Rich card with type-colored border |
 | `.source-type-badge` | Sources | Color-coded by type |
+| `.emblem-analysis` | Emblem detail | Structured analysis block (overview, sources, alchemy, terms) |
+| `.timeline-card` | Timeline | Event card with sticky year header |
+| `.dict-card` | Dictionary | Term card with Latin form |
+| `.ai-banner` | Throughout | AI-generated content disclosure |
 | `.confidence-badge` | Throughout | HIGH/MEDIUM/LOW color |
 | `.review-badge` | Throughout | DRAFT/REVIEWED/VERIFIED |
 | `.ai-generated-banner` | Essays | Prominent AI disclosure |

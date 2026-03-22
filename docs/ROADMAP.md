@@ -1,6 +1,7 @@
 # ROADMAP.md — AtalantaClaudiens Phase Status
 
 *Updated 2026-03-21. See HIROREBUILD.md for detailed next-phase plan.*
+*For document routing, see DOCUMENTAIRTRAFFICCONTROL.md.*
 
 ## Phase 1: Extraction Core — COMPLETE
 
@@ -29,7 +30,7 @@
 
 | Slice | Status | Notes |
 |-------|--------|-------|
-| 3A1: Emblem identity layer | BUILT | 51 rows, 10 HIGH confidence images |
+| 3A1: Emblem identity layer | BUILT | 51 rows, 51 images on disk (Wikimedia Commons), ~24 HIGH confidence |
 | 3A2: Analysis blocks (50/50) | BUILT | Template assembly with cross-links |
 | 3A3: Alchemical stage classification | BUILT | 31/50 classified |
 | 3A4: Home page intro + Start Here | BUILT | Introductory paragraph + button |
@@ -52,13 +53,13 @@
 | 4D: Visual element descriptions | BLOCKED | Needs image analysis pipeline or manual |
 | 4E: Remaining 19 alchemical stages | READY | Manual/LLM classification |
 
-## Phase 5: Images — BLOCKED
+## Phase 5: Images — MOSTLY COMPLETE
 
 | Slice | Status | Notes |
 |-------|--------|-------|
-| 5A: Source 41 missing emblem plates | BLOCKED | Multi-method swarm planned (Wikipedia, F&F, de Bry PDF, online collections) |
-| 5B: Image-emblem verification | BLOCKED | Needs 5A |
-| 5C: Vision analysis pipeline | BLOCKED | Needs 5A + Claude Vision |
+| 5A: Source emblem plate images | BUILT | 51/51 images on disk via Wikimedia Commons (see IMAGEFOLLIES.md for lessons) |
+| 5B: Image-emblem verification | READY | ~24 HIGH confidence, remainder need visual verification |
+| 5C: Vision analysis pipeline | READY | Needs `analyze_emblem_images.py` script + Claude Vision |
 
 ## Phase 6: Pedagogical Layer — PLANNED
 

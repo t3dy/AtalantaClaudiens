@@ -130,6 +130,43 @@ def confidence_badge(level):
     return f'<span class="badge {cls}">{level}</span>'
 
 
+def build_registers_html(registers_json):
+    """Build HTML for multi-register definitions (alchemical, medical, spiritual, cosmological)."""
+    if not registers_json:
+        return ''
+    import json
+    try:
+        regs = json.loads(registers_json)
+    except (json.JSONDecodeError, TypeError):
+        return ''
+    if not any(regs.get(k) for k in ('alchemical', 'medical', 'spiritual', 'cosmological')):
+        return ''
+
+    reg_labels = {
+        'alchemical': ('Alchemical', '#8b4513'),
+        'medical': ('Medical', '#2980b9'),
+        'spiritual': ('Spiritual', '#6c3483'),
+        'cosmological': ('Cosmological', '#1a5276'),
+    }
+    items = ''
+    for key, (display, color) in reg_labels.items():
+        val = regs.get(key)
+        if val:
+            items += f'''
+                <div style="margin-bottom:0.8rem;padding-left:1rem;border-left:3px solid {color}">
+                    <dt style="font-weight:600;font-size:0.85rem;color:{color};font-family:var(--font-sans);margin-bottom:0.2rem">{display}</dt>
+                    <dd style="margin:0;font-size:0.92rem;line-height:1.6">{val}</dd>
+                </div>'''
+    return f'''
+            <div style="margin-bottom:1.5rem">
+                <h2>Meanings Across Registers</h2>
+                <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem">
+                    De Jong shows that alchemical terms operate simultaneously across material, medical, spiritual, and cosmological dimensions.
+                </p>
+                <dl style="margin:0">{items}</dl>
+            </div>'''
+
+
 # ============================================================
 # Data Export
 # ============================================================
@@ -281,6 +318,37 @@ def build_emblem_pages(conn, identity_map):
             sources_html += f'<span class="source-link">{sname} ({rel})</span>\n'
 
         # Build page
+        # Stage badge styling
+        stage_colors = {'NIGREDO': '#2c2418', 'ALBEDO': '#a89880', 'CITRINITAS': '#b8860b', 'RUBEDO': '#c0392b'}
+        stage_text = {'NIGREDO': '#f5f0e8', 'ALBEDO': '#2c2418', 'CITRINITAS': '#2c2418', 'RUBEDO': '#f5f0e8'}
+        stage_badge_html = ''
+        if stage:
+            bg = stage_colors.get(stage, '#7f8c8d')
+            fg = stage_text.get(stage, '#fff')
+            stage_badge_html = f'<span class="badge" style="background:{bg};color:{fg};font-size:0.85rem;padding:0.3rem 0.8rem;border-radius:3px">{stage}</span>'
+
+        # Bilingual motto block
+        motto_html = ''
+        if motto_lat or motto_en:
+            motto_html = '<div class="motto-block">'
+            if motto_lat:
+                motto_html += f'<p style="font-style:italic;color:var(--accent);margin-bottom:0.3rem;font-size:1.05rem">{motto_lat}</p>'
+            if motto_en:
+                motto_html += f'<p style="margin-top:0">{motto_en}</p>'
+            motto_html += '</div>'
+        else:
+            motto_html = '<p style="color:var(--text-muted)"><em>Motto not yet extracted</em></p>'
+
+        # Epigram (shown by default, not collapsed)
+        epigram_html = ''
+        if epigram:
+            epigram_html = f'<div class="epigram-block" style="margin-bottom:1.5rem;padding:0.8rem 1rem;background:var(--bg);border-left:3px solid var(--accent-light);font-size:0.92rem"><h3 style="font-size:0.9rem;color:var(--accent);margin-bottom:0.4rem;font-family:var(--font-sans)">Epigram</h3>{epigram}</div>'
+
+        # "What You See" visual description
+        visual_html = ''
+        if img_desc:
+            visual_html = f'<div class="visual-description" style="margin-bottom:1.5rem;padding:0.8rem 1rem;background:#faf8f4;border-radius:4px"><h3 style="font-size:0.9rem;color:var(--accent);margin-bottom:0.4rem;font-family:var(--font-sans)">What You See</h3><p style="font-size:0.92rem;margin:0">{img_desc}</p></div>'
+
         body = f"""
     <div class="emblem-detail">
         <div class="emblem-nav">
@@ -289,17 +357,17 @@ def build_emblem_pages(conn, identity_map):
             <span>{next_link}</span>
         </div>
 
-        <h1 style="font-size:1.8rem;margin-bottom:1.5rem">{title} — {label}</h1>
+        <h1 style="font-size:1.8rem;margin-bottom:0.5rem">{title} — {label} {stage_badge_html}</h1>
 
         <div class="comparative-view">
             <div class="source-panel">
                 <h2>Original Source</h2>
                 {(lambda p, e: f'<img src="../{p}" alt="Emblem {display_num}" class="emblem-plate">' if e else f'<div class="placeholder-img">{display_num}</div>')(*resolve_image(identity_map, num))}
-                {f'<div class="motto-block">{motto_en}</div>' if motto_en else '<p style="color:var(--text-muted)"><em>Motto not yet extracted</em></p>'}
-                {f'<details style="margin-bottom:1.5rem"><summary style="cursor:pointer;color:var(--accent);font-family:var(--font-sans)">Epigram</summary><div class="epigram-block">{epigram}</div></details>' if epigram else ''}
+                {visual_html}
+                {motto_html}
+                {epigram_html}
                 {f'<div class="discourse-block"><h3 style="font-size:1rem;color:var(--accent);margin-bottom:0.5rem">Discourse Summary</h3><p style="font-size:0.92rem">{discourse[:1500]}{"..." if discourse and len(discourse) > 1500 else ""}</p></div>' if discourse else ''}
                 {analysis_html if analysis_html else ''}
-                {f'<p><span class="badge badge-stage">{stage}</span></p>' if stage else ''}
             </div>
 
             <div class="scholarship-panel">
@@ -316,23 +384,31 @@ def build_emblem_pages(conn, identity_map):
         (emblems_dir / filename).write_text(html, encoding='utf-8')
 
     # Emblem index page
+    stage_colors = {'NIGREDO': '#2c2418', 'ALBEDO': '#a89880', 'CITRINITAS': '#b8860b', 'RUBEDO': '#c0392b'}
+    stage_fg = {'NIGREDO': '#f5f0e8', 'ALBEDO': '#2c2418', 'CITRINITAS': '#2c2418', 'RUBEDO': '#f5f0e8'}
+
     grid_html = ''
     for e in emblems:
         num, roman, label = e[1], e[2], e[3]
         motto = e[5] or ''
+        e_stage = e[9]
         fname = 'frontispiece.html' if num == 0 else f'emblem-{num:02d}.html'
         display = roman or 'F'
-        has_data = '&#10003;' if e[5] else '&middot;'
         img_path, img_exists = resolve_image(identity_map, num)
         if img_exists:
             img_tag = f'<img src="../{img_path}" alt="Emblem {display}" style="width:100%;aspect-ratio:auto;display:block">'
         else:
             img_tag = f'<div class="card-placeholder" style="aspect-ratio:1;font-size:2rem">{display}</div>'
+        sbadge = ''
+        if e_stage:
+            sbg = stage_colors.get(e_stage, '#7f8c8d')
+            sfg = stage_fg.get(e_stage, '#fff')
+            sbadge = f'<span style="display:inline-block;background:{sbg};color:{sfg};font-size:0.65rem;padding:0.15rem 0.4rem;border-radius:2px;font-family:var(--font-sans)">{e_stage}</span>'
         grid_html += f"""
         <a href="{fname}" class="card" style="text-decoration:none;color:inherit">
             {img_tag}
             <div class="card-body">
-                <div class="card-sig">{display}. {label}</div>
+                <div class="card-sig">{display}. {label} {sbadge}</div>
                 <div class="card-desc">{motto[:80]}{'...' if len(motto) > 80 else ''}</div>
             </div>
         </a>"""
@@ -548,7 +624,7 @@ def build_dictionary_pages(conn):
 
     terms = conn.execute("""
         SELECT id, slug, label, category, definition_short, definition_long,
-               significance_to_af, source_basis, review_status, label_latin
+               significance_to_af, source_basis, review_status, label_latin, registers
         FROM dictionary_terms ORDER BY label
     """).fetchall()
 
@@ -602,7 +678,8 @@ def build_dictionary_pages(conn):
 
     # Individual term pages
     for t in terms:
-        tid, slug, label, cat, def_short, def_long, sig, basis, status, label_latin = t
+        tid, slug, label, cat, def_short, def_long, sig, basis, status, label_latin = t[:10]
+        registers_json = t[10] if len(t) > 10 else None
 
         # Find linked emblems
         emblem_refs = conn.execute("""
@@ -641,6 +718,7 @@ def build_dictionary_pages(conn):
             {latin_display}
             {f'<div class="motto-block">{def_short}</div>' if def_short else ''}
             {f'<div style="margin-bottom:1.5rem"><p style="font-size:0.95rem;line-height:1.7">{def_long}</p></div>' if def_long else ''}
+            {build_registers_html(registers_json)}
             {f'<h2>In <em>Atalanta Fugiens</em></h2><p style="font-size:0.95rem;line-height:1.7">{sig}</p>' if sig else ''}
             {f'<h2>Appears in Emblems</h2><div>{emblem_links}</div>' if emblem_links else ''}
             {f'<h2>Related Terms</h2><div>{related_html}</div>' if related_html else ''}

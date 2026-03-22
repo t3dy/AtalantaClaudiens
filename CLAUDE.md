@@ -4,15 +4,20 @@
 
 Digital humanities website showcasing H.M.E. De Jong's scholarship on Michael Maier's *Atalanta Fugiens* (1618). Architecture replicates HPMarginalia: SQLite source of truth, Python static site generator, vanilla HTML/CSS/JS, GitHub Pages deployment at `t3dy/AtalantaClaudiens`.
 
+## Document Routing
+
+**Read `DOCUMENTAIRTRAFFICCONTROL.md` when you need to find the right file.** It routes you to the correct document for any task (schema work, emblem work, extraction, debugging, planning) and flags what's stale or unbuilt.
+
 ## Quick Reference
 
 | Document | Purpose |
 |----------|---------|
+| `DOCUMENTAIRTRAFFICCONTROL.md` | **Start here** — routes you to the right doc for any task |
 | `docs/SYSTEM.md` | Architecture, data flow, provenance model |
-| `docs/ONTOLOGY.md` | Database schema (18 tables), entity relationships |
-| `docs/PIPELINE.md` | Script execution order, stage dependencies |
+| `docs/ONTOLOGY.md` | Database schema (13 built + 7 planned tables), entity relationships |
+| `docs/PIPELINE.md` | Script execution order (13 scripts), stage dependencies |
 | `docs/INTERFACE.md` | Website sections, page templates, navigation |
-| `docs/ROADMAP.md` | Phase status: BUILT / READY / BLOCKED / SPECULATIVE |
+| `docs/ROADMAP.md` | Phase status: BUILT / READY / BLOCKED / PLANNED |
 | `PHASESTATUS.md` | Session discipline log — update at end of every session |
 | `SCHOLARSHIPREPORT.md` | Corpus analysis, ontology design recommendations |
 | `atalanta_fugiens_seed.json` | Structured seed data for database ingestion |
@@ -159,7 +164,9 @@ This project uses the PKD Planning Protocol from the parent workspace (`C:\Dev\C
 ```
 C:\Dev\Claudiens/
 ├── CLAUDE.md                      # This file — project entry point
+├── DOCUMENTAIRTRAFFICCONTROL.md   # LLM routing guide — which doc to read for which task
 ├── PHASESTATUS.md                 # Session discipline log
+├── EMBLEMGUIDE.md                 # Agent reference for emblem work (all 51 emblems)
 ├── README.md                      # Public-facing summary
 ├── SCHOLARSHIPREPORT.md           # Corpus analysis (research artifact)
 ├── atalanta_fugiens_seed.json     # Seed data for DB (research artifact)
@@ -198,7 +205,8 @@ C:\Dev\Claudiens/
 │   ├── TIMELINE_SPEC.md           # Timeline event model
 │   └── archive/                   # Past planning artifacts
 ├── data/
-│   └── emblem_identity_seed.json  # Emblem identity layer seed
+│   ├── emblem_manifest.json       # Canonical emblem identity index (agents edit this)
+│   └── emblem_identity_seed.json  # Legacy seed (superseded by manifest)
 ├── staging/                       # Swarm agent outputs before merge
 ├── site/
 │   ├── index.html                 # Gallery home (intro + Start Here)
@@ -215,7 +223,8 @@ C:\Dev\Claudiens/
 │   ├── scholar/                   # 11 individual scholar pages
 │   ├── dictionary/                # 38 term pages + index
 │   ├── essays/                    # Essay index (5 planned)
-│   └── images/emblems/            # 10 confirmed emblem plate images
+│   └── images/emblems/            # 51 emblem plate images (Wikimedia Commons)
+├── docs/reports/                   # 20 analysis/audit/lesson reports
 └── atalanta fugiens/              # Source corpus (read-only)
     ├── *.pdf                      # Original PDFs
     └── *.md                       # OCR markdown conversions

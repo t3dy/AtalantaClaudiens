@@ -3,7 +3,7 @@
 ## Stage Overview
 
 ```
-STAGE 1: SCAFFOLD     init_db.py → migrate_v2.py → migrate_v3.py → migrate_v3_identity.py → seed_from_json.py → seed_phase2.py → seed_identity.py
+STAGE 1: SCAFFOLD     init_db.py → migrate_v2.py → migrate_v3.py → migrate_v3_identity.py → migrate_v4_enrichment.py → seed_from_json.py → seed_phase2.py → seed_identity.py
 STAGE 2: EXTRACT      extract_dejong.py → extract_dejong_pass2.py
 STAGE 3: ENRICH       link_dictionary.py → seed_emblem_analyses.py
 STAGE 4: BUILD        build_site.py
@@ -25,6 +25,11 @@ STAGE 5: VALIDATE     validate_identity.py
 ### migrate_v3.py
 - **Input**: Existing database
 - **Output**: Adds content enrichment columns: `emblems.analysis_html`, `dictionary_terms.label_latin`, `source_authorities.description_long`, `timeline_events.description_long`
+- **Idempotent**: Yes (checks `PRAGMA table_info` before `ALTER TABLE`)
+
+### migrate_v4_enrichment.py
+- **Input**: Existing database (schema v4)
+- **Output**: Adds enrichment columns: `emblems.visual_elements`, `emblems.fugue_mode`, `emblems.fugue_interval`, `emblems.epigram_german`, `dictionary_terms.registers`. Updates schema_version to v5.
 - **Idempotent**: Yes (checks `PRAGMA table_info` before `ALTER TABLE`)
 
 ### seed_from_json.py
@@ -66,7 +71,7 @@ STAGE 5: VALIDATE     validate_identity.py
 - **Input**: All database tables (emblems, scholarly_refs, emblem_sources, source_authorities, dictionary_terms, term_emblem_refs)
 - **Output**: Assembles `analysis_html` for each emblem from DB fields. Template includes: Overview, Maier's Source Texts (cross-linked to sources page), Alchemical Significance, Related Terms (cross-linked to dictionary).
 - **Idempotent**: Yes (overwrites analysis_html each run)
-- **Source method**: `LLM_ASSISTED` (template assembly, no LLM call)
+- **Source method**: `TEMPLATE_ASSEMBLY` (assembles from DB fields, no LLM call)
 
 ## Stage 4: Build
 
@@ -105,6 +110,7 @@ python scripts/init_db.py
 python scripts/migrate_v2.py
 python scripts/migrate_v3.py
 python scripts/migrate_v3_identity.py
+python scripts/migrate_v4_enrichment.py
 python scripts/seed_from_json.py
 python scripts/seed_phase2.py
 python scripts/seed_identity.py

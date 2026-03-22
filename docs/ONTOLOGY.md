@@ -2,7 +2,11 @@
 
 ## Overview
 
-18 tables in `db/atalanta.db`. Schema designed from SCHOLARSHIPREPORT.md ontology recommendations and GPTAF.txt/GPTPIPE.txt pipeline design.
+**13 tables built** in `db/atalanta.db` + **7 tables planned** (documented here but not yet created via migration).
+
+Tables tagged `[BUILT]` exist in the database. Tables tagged `[PLANNED]` are designed but have no migration script yet — do NOT write code that depends on them without creating the migration first.
+
+Schema designed from SCHOLARSHIPREPORT.md ontology recommendations and GPTAF.txt/GPTPIPE.txt pipeline design.
 
 ## Entity-Relationship Summary
 
@@ -22,7 +26,7 @@ DictionaryTerm ←→ DictionaryTerm (via DictionaryTermLinks)
 
 ## Core Tables
 
-### emblems
+### emblems `[BUILT]`
 The primary organizing unit. 51 rows (frontispiece = 0, emblems I-L = 1-50).
 
 | Column | Type | Notes |
@@ -44,13 +48,13 @@ The primary organizing unit. 51 rows (frontispiece = 0, emblems I-L = 1-50).
 | fugue_mode | TEXT | Musical mode if known |
 | fugue_interval | TEXT | Canon interval type |
 | analysis_html | TEXT | Structured emblem analysis (AI-assembled from DB fields) |
-| visual_elements | TEXT | JSON: allegorical figures, symbols, composition (future: vision pipeline) |
+| visual_elements | TEXT | JSON: allegorical figures, symbols, composition |
 | source_method | TEXT | DETERMINISTIC/SEED_DATA/LLM_ASSISTED |
 | review_status | TEXT | DRAFT/REVIEWED/VERIFIED |
 | confidence | TEXT | HIGH/MEDIUM/LOW |
 
-### alchemical_processes
-Multi-register process model. NOT lab steps — symbolic clusters.
+### alchemical_processes `[PLANNED]`
+Multi-register process model. NOT lab steps — symbolic clusters. **Not yet created — no migration exists.**
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -62,11 +66,11 @@ Multi-register process model. NOT lab steps — symbolic clusters.
 | cosmological_register | TEXT | Planetary/macrocosm description |
 | stage | TEXT | CHECK: NIGREDO/ALBEDO/CITRINITAS/RUBEDO/NULL |
 
-### emblem_processes
-Join table: emblem ←→ process (many-to-many).
+### emblem_processes `[PLANNED]`
+Join table: emblem ←→ process (many-to-many). **Not yet created.**
 
-### visual_elements
-For image-text concordance. Describes what's depicted in each emblem.
+### visual_elements `[PLANNED]`
+For image-text concordance. Describes what's depicted in each emblem. **Not yet created.** (Note: `emblems.visual_elements` JSON column exists on the `emblems` table as a simpler alternative.)
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -78,8 +82,8 @@ For image-text concordance. Describes what's depicted in each emblem.
 | alchemical_meaning | TEXT | |
 | scholarly_source_id | INTEGER FK → bibliography | Who described this |
 
-### mythological_figures
-Named figures appearing in emblems.
+### mythological_figures `[PLANNED]`
+Named figures appearing in emblems. **Not yet created.**
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -88,10 +92,10 @@ Named figures appearing in emblems.
 | description | TEXT | |
 | tradition | TEXT | GREEK/EGYPTIAN/BIBLICAL/HERMETIC |
 
-### emblem_figures
-Join table: emblem ←→ figure.
+### emblem_figures `[PLANNED]`
+Join table: emblem ←→ figure. **Not yet created.**
 
-### source_authorities
+### source_authorities `[BUILT]`
 De Jong's central contribution: Maier's textual sources as navigable entities.
 
 | Column | Type | Notes |
@@ -105,7 +109,7 @@ De Jong's central contribution: Maier's textual sources as navigable entities.
 | relationship_to_maier | TEXT | |
 | description_long | TEXT | Rich scholarly description of this source's expression in AF |
 
-### emblem_sources
+### emblem_sources `[BUILT]`
 Links emblems to their textual sources (De Jong's source identifications).
 
 | Column | Type | Notes |
@@ -118,8 +122,8 @@ Links emblems to their textual sources (De Jong's source identifications).
 | notes | TEXT | |
 | confidence | TEXT | HIGH/MEDIUM/LOW |
 
-### scholars
-11+ scholar profiles.
+### scholars `[BUILT]`
+11 scholar profiles.
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -132,8 +136,8 @@ Links emblems to their textual sources (De Jong's source identifications).
 | overview | TEXT | Biography/description |
 | review_status | TEXT | DRAFT/REVIEWED/VERIFIED |
 
-### bibliography
-10+ source works with relevance classification.
+### bibliography `[BUILT]`
+10 source works with relevance classification.
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -148,10 +152,10 @@ Links emblems to their textual sources (De Jong's source identifications).
 | af_relevance | TEXT | CHECK: PRIMARY/DIRECT/CONTEXTUAL |
 | in_collection | INTEGER | 1 if we have the PDF |
 
-### scholar_works
+### scholar_works `[BUILT]`
 Join table: scholar ←→ bibliography.
 
-### scholarly_refs
+### scholarly_refs `[BUILT]`
 The core concordance table: links scholars' interpretations to specific emblems.
 
 | Column | Type | Notes |
@@ -165,8 +169,8 @@ The core concordance table: links scholars' interpretations to specific emblems.
 | section_page | TEXT | |
 | confidence | TEXT | HIGH/MEDIUM/LOW |
 
-### dictionary_terms
-60+ alchemical/emblematic terms.
+### dictionary_terms `[BUILT]`
+38 alchemical/emblematic terms. **Note**: `registers` column is documented below but does NOT exist in the DB yet — needs a migration to add it.
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -182,14 +186,14 @@ The core concordance table: links scholars' interpretations to specific emblems.
 | source_basis | TEXT | |
 | review_status | TEXT | DRAFT/REVIEWED/VERIFIED |
 
-### dictionary_term_links
+### dictionary_term_links `[BUILT]`
 Cross-references between dictionary terms.
 
-### term_emblem_refs
+### term_emblem_refs `[BUILT]`
 Links dictionary terms to emblems where they appear.
 
-### timeline_events
-20+ reception history events from 1568-2020.
+### timeline_events `[BUILT]`
+29 reception history events from 1568-2020.
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -204,8 +208,8 @@ Links dictionary terms to emblems where they appear.
 | bib_id | INTEGER FK | |
 | confidence | TEXT | HIGH/MEDIUM/LOW |
 
-### editions
-Publication history of AF itself.
+### editions `[PLANNED]`
+Publication history of AF itself. **Not yet created.**
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -217,8 +221,8 @@ Publication history of AF itself.
 | components_present | TEXT | JSON: {music, images, german_text} |
 | notes | TEXT | |
 
-### essays
-5 AI-drafted essays.
+### essays `[PLANNED]`
+5 AI-drafted essays. **Not yet created — needs migration + seed script.**
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -230,3 +234,32 @@ Publication history of AF itself.
 | sources_cited | TEXT | JSON array of bib_ids |
 | is_ai_generated | INTEGER | Default 1 |
 | review_status | TEXT | DRAFT/REVIEWED/VERIFIED |
+
+---
+
+## Infrastructure Tables
+
+### emblem_identity `[BUILT]`
+Canonical identity layer for emblem-to-image grounding. 51 rows. Seeded by `seed_identity.py` from `data/emblem_manifest.json`.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | INTEGER PK | |
+| emblem_number | INTEGER NOT NULL | 0=frontispiece, 1-50=emblems |
+| roman_label | TEXT NOT NULL | Roman numeral (or "F" for frontispiece) |
+| canonical_order | INTEGER NOT NULL | Display order |
+| image_filename | TEXT | e.g., `emblem-05.jpg` |
+| image_source | TEXT | e.g., `wikimedia_commons`, `science_history_institute` |
+| image_url | TEXT | Source URL |
+| alignment_confidence | TEXT | HIGH/MEDIUM/LOW |
+| source_method | TEXT | DETERMINISTIC/SEED_DATA/MANUAL |
+| notes | TEXT | |
+
+### schema_version `[BUILT]`
+Tracks which migrations have been applied. 4 rows (v1 through v4).
+
+| Column | Type | Notes |
+|--------|------|-------|
+| version | INTEGER PK | 1, 2, 3, 4 |
+| applied_at | TEXT | ISO timestamp |
+| description | TEXT | What this migration added |
