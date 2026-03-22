@@ -173,7 +173,48 @@ EMBLEM COVERAGE
 Covers [N] of 50 emblems.
 ```
 
-### Dictionary Term Page
+### Dictionary Entry Template (CANONICAL)
+
+**Source field**: `dictionary_terms.definition_long`
+
+**Purpose**: Each dictionary entry is a self-contained encyclopedia article that teaches a lay reader what this term means, how it functions in alchemical tradition, and — most importantly — how it is expressed in Michael Maier's Atalanta Fugiens as identified by De Jong and other scholars. The entry should make the reader feel they've learned something specific and fascinating, not that they've read a generic definition.
+
+**Structure**: 5-10 paragraphs covering these areas:
+
+1. **What is this?** (1-2 paragraphs): Define the term for a reader encountering it for the first time. If it's a mythological figure, tell their story. If it's a chemical process, explain what physically happens. If it's a source text, say who wrote it, when, and what it contains. Ground the reader before any alchemical interpretation.
+
+2. **What does it mean in alchemy?** (1-2 paragraphs): Explain the term's alchemical significance — what does it represent in the symbolic language of the art? How do alchemists use this term differently from its ordinary meaning? If De Jong's multi-register model applies, show how the term operates simultaneously as material process, medical analogy, spiritual state, and cosmological principle.
+
+3. **How does Maier express it in Atalanta Fugiens?** (2-3 paragraphs): This is the heart of the entry. Name specific emblems by number and describe exactly how Maier deploys this term — in the visual composition of the engraved plate, in the Latin motto, in the discourse argument, or in the fugue's musical structure. Quote Maier's motto text where relevant. Describe what the reader sees in the plate. Connect the visual allegory to the alchemical meaning. This section should feel like standing in front of the emblem with a knowledgeable guide.
+
+4. **What does De Jong's scholarship reveal?** (1-2 paragraphs): Present De Jong's specific findings about this term — which source texts does she trace it to? What earlier traditions is Maier drawing upon? What does the source identification reveal about the hidden meaning? This is where the site's scholarly distinctiveness lives: De Jong's source-critical method is what makes the Atalanta Fugiens legible.
+
+5. **The playful dimension** (1 paragraph): Where applicable, connect the term to Maier's lusus serius — his pedagogy of play and multi-sensory learning. How does the emblem's visual puzzle, musical accompaniment, or riddling epigram make this concept not merely an intellectual proposition but an experiential encounter? Maier designed the AF as a serious game: the reader chases meaning through the golden apples of image, verse, and music. Each dictionary entry should honor this ludic dimension.
+
+**Voice**: Write as a museum guide speaking to an intelligent, curious visitor who has never heard of alchemy before. Be authoritative without being pompous. Use specific, concrete details — name emblems, describe images, identify sources. Avoid vague generalities like "this is an important concept" or "alchemists used this widely."
+
+**Anti-patterns**:
+- Do NOT write a generic Wikipedia-style definition with no AF content
+- Do NOT list emblems without describing what happens in them
+- Do NOT describe alchemical processes as if the reader already knows what they mean
+- Do NOT omit De Jong — her source identifications are the scholarly foundation
+- Do NOT ignore the visual and ludic dimensions — AF is an emblem book, not a textbook
+
+**Example** (Nigredo — opening paragraphs):
+> The nigredo, or blackening, is the first and most fearsome stage of the alchemical Great Work. In the sealed vessel of the alchemist's laboratory, the raw material — whatever combination of substances the practitioner has chosen — undergoes complete decomposition. The matter darkens, putrefies, and gives off a terrible stench. To the alchemist, this death of form is not failure but the necessary beginning: nothing new can be born until the old has been utterly destroyed. The nigredo is Saturn's dominion — cold, heavy, leaden, melancholy — and the alchemist must endure it as the farmer endures winter, knowing that spring depends upon the death of the previous year's growth.
+>
+> In Michael Maier's Atalanta Fugiens, the nigredo manifests across a sequence of emblems depicting death, dissolution, devouring, and entombment. In Emblem XXIV, a wolf devours a crowned king — the base, voracious antimony consuming the noble but impure gold. In Emblem XXVIII, King Duenech sits in a steam bath while black bile drains from his body, attended by physicians who purge the saturnine corruption through gentle moist heat. In Emblem XXXIII, the Hermaphrodite lies in total darkness, motionless as if dead, awaiting the fire that will begin its resurrection. And in Emblem XLIV, Typhon murders Osiris and scatters his limbs — the most violent image of dissolution in the entire series — before Isis painstakingly gathers and reassembles the divine body. Each of these emblems presents a different face of the nigredo: predation, purgation, death-sleep, and dismemberment.
+
+**DB field contracts**:
+
+| Field | Length | Content Type |
+|-------|--------|-------------|
+| `definition_short` | 1 sentence | Quick identification for card display |
+| `definition_long` | 5-10 paragraphs | Full encyclopedia entry following this template |
+| `significance_to_af` | 2-3 sentences | Quick AF-specific relevance (for structured display) |
+| `registers` | JSON | 4-register definitions (if applicable) |
+
+### Dictionary Term Page (Layout)
 
 ```
 [Term Label] [category badge]
@@ -182,7 +223,7 @@ Covers [N] of 50 emblems.
 [definition_short — italicized, boxed]
 
 DEFINITION
-[definition_long — 3-5 sentences, scholarly but accessible]
+[definition_long — 5-10 paragraphs following the template above]
 
 MEANINGS ACROSS REGISTERS (if applicable)
   Alchemical: [1-2 sentences]

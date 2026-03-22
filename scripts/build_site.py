@@ -83,6 +83,7 @@ NAV_ITEMS = [
     ('Sources', 'sources.html'),
     ('Music', 'music.html'),
     ('Works', 'works.html'),
+    ('Szulakowska', 'szulakowska.html'),
     ('Essays', 'essays/index.html'),
     ('Bibliography', 'bibliography.html'),
     ('Biography', 'biography.html'),
@@ -124,6 +125,38 @@ def page_shell(title, body, active_nav='', depth=0):
     </footer>
 </body>
 </html>"""
+
+
+def autolink_emblems(text):
+    """Convert 'Emblem XXIV', 'Emblem 24', 'Emblems XXIV and XXV' references into clickable links."""
+    if not text:
+        return text
+    import re
+    roman_map = {'I':1,'II':2,'III':3,'IV':4,'V':5,'VI':6,'VII':7,'VIII':8,'IX':9,'X':10,
+                 'XI':11,'XII':12,'XIII':13,'XIV':14,'XV':15,'XVI':16,'XVII':17,'XVIII':18,
+                 'XIX':19,'XX':20,'XXI':21,'XXII':22,'XXIII':23,'XXIV':24,'XXV':25,'XXVI':26,
+                 'XXVII':27,'XXVIII':28,'XXIX':29,'XXX':30,'XXXI':31,'XXXII':32,'XXXIII':33,
+                 'XXXIV':34,'XXXV':35,'XXXVI':36,'XXXVII':37,'XXXVIII':38,'XXXIX':39,'XL':40,
+                 'XLI':41,'XLII':42,'XLIII':43,'XLIV':44,'XLV':45,'XLVI':46,'XLVII':47,
+                 'XLVIII':48,'XLIX':49,'L':50}
+    def replace_roman(m):
+        roman = m.group(1)
+        num = roman_map.get(roman)
+        if num is not None:
+            return f'<a href="../emblems/emblem-{num:02d}.html" class="cross-link">Emblem {roman}</a>'
+        return m.group(0)
+    def replace_arabic(m):
+        num = int(m.group(1))
+        if 0 <= num <= 50:
+            href = f'emblem-{num:02d}.html' if num > 0 else 'frontispiece.html'
+            return f'<a href="../emblems/{href}" class="cross-link">Emblem {num}</a>'
+        return m.group(0)
+    # Match "Emblem XXIV" (roman), longest match first
+    text = re.sub(r'Emblem\s+(XLVIII|XXXVIII|XXXIII|XXVIII|XXIII|XVIII|XLVII|XXXVII|XXXIV|XXXII|XXVII|XXXIX|XXXVI|XXXV|XXVI|XXIV|XXII|XVII|XLVI|XLIV|XLIII|XLII|XIII|XXXI|XXIX|XVI|XLV|XLI|XII|XXX|XIV|XXV|XIX|XV|XXI|XX|XI|IX|XL|IV|VI|II|VIII|VII|III|XLIX|I|V|X|L)',
+                  replace_roman, text)
+    # Match "Emblem 24" (arabic)
+    text = re.sub(r'Emblem\s+(\d{1,2})(?=[^0-9]|$)', replace_arabic, text)
+    return text
 
 
 def format_paragraphs(text):
@@ -378,7 +411,7 @@ def build_emblem_pages(conn, identity_map):
                 {motto_html}
                 {epigram_html}
                 {f'<div class="discourse-block"><h3 style="font-size:1rem;color:var(--accent);margin-bottom:0.5rem">Discourse Summary</h3><p style="font-size:0.92rem">{discourse[:1500]}{"..." if discourse and len(discourse) > 1500 else ""}</p></div>' if discourse else ''}
-                {analysis_html if analysis_html else ''}
+                {autolink_emblems(analysis_html) if analysis_html else ''}
             </div>
 
             <div class="scholarship-panel">
@@ -731,9 +764,9 @@ def build_dictionary_pages(conn):
             </h1>
             {latin_display}
             {f'<div class="motto-block">{def_short}</div>' if def_short else ''}
-            {f'<div style="margin-bottom:1.5rem"><p style="font-size:0.95rem;line-height:1.7">{def_long}</p></div>' if def_long else ''}
+            {format_paragraphs(autolink_emblems(def_long)) if def_long else ''}
             {build_registers_html(registers_json)}
-            {f'<h2>In <em>Atalanta Fugiens</em></h2><p style="font-size:0.95rem;line-height:1.7">{sig}</p>' if sig else ''}
+            {f'<h2>In <em>Atalanta Fugiens</em></h2><p style="font-size:0.95rem;line-height:1.7">{autolink_emblems(sig)}</p>' if sig else ''}
             {f'<h2>Appears in Emblems</h2><div>{emblem_links}</div>' if emblem_links else ''}
             {f'<h2>Related Terms</h2><div>{related_html}</div>' if related_html else ''}
             {f'<p style="margin-top:1.5rem;font-size:0.8rem;color:var(--text-muted)">Source: {basis}</p>' if basis else ''}
@@ -899,6 +932,304 @@ def build_essays(conn):
 # ============================================================
 # Biography Page
 # ============================================================
+
+def build_szulakowska_page():
+    """Build the Szulakowska feature page — in-depth treatment of Maier in her three monographs."""
+
+    def emblem_img(num, caption=''):
+        fname = f'emblem-{num:02d}.jpg' if num > 0 else 'emblem-00.jpg'
+        cap = f'<figcaption style="font-size:0.8rem;color:var(--text-muted);margin-top:0.3rem;text-align:center">{caption}</figcaption>' if caption else ''
+        return f'<figure style="margin:1rem auto;max-width:400px"><img src="images/emblems/{fname}" alt="Emblem {num}" style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15)">{cap}</figure>'
+
+    body = f"""
+    <div class="page-content">
+        <h1 style="font-size:1.8rem;margin-bottom:0.3rem">Szulakowska on Maier</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:1rem;font-style:italic">
+            The Religious Politics of Alchemical Illustration
+        </p>
+        <p style="font-size:0.95rem;line-height:1.7;margin-bottom:1.5rem">
+            Urszula Szulakowska's three monographs — <em>The Sacrificial Body and the Day of Doom</em> (Brill),
+            <em>The Alchemy of Light</em> (Brill), and <em>The Alchemical Virgin Mary</em> (Cambridge Scholars) —
+            offer a dimension of Maier scholarship found nowhere else: the religious and political context of
+            alchemical illustration. Where De Jong traces each emblem to its textual sources and Tilton
+            situates Maier within Rosicrucianism, Szulakowska reveals the Reformation theology, Eucharistic
+            controversy, and Habsburg court politics encoded in the same images.
+        </p>
+        <div class="ai-banner">This page synthesizes material from three Szulakowska monographs in our corpus. Not reviewed by a human scholar.</div>
+
+        <h2>I. The Khunrath-Maier-Fludd Triad</h2>
+        {format_paragraphs(
+            "Szulakowska positions Maier within a triad of late-Renaissance Paracelsian alchemists — Heinrich "
+            "Khunrath (1560-1605), Michael Maier (1568-1622), and Robert Fludd (1574-1637) — who collectively "
+            "transformed alchemical illustration from medieval Christological imagery into a new classicizing "
+            "visual language. She argues that Maier's emblems in the Atalanta Fugiens 'set the style for "
+            "alchemical illustration for the next three centuries, replacing the earlier Christological motifs.' "
+            "Fludd and Johann Daniel Mylius subsequently copied and adapted Maier's visual innovations, with "
+            "Mylius reproducing AF emblems in detail in his Philosophia Reformata (1622)."
+            "\\n\\n"
+            "What distinguishes the triad is not merely their artistry but their theological ambition. "
+            "Szulakowska argues that all three regarded their chemical procedures 'as being essentially the same "
+            "rite as the mass' — a 'symbolic usurpation of the highest spiritual and political authority since "
+            "the right to offer Communion was jealously guarded.' The alchemical laboratory becomes, in this "
+            "reading, an alternative altar where the transmutation of matter re-enacts the Eucharistic "
+            "transformation of bread and wine into the body and blood of Christ."
+            "\\n\\n"
+            "Yet Maier is the most reticent of the three. Where Khunrath openly identified Christ with the "
+            "philosopher's stone, and Fludd developed elaborate cosmological diagrams, Maier 'disguised his "
+            "religious references in barely decipherable signifiers.' His classical mythological surface — "
+            "Atalanta, Hippomenes, Osiris, Oedipus — conceals what Szulakowska identifies as a fundamentally "
+            "Eucharistic understanding of alchemical transformation. The reader who sees only pagan myth misses "
+            "the sacramental structure beneath."
+        )}
+
+        <h2>II. The Alchemical Mass</h2>
+        {format_paragraphs(
+            "Szulakowska's most sustained analysis of Maier concerns the alchemical mass illustration from "
+            "the Symbola Aureae Mensae Duodecim Nationum (1617). Maier reprinted a fifteenth-century treatise "
+            "by Nicolaus Melchior Cibinensis (Processus sub forma missae) and commissioned Matthaeus Merian to "
+            "engrave an accompanying illustration of the Virgin Mary as the Apocalyptic Woman from Revelation "
+            "12:1 — 'a woman clothed with the sun, with the moon under her feet, and on her head a crown of "
+            "twelve stars.'"
+            "\\n\\n"
+            "Szulakowska argues that Maier's illustration is 'a far more radical disquisition on the alchemical "
+            "mass than Cibinensis' discrete original text.' Where the fifteenth-century author had cautiously "
+            "discontinued his account before the consecration of bread and wine, Maier's engraving 'clearly "
+            "identifies Christ with the lapis philosophorum and the elixir of life.' The chasuble of the "
+            "officiating priest, the gestures of consecration, the presence of the Apocalyptic Woman — all "
+            "constitute a bold exposition of the alchemical process as a re-enactment, not merely a "
+            "symbolization, of the Catholic Communion."
+            "\\n\\n"
+            "In The Alchemical Virgin Mary, Szulakowska connects this image to the 'Turkish Madonna' "
+            "tradition — Marian imagery linked to the Ottoman wars and the defense of Christendom. Emperor "
+            "Rudolf II, Maier's patron, had been heavily involved in military campaigns against the Turks. "
+            "The Apocalyptic Woman in Maier's illustration may thus function simultaneously as the Virgin Mary, "
+            "as the alchemical lac virginis (virgin's milk), and as a political emblem of Christian resistance "
+            "to Ottoman expansion — a triple register that exemplifies the density of meaning Szulakowska "
+            "finds in Maier's visual program."
+        )}
+
+        <h2>III. Atalanta Fugiens: The Sacrificial Body</h2>
+        <p style="font-size:0.95rem;line-height:1.7;margin-bottom:1rem">
+            In <em>The Sacrificial Body</em>, Szulakowska reads six AF emblems through the lens of
+            bodily transformation, Eucharistic symbolism, and Reformation theology. Her central argument
+            is that the theme of dismemberment and resurrection — pervasive in the AF — encodes a
+            specifically Christian soteriology beneath its classical surface.
+        </p>
+
+        <h3>Emblem XIX — The Four Warriors</h3>
+        {emblem_img(19, 'Emblem XIX: If you kill one of the four, everybody will be dead immediately')}
+        {format_paragraphs(
+            "Szulakowska reads the four interconnected warriors (representing the four elements whose death "
+            "is mutual) as a Christological allegory. She identifies Maier's reference to Hermes testifying "
+            "that 'our Son shall live and the dead King shall come out of the fire' as a disguised reference "
+            "to Christ's resurrection. When 'this dead one arises, then death, darkness and the waters of "
+            "the abyss shall flee from him.' The dragon that guards the abyss flees from the sun-beams — "
+            "'our Son' — in language that maps precisely onto Christian eschatology."
+            "\\n\\n"
+            "Where De Jong identifies the source as the myth of Geryon and the Turba Philosophorum's teaching "
+            "about elemental inseparability, Szulakowska adds the Christological layer: the four warriors are "
+            "not merely four elements but four aspects of the sacrificial body that must die together before "
+            "resurrection is possible. Maier 'mitigates the degree of physical violence exhibited in his visual "
+            "symbols' compared to earlier alchemical imagery, but retains their salvific meaning."
+        )}
+
+        <h3>Emblem XXIV — The Wolf Devouring the King</h3>
+        {emblem_img(24, 'Emblem XXIV: The wolf devoured the king')}
+        {format_paragraphs(
+            "The wolf (antimony) devours the crowned king (Saturn/prime matter), then the wolf is consumed "
+            "by fire, and the king returns to life 'in a young and vigorous form as the tincture that cures "
+            "every disease.' Szulakowska traces this allegory to Basil Valentine's Twelve Keys, where the wolf "
+            "symbolizes the mineral antimony used to separate gold from its matrix."
+            "\\n\\n"
+            "Lawrence Principe has identified the metallurgical reality behind this imagery: antimony sulphide "
+            "was used in assaying to extract gold from base alloys. Szulakowska reads beyond the chemistry to "
+            "identify the sacrificial-body theology: the king's dismemberment and reconstitution mirrors the "
+            "Eucharistic sacrifice where the body of Christ is broken and distributed before being mystically "
+            "reunited in the Resurrection."
+        )}
+
+        <h3>Emblem XXVIII — King Duenech in the Steam Bath</h3>
+        {emblem_img(28, 'Emblem XXVIII: The king is bathed, sitting in a steam-bath')}
+        {format_paragraphs(
+            "King Duenech sits immersed in a steaming bath while black bile (aqua foetida) drains from his "
+            "body, attended by physicians who regulate the temperature. Szulakowska connects this emblem to "
+            "the alchemical understanding of bodily purification through the humoral system: 'alchemists used "
+            "baths in order to improve the proportions of the humours in their chemicals, to produce healthy "
+            "blood in the body and to convert cold and moist materials into warm and dry ones.'"
+            "\\n\\n"
+            "She notes that Maier 'refers to himself as a cook at the golden table' — a reference to the "
+            "Symbola Aureae Mensae — connecting the domestic imagery of cooking and bathing to the Rosicrucian "
+            "fraternity described as being 'seated at a golden table.' The purification is simultaneously "
+            "medical (humoral rebalancing), chemical (distillation), and sacramental (baptismal cleansing)."
+        )}
+
+        <h3>Emblem XXXV — Digestion and Feeding</h3>
+        {emblem_img(35, 'Emblem XXXV: As Ceres accustomed Triptolemus to endure fire')}
+        {format_paragraphs(
+            "Szulakowska discusses Maier's treatment of digestion as 'an indispensable stage in alchemical "
+            "practice, comparable to the feeding of a young child and to agricultural processes.' Where "
+            "wider Reformation culture treated bodily functions as taboo, the alchemists continued to regard "
+            "digestion as a positive process, 'due to the very nature of their chemical process whose essential "
+            "function was to change substance.'"
+            "\\n\\n"
+            "This rehabilitation of the body is, for Szulakowska, a specifically alchemical contribution to "
+            "Reformation culture — a refusal to accept the Protestant separation of spirit and matter that "
+            "was reshaping European attitudes toward the physical body."
+        )}
+
+        <h3>Emblem XL — The Two Fountains</h3>
+        {emblem_img(40, 'Emblem XL: Make one water out of two waters')}
+        {format_paragraphs(
+            "Two streams merge into a single pool — the 'water of holiness.' Szulakowska identifies this as "
+            "one of the 'slightly more overt references to the alchemical sacrament' in AF. Maier states "
+            "that the elixir's meaning is 'analogous to the water of life of Christ, meaning by this both "
+            "the sacrament of Baptism and also that of the Eucharist.'"
+            "\\n\\n"
+            "De Jong traced the source to the Lullian elixir tradition. Szulakowska adds the sacramental "
+            "dimension: the two waters represent the two sacraments (Baptism and Eucharist) unified in the "
+            "alchemical operation. This is as close as Maier comes to explicitly naming the Christian "
+            "sacramental meaning that Szulakowska argues pervades the entire series."
+        )}
+
+        <h3>Emblem XLIV — Osiris Dismembered and Reassembled</h3>
+        {emblem_img(44, 'Emblem XLIV: Typhon kills Osiris by a ruse')}
+        {format_paragraphs(
+            "Typhon murders Osiris and scatters his limbs; Isis gathers them. Szulakowska identifies the "
+            "figure of Belinus — a late Hellenistic version of Osiris drawn from the Rosarium Philosophorum — "
+            "as a Christ-figure. She quotes the text: 'when you have taken me partly out of my nature, and "
+            "my wife out of hers and after you have killed these natures and we are raised by a new and "
+            "incorporeal resurrection, so that after that we cannot die any more.'"
+            "\\n\\n"
+            "The language of 'incorporeal resurrection' maps directly onto Christian eschatology. Szulakowska "
+            "argues that this is the most explicit Christological moment in the AF — the Egyptian myth of "
+            "Osiris serving as a classical-mythological vehicle for what is essentially the death, "
+            "dismemberment, and bodily resurrection of Christ."
+        )}
+
+        <h2>IV. The Alchemy of Light: Maier's Solar Geometry</h2>
+        {format_paragraphs(
+            "In her most technically detailed analysis of Maier, Szulakowska devotes Chapter 11 of The Alchemy "
+            "of Light to 'Michael Maier's Alchemical Geometry of the Sun.' She begins by distinguishing "
+            "Maier's courtly, classicizing style from Khunrath's pietistic intensity and Fludd's cosmological "
+            "ambition. Maier's work 'emerges from the context of courtly humanism, rather than out of the "
+            "academic discourses of the Protestant universities.' The Atalanta Fugiens, she argues, 'takes the "
+            "form of a masque, with stage sets displaying scenes from classical mythology, accompanied by a "
+            "musical score' — entertainment designed to instruct."
+            "\\n\\n"
+            "Szulakowska traces Maier's theoretical program to his treatise De Circulo Physico, Quadrato "
+            "(1616), which she identifies as 'an account of the role of the sun in the making of potable "
+            "gold.' Maier argued that gold's essential form is the circle — the Platonic form of eternal "
+            "Being — and that the incorrupt nature of gold proves the circle 'is not an abstract mathematical "
+            "concept, but a physical reality.' The static circle is nature perfected, manifesting as red, "
+            "coagulated sulphur — that is, gold."
+        )}
+
+        <h3>Emblem XXI — The Geometric Formula</h3>
+        {emblem_img(21, 'Emblem XXI: Make a circle out of a man and a woman')}
+        {format_paragraphs(
+            "Szulakowska connects the famous geometric diagram of Emblem XXI — circle, square, triangle, "
+            "circle — to Maier's treatise on squaring the circle and to the Rosarium Philosophorum. The circle "
+            "represents the primal matter (Chaos) and the perfected stone; the square symbolizes the four "
+            "elements and the four seasons; the triangle represents the Paracelsian body, spirit, and soul "
+            "(though Maier himself is not Paracelsian in method). The same geometric sequence appears in the "
+            "seventh key of Basil Valentine's De Lapide Sapientum, which Maier published in his Tripus Aureus "
+            "(1618)."
+        )}
+
+        <h3>Emblem VIII — The Theurgical Egg</h3>
+        {emblem_img(8, 'Emblem VIII: Take the egg and pierce it with a fiery sword')}
+        {format_paragraphs(
+            "Szulakowska's most original reading concerns Emblem VIII, which she interprets through the lens "
+            "of optical alchemy. The illustration shows an armed warrior (Mars) shattering the alchemical egg "
+            "with a sword before a roaring fire. Behind him, a battlemented wall is pierced by 'a curious "
+            "tunnel drawn in a diagrammatic form according to the rules of single-point perspective.' The "
+            "tunnel's 'excessive depth does not correspond with the actual thickness of the wall' — it is "
+            "not realistic architecture but, Szulakowska argues, a catoptrical diagram representing the "
+            "concentration of solar rays."
+            "\\n\\n"
+            "Szulakowska connects this perspectival structure to the use of catoptrical mirrors (burning "
+            "glasses) described by John Dee in the Propaedeumata Aphoristica and to Khunrath's optical "
+            "imagery in the Amphitheatrum. She reads the tunnel as representing solar force being focused "
+            "onto the alchemical egg — analogous to a burning glass concentrating sunlight. De Jong had "
+            "compared the egg to Dee's macro-microcosmic egg in the Monas Hieroglyphica; Szulakowska extends "
+            "this comparison to argue that the composition encodes an optical-alchemical program. This is "
+            "a provocative reading that goes beyond what the image alone can confirm, but it usefully draws "
+            "attention to the geometric and optical sophistication of Merian's engravings."
+        )}
+
+        <h3>The Fugues as Theurgical Talismans</h3>
+        {format_paragraphs(
+            "Szulakowska's most provocative argument concerns the fugues themselves. She proposes that "
+            "Maier's Pythagorean musical score was intended to operate on the same astral-magical principles "
+            "as Dee's and Khunrath's geometric sigils — that the musical ratios encoded correspondences with "
+            "celestial forces. She argues that the fifth interval (diapente), whose ratio of 3:2 Ficino "
+            "had identified with the proportional distance from earth to the sun, served as a musical "
+            "signifier of solar virtue."
+            "\\n\\n"
+            "This interpretation — that the fugues function as something like astral-magical instruments — "
+            "is characteristic of Szulakowska's willingness to push interpretive boundaries. It should be "
+            "noted that Forshaw and other scholars in the new historiography of alchemy prefer to read AF "
+            "as a work of alchemical synthesis rather than active theurgy, and Maier himself describes "
+            "his emblems as 'chemical' rather than magical. Pamela H. Smith's framework of artisanal "
+            "knowledge — where alchemy is understood as a sophisticated craft practice rather than either "
+            "mysticism or modern chemistry — offers a more grounded interpretive model. Nonetheless, "
+            "Szulakowska usefully draws attention to the Pythagorean mathematical structure of the fugues, "
+            "which has not been adequately explored by other scholars, and to the broader context of "
+            "Ficinian music theory within which Maier's compositions operated."
+        )}
+
+        <h2>V. Maier and the Rosarium Tradition</h2>
+        {format_paragraphs(
+            "In The Alchemical Virgin Mary, Szulakowska draws on De Jong's research to situate Maier's AF "
+            "within the tradition of the Rosarium Philosophorum (Basel, 1550). She writes that De Jong 'has "
+            "revealed' that Maier 'was basing himself substantially on the Rosarium (as well as on the Aurora "
+            "Consurgens and the much older Turba Philosophorum)' — the same sources that contained Marian and "
+            "Christological imagery that Maier transformed into his classicizing emblems."
+            "\\n\\n"
+            "The alchemical marriage in the Rosarium tradition involved an incestuous coupling of brother and "
+            "sister (Sol and Luna), who then 'died' and putrefied — the same sequence Maier develops across "
+            "multiple AF emblems (IV, XXX, XXXIII, XXXVIII). Szulakowska notes that this alchemical coniunctio "
+            "drew on Marian theology through the Rosarium's mediation: the Virgin Mary as the vessel of "
+            "transformation, the lac virginis as the volatile spirit that nourishes the philosophical embryo."
+            "\\n\\n"
+            "Szulakowska also identifies Adam McLean's observation that the Splendor Solis of Salomon Trismosin "
+            "(1598) 'acts as a bridge between the Rosarium and the Rosicrucian period' — and argues that "
+            "Maier's AF occupies the Rosicrucian end of this bridge, transforming the Rosarium's medieval "
+            "Christian imagery into a classicized, humanist visual language while preserving its sacramental "
+            "core."
+        )}
+
+        <h2>VI. Why Szulakowska Matters</h2>
+        {format_paragraphs(
+            "Szulakowska's contribution is unique because she reads the same images that De Jong analyzes "
+            "source-critically and that Forshaw reads mytho-alchemically through a third lens: the religious "
+            "politics of the Reformation. Her argument that Maier, Khunrath, and Fludd constituted an "
+            "alchemical counter-church — performing a chemical Eucharist that usurped the Catholic sacramental "
+            "monopoly — adds a political dimension that purely textual or symbolic readings miss."
+            "\\n\\n"
+            "Her most original contribution, from The Alchemy of Light, is her attention to the Pythagorean "
+            "mathematical structure of both the geometric diagrams and the fugues. While her interpretation "
+            "of these as astral-magical instruments goes further than most scholars in the field would "
+            "endorse, she rightly identifies an underexplored dimension of the AF: the relationship between "
+            "its mathematical structures (geometric, musical, arithmetical) and the alchemical content they "
+            "accompany. This is territory that Forshaw's quadrivium analysis also addresses, from a more "
+            "measured perspective."
+            "\\n\\n"
+            "Taken together, Szulakowska's three books reveal a Maier who is more politically and "
+            "theologically engaged than either De Jong's source-critical method or Tilton's Rosicrucian "
+            "framing alone suggest. Read alongside Smith's artisanal-knowledge framework and Forshaw's "
+            "mytho-alchemical analysis, Szulakowska's religious-political lens adds a dimension that enriches "
+            "without displacing these other approaches. The classical surface of the Atalanta Fugiens, in her "
+            "reading, conceals not merely chemical knowledge in allegorical form but a sacramental theology "
+            "and a political program — registers that become visible only when the images are read against "
+            "the full backdrop of Reformation religious controversy."
+        )}
+    </div>"""
+
+    html = page_shell('Szulakowska on Maier', body, active_nav='Szulakowska')
+    (SITE_DIR / 'szulakowska.html').write_text(html, encoding='utf-8')
+    print("  szulakowska.html")
+
 
 def build_works_page():
     """Build the Scholarly Works page from merged staging JSON."""
@@ -1258,6 +1589,7 @@ def main():
     build_sources(conn)
     build_essays(conn)
     build_works_page()
+    build_szulakowska_page()
     build_music_page()
     build_biography()
     build_about(conn)
