@@ -22,6 +22,10 @@ Digital humanities website showcasing H.M.E. De Jong's scholarship on Michael Ma
 | `SCHOLARSHIPREPORT.md` | Corpus analysis, ontology design recommendations |
 | `atalanta_fugiens_seed.json` | Structured seed data for database ingestion |
 
+## Emblem Writing Standard
+
+**Read `docs/WRITING_TEMPLATES.md` before writing ANY emblem content.** It defines the canonical 4-section analysis template (The Plate, Maier's Discourse, De Jong's Source Analysis, Scholarly Perspectives) with museum-level curation standards, anti-patterns, and DB field contracts. All emblem descriptions must follow this template.
+
 ## Emblem Reference (read these before emblem work)
 
 - **`EMBLEMGUIDE.md`** — Complete agent reference: all 51 emblems table, data flow, how to find/add/update emblem data, image sourcing status, cross-reference patterns

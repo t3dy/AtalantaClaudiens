@@ -28,7 +28,7 @@ These files are authoritative for their domain. Consult the relevant one before 
 | `docs/ROADMAP.md` | Project status | What's BUILT vs READY vs BLOCKED vs PLANNED per phase/slice. |
 | `EMBLEMGUIDE.md` | Emblem data | All 51 emblems: numbers, mottos, images, stages, sources, refs. **Read this before any emblem work.** |
 | `data/emblem_manifest.json` | Emblem identity | Canonical machine-readable index. Single source of truth for image filenames, confirmation status, sources. |
-| `docs/WRITING_TEMPLATES.md` | Content voice | Tone, register, template patterns for generated text. |
+| `docs/WRITING_TEMPLATES.md` | **Content voice + emblem template** | **CANONICAL**: 4-section emblem analysis template (The Plate, Maier's Discourse, De Jong's Sources, Scholarly Perspectives). Museum-level curation standards. Anti-patterns. DB field contracts. **Read this before writing ANY emblem content.** |
 
 ## Tier 3: Read FOR Context (Reference)
 
@@ -82,7 +82,10 @@ Reports from prior sessions. Read when you're about to repeat work in the same a
 ### "I need to work with emblems (data, images, pages)"
 → Read `EMBLEMGUIDE.md` first, then `data/emblem_manifest.json`. The manifest is the canonical index. Trust `image_confirmed: true` entries. Do not re-source confirmed images.
 
-### "I need to write content (analysis, dictionary, essays)"
+### "I need to write emblem content (image descriptions, discourse summaries, analysis blocks)"
+→ Read `docs/WRITING_TEMPLATES.md` FIRST — it defines the mandatory 4-section template, voice rules, anti-patterns, and DB field contracts. Every emblem analysis must have: (1) The Plate (3-5 sentences visual), (2) Maier's Discourse (3-5 sentences academic summary), (3) De Jong's Source Analysis (3-5 sentences on sources + hidden chemistry), (4) Scholarly Perspectives (1-3 sentences, optional). **Do not write emblem content without reading the template.**
+
+### "I need to write other content (dictionary, essays, scholar profiles)"
 → Read `docs/WRITING_TEMPLATES.md` for voice and structure. Check `docs/reports/DESIREDIMPROVEMENTS.md` for what's needed.
 
 ### "I need to extract from the source corpus"
