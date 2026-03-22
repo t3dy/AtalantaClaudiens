@@ -1726,17 +1726,34 @@ def build_creatures_page():
         emblem_nums = c.get('emblems', [])
 
         # Emblem image badges
-        emblem_imgs = ''
-        for n in emblem_nums[:3]:  # Show up to 3 emblem thumbnails
+        # Build emblem illustration panel — large images alongside text
+        emblem_figures = ''
+        for n in emblem_nums[:3]:
             fname = f'emblem-{n:02d}.jpg'
             link = f'emblems/emblem-{n:02d}.html'
-            emblem_imgs += f'<a href="{link}" style="display:inline-block;margin-right:0.5rem"><img src="images/emblems/{fname}" alt="Emblem {n}" style="width:80px;height:80px;object-fit:cover;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.15)"></a>'
+            roman = ['F','I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII','XXIV','XXV','XXVI','XXVII','XXVIII','XXIX','XXX','XXXI','XXXII','XXXIII','XXXIV','XXXV','XXXVI','XXXVII','XXXVIII','XXXIX','XL','XLI','XLII','XLIII','XLIV','XLV','XLVI','XLVII','XLVIII','XLIX','L'][n]
+            emblem_figures += f'''<figure style="margin:0 0 1rem 0;max-width:300px">
+                <a href="{link}"><img src="images/emblems/{fname}" alt="Emblem {roman}" style="width:100%;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.15)"></a>
+                <figcaption style="font-size:0.8rem;color:var(--text-muted);text-align:center;margin-top:0.3rem">Emblem {roman} &middot; <a href="{link}" style="color:var(--accent)">View full analysis</a></figcaption>
+            </figure>'''
 
-        entries_html += f"""
+        if emblem_figures:
+            # Grid layout: images left, text right
+            entries_html += f"""
         <div class="ref-card" style="margin-bottom:2.5rem;padding:1.5rem" id="{slug}">
             <h3 style="font-size:1.2rem;color:var(--accent);margin-bottom:0.2rem">{title}</h3>
             <p style="font-size:0.95rem;font-style:italic;color:var(--text-muted);margin-bottom:1rem">{subtitle}</p>
-            {f'<div style="margin-bottom:1rem">{emblem_imgs}</div>' if emblem_imgs else ''}
+            <div style="display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:1.5rem;align-items:start">
+                <div>{emblem_figures}</div>
+                <div style="font-size:0.95rem;line-height:1.7">{autolink_emblems(body)}</div>
+            </div>
+        </div>"""
+        else:
+            # No emblem image (phoenix, pelican)
+            entries_html += f"""
+        <div class="ref-card" style="margin-bottom:2.5rem;padding:1.5rem" id="{slug}">
+            <h3 style="font-size:1.2rem;color:var(--accent);margin-bottom:0.2rem">{title}</h3>
+            <p style="font-size:0.95rem;font-style:italic;color:var(--text-muted);margin-bottom:1rem">{subtitle}</p>
             <div style="font-size:0.95rem;line-height:1.7">{autolink_emblems(body)}</div>
         </div>"""
 
