@@ -82,6 +82,7 @@ NAV_ITEMS = [
     ('Timeline', 'timeline.html'),
     ('Sources', 'sources.html'),
     ('Music', 'music.html'),
+    ('Works', 'works.html'),
     ('Essays', 'essays/index.html'),
     ('Bibliography', 'bibliography.html'),
     ('Biography', 'biography.html'),
@@ -899,6 +900,68 @@ def build_essays(conn):
 # Biography Page
 # ============================================================
 
+def build_works_page():
+    """Build the Scholarly Works page from merged staging JSON."""
+    merged_path = BASE_DIR / 'staging' / 'works_merged.json'
+    if not merged_path.exists():
+        print("  works.html: skipped (no staging/works_merged.json)")
+        return
+
+    works_data = json.loads(merged_path.read_text(encoding='utf-8'))
+    works = works_data.get('works', [])
+
+    sections_html = ''
+    for w in works:
+        source_id = w.get('source_id', '')
+        author = w.get('author', '')
+        title = w.get('title', '')
+        year = w.get('year', '')
+        summary_html = w.get('summary_html', '')
+        emblems = w.get('emblems_discussed', [])
+        findings = w.get('key_findings', [])
+
+        year_display = str(year) if year else 'n.d.'
+        emblem_badges = ''
+        if emblems:
+            emblem_badges = '<div style="margin-top:0.5rem">' + ' '.join(
+                f'<a href="emblems/emblem-{n:02d}.html" class="source-link" style="font-size:0.75rem">Emblem {n}</a>'
+                if n > 0 else '<a href="emblems/frontispiece.html" class="source-link" style="font-size:0.75rem">Frontispiece</a>'
+                for n in emblems
+            ) + '</div>'
+
+        findings_html = ''
+        if findings:
+            items = ''.join(f'<li style="font-size:0.85rem;margin-bottom:0.3rem">{f}</li>' for f in findings)
+            findings_html = f'<div style="background:#faf8f4;padding:0.8rem 1rem;border-radius:4px;margin-top:1rem"><strong style="font-size:0.85rem;font-family:var(--font-sans)">Key Findings</strong><ul style="margin:0.5rem 0 0 1rem;padding:0">{items}</ul></div>'
+
+        sections_html += f"""
+        <div class="ref-card" style="margin-bottom:2rem;padding:1.5rem" id="{source_id}">
+            <h3 style="font-size:1.1rem;margin-bottom:0.3rem;color:var(--accent)">{author} ({year_display})</h3>
+            <p style="font-size:1rem;font-style:italic;margin-bottom:1rem">{title}</p>
+            <div style="font-size:0.95rem;line-height:1.7">{summary_html}</div>
+            {emblem_badges}
+            {findings_html}
+        </div>"""
+
+    body = f"""
+    <div class="page-content">
+        <h1 style="font-size:1.8rem;margin-bottom:0.5rem">Scholarly Works on <em>Atalanta Fugiens</em></h1>
+        <p style="font-size:1.05rem;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6">
+            A curated library of secondary scholarship on Michael Maier's <em>Atalanta Fugiens</em>,
+            from J.B. Craven's pioneering 1910 biography through the 2020 <em>Furnace and Fugue</em>
+            digital edition. Each entry summarizes the work's arguments, methods, and specific
+            contributions to understanding Maier's alchemical emblems.
+        </p>
+        <div class="ai-banner">Summaries assembled from corpus analysis and scholarly sources. Not reviewed by a human scholar.</div>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:2rem">{len(works)} works surveyed, ordered chronologically.</p>
+        {sections_html}
+    </div>"""
+
+    html = page_shell('Works', body, active_nav='Works')
+    (SITE_DIR / 'works.html').write_text(html, encoding='utf-8')
+    print(f"  works.html: {len(works)} scholarly works")
+
+
 def build_music_page():
     """Build the Music page: recordings, performances, MIDI, and web resources."""
 
@@ -1194,6 +1257,7 @@ def main():
     build_timeline(conn)
     build_sources(conn)
     build_essays(conn)
+    build_works_page()
     build_music_page()
     build_biography()
     build_about(conn)
