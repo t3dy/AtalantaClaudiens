@@ -1232,6 +1232,458 @@ def build_szulakowska_page():
     print("  szulakowska.html")
 
 
+def build_essay_pages(conn):
+    """Build essay pages: Music, Social World, and Jung."""
+    essays_dir = SITE_DIR / 'essays'
+    essays_dir.mkdir(exist_ok=True)
+
+    ESSAYS = [
+        {
+            "slug": "music",
+            "title": "Approaches to Music in Maier's Atalanta Fugiens",
+            "subtitle": "How Scholars Have Understood the Fifty Fugues",
+            "body": (
+                "<p>The fifty three-voice fugues of <em>Atalanta Fugiens</em> constitute the most distinctive "
+                "feature of Maier's emblem book — no other work in the alchemical or emblematic tradition "
+                "integrates bespoke musical compositions into every emblem. Yet for centuries, these fugues "
+                "were treated as curiosities rather than objects of serious musical analysis. The modern "
+                "scholarly engagement with Maier's music begins with Joscelyn Godwin's 1987 edition and has "
+                "since developed along several distinct interpretive lines: musicological, performative, "
+                "therapeutic, and cosmological.</p>"
+
+                "<h3>Godwin: The First Modern Edition (1987)</h3>"
+                "<p>Joscelyn Godwin's edition of the Atalanta Fugiens, published by Adam McLean's Magnum Opus "
+                "Hermetic Sourceworks in 1987 (reprinted by Phanes Press, 1989), included the first modern "
+                "transcription of all fifty fugues into standard musical notation and the first complete "
+                "recording, performed by Rachel Platt, Emily Van Evera, Rufus Muller, and Richard Wistreich. "
+                "The introductory essay by Hildemarie Streich analyzed the musical structure, concluding "
+                "that the three voice-parts represent the three mythic characters — Atalanta (soprano), "
+                "Hippomenes (tenor), and the golden apple (cantus firmus) — and that the compositions should "
+                "be understood as conceptual art-works rather than practical performance scores. Streich "
+                "noted that the apple voice wanders from higher to lower pitch, as if describing the process "
+                "of distillation, and that the fugues employ mirror canons (canon by inversion) between "
+                "Atalanta and Hippomenes. A later Spanish edition, <em>La Fuga de Atalanta</em>, was published "
+                "by Ediciones Atalanta in 2007.</p>"
+
+                "<h3>Leedy: Musicological Assessment (1991)</h3>"
+                "<p>Douglas Leedy's review in <em>Notes</em> (1991) provided the first sustained musicological "
+                "evaluation of the fugues as compositions. Leedy, a specialist in early music and alternative "
+                "tuning systems, characterized the Atalanta Fugiens as a <em>Gesamtkunstwerk</em> — a total "
+                "artwork integrating visual, textual, and auditory elements. He praised the recording but "
+                "criticized the quality of the emblem reproductions. Most significantly, Leedy identified the "
+                "fugues as musically sophisticated works comparable to Machaut, Gesualdo, and Stravinsky in "
+                "their handling of dissonance. He challenged the dismissive view, common in both musicological "
+                "and alchemical scholarship, that the canons were crude or amateurish.</p>"
+
+                "<h3>Wescott: Planetary-Modal Correspondences (n.d.)</h3>"
+                "<p>Catherine Morris Wescott's analysis in the <em>AthanorX</em> journal represents the most "
+                "technically detailed examination of the fugues' modal structure. She demonstrates that Maier's "
+                "modal choices — Dorian, Phrygian, Mixolydian, and others — correspond to planetary associations "
+                "established in classical and medieval music theory: Saturn governs the Mixolydian mode, Mars "
+                "the Phrygian, Jupiter the Lydian, and so on. These planetary correspondences in turn relate "
+                "to the alchemical stages depicted in each emblem's plate. Wescott identifies the cantus firmus "
+                "as the structural anchor derived from the liturgical chant tradition — specifically the "
+                "<em>Christe eleison</em> from Mass IV, as identified by Sleeper (1938). Her analysis of "
+                "Emblems XXIV, XXVIII, XXXI, and XLIV reveals how chromatic text-painting in the musical lines "
+                "mirrors the allegorical action described in the mottos, and argues that music, image, and "
+                "text form a unified signification system in which each medium reinforces the others.</p>"
+
+                "<h3>Hasler: The Performative Argument (2011)</h3>"
+                "<p>Johann F.W. Hasler's article argues that the Atalanta Fugiens 'requires a performative "
+                "attitude and activity (in the form of singing) and not merely to be read, for its original "
+                "purpose to be fully accomplished.' Hasler identifies the work as a genuine precursor to modern "
+                "multimedia — not merely a book with illustrations and music attached, but an integrated "
+                "multi-sensory experience designed for simultaneous engagement of sight, sound, and intellect. "
+                "He connects the AF to the tradition of <em>Gesprachspiele</em> (conversation games) and to "
+                "the <em>Balet comique de la Reine</em> (1581) as a courtly performance context. Hasler also "
+                "notes that Godwin regarded the fugues as 'conceptual art-works' rather than practical scores, "
+                "but argues that the performative dimension — the act of singing — was essential to the "
+                "meditative function Maier intended.</p>"
+
+                "<h3>Long: Music as Therapy (2012)</h3>"
+                "<p>Kathleen Perry Long's article in <em>Lo Sguardo</em> brings neuroscientific perspectives "
+                "on music therapy into dialogue with Maier's alchemical program. She argues that Maier's "
+                "integration of music was not merely decorative but therapeutically intentional, drawing on "
+                "Marsilio Ficino's theory of music as a vehicle for healing melancholy. Long connects the AF's "
+                "meditative program — 'to be looked at, read, meditated, understood, weighed, sung and "
+                "listened to' — to the systematized prayer and visualization practices developed by Ignatius "
+                "of Loyola and other Counter-Reformation spiritual directors. She proposes that Maier may have "
+                "hoped to address social and political ills through musical-meditative practices, situating the "
+                "AF within the context of the political upheaval and widespread war of the early seventeenth "
+                "century. Her framework of embodied cognition — drawing on Antonio Damasio's work on somatic "
+                "markers — suggests that the AF's multi-sensory design engages pre-rational bodily knowing as "
+                "well as intellectual understanding.</p>"
+
+                "<h3>Forshaw: The Quadrivium and Mytho-Alchemy (2012, 2020)</h3>"
+                "<p>Peter Forshaw reveals that Maier structures each emblem's discourse around the four "
+                "disciplines of the medieval quadrivium: arithmetic, music, geometry, and astronomy. The music "
+                "is thus not an addition to the emblem but one of four parallel mathematical encodings of the "
+                "alchemical concept — each emblem is mapped arithmetically (as the root of the cube), musically "
+                "(as the disdiapason or double octave), geometrically (as a generative point on a flowing "
+                "line), and astronomically (as the center of Saturn, Jupiter, and Mars). This systematic "
+                "mapping has not been fully explored by other scholars. Forshaw also identifies John Farmer's "
+                "1591 collection as the source for forty of the fifty fugues — a discovery made by Maximilian "
+                "Ludwig and published in the Furnace and Fugue edition — which raises questions about Maier's "
+                "role as composer versus arranger.</p>"
+
+                "<h3>Szulakowska: Pythagorean Ratios and Astral Correspondences (2000)</h3>"
+                "<p>Urszula Szulakowska, in <em>The Alchemy of Light</em>, proposes the most provocative "
+                "interpretation of the fugues. She argues that Maier's Pythagorean musical score encoded "
+                "correspondences with celestial forces, noting that the fifth interval (diapente), whose ratio "
+                "of 3:2 Ficino had identified with the proportional distance from earth to the sun, served as "
+                "a musical signifier of solar virtue. This interpretation — that the fugues function as "
+                "instruments of astral correspondence — goes further than most scholars in the field would "
+                "endorse. Forshaw and others in the new historiography of alchemy prefer to read the AF as a "
+                "work of alchemical synthesis rather than active theurgy, and Maier himself describes his "
+                "emblems as 'chemical' rather than magical. Nonetheless, Szulakowska usefully draws attention "
+                "to the Pythagorean mathematical structure of the fugues and to the broader context of "
+                "Ficinian music theory within which Maier's compositions operated.</p>"
+
+                "<h3>Furnace and Fugue: Digital Performances (2020)</h3>"
+                "<p>The Furnace and Fugue digital edition includes newly commissioned vocal recordings of all "
+                "fifty fugues, allowing users to experience the music synchronized with the emblem images and "
+                "texts for the first time in a digital environment. The edition's MEI (Music Encoding "
+                "Initiative) player includes a piano-roll visualization that allows users without musical "
+                "training to see the contrapuntal structure of the fugues in real time — a technological "
+                "realization of the multi-sensory engagement Maier intended. Maximilian Ludwig's discovery "
+                "that forty of the fifty fugues are based on compositions by the Elizabethan composer John "
+                "Farmer (published in <em>Divers and Sundry Waies</em>, 1591) transformed understanding of "
+                "Maier's compositional method: he was primarily an arranger and adapter, selecting pre-existing "
+                "musical material and fitting it to his alchemical program, rather than composing original "
+                "music from scratch.</p>"
+
+                "<h3>The Question of Performance Practice</h3>"
+                "<p>Nothing is known about Maier's ideas on how the fugues were to be performed in practice. "
+                "The subtitle of the Atalanta Fugiens promises compositions 'suitable for singing in couplets, "
+                "to be looked at, read, meditated on, understood, weighed, sung and listened to, not without "
+                "a certain pleasure.' Since Maier served as counsellor to Rudolf II, it is possible that the "
+                "music was performed at the imperial court. The 2006 performance by the early music ensemble "
+                "Arcanum at the International Conference on the History of Alchemy in Philadelphia, the "
+                "ongoing lecture-performances by Les Canards Chantants (from 2014, in collaboration with Donna "
+                "Bilak and Tara Nummedal), and the 2011 complete recording by Ensemble Plus Ultra under "
+                "Michael Noone represent the principal modern attempts to realize Maier's musical vision. "
+                "Whether the fugues were intended for actual performance, private meditation, or — as "
+                "Szulakowska suggests — astral-magical operation, they remain the least understood and most "
+                "intriguing dimension of the Atalanta Fugiens.</p>"
+            ),
+        },
+        {
+            "slug": "social-world",
+            "title": "Maier's Social World",
+            "subtitle": "Courts, Patrons, Associates, and Alchemical Movements",
+            "body": (
+                "<p>Michael Maier moved through some of the most intellectually charged environments in early "
+                "seventeenth-century Europe. His career traces an arc from the Baltic provinces through the "
+                "imperial court in Prague, the royal court in London, the Landgrave's household in Hessen-Kassel, "
+                "and the war-threatened cities of northern Germany — each stop adding new connections, patrons, "
+                "and intellectual influences to the network within which the Atalanta Fugiens was conceived.</p>"
+
+                "<h3>The Court of Rudolf II (1608-1611)</h3>"
+                "<p>Rudolf II's court in Prague was the most important center of alchemical patronage in early "
+                "modern Europe. As Tilton emphasizes, the court represented a rare space of intellectual tolerance "
+                "where Protestant and Catholic humanists formed a single cosmopolitan body of scholars. Maier "
+                "arrived around mid-1608, presenting himself with his claimed Universal Medicine at the Hradcany "
+                "Palace. After a year of navigating courtly obstruction, he entered Rudolf's service on 19 "
+                "September 1609 and was elevated to the nobility ten days later with three titles: Personal "
+                "Physician, Count Palatine, and Knight Exemptus. As Godwin reveals, this ennoblement came "
+                "without land or income, leaving Maier in 'the uncomfortable condition of an unlanded nobleman' "
+                "— barred from modest employment yet having no property. Rudolf's court also hosted Tycho Brahe, "
+                "Johannes Kepler, and the alchemist Sir Edward Kelley, creating an environment where astronomical "
+                "observation, chemical experiment, and Hermetic philosophy intersected.</p>"
+
+                "<h3>England and the Hermetic Circle (1611-1616)</h3>"
+                "<p>After Rudolf's forced abdication (April 1611) and death (January 1612), Maier went to "
+                "England, arriving before Christmas 1611. His Christmas greeting to James I — a folded parchment "
+                "with a Rose-Cross emblem in gold and red, four Latin poems, and a six-part musical canon — is "
+                "the earliest known appearance of the Rose-Cross symbol in England. Godwin argues that Maier's "
+                "five-year English presence was 'almost certainly the fulfilment of a diplomatic mission' "
+                "preparing the ground for the Frederick-Elizabeth dynastic marriage (1613). In London, Maier "
+                "frequented the circle of Hermetic physicians close to the court, including Sir William Paddy, "
+                "James I's personal physician and a close friend of Robert Fludd. Both Maier and Fludd employed "
+                "the same engraver, Matthaeus Merian, and both published with Johann Theodore de Bry, but no "
+                "direct evidence of their meeting survives. The English alchemist Francis Anthony, author of "
+                "<em>Aurum Potabile</em>, was another associate; Maier dedicated his <em>Lusus Serius</em> (1616) "
+                "partly to Anthony. During his English years, Maier also translated Thomas Norton's <em>Ordinal "
+                "of Alchemy</em> into Latin, connecting himself to the English alchemical tradition.</p>"
+
+                "<h3>Moritz of Hessen-Kassel (1616-1620)</h3>"
+                "<p>After returning to Germany in mid-1616, Maier published eleven books in two years from "
+                "Frankfurt, dedicating them to Hermetically-inclined Protestant rulers. He joined the court of "
+                "Moritz von Hessen-Kassel, 'the foremost patron of alchemy in the German states,' as Forshaw "
+                "describes him. Moritz was also the patron of Johannes Hartmann, the first-ever professor of "
+                "chemical medicine at the University of Marburg (appointed 1609). In 1618, Moritz rewarded Maier "
+                "with the title <em>Medicus und Chymicus von Haus aus</em> (Original Physician and Alchemist). "
+                "But the political catastrophe of the Thirty Years' War — the Battle of the White Mountain "
+                "(1620), the collapse of the Protestant cause — destroyed Moritz's ability to support scholarly "
+                "pursuits, and Maier was forced north.</p>"
+
+                "<h3>Maier and Paracelsianism</h3>"
+                "<p>Forshaw is emphatic: 'Michael Maier is not Paracelsian.' The AF works exclusively with the "
+                "Mercury-Sulphur dyad — the medieval alchemical theory — without Paracelsus's third principle "
+                "(Salt). Maier praised Paracelsus's chemical medicines as effective cures but condemned him "
+                "as 'a rogue and overly cynical.' He also preferred the term 'chemical' over 'alchemical' — a "
+                "terminological distinction that Forshaw identifies as significant for the early seventeenth "
+                "century when the two terms were becoming differentiated. At the same time, Maier operated "
+                "within Paracelsian networks: Moritz's court was a center of Paracelsian iatrochemistry, and "
+                "Maier's interest in potable gold connects him to the Paracelsian pharmaceutical tradition "
+                "even as his theoretical framework remains Aristotelian.</p>"
+
+                "<h3>Maier and the Rosicrucians</h3>"
+                "<p>The publication of the Fama Fraternitatis (1614) and Confessio Fraternitatis (1615) during "
+                "Maier's English sojourn intersected with his developing alchemical project. As Tilton argues, "
+                "Maier did not merely sympathize with Rosicrucianism but sought to define it on his own terms "
+                "through works like <em>Silentium post Clamores</em> and <em>Themis Aurea</em>, systematically "
+                "distinguishing genuine natural philosophy from imposture. Godwin observes that Maier conceived "
+                "of a <em>philosophia perennis</em> — a perennial philosophy transmitted through twelve mystery "
+                "schools appearing in twelve nations, from Hermes Trismegistus in Egypt to the Rosicrucian "
+                "Brotherhood in modern Germany. The Atalanta Fugiens can be understood as this tradition's "
+                "visual and musical curriculum: fifty alchemical lessons encoding the wisdom of all twelve "
+                "schools. Maier never claimed membership in the Brotherhood but left 'his readers in no doubt "
+                "of his sympathy with Rosicrucian principles and aspirations.'</p>"
+
+                "<h3>Final Years (1620-1622)</h3>"
+                "<p>Maier spent his last years in Magdeburg, seeking patronage from Markgraf Christian Wilhelm "
+                "von Brandenburg and petitioning Herzog Friedrich III von Schleswig-Holstein-Gottorf to return "
+                "to his Baltic homeland. His final book, <em>Ulysses</em> (published posthumously 1624), "
+                "treats 'how to recover from the shipwreck of bodily goods and fortune through the virtues of "
+                "the intellect' — a valedictory note of Christian Stoicism. Maier died in Magdeburg in the late "
+                "summer of 1622, aged approximately 53. As Tilton frames it, his death came as the Rosicrucian "
+                "hopes and Calvinist political ambitions that had nourished his work collapsed into continental "
+                "conflict. His travels had taken him from Kiel to Padua, Prague, London, Frankfurt, Kassel, "
+                "and Magdeburg — almost full circle.</p>"
+            ),
+        },
+        {
+            "slug": "jung",
+            "title": "Maier According to Jung",
+            "subtitle": "Psychological Alchemy and Its Critics",
+            "body": (
+                "<p>Carl Gustav Jung's engagement with Michael Maier's Atalanta Fugiens in <em>Psychology and "
+                "Alchemy</em> (1944) and subsequent works transformed the reception of alchemical imagery in "
+                "the twentieth century — and provoked a counter-reaction from historians of science that "
+                "continues to shape Maier scholarship today. Understanding this debate is essential for "
+                "situating the Atalanta Fugiens within the broader historiography of alchemy.</p>"
+
+                "<h3>Jung's Reading</h3>"
+                "<p>Jung reproduced and analyzed numerous Atalanta Fugiens plates in <em>Psychology and "
+                "Alchemy</em>, reading them as expressions of the individuation process — the psychological "
+                "journey toward wholeness that Jung identified as the central goal of both alchemy and "
+                "psychotherapy. The coniunctio of Sol and Luna became the integration of conscious and "
+                "unconscious; the nigredo became the confrontation with the shadow; the philosopher's stone "
+                "became the Self. Jung treated the alchemists not as proto-chemists or mystical dreamers but "
+                "as pioneers of depth psychology who had projected their inner transformations onto the "
+                "behavior of matter in the flask. The AF's imagery — hermaphrodites, devouring wolves, kings "
+                "in steam baths, dragons locked in combat with women — provided Jung with a visual vocabulary "
+                "for psychological processes that he argued were universal and archetypal.</p>"
+
+                "<h3>The Newman-Principe Critique</h3>"
+                "<p>The Jungian reading of alchemy was challenged most forcefully by William R. Newman and "
+                "Lawrence Principe in a series of publications from the 1990s onward. They argued that Jung "
+                "had fundamentally misunderstood alchemy by treating it as symbolic psychology rather than as "
+                "a genuine natural-philosophical practice with real laboratory operations. Newman and Principe "
+                "demonstrated that many alchemical texts that Jung read as psychological allegories were in "
+                "fact descriptions of reproducible chemical procedures — the 'green lion' was not a Jungian "
+                "archetype but a specific mineral acid, the 'wolf devouring the king' was not a myth of "
+                "ego-death but a description of antimony purifying gold. Their program of 'chymistry' — a "
+                "term they introduced to avoid the anachronistic split between 'alchemy' and 'chemistry' — "
+                "insisted on reading alchemical texts within their original technical and intellectual context "
+                "rather than as timeless expressions of the collective unconscious.</p>"
+
+                "<h3>Tilton's Mediation</h3>"
+                "<p>Hereward Tilton's <em>The Quest for the Phoenix</em> (2003) represents the most "
+                "sophisticated attempt to navigate between the Jungian and Newman-Principe positions in "
+                "relation to Maier specifically. Tilton explicitly critiques Jung's interpretation of alchemy "
+                "while acknowledging that a purely laboratory-reductive reading is equally inadequate for "
+                "understanding Maier. He argues for a 'spiritual alchemy' grounded not in Jungian psychology "
+                "but in the Aristotelian elemental philosophy and the <em>prisca sapientia</em> tradition that "
+                "Maier himself invoked. In Tilton's reading, Maier perceived his own life journey as mirroring "
+                "the stages of the alchemical Great Work — not because he was unconsciously projecting (as Jung "
+                "would have it) but because he consciously understood the alchemical process as a model for "
+                "both material transformation and personal-spiritual development. The phoenix motif in Maier's "
+                "final works represents this deliberate parallelism: the alchemist's quest for the stone and "
+                "the individual's quest for wisdom are recognized as structurally identical without being "
+                "reduced to either mere chemistry or mere psychology.</p>"
+
+                "<h3>Forshaw and Smith: The New Historiography</h3>"
+                "<p>The current consensus among historians of alchemy — represented by scholars like Peter "
+                "Forshaw and Pamela H. Smith — largely follows the Newman-Principe critique of Jungian readings "
+                "while acknowledging the multi-dimensional character of alchemical practice that Tilton "
+                "identifies. Forshaw's characterization of Maier as practicing 'mytho-alchemy' — the reading "
+                "of classical myths as encoded chemical knowledge — avoids both the Jungian projection model "
+                "and the reductive laboratory model. Maier, in Forshaw's reading, is neither a proto-Jungian "
+                "nor a disguised bench chemist but a humanist scholar who believed that the myths of antiquity "
+                "contained genuine natural-philosophical truths, accessible to those who knew the allegorical "
+                "code. Smith's framework of artisanal knowledge — where alchemy is understood as a sophisticated "
+                "craft practice rather than either mysticism or modern chemistry — provides the most grounded "
+                "context for understanding what the Atalanta Fugiens actually is: a work of alchemical synthesis "
+                "that brings together inherited textual traditions, visual allegory, musical composition, and "
+                "natural philosophy into a multi-sensory pedagogical program.</p>"
+
+                "<h3>Why This Debate Matters</h3>"
+                "<p>The Jung debate matters for this site because it determines how we read every emblem. If "
+                "the wolf devouring the king (Emblem XXIV) is a Jungian archetype, it means one thing; if it "
+                "is a description of antimony refining (as Principe demonstrates), it means another; if it is "
+                "a mytho-alchemical allegory encoding chemical knowledge in classical narrative form (as "
+                "Forshaw and De Jong argue), it means something richer than either reduction alone. The approach "
+                "taken on this site follows De Jong's source-critical method as primary, enriched by Forshaw's "
+                "mytho-alchemical framing, Tilton's spiritual-alchemy contextualization, and Smith's artisanal-"
+                "knowledge perspective — while acknowledging that Jung's popularization of alchemical imagery "
+                "did more than any other single factor to bring the Atalanta Fugiens to modern attention.</p>"
+            ),
+        },
+    ]
+
+    # Build individual essay pages
+    for essay in ESSAYS:
+        body_html = f"""
+        <div class="page-content">
+            <a href="index.html" class="back-link">&larr; Essays</a>
+            <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{essay['title']}</h1>
+            <p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:1.5rem;font-style:italic">{essay['subtitle']}</p>
+            <div class="ai-banner">This essay was drafted by an AI language model based on the scholarly sources in our corpus. It has not been reviewed by a human scholar. Citations are provided but should be verified against the original sources.</div>
+            <div style="font-size:0.95rem;line-height:1.8;margin-top:1.5rem">{essay['body']}</div>
+        </div>"""
+        html = page_shell(essay['title'], body_html, active_nav='Essays', depth=1)
+        (essays_dir / f'{essay["slug"]}.html').write_text(html, encoding='utf-8')
+
+    # Build essays index
+    cards = ''
+    for essay in ESSAYS:
+        cards += f"""
+        <a href="{essay['slug']}.html" class="card" style="text-decoration:none;color:inherit">
+            <div class="card-body">
+                <div class="card-sig">{essay['title']}</div>
+                <div class="card-desc">{essay['subtitle']}</div>
+                <div style="margin-top:0.5rem"><span style="font-size:0.8rem;color:var(--accent);font-family:var(--font-sans)">Read essay &rarr;</span></div>
+            </div>
+        </a>"""
+
+    # Paracelsianism essay
+    ESSAYS.append({
+        "slug": "paracelsianism",
+        "title": "Maier, Paracelsianism, and Chemical Medicine",
+        "subtitle": "An Aristotelian Among the Paracelsians",
+        "body": (
+            "<p>Michael Maier's relationship to Paracelsianism — the revolutionary medical and chemical "
+            "philosophy founded by Theophrastus von Hohenheim (Paracelsus, 1493-1541) — is one of the most "
+            "instructive puzzles in early modern intellectual history. Maier moved within exclusively "
+            "Paracelsian networks, published with Paracelsian publishers, served patrons who championed "
+            "Paracelsian medicine, and praised Paracelsus's chemical cures — yet his own theoretical framework "
+            "remained stubbornly Aristotelian and Galenic in its foundations. Understanding this paradox "
+            "illuminates both Maier's distinctive intellectual position and the broader transformation of "
+            "alchemy into chemistry in the seventeenth century.</p>"
+
+            "<h3>The Paracelsian Revolution</h3>"
+            "<p>Paracelsus rejected the humoral medicine of Galen and Avicenna that had dominated European "
+            "medical practice for centuries. In its place he proposed a chemical philosophy based on three "
+            "principles — Salt (the body), Sulphur (the soul), and Mercury (the spirit) — which he called "
+            "the <em>Tria Prima</em>. Disease, in the Paracelsian system, was not an imbalance of humors but "
+            "a localized invasion by a specific pathological agent that could be treated with targeted chemical "
+            "remedies — mineral preparations, metallic salts, distilled essences — rather than the traditional "
+            "herbal simples and dietary regimes of Galenic practice. As Allen G. Debus documented in <em>The "
+            "Chemical Philosophy</em> (1977), Paracelsian iatrochemistry provoked one of the fiercest "
+            "intellectual controversies of the sixteenth century, with university medical faculties largely "
+            "hostile and princely courts often sympathetic.</p>"
+
+            "<h3>Maier's Paracelsian Networks</h3>"
+            "<p>Maier operated within deeply Paracelsian institutional environments. Emperor Rudolf II's "
+            "court in Prague was a haven for Paracelsian practitioners, and Moritz von Hessen-Kassel — Maier's "
+            "most important patron after Rudolf — was the foremost champion of Paracelsian medicine in the "
+            "German states. As Forshaw notes, Moritz appointed Johannes Hartmann as the first-ever professor "
+            "of chemical medicine at the University of Marburg in 1609, institutionalizing the Paracelsian "
+            "program within the academic establishment. Maier's publishers — Lucas Jennis and Johann Theodore "
+            "de Bry, both based in Frankfurt and Oppenheim — were the principal disseminators of Paracelsian "
+            "literature in the early seventeenth century. Bruce T. Moran's <em>A Cultural History of Chemistry "
+            "in the Early Modern Age</em> demonstrates that these publishing networks constituted a coherent "
+            "Paracelsian infrastructure linking courts, universities, and print shops across Central Europe.</p>"
+
+            "<h3>Forshaw's Key Insight: Maier is Not Paracelsian</h3>"
+            "<p>Despite these Paracelsian affiliations, Peter Forshaw is emphatic: 'Michael Maier is not "
+            "Paracelsian.' The Atalanta Fugiens works exclusively with the Mercury-Sulphur dyad — the medieval "
+            "alchemical theory derived from Jabir ibn Hayyan and transmitted through the Latin alchemical "
+            "corpus — without ever adopting Paracelsus's third principle (Salt). As Forshaw observes, 'you "
+            "can argue perhaps that the apple is the thing that really fixes Atalanta... but actually he never "
+            "really gives any Paracelsian third principle all the way through the book.' The three voices of "
+            "the fugues represent Atalanta (Mercury), Hippomenes (Sulphur), and the Golden Apple (the "
+            "catalytic agent) — not the Paracelsian Tria Prima of Mercury, Sulphur, and Salt.</p>"
+
+            "<h3>A Moderate Position</h3>"
+            "<p>Maier's stance toward Paracelsus was nuanced rather than dismissive. Forshaw characterizes him "
+            "as 'more conventional... much more a follower of Aristotle and Galen, more traditional, more "
+            "conservative medicine.' Maier condemned Paracelsus as 'a rogue and overly cynical' while "
+            "simultaneously praising the fact that 'his chemical medicines really do cure things that couldn't "
+            "be cured by previous medicine.' This moderate position — accepting Paracelsian therapeutic results "
+            "while rejecting Paracelsian theoretical foundations — placed Maier in a distinctive intellectual "
+            "space. He was neither a Paracelsian revolutionary nor a Galenic reactionary but what Forshaw calls "
+            "'a sort of moderate,' drawing on whichever tradition served his purposes.</p>"
+
+            "<h3>Chemical, Not Alchemical</h3>"
+            "<p>One of Forshaw's most telling observations is that Maier preferred the term 'chemical' over "
+            "'alchemical' — 'he has a sort of reluctance to actually describe anything he does as alchemical.' "
+            "This terminological distinction, which may seem trivial, reflects the broader transformation "
+            "underway in the early seventeenth century. The word 'alchemy' was becoming associated with "
+            "fraudulent gold-making, while 'chemistry' was emerging as a respectable label for the legitimate "
+            "study of material transformation. Maier's insistence on 'chemical' terminology, combined with his "
+            "explicit statement that his work is 'natural, not supernatural,' positions him within the "
+            "emerging scientific culture rather than the occultist tradition — even as his methods and sources "
+            "remain rooted in the medieval alchemical corpus that De Jong so meticulously maps.</p>"
+
+            "<h3>Potable Gold and Chemical Medicine</h3>"
+            "<p>Maier's <em>De Circulo Physico, Quadrato</em> (1616) is devoted to the concept of potable "
+            "gold (<em>aurum potabile</em>) — the supreme Paracelsian medicine, a preparation of gold in "
+            "drinkable form that was believed to confer solar vitality on the human body. Maier argued that "
+            "gold was 'the sun in the material sphere, just as the sun was the divine principle in the "
+            "heavens.' Szulakowska notes that both Maier and Ficino discussed potable gold as a cure for "
+            "melancholy, connecting it to the broader project of iatrochemistry. Godwin reveals that Maier "
+            "claimed to have produced the Universal Medicine during his Kiel laboratory period (1602-1608), "
+            "describing it as 'of a bright lemon color.' His English associate Francis Anthony, to whom he "
+            "dedicated the <em>Lusus Serius</em>, had published his own treatise on <em>Aurum Potabile</em> "
+            "— a work that provoked fierce controversy with the London College of Physicians. Maier's "
+            "interest in potable gold demonstrates that he was not merely a theoretical alchemist but a "
+            "practitioner of chemical medicine in the Paracelsian mode, even if his theory was Aristotelian.</p>"
+
+            "<h3>The Atalanta Fugiens as Chemical Synthesis</h3>"
+            "<p>Pamela H. Smith's characterization of the Atalanta Fugiens as a work of alchemical synthesis "
+            "— rather than either a laboratory manual of recipes or a mystical meditation — captures Maier's "
+            "position most accurately. The AF assembles inherited textual traditions (identified by De Jong), "
+            "classical mythological allegories (analyzed by Forshaw), Pythagorean mathematical structures "
+            "(noted by Szulakowska), and medical-chemical knowledge (highlighted by Pagel) into a multi-sensory "
+            "pedagogical program. It is neither Paracelsian nor anti-Paracelsian but something more capacious: "
+            "a humanist synthesis that draws on every available intellectual tradition — Aristotelian, "
+            "Hermetic, Pseudo-Lullian, and yes, Paracelsian — to construct a comprehensive curriculum of "
+            "chemical philosophy. Maier's genius, as De Jong's source-critical method reveals, was not "
+            "invention but orchestration: the combination of inherited wisdom into a form that no predecessor "
+            "had imagined.</p>"
+        ),
+    })
+
+    # Add planned essays too
+    planned = [
+        ("Playful Reading in Atalanta Fugiens", "The lusus serius and Renaissance pedagogy of play"),
+    ]
+    for title, desc in planned:
+        cards += f"""
+        <div class="card" style="cursor:default">
+            <div class="card-body">
+                <div class="card-sig">{title}</div>
+                <div class="card-desc">{desc}</div>
+                <div style="margin-top:0.5rem"><span class="review-badge">COMING SOON</span></div>
+            </div>
+        </div>"""
+
+    idx_body = f"""
+    <div class="page-content">
+        <h2>Essays</h2>
+        <p>AI-drafted essays synthesizing our corpus of scholarship on <em>Atalanta Fugiens</em>.</p>
+        <div class="gallery" style="grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));gap:1rem;padding:1rem 0">
+            {cards}
+        </div>
+    </div>"""
+    html = page_shell('Essays', idx_body, active_nav='Essays', depth=1)
+    (essays_dir / 'index.html').write_text(html, encoding='utf-8')
+    print(f"  essays/: {len(ESSAYS)} essays + {len(planned)} planned")
+
+
 def build_maier_page(conn):
     """Build 'Emblems According to Maier' — each emblem with large image, epigram summary, and discourse summary."""
 
@@ -1691,8 +2143,9 @@ def main():
     build_dictionary_pages(conn)
     build_timeline(conn)
     build_sources(conn)
-    build_essays(conn)
+    # build_essays(conn)  # Replaced by build_essay_pages
     build_maier_page(conn)
+    build_essay_pages(conn)
     build_works_page()
     build_szulakowska_page()
     build_music_page()
