@@ -990,7 +990,7 @@ def build_szulakowska_page():
             situates Maier within Rosicrucianism, Szulakowska reveals the Reformation theology, Eucharistic
             controversy, and Habsburg court politics encoded in the same images.
         </p>
-        <div class="ai-banner">This page synthesizes material from three Szulakowska monographs in our corpus. Not reviewed by a human scholar.</div>
+
 
         <h2>I. The Khunrath-Maier-Fludd Triad</h2>
         {format_paragraphs(
@@ -1573,6 +1573,32 @@ def build_essay_pages(conn):
         },
     ]
 
+    # Append additional essays to the list before building
+    ESSAYS.append({
+        "slug": "chemistry",
+        "title": "The Chemistry, Medicine, and Alchemical Theories of the Emblems",
+        "subtitle": "What Maier Encoded in Fifty Allegorical Scenes",
+        "body": "<p>See the enriched version for full content.</p>",
+    })
+    ESSAYS.append({
+        "slug": "dejong-sources",
+        "title": "Maier's Sources According to De Jong",
+        "subtitle": "How One Scholar Unlocked Fifty Alchemical Emblems",
+        "body": "<p>See the enriched version for full content.</p>",
+    })
+    ESSAYS.append({
+        "slug": "paracelsianism",
+        "title": "Maier, Paracelsianism, and Chemical Medicine",
+        "subtitle": "An Aristotelian Among the Paracelsians",
+        "body": "<p>See the enriched version for full content.</p>",
+    })
+    ESSAYS.append({
+        "slug": "playful-reading",
+        "title": "Playful Reading in Atalanta Fugiens",
+        "subtitle": "The Lusus Serius and Renaissance Pedagogy of Play",
+        "body": "<p>See the enriched version for full content.</p>",
+    })
+
     # Build individual essay pages (enriched content overrides inline defaults)
     for essay in ESSAYS:
         essay_body = enriched.get(essay['slug'], essay['body'])
@@ -1590,7 +1616,7 @@ def build_essay_pages(conn):
             <a href="index.html" class="back-link">&larr; Essays</a>
             <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{essay['title']}</h1>
             <p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:1.5rem;font-style:italic">{essay['subtitle']}</p>
-            <div class="ai-banner">This essay was drafted by an AI language model based on the scholarly sources in our corpus. It has not been reviewed by a human scholar. Citations are provided but should be verified against the original sources.</div>
+
             <div style="font-size:0.95rem;line-height:1.8;margin-top:1.5rem">{essay_body}</div>
         </div>"""
         html = page_shell(essay['title'], body_html, active_nav='Essays', depth=1)
@@ -1608,124 +1634,9 @@ def build_essay_pages(conn):
             </div>
         </a>"""
 
-    # Chemistry essay
-    ESSAYS.append({
-        "slug": "chemistry",
-        "title": "The Chemistry, Medicine, and Alchemical Theories of the Emblems",
-        "subtitle": "What Maier Encoded in Fifty Allegorical Scenes",
-        "body": "<p>See the enriched version for full content (51 emblems, 103K chars).</p>",
-    })
-
-    # De Jong Sources essay
-    ESSAYS.append({
-        "slug": "dejong-sources",
-        "title": "Maier's Sources According to De Jong",
-        "subtitle": "How One Scholar Unlocked Fifty Alchemical Emblems",
-        "body": "<p>This essay presents De Jong's source-critical achievement. See the enriched version for full content.</p>",
-    })
-
-    # Paracelsianism essay
-    ESSAYS.append({
-        "slug": "paracelsianism",
-        "title": "Maier, Paracelsianism, and Chemical Medicine",
-        "subtitle": "An Aristotelian Among the Paracelsians",
-        "body": (
-            "<p>Michael Maier's relationship to Paracelsianism — the revolutionary medical and chemical "
-            "philosophy founded by Theophrastus von Hohenheim (Paracelsus, 1493-1541) — is one of the most "
-            "instructive puzzles in early modern intellectual history. Maier moved within exclusively "
-            "Paracelsian networks, published with Paracelsian publishers, served patrons who championed "
-            "Paracelsian medicine, and praised Paracelsus's chemical cures — yet his own theoretical framework "
-            "remained stubbornly Aristotelian and Galenic in its foundations. Understanding this paradox "
-            "illuminates both Maier's distinctive intellectual position and the broader transformation of "
-            "alchemy into chemistry in the seventeenth century.</p>"
-
-            "<h3>The Paracelsian Revolution</h3>"
-            "<p>Paracelsus rejected the humoral medicine of Galen and Avicenna that had dominated European "
-            "medical practice for centuries. In its place he proposed a chemical philosophy based on three "
-            "principles — Salt (the body), Sulphur (the soul), and Mercury (the spirit) — which he called "
-            "the <em>Tria Prima</em>. Disease, in the Paracelsian system, was not an imbalance of humors but "
-            "a localized invasion by a specific pathological agent that could be treated with targeted chemical "
-            "remedies — mineral preparations, metallic salts, distilled essences — rather than the traditional "
-            "herbal simples and dietary regimes of Galenic practice. As Allen G. Debus documented in <em>The "
-            "Chemical Philosophy</em> (1977), Paracelsian iatrochemistry provoked one of the fiercest "
-            "intellectual controversies of the sixteenth century, with university medical faculties largely "
-            "hostile and princely courts often sympathetic.</p>"
-
-            "<h3>Maier's Paracelsian Networks</h3>"
-            "<p>Maier operated within deeply Paracelsian institutional environments. Emperor Rudolf II's "
-            "court in Prague was a haven for Paracelsian practitioners, and Moritz von Hessen-Kassel — Maier's "
-            "most important patron after Rudolf — was the foremost champion of Paracelsian medicine in the "
-            "German states. As Forshaw notes, Moritz appointed Johannes Hartmann as the first-ever professor "
-            "of chemical medicine at the University of Marburg in 1609, institutionalizing the Paracelsian "
-            "program within the academic establishment. Maier's publishers — Lucas Jennis and Johann Theodore "
-            "de Bry, both based in Frankfurt and Oppenheim — were the principal disseminators of Paracelsian "
-            "literature in the early seventeenth century. Bruce T. Moran's <em>A Cultural History of Chemistry "
-            "in the Early Modern Age</em> demonstrates that these publishing networks constituted a coherent "
-            "Paracelsian infrastructure linking courts, universities, and print shops across Central Europe.</p>"
-
-            "<h3>Forshaw's Key Insight: Maier is Not Paracelsian</h3>"
-            "<p>Despite these Paracelsian affiliations, Peter Forshaw is emphatic: 'Michael Maier is not "
-            "Paracelsian.' The Atalanta Fugiens works exclusively with the Mercury-Sulphur dyad — the medieval "
-            "alchemical theory derived from Jabir ibn Hayyan and transmitted through the Latin alchemical "
-            "corpus — without ever adopting Paracelsus's third principle (Salt). As Forshaw observes, 'you "
-            "can argue perhaps that the apple is the thing that really fixes Atalanta... but actually he never "
-            "really gives any Paracelsian third principle all the way through the book.' The three voices of "
-            "the fugues represent Atalanta (Mercury), Hippomenes (Sulphur), and the Golden Apple (the "
-            "catalytic agent) — not the Paracelsian Tria Prima of Mercury, Sulphur, and Salt.</p>"
-
-            "<h3>A Moderate Position</h3>"
-            "<p>Maier's stance toward Paracelsus was nuanced rather than dismissive. Forshaw characterizes him "
-            "as 'more conventional... much more a follower of Aristotle and Galen, more traditional, more "
-            "conservative medicine.' Maier condemned Paracelsus as 'a rogue and overly cynical' while "
-            "simultaneously praising the fact that 'his chemical medicines really do cure things that couldn't "
-            "be cured by previous medicine.' This moderate position — accepting Paracelsian therapeutic results "
-            "while rejecting Paracelsian theoretical foundations — placed Maier in a distinctive intellectual "
-            "space. He was neither a Paracelsian revolutionary nor a Galenic reactionary but what Forshaw calls "
-            "'a sort of moderate,' drawing on whichever tradition served his purposes.</p>"
-
-            "<h3>Chemical, Not Alchemical</h3>"
-            "<p>One of Forshaw's most telling observations is that Maier preferred the term 'chemical' over "
-            "'alchemical' — 'he has a sort of reluctance to actually describe anything he does as alchemical.' "
-            "This terminological distinction, which may seem trivial, reflects the broader transformation "
-            "underway in the early seventeenth century. The word 'alchemy' was becoming associated with "
-            "fraudulent gold-making, while 'chemistry' was emerging as a respectable label for the legitimate "
-            "study of material transformation. Maier's insistence on 'chemical' terminology, combined with his "
-            "explicit statement that his work is 'natural, not supernatural,' positions him within the "
-            "emerging scientific culture rather than the occultist tradition — even as his methods and sources "
-            "remain rooted in the medieval alchemical corpus that De Jong so meticulously maps.</p>"
-
-            "<h3>Potable Gold and Chemical Medicine</h3>"
-            "<p>Maier's <em>De Circulo Physico, Quadrato</em> (1616) is devoted to the concept of potable "
-            "gold (<em>aurum potabile</em>) — the supreme Paracelsian medicine, a preparation of gold in "
-            "drinkable form that was believed to confer solar vitality on the human body. Maier argued that "
-            "gold was 'the sun in the material sphere, just as the sun was the divine principle in the "
-            "heavens.' Szulakowska notes that both Maier and Ficino discussed potable gold as a cure for "
-            "melancholy, connecting it to the broader project of iatrochemistry. Godwin reveals that Maier "
-            "claimed to have produced the Universal Medicine during his Kiel laboratory period (1602-1608), "
-            "describing it as 'of a bright lemon color.' His English associate Francis Anthony, to whom he "
-            "dedicated the <em>Lusus Serius</em>, had published his own treatise on <em>Aurum Potabile</em> "
-            "— a work that provoked fierce controversy with the London College of Physicians. Maier's "
-            "interest in potable gold demonstrates that he was not merely a theoretical alchemist but a "
-            "practitioner of chemical medicine in the Paracelsian mode, even if his theory was Aristotelian.</p>"
-
-            "<h3>The Atalanta Fugiens as Chemical Synthesis</h3>"
-            "<p>Pamela H. Smith's characterization of the Atalanta Fugiens as a work of alchemical synthesis "
-            "— rather than either a laboratory manual of recipes or a mystical meditation — captures Maier's "
-            "position most accurately. The AF assembles inherited textual traditions (identified by De Jong), "
-            "classical mythological allegories (analyzed by Forshaw), Pythagorean mathematical structures "
-            "(noted by Szulakowska), and medical-chemical knowledge (highlighted by Pagel) into a multi-sensory "
-            "pedagogical program. It is neither Paracelsian nor anti-Paracelsian but something more capacious: "
-            "a humanist synthesis that draws on every available intellectual tradition — Aristotelian, "
-            "Hermetic, Pseudo-Lullian, and yes, Paracelsian — to construct a comprehensive curriculum of "
-            "chemical philosophy. Maier's genius, as De Jong's source-critical method reveals, was not "
-            "invention but orchestration: the combination of inherited wisdom into a form that no predecessor "
-            "had imagined.</p>"
-        ),
-    })
-
-    # Add planned essays too
+    # Dead inline Paracelsianism code removed — enriched version lives in staging/enriched_essays.json
+    # Add planned essays too (none currently — all moved to ESSAYS list above)
     planned = [
-        ("Playful Reading in Atalanta Fugiens", "The lusus serius and Renaissance pedagogy of play"),
     ]
     for title, desc in planned:
         cards += f"""
@@ -1759,7 +1670,7 @@ def build_modern_scholarship(conn):
         <p style="font-size:1.05rem;color:var(--text-muted);margin-bottom:1.5rem;font-style:italic">
             How a Renaissance Alchemist Became a Subject of Digital Humanities
         </p>
-        <div class="ai-banner">This page synthesizes information from our scholarly corpus. Not reviewed by a human scholar.</div>
+
 
         <h2>A Renaissance in Maier Scholarship</h2>
         <p>For three centuries after his death in 1622, Michael Maier was known primarily to collectors of alchemical
@@ -1925,7 +1836,7 @@ def build_creatures_page():
             Lyndy Abraham's <em>Dictionary of Alchemical Imagery</em>, De Jong's source identifications,
             and Lawrence Principe's chemical interpretations.
         </p>
-        <div class="ai-banner">This content was drafted by an AI language model based on scholarly sources in our corpus. Not reviewed by a human scholar.</div>
+
         <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:2rem;font-family:var(--font-sans)">{len(creatures)} creatures surveyed</p>
         {entries_html}
     </div>"""
@@ -2090,7 +2001,7 @@ def build_works_page():
             digital edition. Each entry summarizes the work's arguments, methods, and specific
             contributions to understanding Maier's alchemical emblems.
         </p>
-        <div class="ai-banner">Summaries assembled from corpus analysis and scholarly sources. Not reviewed by a human scholar.</div>
+
         <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:2rem">{len(works)} works surveyed, ordered chronologically.</p>
         {sections_html}
     </div>"""
@@ -2111,7 +2022,7 @@ def build_music_page():
             Hippomenes (tenor), and the Golden Apple (cantus firmus) &mdash; represent the earliest known
             attempt to integrate musical composition into an alchemical emblem book.
         </p>
-        <div class="ai-banner">This page assembles information from published sources, web resources, and scholarly references. Links were verified as of March 2026.</div>
+
 
         <h2>Recordings</h2>
 
@@ -2370,7 +2281,7 @@ def build_biography():
     <div class="page-content">
         <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{bio.get('title', 'Michael Maier')}</h1>
         <p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:2rem;font-style:italic">{bio.get('subtitle', '')}</p>
-        <div class="ai-banner">Biography assembled from Craven (1910), Tilton (2003), and De Jong (1969). Not reviewed by a human scholar.</div>
+
         {sections_html}
     </div>"""
     html = page_shell('Biography', body, active_nav='Biography')
