@@ -2,10 +2,18 @@
 seed_emblem_analyses.py — Assemble structured analysis HTML for each emblem
 from existing database content (motto, discourse, scholarly refs, sources, terms).
 
+Template synthesizes:
+- What the emblem depicts (motto + image description)
+- Maier's discourse summary (what he says about the emblem)
+- De Jong's source identifications (which texts Maier draws from)
+- Alchemical significance (scholarly commentary)
+- Related alchemical concepts (dictionary term links)
+
 Deterministic: no LLM calls. Assembles template from DB fields.
 Idempotent: overwrites analysis_html on each run.
 """
 
+import re
 import sqlite3
 import html
 from pathlib import Path
@@ -14,30 +22,74 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "db" / "atalanta.db"
 
 AI_BANNER = (
-    '<div class="ai-banner">Assembled from De Jong (1969) corpus extraction. '
-    'Not reviewed by a human scholar. Citations should be verified against original sources.</div>'
+    '<div class="ai-banner">Assembled from De Jong (1969) corpus extraction '
+    'and scholarly references. Not reviewed by a human scholar.</div>'
 )
 
 
 def esc(text):
-    """HTML-escape text, return empty string for None."""
     if not text:
         return ''
     return html.escape(str(text))
 
 
-def build_analysis(conn, emblem_id, num, roman, motto, discourse):
+def clean_ocr_for_display(text):
+    """Light cleanup of OCR text for readable display."""
+    if not text:
+        return ''
+    # Fix run-together words at common boundaries
+    text = re.sub(r'([a-z])([A-Z])', r'\1 \2', text)
+    text = re.sub(r'\.([A-Z])', r'. \1', text)
+    text = re.sub(r',([A-Za-z])', r', \1', text)
+    text = re.sub(r'  +', ' ', text)
+    # Remove page markers and running headers
+    text = re.sub(r'## Page \d+', '', text)
+    text = re.sub(r'\d+\s*EMBLEM\s*[IVXLCDM]+', '', text)
+    text = re.sub(r'EMBLEM\s*[IVXLCDM]+\s*\d+', '', text)
+    return text.strip()
+
+
+def build_analysis(conn, emblem_id, num, roman, motto, discourse, stage):
     """Build analysis HTML for one emblem."""
     sections = []
 
-    # --- Overview ---
+    # --- 1. Overview: What This Emblem Presents ---
+    overview_parts = []
     if motto:
-        overview = f'<p>Emblem {roman or "F"} bears the motto: <em>"{esc(motto[:300])}"</em></p>'
-    else:
-        overview = f'<p>Emblem {roman or "F"}.</p>'
-    sections.append(f'<h3>Overview</h3>\n{overview}')
+        clean_motto = clean_ocr_for_display(motto)
+        overview_parts.append(
+            f'Emblem {roman or "F"} bears the motto: <em>"{esc(clean_motto[:200])}"</em>'
+        )
+    if stage:
+        stage_names = {
+            'NIGREDO': 'nigredo (blackening/putrefaction)',
+            'ALBEDO': 'albedo (whitening/purification)',
+            'CITRINITAS': 'citrinitas (yellowing/vivification)',
+            'RUBEDO': 'rubedo (reddening/completion)',
+        }
+        stage_desc = stage_names.get(stage, stage)
+        overview_parts.append(
+            f'This emblem belongs to the <em>{stage_desc}</em> phase of the alchemical Work.'
+        )
+    if overview_parts:
+        sections.append(
+            '<h3>Overview</h3>\n<p>' + ' '.join(overview_parts) + '</p>'
+        )
 
-    # --- Source Texts ---
+    # --- 2. Maier's Discourse: What the Author Says ---
+    if discourse and len(discourse) > 50:
+        clean_disc = clean_ocr_for_display(discourse)
+        # Take a meaningful excerpt — first 600 chars, ending at a sentence boundary
+        excerpt = clean_disc[:600]
+        last_period = excerpt.rfind('.')
+        if last_period > 200:
+            excerpt = excerpt[:last_period + 1]
+        sections.append(
+            f'<h3>Maier\'s Discourse</h3>\n'
+            f'<p>{esc(excerpt)}</p>'
+        )
+
+    # --- 3. Source Texts: De Jong's Identifications ---
     sources = conn.execute("""
         SELECT sa.name, sa.authority_id, sa.type, es.relationship_type
         FROM emblem_sources es
@@ -57,54 +109,98 @@ def build_analysis(conn, emblem_id, num, roman, motto, discourse):
                 for s in motto_sources
             )
             parts.append(f'De Jong identifies the motto source as {names}.')
+
         if disc_sources:
-            names = ', '.join(
-                f'<a href="../sources.html#{s[1]}" class="cross-link">{esc(s[0])}</a>'
-                for s in disc_sources
-            )
-            parts.append(f'The discourse draws on {names}.')
+            # Group by type for clearer presentation
+            by_type = {}
+            for s in disc_sources:
+                by_type.setdefault(s[2], []).append(s)
 
-        sections.append(f'<h3>Maier\'s Source Texts</h3>\n<p>{" ".join(parts)}</p>')
+            for stype, slist in by_type.items():
+                names = ', '.join(
+                    f'<a href="../sources.html#{s[1]}" class="cross-link">{esc(s[0])}</a>'
+                    for s in slist
+                )
+                type_label = {
+                    'ALCHEMICAL': 'alchemical',
+                    'CLASSICAL': 'classical',
+                    'BIBLICAL': 'biblical',
+                    'HERMETIC': 'Hermetic',
+                    'PATRISTIC': 'patristic',
+                    'MOVEMENT': 'movement',
+                }.get(stype, '')
+                if type_label:
+                    parts.append(f'The discourse draws on {type_label} sources: {names}.')
+                else:
+                    parts.append(f'The discourse also references {names}.')
 
-    # --- Scholarly Commentary Summary ---
+        sections.append(
+            f'<h3>Source Texts</h3>\n'
+            f'<p>De Jong\'s source-critical analysis identifies the textual traditions '
+            f'Maier draws upon for this emblem.</p>\n'
+            f'<p>{" ".join(parts)}</p>'
+        )
+
+    # --- 4. Scholarly Commentary ---
     refs = conn.execute("""
-        SELECT sr.summary, b.author, sr.confidence
+        SELECT sr.summary, b.author, sr.confidence, sr.interpretation_type
         FROM scholarly_refs sr
         JOIN bibliography b ON sr.bib_id = b.id
         WHERE sr.emblem_id = ?
         ORDER BY b.af_relevance, sr.confidence
-        LIMIT 3
     """, (emblem_id,)).fetchall()
 
     if refs:
         ref_parts = []
-        for summary, author, conf in refs:
-            if summary:
-                # Take first 200 chars of summary
-                short = summary[:200] + ('...' if len(summary) > 200 else '')
-                ref_parts.append(f'{esc(author)} notes: {esc(short)}')
-        if ref_parts:
-            sections.append(
-                '<h3>Alchemical Significance</h3>\n<p>' +
-                '</p>\n<p>'.join(ref_parts) + '</p>'
+        for summary, author, conf, interp_type in refs:
+            if not summary:
+                continue
+            clean_summary = clean_ocr_for_display(summary)
+            # Take first 400 chars at a sentence boundary
+            excerpt = clean_summary[:400]
+            last_period = excerpt.rfind('.')
+            if last_period > 100:
+                excerpt = excerpt[:last_period + 1]
+            ref_parts.append(
+                f'<strong>{esc(author)}</strong>: {esc(excerpt)}'
             )
 
-    # --- Related Dictionary Terms ---
+        if ref_parts:
+            sections.append(
+                '<h3>Alchemical Significance</h3>\n'
+                '<p>' + '</p>\n<p>'.join(ref_parts) + '</p>'
+            )
+
+    # --- 5. Alchemical Concepts ---
     terms = conn.execute("""
-        SELECT dt.slug, dt.label, dt.label_latin
+        SELECT dt.slug, dt.label, dt.label_latin, dt.category
         FROM term_emblem_refs ter
         JOIN dictionary_terms dt ON ter.term_id = dt.id
         WHERE ter.emblem_id = ?
-        ORDER BY dt.label
+        ORDER BY dt.category, dt.label
     """, (emblem_id,)).fetchall()
 
     if terms:
-        term_links = ', '.join(
-            f'<a href="../dictionary/{t[0]}.html" class="cross-link">{esc(t[1])}'
-            f'{" (" + esc(t[2]) + ")" if t[2] and t[2] != t[1] else ""}</a>'
-            for t in terms
+        # Group by category
+        by_cat = {}
+        for slug, label, latin, cat in terms:
+            by_cat.setdefault(cat, []).append((slug, label, latin))
+
+        term_html_parts = []
+        for cat in ['PROCESS', 'SUBSTANCE', 'FIGURE', 'CONCEPT', 'SOURCE_TEXT', 'MUSICAL']:
+            if cat not in by_cat:
+                continue
+            links = ', '.join(
+                f'<a href="../dictionary/{slug}.html" class="cross-link">{esc(label)}'
+                f'{" (" + esc(latin) + ")" if latin and latin != label else ""}</a>'
+                for slug, label, latin in by_cat[cat]
+            )
+            term_html_parts.append(f'<strong>{cat.title()}</strong>: {links}')
+
+        sections.append(
+            '<h3>Key Alchemical Concepts</h3>\n'
+            '<p>' + '<br>'.join(term_html_parts) + '</p>'
         )
-        sections.append(f'<h3>Related Terms</h3>\n<p>{term_links}</p>')
 
     if not sections:
         return None
@@ -122,14 +218,15 @@ def main():
     conn.execute("PRAGMA foreign_keys = ON")
 
     emblems = conn.execute("""
-        SELECT id, number, roman_numeral, motto_english, discourse_summary
+        SELECT id, number, roman_numeral, motto_english,
+               discourse_summary, alchemical_stage
         FROM emblems WHERE number > 0
         ORDER BY number
     """).fetchall()
 
     updated = 0
-    for eid, num, roman, motto, discourse in emblems:
-        analysis = build_analysis(conn, eid, num, roman, motto, discourse)
+    for eid, num, roman, motto, discourse, stage in emblems:
+        analysis = build_analysis(conn, eid, num, roman, motto, discourse, stage)
         if analysis:
             conn.execute(
                 "UPDATE emblems SET analysis_html = ? WHERE id = ?",
@@ -139,13 +236,15 @@ def main():
 
     conn.commit()
 
-    # Report
     with_analysis = conn.execute(
         "SELECT COUNT(*) FROM emblems WHERE analysis_html IS NOT NULL"
     ).fetchone()[0]
+    avg_len = conn.execute(
+        "SELECT AVG(LENGTH(analysis_html)) FROM emblems WHERE analysis_html IS NOT NULL AND number > 0"
+    ).fetchone()[0]
     conn.close()
 
-    print(f"  Emblem analyses: {with_analysis}/50 generated ({updated} updated)")
+    print(f"  Emblem analyses: {with_analysis}/50 generated ({updated} updated, avg {int(avg_len)} chars)")
     return 0
 
 
