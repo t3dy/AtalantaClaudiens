@@ -5,7 +5,7 @@
       "roman": null,
       "label": "The Fleeing Atalanta",
       "motto": null,
-      "discourse": "Maier's introductory apparatus presents Atalanta Fugiens as an exercise in multi-sensory pedagogy: the subtitle promises emblems for the eyes, fugues for the ears, and epigrams for the intellect, engaging sight, hearing, and reason simultaneously in the pursuit of Nature's secrets. The myth of the footrace serves as a heuristic model for the reader's own engagement \u2014 just as Hippomenes must distract the swift Atalanta with golden apples to win the race, the reader must use the sensory enticements of image, music, and verse to catch the fleeting truths of alchemical philosophy. De Jong characterizes this as Maier's 'lusus serius' or serious game, a Renaissance pedagogical strategy in which play, meditation, and intellectual pursuit are fused into a single practice of discovery. The frontispiece thus functions not merely as decoration but as an instruction manual for how to read the fifty emblems that follow \u2014 each a puzzle requiring the reader to chase meaning across multiple registers.",
+      "discourse": "Maier's introductory apparatus presents Atalanta Fugiens as an exercise in multi-sensory pedagogy: the subtitle promises emblems for the eyes, fugues for the ears, and epigrams for the intellect, engaging sight, he a ring, and reason simultaneously in the pursuit of Nature's secrets. The myth of the footrace serves as a heuristic model for the reader's own engagement \u2014 just as Hippomenes must distract the swift Atalanta with golden apples to win the race, the reader must use the sensory enticements of image, music, and verse to catch the fleeting truths of alchemical philosophy. De Jong characterizes this as Maier's 'lusus serius' or serious game, a Renaissance pedagogical strategy in which play, meditation, and intellectual pursuit are fused into a single practice of discovery. The frontispiece thus functions not merely as decoration but as an instruction manual for how to read the fifty emblems that follow \u2014 each a puzzle requiring the reader to chase meaning across multiple registers.",
       "confidence": "MEDIUM",
       "page": "frontispiece.html",
       "image": "images/emblems/emblem-00.jpg"
@@ -25,7 +25,7 @@
       "roman": "II",
       "label": "Its nurse is the Earth",
       "motto": "Its nurse is the Earth.",
-      "discourse": "Maier continues the theme of Emblem I, now emphasizing that the earth is specifically the nurse, not the mother, of the philosophical substance. He distinguishes between generation (which occurs through the volatile principle, the wind) and nourishment (which requires the fixed, earthy body). The discourse argues that just as human food must be converted into the substance of the body it feeds, so the alchemical earth must be assimilated into the growing Stone. Maier draws a careful analogy between the stages of infant feeding \u2014 blood in utero, milk after birth, solid food later \u2014 and the progressive fixation of the volatile philosophical substance.",
+      "discourse": "Maier continues the the me of Emblem I, now emphasizing that the earth is specifically the nurse, not the mother, of the philosophical substance. He distinguishes between generation (which occurs through the volatile principle, the wind) and nourishment (which requires the fixed, earthy body). The discourse argues that just as human food must be converted into the substance of the body it feeds, so the alchemical earth must be assimilated into the growing Stone. Maier draws a careful analogy between the stages of infant feeding \u2014 blood in utero, milk after birth, solid food later \u2014 and the progressive fixation of the volatile philosophical substance.",
       "confidence": "HIGH",
       "page": "emblem-02.html",
       "image": "images/emblems/emblem-02.jpg"
@@ -35,7 +35,7 @@
       "roman": "III",
       "label": "Go to the woman who washes the sheets",
       "motto": "Go to the woman who washes the sheets and do as she does.",
-      "discourse": "Maier argues that the alchemical purification process mirrors the everyday work of washing dirty linen: just as earth-stains on fabric are removed by water and then dried by sun and wind, so the impurities of the philosophical substance must be cleansed through repeated washing and exposure to the elements. The discourse develops the principle that what comes from earth is cleaned by the next element in the sequence \u2014 water purifies earth, air dries what water has cleaned. Maier presents the washerwoman as a figure for the alchemist who must patiently repeat the cycle of dissolution and drying, an operation the tradition calls the albedo or whitening stage.",
+      "discourse": "Maier argues that the alchemical purification process mirrors the everyday work of washing dirty linen: just as earth-stains on fabric are removed by water and then dried by sun and wind, so the impurities of the philosophical substance must be cleansed through repeated washing and exposure to the elements. The discourse develops the principle that what comes from earth is cleaned by the next element in the sequence \u2014 water purifies earth, air dries what water has cleaned. Maier presents the was her woman as a figure for the alchemist who must patiently repeat the cycle of dissolution and drying, an operation the tradition calls the albedo or whitening stage.",
       "confidence": "HIGH",
       "page": "emblem-03.html",
       "image": "images/emblems/emblem-03.jpg"
@@ -55,7 +55,7 @@
       "roman": "V",
       "label": "Woman suckling the toad",
       "motto": "Put a toad to the breasts of a woman, that she may suckle it, and the woman may die and the toad grow big from the milk.",
-      "discourse": "Maier frames the alchemical operation as gendered labor, arguing that the masculine principle begets and governs while the feminine conceives, bears, and nourishes. He develops the toad as a figure for the volatile, poisonous agent that must be fed by the maternal body of the prima materia \u2014 a feeding that kills the nurse but matures the product. Maier draws the analogy to Cleopatra's death by asp-venom, suggesting that the transfer of vital essence from woman to toad mirrors the fixation of the volatile sulphur through prolonged contact with a liquid menstruum. The discourse cites the Pseudo-Aristotelian Tractatulus de Practica Lapidis as the source of this toad-nursing imagery.",
+      "discourse": "Maier frames the alchemical operation as gendered labor, arguing that the masculine principle be gets and governs while the feminine conceives, bears, and nourishes. He develops the toad as a figure for the volatile, poisonous agent that must be fed by the maternal body of the prima materia \u2014 a feeding that kills the nurse but matures the product. Maier draws the analogy to Cleopatra's death by asp-venom, suggesting that the transfer of vital essence from woman to toad mirrors the fixation of the volatile sulphur through prolonged contact with a liquid menstruum. The discourse cites the Pseudo-Aristotelian Tractatulus de Practica Lapidis as the source of this toad-nursing imagery.",
       "confidence": "HIGH",
       "page": "emblem-05.html",
       "image": "images/emblems/emblem-05.jpg"
@@ -75,7 +75,7 @@
       "roman": "VII",
       "label": "Young bird flying from nest and falling back",
       "motto": "A young bird flies up from the nest and falls back into the nest again.",
-      "discourse": "Maier describes a species of bird that flies upward from its nest only to fall back again repeatedly, developing this as an analogy for the alchemical process of sublimation and condensation. He argues that the volatile philosophical substance must be repeatedly driven upward (sublimated) and allowed to fall back (condensed) until it is sufficiently matured to sustain itself. The discourse connects this to the broader principle that Nature works through cyclical repetition rather than linear progress. Maier suggests that the bird's eventual success in flight corresponds to the moment when the volatile spirit is finally fixed and can maintain its elevated state.",
+      "discourse": "Maier describes a species of bird that flies upward from its nest only to fall back again repeatedly, developing this as an analogy for the alchemical process of sublimation and condensation. He argues that the volatile philosophical substance must be repeatedly driven upward (sublimated) and allowed to fall back (condensed) until it is sufficiently matured to sustain it self. The discourse connects this to the broader principle that Nature works through cyclical repetition rather than linear progress. Maier suggests that the bird's eventual success in flight corresponds to the moment when the volatile spirit is finally fixed and can maintain its elevated state.",
       "confidence": "HIGH",
       "page": "emblem-07.html",
       "image": "images/emblems/emblem-07.jpg"
@@ -175,7 +175,7 @@
       "roman": "XVII",
       "label": "Fourfold fire-ball",
       "motto": "A fourfold fire-ball controls this work.",
-      "discourse": "Maier argues that the alchemical work requires not one fire but four distinct types, each governing a different phase of the operation. He identifies these as the fire of the lamp (external heat), the fire of the ash-bath (gentle, sustained warmth), the fire of the substance itself (intrinsic reactive heat), and the fire of the water-bath (moist, temperate heat). The discourse develops the principle that fire transforms by making things fiery \u2014 communicating its own nature \u2014 but cannot make gold directly, only prepare the conditions for gold's emergence. Maier cites this fourfold fire as the master key to the practical art, without which even correct materials will fail.",
+      "discourse": "Maier argues that the alchemical work requires not one fire but four distinct types, each governing a different phase of the operation. He identifies these as the fire of the lamp (external heat), the fire of the ash-bath (gentle, sustained warmth), the fire of the substance it self (intrinsic reactive heat), and the fire of the water-bath (moist, temperate heat). The discourse develops the principle that fire transforms by making things fiery \u2014 communicating its own nature \u2014 but can not make gold directly, only prepare the conditions for gold's emergence. Maier cites this fourfold fire as the master key to the practical art, without which even correct materials will fail.",
       "confidence": "MEDIUM",
       "page": "emblem-17.html",
       "image": "images/emblems/emblem-17.jpg"
@@ -185,7 +185,7 @@
       "roman": "XVIII",
       "label": "Emblem XVIII",
       "motto": "Fire likes making things fiery, but not, like gold, making gold.",
-      "discourse": "Maier continues the fire theme from Emblem XVII, arguing that fire delights in making things partake of its own fiery nature but cannot directly transmute base metals into gold. He develops a distinction between fire as agent of transformation and gold as the goal: fire prepares, purifies, and refines, but the ultimate product \u2014 the philosopher's stone or philosophical gold \u2014 emerges from the properly prepared matter's own latent potential, not from fire alone. The discourse cites the Aristotelian principle of like acting upon like to explain why the fire must be matched in kind and degree to the substance it works upon.",
+      "discourse": "Maier continues the fire the me from Emblem XVII, arguing that fire delights in making things partake of its own fiery nature but can not directly transmute base metals into gold. He develops a distinction between fire as agent of transformation and gold as the goal: fire prepares, purifies, and refines, but the ultimate product \u2014 the philosopher's stone or philosophical gold \u2014 emerges from the properly prepared matter's own latent potential, not from fire alone. The discourse cites the Aristotelian principle of like acting upon like to explain why the fire must be matched in kind and degree to the substance it works upon.",
       "confidence": "MEDIUM",
       "page": "emblem-18.html",
       "image": "images/emblems/emblem-18.jpg"
@@ -194,7 +194,7 @@
       "number": 19,
       "roman": "XIX",
       "label": "Emblem XIX",
-      "motto": "If you kill one of the four, everybody will be dead immediately.",
+      "motto": "If you kill one of the four, every body will be dead immediately.",
       "discourse": "Maier develops the idea that the four elements or components of the philosophical substance are so intimately connected that destroying one annihilates all. He argues that this demonstrates their essential unity \u2014 they are not truly four separate things but four aspects of a single body. The discourse draws on the myth of Geryon, the three-bodied king of Spain, and his pure-bred cattle guarded by the dog Orthrus, developing this as an allegory for the composite nature of the prima materia. Maier uses this to warn the alchemist against violent separation: the elements must be gently distinguished, not forcibly torn apart, lest the entire work be destroyed.",
       "confidence": "MEDIUM",
       "page": "emblem-19.html",
@@ -205,7 +205,7 @@
       "roman": "XX",
       "label": "Emblem XX",
       "motto": "Nature teaches Nature, Nature conquers Nature, Nature rules Nature.",
-      "discourse": "Maier articulates one of alchemy's foundational maxims: Nature teaches Nature, Nature conquers Nature, Nature rules Nature. He argues that the alchemist must learn by observing natural processes, then apply those lessons to guide and finally master the transformations of matter. The discourse connects this to Democritus's principle that art imitates nature, and extends it: the alchemical art does not merely copy natural processes but accelerates and perfects them. Maier cites the washing of dirty linen (Emblem III) as an example \u2014 Nature provides rain and sun, and the washerwoman learns to replicate these cleansing agents.",
+      "discourse": "Maier articulates one of alchemy's foundational maxims: Nature teaches Nature, Nature conquers Nature, Nature rules Nature. He argues that the alchemist must learn by observing natural processes, then apply those lessons to guide and finally master the transformations of matter. The discourse connects this to Democritus's principle that art imitates nature, and extends it: the alchemical art does not merely copy natural processes but accelerates and perfects them. Maier cites the washing of dirty linen (Emblem III) as an example \u2014 Nature provides rain and sun, and the was her woman learns to replicate these cleansing agents.",
       "confidence": "MEDIUM",
       "page": "emblem-20.html",
       "image": "images/emblems/emblem-20.jpg"
@@ -245,7 +245,7 @@
       "roman": "XXIV",
       "label": "Alchemical King (garbed)",
       "motto": "The wolf devoured the king, and after the wolf had been burnt, it returned the king to life.",
-      "discourse": "Maier narrates a two-stage allegory: the wolf devours the king (antimony dissolves gold), then the wolf is burned, returning the king to life purified and renewed. He develops this as the central nigredo-to-rubedo sequence: the base, voracious substance (the wolf/antimony) must consume the noble but impure metal (the king/gold), and then the consuming agent itself must be destroyed by fire to liberate the purified king. The discourse draws on the metallurgical practice of antimony refining, where antimony sulphide is used to extract and purify gold from alloys. Maier cites this as one of the most practically grounded of all alchemical allegories, noting that the wolf's voracity is well known in natural history.",
+      "discourse": "Maier narrates a two-stage allegory: the wolf devours the king (antimony dissolves gold), then the wolf is burned, returning the king to life purified and renewed. He develops this as the central nigredo-to-rubedo sequence: the base, voracious substance (the wolf/antimony) must consume the noble but impure metal (the king/gold), and then the consuming agent it self must be destroyed by fire to liberate the purified king. The discourse draws on the metallurgical practice of antimony refining, where antimony sulphide is used to extract and purify gold from alloys. Maier cites this as one of the most practically grounded of all alchemical allegories, noting that the wolf's voracity is well known in natural history.",
       "confidence": "MEDIUM",
       "page": "emblem-24.html",
       "image": "images/emblems/emblem-24.jpg"
@@ -255,7 +255,7 @@
       "roman": "XXV",
       "label": "Emblem XXV",
       "motto": "The Dragon does not die, if it is not killed by its brother and sister, that is to say by Sol and Luna.",
-      "discourse": "Maier argues that the philosophical dragon \u2014 the unreformed prima materia \u2014 cannot be killed by any single agent but only by the combined action of its own brother and sister, Sol and Luna (gold and silver, sulphur and mercury). He develops the myth of the Golden Fleece, where the dragon guarding the treasure must be slain before the fleece can be obtained, as an allegory for the alchemical work. The discourse cites Jason's quest and connects it to the Hermetic tradition that the Stone is guarded by a dragon that can only be overcome by substances of its own kind. Maier emphasizes that both the masculine (active, fiery) and feminine (passive, moist) principles must cooperate in this killing.",
+      "discourse": "Maier argues that the philosophical dragon \u2014 the unreformed prima materia \u2014 can not be killed by any single agent but only by the combined action of its own brother and sister, Sol and Luna (gold and silver, sulphur and mercury). He develops the myth of the Golden Fleece, where the dragon guarding the treasure must be slain before the fleece can be obtained, as an allegory for the alchemical work. The discourse cites Jason's quest and connects it to the Hermetic tradition that the Stone is guarded by a dragon that can only be overcome by substances of its own kind. Maier emphasizes that both the masculine (active, fiery) and feminine (passive, moist) principles must cooperate in this killing.",
       "confidence": "MEDIUM",
       "page": "emblem-25.html",
       "image": "images/emblems/emblem-25.jpg"
@@ -265,7 +265,7 @@
       "roman": "XXVI",
       "label": "Lady Sapientia / Tree of Life",
       "motto": "The fruit of human wisdom is the Tree of Life.",
-      "discourse": "Maier identifies the fruit of human wisdom as the Tree of Life itself, arguing that the philosopher's stone is the true 'wood of life' sought by sages across all traditions. He draws on Cicero's distinction between humans and animals \u2014 that only humans possess reason and the capacity for philosophical inquiry \u2014 to argue that alchemy is the highest expression of rational wisdom applied to Nature. The discourse connects the Tree of Life to the biblical Garden of Eden, the Hesperides, and the alchemical tradition of the arbor philosophica \u2014 the philosophical tree whose roots are mercury and whose fruit is gold. Maier presents this emblem as marking the rubedo: the tree has borne its fruit, wisdom has been attained.",
+      "discourse": "Maier identifies the fruit of human wisdom as the Tree of Life it self, arguing that the philosopher's stone is the true 'wood of life' sought by sages across all traditions. He draws on Cicero's distinction between humans and animals \u2014 that only humans possess reason and the capacity for philosophical inquiry \u2014 to argue that alchemy is the highest expression of rational wisdom applied to Nature. The discourse connects the Tree of Life to the biblical Garden of Eden, the Hesperides, and the alchemical tradition of the arbor philosophica \u2014 the philosophical tree whose roots are mercury and whose fruit is gold. Maier presents this emblem as marking the rubedo: the tree has borne its fruit, wisdom has been attained.",
       "confidence": "MEDIUM",
       "page": "emblem-26.html",
       "image": "images/emblems/emblem-26.jpg"
@@ -275,7 +275,7 @@
       "roman": "XXVII",
       "label": "Companion to Sapientia sequence",
       "motto": "He who tries to enter the Philosophical Rose-garden without the key is like a man who wants to walk without feet.",
-      "discourse": "Maier argues that attempting to enter the Philosophical Rose-garden without the proper key is as futile as trying to walk without feet. He develops this as a warning against shortcuts in the alchemical work: the three 'cooking' or 'consuming' processes that occur in the human body \u2014 digestion in the stomach, refinement in the liver, and distribution through the blood \u2014 mirror the three stages of alchemical preparation that cannot be bypassed. The discourse grounds this in Old Testament wisdom literature, connecting the rose-garden to the Song of Songs and the Solomonic tradition of enclosed gardens as figures for hidden wisdom accessible only through proper preparation.",
+      "discourse": "Maier argues that attempting to enter the Philosophical Rose-garden without the proper key is as futile as trying to walk without feet. He develops this as a warning against shortcuts in the alchemical work: the three 'cooking' or 'consuming' processes that occur in the human body \u2014 digestion in the stomach, refinement in the liver, and distribution through the blood \u2014 mirror the three stages of alchemical preparation that can not be by passed. The discourse grounds this in Old Testament wisdom literature, connecting the rose-garden to the Song of Songs and the Solomonic tradition of enclosed gardens as figures for hidden wisdom accessible only through proper preparation.",
       "confidence": "HIGH",
       "page": "emblem-27.html",
       "image": "images/emblems/emblem-27.jpg"
@@ -295,7 +295,7 @@
       "roman": "XXIX",
       "label": "Emblem XXIX",
       "motto": "Just as the Salamander lives in the fire, so also the Stone.",
-      "discourse": "Maier develops the ancient belief that the salamander lives in fire without being consumed, applying it as an allegory for the philosopher's stone, which endures the test of fire and emerges unchanged or improved. He argues that just as the salamander is nourished rather than destroyed by flames, the perfected stone withstands any degree of heat \u2014 a key test of its authenticity. The discourse connects this to the broader principle of fixation: a substance is 'fixed' when it can endure fire without volatilizing. Maier cites classical natural historians including Pliny on the salamander's fire-resistance, while noting that the philosophical salamander transcends the merely natural creature.",
+      "discourse": "Maier develops the ancient belief that the salamander lives in fire without being consumed, applying it as an allegory for the philosopher's stone, which endures the test of fire and emerges unchanged or improved. He argues that just as the salamander is nourished rather than destroyed by flames, the perfected stone with stands any degree of heat \u2014 a key test of its authenticity. The discourse connects this to the broader principle of fixation: a substance is 'fixed' when it can endure fire without volatilizing. Maier cites classical natural historians including Pliny on the salamander's fire-resistance, while noting that the philosophical salamander transcends the merely natural creature.",
       "confidence": "HIGH",
       "page": "emblem-29.html",
       "image": "images/emblems/emblem-29.jpg"
@@ -324,8 +324,8 @@
       "number": 32,
       "roman": "XXXII",
       "label": "Emblem XXXII",
-      "motto": "As coral grows underwater and, exposed to the air, gets hard, so also the Stone.",
-      "discourse": "Maier draws on the natural history of coral \u2014 soft and plant-like underwater but hardening to stone when exposed to air \u2014 as an analogy for the philosopher's stone, which is fluid and mutable during preparation but becomes fixed and permanent once complete. He argues that this natural transformation demonstrates the possibility of a substance changing its fundamental state without losing its essential nature. The discourse connects coral's petrifaction to the alchemical fixation process, where the volatile philosophical substance 'hardens' through exposure to air (the volatile spirit) just as coral solidifies above the waterline. Maier cites this as evidence that the rubedo \u2014 the final reddening \u2014 involves a transition from fluid process to solid product.",
+      "motto": "As coral grows under water and, exposed to the air, gets hard, so also the Stone.",
+      "discourse": "Maier draws on the natural history of coral \u2014 soft and plant-like under water but hardening to stone when exposed to air \u2014 as an analogy for the philosopher's stone, which is fluid and mutable during preparation but becomes fixed and permanent once complete. He argues that this natural transformation demonstrates the possibility of a substance changing its fundamental state without losing its essential nature. The discourse connects coral's petrifaction to the alchemical fixation process, where the volatile philosophical substance 'hardens' through exposure to air (the volatile spirit) just as coral solidifies above the water line. Maier cites this as evidence that the rubedo \u2014 the final reddening \u2014 involves a transition from fluid process to solid product.",
       "confidence": "HIGH",
       "page": "emblem-32.html",
       "image": "images/emblems/emblem-32.jpg"
@@ -335,7 +335,7 @@
       "roman": "XXXIII",
       "label": "Hermaphrodite lying in darkness needs fire",
       "motto": "The Hermaphrodite, lying in darkness like a dead man, needs fire.",
-      "discourse": "Maier returns to the Hermaphrodite-in-darkness motif, now explicitly connecting it to the practice of ritual purification through fire and water. He argues that divine origin was ascribed to certain individuals in antiquity through a process of trial \u2014 passing through fire and water \u2014 and that the Hermaphrodite must undergo the same ordeal. The discourse develops the parallel between baptism (purification by water) and calcination (purification by fire) as the two modes of cleansing that the combined philosophical substance must endure. Maier frames the darkness as a necessary passage: the substance must die fully before it can be reborn in the rubedo.",
+      "discourse": "Maier returns to the Hermaphrodite-in-darkness motif, now explicitly connecting it to the practice of ritual purification through fire and water. He argues that divine origin was ascribed to certain individuals in antiquity through a process of trial \u2014 passing through fire and water \u2014 and that the Hermaphrodite must undergo the same or deal. The discourse develops the parallel between baptism (purification by water) and calcination (purification by fire) as the two modes of cleansing that the combined philosophical substance must endure. Maier frames the darkness as a necessary passage: the substance must die fully before it can be reborn in the rubedo.",
       "confidence": "HIGH",
       "page": "emblem-33.html",
       "image": "images/emblems/emblem-33.jpg"
@@ -364,8 +364,8 @@
       "number": 36,
       "roman": "XXXVI",
       "label": "Emblem XXXVI",
-      "motto": "The Stone has been thrown onto the earth and lifted onto the mountains, and it dwells in the air and feeds in the river.",
-      "discourse": "Maier develops the paradox that the philosopher's stone has been thrown onto the earth (despised, found in humble places) yet lifted onto mountains (exalted, valued above all things). He argues that the stone dwells in the air and feeds in the river \u2014 occupying all four elements simultaneously \u2014 because it is the quintessence that participates in all elemental natures without being limited to any one. The discourse draws on the biblical metaphor of the rejected cornerstone and connects it to the alchemical tradition that the prima materia is found everywhere yet recognized by none. De Jong identifies a nationalistic element in Maier's treatment, connecting the earth-as-mother imagery to German territorial symbolism.",
+      "motto": "The Stone has been thrown on to the earth and lifted on to the mountains, and it dwells in the air and feeds in the river.",
+      "discourse": "Maier develops the paradox that the philosopher's stone has been thrown on to the earth (despised, found in humble places) yet lifted on to mountains (exalted, valued above all things). He argues that the stone dwells in the air and feeds in the river \u2014 occupying all four elements simultaneously \u2014 because it is the quintessence that participates in all elemental natures without being limited to any one. The discourse draws on the biblical metaphor of the rejected cornerstone and connects it to the alchemical tradition that the prima materia is found every where yet recognized by none. De Jong identifies a nationalistic element in Maier's treatment, connecting the earth-as-mother imagery to German territorial symbolism.",
       "confidence": "HIGH",
       "page": "emblem-36.html",
       "image": "images/emblems/emblem-36.jpg"
@@ -425,7 +425,7 @@
       "roman": "XLII",
       "label": "Emblem XLII",
       "motto": "What Nature, Reason, Experience and Reading teach you, let that be the fire, the vessel, the water and the earth.",
-      "discourse": "Maier develops the Tabula Smaragdina's teaching by identifying four guides that together constitute the alchemical method: Nature provides the raw material and model, Reason supplies theoretical understanding, Experience offers practical knowledge gained through trial, and Reading transmits the wisdom of earlier masters. He argues that these four correspond to the fire, the vessel, the water, and the earth of the work \u2014 each indispensable, none sufficient alone. The discourse emphasizes the balance between textual learning and hands-on practice, a theme running through the entire Atalanta Fugiens. Maier presents this emblem as a methodological summation of the principles scattered across the preceding forty-one.",
+      "discourse": "Maier develops the Tabula Smaragdina's teaching by identifying four guides that together constitute the alchemical method: Nature provides the raw material and model, Reason supplies theoretical understanding, Experience offers practical knowledge gained through trial, and Reading transmits the wisdom of earlier masters. He argues that these four correspond to the fire, the vessel, the water, and the earth of the work \u2014 each indispensable, none sufficient alone. The discourse emphasizes the balance between textual learning and hands-on practice, a the me running through the entire Atalanta Fugiens. Maier presents this emblem as a methodological summation of the principles scattered across the preceding forty-one.",
       "confidence": "HIGH",
       "page": "emblem-42.html",
       "image": "images/emblems/emblem-42.jpg"
@@ -434,8 +434,8 @@
       "number": 43,
       "roman": "XLIII",
       "label": "Emblem XLIII",
-      "motto": "Listen to the screech owl's voice, which it produces itself, and the water and do not heed any bird that cries in the evening.",
-      "discourse": "Maier instructs the alchemist to listen to the screech owl's voice and the sound of running water while ignoring the cries of evening birds \u2014 a parable about discerning true signals from false. He develops the owl as a figure for philosophical mercury (the lunar, nocturnal principle) whose call reveals the correct path, while the other birds represent misleading doctrines and false alchemists. The discourse connects the biblical story of Naaman (Emblem XIII) to this emblem, reprising the theme of purification through water. Maier argues that the alchemist must develop sensory discernment \u2014 learning to hear and see what Nature reveals \u2014 rather than following the loud but empty promises of charlatans.",
+      "motto": "Listen to the screech owl's voice, which it produces it self, and the water and do not heed any bird that cries in the evening.",
+      "discourse": "Maier instructs the alchemist to listen to the screech owl's voice and the sound of running water while ignoring the cries of evening birds \u2014 a parable about discerning true signals from false. He develops the owl as a figure for philosophical mercury (the lunar, nocturnal principle) whose call reveals the correct path, while the other birds represent misleading doctrines and false alchemists. The discourse connects the biblical story of Naaman (Emblem XIII) to this emblem, reprising the the me of purification through water. Maier argues that the alchemist must develop sensory discernment \u2014 learning to hear and see what Nature reveals \u2014 rather than following the loud but empty promises of charlatans.",
       "confidence": "HIGH",
       "page": "emblem-43.html",
       "image": "images/emblems/emblem-43.jpg"
@@ -444,8 +444,8 @@
       "number": 44,
       "roman": "XLIV",
       "label": "Osiris killed and resurrected",
-      "motto": "Typhon kills Osiris by a ruse, and after that he scatters his limbs far and wide, but Isis gathers them together again.",
-      "discourse": "Maier retells the Egyptian myth of Osiris \u2014 murdered by Typhon through treachery, his body scattered, then painstakingly reassembled by Isis \u2014 as the complete arc of the alchemical opus. He identifies Typhon's killing with the nigredo dissolution, the scattering of limbs with the separation of elements, and Isis's gathering with the reconstitution and final rubedo. The discourse develops Osiris as the archetypal philosophical body that must be destroyed, dispersed, and reunited to achieve perfection. De Jong traces Maier's treatment of this myth through multiple alchemical traditions, noting that the Osiris-Isis cycle became one of the most enduring allegories in Western alchemy precisely because it encodes all three stages \u2014 death, purification, and resurrection \u2014 in a single narrative.",
+      "motto": "Typhon kills Osiris by a ruse, and after that he scatters his limbs far and wide, but Is is gathers them together again.",
+      "discourse": "Maier retells the Egyptian myth of Osiris \u2014 murdered by Typhon through treachery, his body scattered, then painstakingly reassembled by Is is \u2014 as the complete arc of the alchemical opus. He identifies Typhon's killing with the nigredo dissolution, the scattering of limbs with the separation of elements, and Is is's gathering with the reconstitution and final rubedo. The discourse develops Osiris as the archetypal philosophical body that must be destroyed, dispersed, and reunited to achieve perfection. De Jong traces Maier's treatment of this myth through multiple alchemical traditions, noting that the Osiris-Is is cycle became one of the most enduring allegories in Western alchemy precisely because it encodes all three stages \u2014 death, purification, and resurrection \u2014 in a single narrative.",
       "confidence": "HIGH",
       "page": "emblem-44.html",
       "image": "images/emblems/emblem-44.jpg"
@@ -495,7 +495,7 @@
       "roman": "XLIX",
       "label": "Emblem XLIX",
       "motto": "The Philosophical Child acknowledges three fathers, just as Orion.",
-      "discourse": "Maier argues that the philosopher's stone, like the mythological Orion, acknowledges three fathers \u2014 three distinct sources or principles that contribute to its generation. He develops this as an allegory for the tria prima: the stone is born from salt (the bodily principle), sulphur (the soul principle), and mercury (the spirit principle), each 'fathering' a different aspect of the complete substance. The discourse draws on the Orion myth \u2014 conceived from the combined seed of Zeus, Poseidon, and Hermes \u2014 to argue that no single source suffices for the generation of the philosophical child. Maier presents this as one of the final teachings: the stone's triple origin explains why it cannot be produced from any single starting material.",
+      "discourse": "Maier argues that the philosopher's stone, like the mythological Orion, acknowledges three fathers \u2014 three distinct sources or principles that contribute to its generation. He develops this as an allegory for the tria prima: the stone is born from salt (the bodily principle), sulphur (the soul principle), and mercury (the spirit principle), each 'fat he ring' a different aspect of the complete substance. The discourse draws on the Orion myth \u2014 conceived from the combined seed of Zeus, Poseidon, and Hermes \u2014 to argue that no single source suffices for the generation of the philosophical child. Maier presents this as one of the final teachings: the stone's triple origin explains why it can not be produced from any single starting material.",
       "confidence": "HIGH",
       "page": "emblem-49.html",
       "image": "images/emblems/emblem-49.jpg"
@@ -505,7 +505,7 @@
       "roman": "L",
       "label": "The Dragon kills the woman",
       "motto": "The Dragon kills the woman, and she kills it, and together they bathe in blood.",
-      "discourse": "Maier narrates the final emblem as a double death: the dragon kills the woman and she kills it, and together they bathe in the blood of their mutual destruction. He develops this as the ultimate expression of the alchemical principle that the Stone is born from the death of both its parents \u2014 the volatile (the dragon, dwelling in caves underground) and the fixed (the woman, dwelling in the adjacent air). The discourse argues that their commingled blood \u2014 the shared substance released by reciprocal dissolution \u2014 becomes the bath of regeneration from which the philosopher's stone emerges. Maier presents this as the closing image of the entire series: the work ends where it began, in mutual consumption and transformation.",
+      "discourse": "Maier narrates the final emblem as a double death: the dragon kills the woman and she kills it, and together they bathe in the blood of their mutual destruction. He develops this as the ultimate expression of the alchemical principle that the Stone is born from the death of both its parents \u2014 the volatile (the dragon, dwelling in caves under ground) and the fixed (the woman, dwelling in the adjacent air). The discourse argues that their commingled blood \u2014 the shared substance released by reciprocal dissolution \u2014 becomes the bath of regeneration from which the philosopher's stone emerges. Maier presents this as the closing image of the entire series: the work ends where it began, in mutual consumption and transformation.",
       "confidence": "HIGH",
       "page": "emblem-50.html",
       "image": "images/emblems/emblem-50.jpg"
