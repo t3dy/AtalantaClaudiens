@@ -123,13 +123,44 @@ Each field that feeds into the emblem page has specific content requirements:
 
 ## Other Page Templates
 
-### Scholar Page
+### Scholar Profile Template (CANONICAL)
+
+**Source field**: `scholars.overview`
+
+**Purpose**: Present each scholar as a museum exhibition would introduce a contributing expert — their background, intellectual formation, specific contributions to Maier/AF studies, key arguments, and place in the scholarly conversation.
+
+**Structure**: 5-10 paragraphs covering these areas in order:
+
+1. **Identity and credentials** (1 paragraph): Full name, dates, institutional affiliation, discipline, degrees. Frame the scholar within their field — art historian, musicologist, historian of science, etc.
+
+2. **Intellectual formation and approach** (1-2 paragraphs): What tradition does this scholar work within? What methods do they bring — source criticism, iconographic analysis, musicological analysis, biographical reconstruction, reception history? What questions drive their work?
+
+3. **Contributions to Maier studies** (2-3 paragraphs): What specifically has this scholar discovered, argued, or demonstrated about Maier and/or Atalanta Fugiens? Name specific findings: source identifications, biographical facts, interpretive frameworks, corrected misconceptions. Cite their key publications.
+
+4. **Key arguments** (1-2 paragraphs): What are this scholar's most distinctive claims? Where do they agree with or challenge other scholars in our corpus? What would be lost from our understanding of Maier if this scholar's work didn't exist?
+
+5. **Relevance to this site** (1 paragraph): How does this scholar's work inform the content presented here? Which emblem pages, dictionary entries, or source identifications draw on their research?
+
+**Voice**: Academic but accessible. Write as a museum catalog essay introducing a contributor to an exhibition. Authoritative, specific, generous to the scholar's achievements.
+
+**Anti-patterns**:
+- Do NOT write "X is an important scholar" — explain WHY through specific contributions
+- Do NOT list publications without explaining what they argue
+- Do NOT reduce a scholar to a single finding — show the breadth of their contribution
+- Do NOT write a Wikipedia-style biography — focus on their Maier/AF work
+
+**Example opening** (De Jong):
+> Helena Maria Elisabeth De Jong (1933-2016) was a Dutch art historian trained at the University of Utrecht, where she completed her doctoral dissertation on Michael Maier's Atalanta Fugiens in 1965. De Jong's monograph, published in expanded form by E.J. Brill in 1969, remains the foundational work of Atalanta Fugiens scholarship — the first systematic attempt to trace every emblem, motto, and discourse in Maier's book back to its sources in earlier alchemical, classical, and Hermetic literature.
+
+**DB field contract**: The `scholars.overview` field stores the full profile text. It is rendered as the main content on individual scholar pages (`site/scholar/{slug}.html`). Minimum 5 paragraphs, maximum 10.
+
+### Scholar Page (Layout)
 
 ```
 [Scholar Name] [review badge]
 
-OVERVIEW
-[overview text — 2-3 paragraphs]
+PROFILE
+[overview — 5-10 paragraphs following the template above]
 
 WORKS IN ARCHIVE
 [For each bibliography entry via scholar_works:]
