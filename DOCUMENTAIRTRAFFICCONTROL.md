@@ -101,6 +101,9 @@ Reports from prior sessions. Read when you're about to repeat work in the same a
 ### "I need to launch background agents or a swarm"
 → Read `docs/SWARMGUIDELINES.md` FIRST. Hard rule: agents CANNOT run Bash/Python. Use staging files (agents write JSON to `staging/`, main session reads and runs pipeline) or pre-queried data (main session exports DB to JSON before launching agents). Never expect an agent to query the DB or run a script.
 
+### "I need to see queued feature requests"
+→ Read `docs/BACKLOG.md` for the full prioritized backlog from the 2026-03-21 session. Includes: Emblems According to Maier tab, Maier According to Jung essay, Maier's Social World essay, external corpus integration, timeline update, and more.
+
 ### "I need to plan new work"
 → Read `docs/ROADMAP.md` for phase status. Read `docs/reports/HIROREBUILD.md` for the master rebuild plan (43 atoms). Use the PKD Planning Protocol from `C:\Dev\CLAUDE.md`.
 
