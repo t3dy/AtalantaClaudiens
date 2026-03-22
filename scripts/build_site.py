@@ -635,6 +635,22 @@ def build_bibliography(conn):
         FROM bibliography ORDER BY year
     """).fetchall()
 
+    # Build scholar lookup: source_id -> list of (scholar_name, slug)
+    scholar_map = {}
+    for row in conn.execute('''
+        SELECT b.source_id, s.name FROM bibliography b
+        JOIN scholar_works sw ON sw.bib_id = b.id
+        JOIN scholars s ON sw.scholar_id = s.id
+    ''').fetchall():
+        scholar_map.setdefault(row[0], []).append((row[1], slugify(row[1])))
+
+    # Load works page anchors (from staging if available)
+    works_ids = set()
+    works_path = BASE_DIR / 'staging' / 'works_merged.json'
+    if works_path.exists():
+        works_data = json.loads(works_path.read_text(encoding='utf-8'))
+        works_ids = set(w.get('source_id', '') for w in works_data.get('works', []))
+
     rows_html = ''
     for e in entries:
         src_id, author, title, year, journal, pub, ptype, rel, incoll, annotation = e[:10]
@@ -642,14 +658,24 @@ def build_bibliography(conn):
         rel_badge = f'<span class="badge badge-{"primary" if rel == "PRIMARY" else "direct" if rel == "DIRECT" else "contextual"}">{rel}</span>'
         venue = journal or pub or ''
         title_html = f'<a href="{url}" target="_blank" rel="noopener">{title}</a>' if url else title
-        link_html = f'<p style="font-size:0.8rem;margin-top:0.3rem"><a href="{url}" target="_blank" rel="noopener" style="color:var(--accent)">View online &rarr;</a></p>' if url else ''
+
+        # Build navigation links
+        nav_links = []
+        if url:
+            nav_links.append(f'<a href="{url}" target="_blank" rel="noopener" style="color:var(--accent)">View online &rarr;</a>')
+        if src_id in works_ids:
+            nav_links.append(f'<a href="works.html#{src_id}" style="color:var(--accent)">Read summary &rarr;</a>')
+        for scholar_name, scholar_slug in scholar_map.get(src_id, []):
+            nav_links.append(f'<a href="scholar/{scholar_slug}.html" style="color:var(--accent)">{scholar_name} &rarr;</a>')
+        nav_html = f'<p style="font-size:0.8rem;margin-top:0.3rem">{" &middot; ".join(nav_links)}</p>' if nav_links else ''
+
         rows_html += f"""
         <div class="ref-card">
             <h4>{author} ({year or 'n.d.'}) {rel_badge}</h4>
             <p><em>{title_html}</em></p>
             <p style="font-size:0.8rem;color:var(--text-muted)">{venue} &middot; {ptype or ''}</p>
             {f'<p style="font-size:0.88rem;line-height:1.6;margin-top:0.5rem">{annotation}</p>' if annotation else ''}
-            {link_html}
+            {nav_html}
         </div>"""
 
     primary = len([e for e in entries if e[7] == 'PRIMARY'])
