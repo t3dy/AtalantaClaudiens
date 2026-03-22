@@ -81,6 +81,7 @@ NAV_ITEMS = [
     ('Dictionary', 'dictionary/index.html'),
     ('Timeline', 'timeline.html'),
     ('Sources', 'sources.html'),
+    ('Maier', 'maier.html'),
     ('Music', 'music.html'),
     ('Works', 'works.html'),
     ('Szulakowska', 'szulakowska.html'),
@@ -1231,6 +1232,109 @@ def build_szulakowska_page():
     print("  szulakowska.html")
 
 
+def build_maier_page(conn):
+    """Build 'Emblems According to Maier' — each emblem with large image, epigram summary, and discourse summary."""
+
+    emblems = conn.execute("""
+        SELECT number, roman_numeral, canonical_label,
+               motto_latin, motto_english, epigram_english,
+               discourse_summary, alchemical_stage, image_description
+        FROM emblems ORDER BY number
+    """).fetchall()
+
+    cards_html = ''
+    for e in emblems:
+        num, roman, label = e[0], e[1], e[2]
+        motto_lat, motto_en, epigram = e[3], e[4], e[5]
+        discourse, stage, img_desc = e[6], e[7], e[8]
+
+        display = roman or 'Frontispiece'
+        title = f'Emblem {display}' if roman else 'Frontispiece'
+        fname = f'emblem-{num:02d}.jpg' if num >= 0 else 'emblem-00.jpg'
+        link = f'emblems/emblem-{num:02d}.html' if num > 0 else 'emblems/frontispiece.html'
+
+        # Stage badge
+        stage_colors = {'NIGREDO': '#2c2418', 'ALBEDO': '#a89880', 'CITRINITAS': '#b8860b', 'RUBEDO': '#c0392b'}
+        stage_fg = {'NIGREDO': '#f5f0e8', 'ALBEDO': '#2c2418', 'CITRINITAS': '#2c2418', 'RUBEDO': '#f5f0e8'}
+        sbadge = ''
+        if stage:
+            bg = stage_colors.get(stage, '#7f8c8d')
+            fg = stage_fg.get(stage, '#fff')
+            sbadge = f'<span class="badge" style="background:{bg};color:{fg};font-size:0.8rem;padding:0.25rem 0.6rem;border-radius:3px;margin-left:0.5rem">{stage}</span>'
+
+        # Epigram section
+        epigram_html = ''
+        if epigram and epigram.strip():
+            epigram_html = f"""
+                <div style="margin-bottom:1rem">
+                    <h4 style="font-size:0.9rem;color:var(--accent);margin-bottom:0.4rem;font-family:var(--font-sans)">Epigram</h4>
+                    <div style="font-style:italic;font-size:0.92rem;line-height:1.6;padding:0.6rem 1rem;background:var(--bg);border-left:3px solid var(--accent-light)">{epigram}</div>
+                </div>"""
+
+        # Discourse section
+        discourse_html = ''
+        if discourse and discourse.strip():
+            discourse_html = f"""
+                <div>
+                    <h4 style="font-size:0.9rem;color:var(--accent);margin-bottom:0.4rem;font-family:var(--font-sans)">Maier's Discourse</h4>
+                    <div style="font-size:0.92rem;line-height:1.7">{autolink_emblems(discourse)}</div>
+                </div>"""
+
+        # Motto block
+        motto_html = ''
+        if motto_lat:
+            motto_html += f'<p style="font-style:italic;color:var(--accent);margin-bottom:0.2rem;font-size:0.95rem">{motto_lat}</p>'
+        if motto_en:
+            motto_html += f'<p style="margin-top:0;margin-bottom:1rem;font-size:0.95rem">{motto_en}</p>'
+
+        cards_html += f"""
+        <div class="ref-card" style="margin-bottom:2.5rem;padding:0;overflow:hidden" id="emblem-{num}">
+            <div style="display:grid;grid-template-columns:minmax(250px, 1fr) 2fr;gap:0">
+                <div style="padding:1rem;background:#faf8f4;display:flex;flex-direction:column;align-items:center;justify-content:flex-start">
+                    <a href="{link}">
+                        <img src="images/emblems/{fname}" alt="{title}" style="width:100%;max-width:350px;border-radius:4px;box-shadow:0 2px 8px rgba(0,0,0,0.12)">
+                    </a>
+                    <div style="margin-top:0.8rem;text-align:center">
+                        <a href="{link}" style="font-size:0.85rem;color:var(--accent);font-family:var(--font-sans)">View full analysis &rarr;</a>
+                    </div>
+                </div>
+                <div style="padding:1.5rem">
+                    <h3 style="font-size:1.15rem;margin-bottom:0.3rem">{title} — {label}{sbadge}</h3>
+                    {motto_html}
+                    {epigram_html}
+                    {discourse_html}
+                </div>
+            </div>
+        </div>"""
+
+    body = f"""
+    <div class="page-content" style="max-width:1200px">
+        <h1 style="font-size:1.8rem;margin-bottom:0.5rem">The Emblems According to Maier</h1>
+        <p style="font-size:1.05rem;color:var(--text-muted);margin-bottom:0.5rem;line-height:1.6">
+            Each of the fifty emblems of <em>Atalanta Fugiens</em> is accompanied by a Latin epigram
+            and a two-page prose discourse in which Maier develops the alchemical meaning of the emblem's
+            visual allegory. Here we present each emblem with its verse and a scholarly summary of the
+            discourse argument, as Maier intended them to be encountered: image and text together,
+            inviting the reader to meditate on the secrets of Nature.
+        </p>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:2rem;font-family:var(--font-sans)">
+            51 emblems &middot; Click any image for the full scholarly analysis
+        </p>
+        <style>
+            @media (max-width: 768px) {{
+                .ref-card > div {{
+                    grid-template-columns: 1fr !important;
+                }}
+            }}
+        </style>
+        {cards_html}
+    </div>"""
+
+    html = page_shell('The Emblems According to Maier', body, active_nav='Maier')
+    (SITE_DIR / 'maier.html').write_text(html, encoding='utf-8')
+    print(f"  maier.html: {len(emblems)} emblems")
+
+
 def build_works_page():
     """Build the Scholarly Works page from merged staging JSON."""
     merged_path = BASE_DIR / 'staging' / 'works_merged.json'
@@ -1588,6 +1692,7 @@ def main():
     build_timeline(conn)
     build_sources(conn)
     build_essays(conn)
+    build_maier_page(conn)
     build_works_page()
     build_szulakowska_page()
     build_music_page()
