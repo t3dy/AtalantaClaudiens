@@ -1543,6 +1543,15 @@ def build_essay_pages(conn):
     # Build individual essay pages (enriched content overrides inline defaults)
     for essay in ESSAYS:
         essay_body = enriched.get(essay['slug'], essay['body'])
+        # For chemistry essay: inject emblem images after each <h3 id="emblem-N"> header
+        if essay['slug'] == 'chemistry':
+            import re
+            def inject_emblem_img(m):
+                num = int(m.group(1))
+                fname = f'emblem-{num:02d}.jpg'
+                link = f'../emblems/emblem-{num:02d}.html' if num > 0 else '../emblems/frontispiece.html'
+                return m.group(0) + f'<figure style="float:right;margin:0 0 1rem 1.5rem;max-width:250px"><a href="{link}"><img src="../images/emblems/{fname}" alt="Emblem {num}" style="width:100%;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,0.12)"></a></figure>'
+            essay_body = re.sub(r'<h3 id="emblem-(\d+)">[^<]+</h3>', inject_emblem_img, essay_body)
         body_html = f"""
         <div class="page-content">
             <a href="index.html" class="back-link">&larr; Essays</a>
