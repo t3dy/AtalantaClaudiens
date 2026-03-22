@@ -1233,9 +1233,15 @@ def build_szulakowska_page():
 
 
 def build_essay_pages(conn):
-    """Build essay pages: Music, Social World, and Jung."""
+    """Build essay pages. Enriched content from staging/ overrides inline defaults."""
     essays_dir = SITE_DIR / 'essays'
     essays_dir.mkdir(exist_ok=True)
+
+    # Load enriched content from staging if available
+    enriched_path = BASE_DIR / 'staging' / 'enriched_essays.json'
+    enriched = {}
+    if enriched_path.exists():
+        enriched = json.loads(enriched_path.read_text(encoding='utf-8'))
 
     ESSAYS = [
         {
@@ -1533,15 +1539,16 @@ def build_essay_pages(conn):
         },
     ]
 
-    # Build individual essay pages
+    # Build individual essay pages (enriched content overrides inline defaults)
     for essay in ESSAYS:
+        essay_body = enriched.get(essay['slug'], essay['body'])
         body_html = f"""
         <div class="page-content">
             <a href="index.html" class="back-link">&larr; Essays</a>
             <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{essay['title']}</h1>
             <p style="font-size:1.1rem;color:var(--text-muted);margin-bottom:1.5rem;font-style:italic">{essay['subtitle']}</p>
             <div class="ai-banner">This essay was drafted by an AI language model based on the scholarly sources in our corpus. It has not been reviewed by a human scholar. Citations are provided but should be verified against the original sources.</div>
-            <div style="font-size:0.95rem;line-height:1.8;margin-top:1.5rem">{essay['body']}</div>
+            <div style="font-size:0.95rem;line-height:1.8;margin-top:1.5rem">{essay_body}</div>
         </div>"""
         html = page_shell(essay['title'], body_html, active_nav='Essays', depth=1)
         (essays_dir / f'{essay["slug"]}.html').write_text(html, encoding='utf-8')
