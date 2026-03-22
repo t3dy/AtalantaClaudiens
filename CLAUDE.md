@@ -22,6 +22,10 @@ Digital humanities website showcasing H.M.E. De Jong's scholarship on Michael Ma
 | `SCHOLARSHIPREPORT.md` | Corpus analysis, ontology design recommendations |
 | `atalanta_fugiens_seed.json` | Structured seed data for database ingestion |
 
+## Swarm Operations
+
+**Read `docs/SWARMGUIDELINES.md` before launching ANY background agents.** Background agents CANNOT run Bash/Python. Use the staging-file pattern or pre-queried data pattern instead. The guidelines document three working patterns and three anti-patterns with concrete examples.
+
 ## Emblem Writing Standard
 
 **Read `docs/WRITING_TEMPLATES.md` before writing ANY emblem content.** It defines the canonical 4-section analysis template (The Plate, Maier's Discourse, De Jong's Source Analysis, Scholarly Perspectives) with museum-level curation standards, anti-patterns, and DB field contracts. All emblem descriptions must follow this template.

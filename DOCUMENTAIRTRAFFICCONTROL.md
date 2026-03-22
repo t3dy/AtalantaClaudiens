@@ -29,6 +29,7 @@ These files are authoritative for their domain. Consult the relevant one before 
 | `EMBLEMGUIDE.md` | Emblem data | All 51 emblems: numbers, mottos, images, stages, sources, refs. **Read this before any emblem work.** |
 | `data/emblem_manifest.json` | Emblem identity | Canonical machine-readable index. Single source of truth for image filenames, confirmation status, sources. |
 | `docs/WRITING_TEMPLATES.md` | **Content voice + emblem template** | **CANONICAL**: 4-section emblem analysis template (The Plate, Maier's Discourse, De Jong's Sources, Scholarly Perspectives). Museum-level curation standards. Anti-patterns. DB field contracts. **Read this before writing ANY emblem content.** |
+| `docs/SWARMGUIDELINES.md` | **Multi-agent swarm operations** | Hard rule: background agents CANNOT run Bash. Working patterns: staging files, pre-queried data, report-only audits. **Read this before launching ANY background agents.** |
 
 ## Tier 3: Read FOR Context (Reference)
 
@@ -96,6 +97,9 @@ Reports from prior sessions. Read when you're about to repeat work in the same a
 
 ### "I need to understand the project architecture"
 → Read `docs/SYSTEM.md` for the full architecture. Short version: `data/emblem_manifest.json` → `seed_identity.py` → SQLite → `build_site.py` → static HTML → GitHub Pages.
+
+### "I need to launch background agents or a swarm"
+→ Read `docs/SWARMGUIDELINES.md` FIRST. Hard rule: agents CANNOT run Bash/Python. Use staging files (agents write JSON to `staging/`, main session reads and runs pipeline) or pre-queried data (main session exports DB to JSON before launching agents). Never expect an agent to query the DB or run a script.
 
 ### "I need to plan new work"
 → Read `docs/ROADMAP.md` for phase status. Read `docs/reports/HIROREBUILD.md` for the master rebuild plan (43 atoms). Use the PKD Planning Protocol from `C:\Dev\CLAUDE.md`.
