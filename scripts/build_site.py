@@ -1565,6 +1565,14 @@ def build_essay_pages(conn):
             </div>
         </a>"""
 
+    # De Jong Sources essay
+    ESSAYS.append({
+        "slug": "dejong-sources",
+        "title": "Maier's Sources According to De Jong",
+        "subtitle": "How One Scholar Unlocked Fifty Alchemical Emblems",
+        "body": "<p>This essay presents De Jong's source-critical achievement. See the enriched version for full content.</p>",
+    })
+
     # Paracelsianism essay
     ESSAYS.append({
         "slug": "paracelsianism",
