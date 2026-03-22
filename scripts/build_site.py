@@ -82,6 +82,7 @@ NAV_ITEMS = [
     ('Timeline', 'timeline.html'),
     ('Sources', 'sources.html'),
     ('Maier', 'maier.html'),
+    ('Creatures', 'creatures.html'),
     ('Music', 'music.html'),
     ('Works', 'works.html'),
     ('Szulakowska', 'szulakowska.html'),
@@ -1565,6 +1566,14 @@ def build_essay_pages(conn):
             </div>
         </a>"""
 
+    # Chemistry essay
+    ESSAYS.append({
+        "slug": "chemistry",
+        "title": "The Chemistry, Medicine, and Alchemical Theories of the Emblems",
+        "subtitle": "What Maier Encoded in Fifty Allegorical Scenes",
+        "body": "<p>See the enriched version for full content (51 emblems, 103K chars).</p>",
+    })
+
     # De Jong Sources essay
     ESSAYS.append({
         "slug": "dejong-sources",
@@ -1697,6 +1706,59 @@ def build_essay_pages(conn):
     html = page_shell('Essays', idx_body, active_nav='Essays', depth=1)
     (essays_dir / 'index.html').write_text(html, encoding='utf-8')
     print(f"  essays/: {len(ESSAYS)} essays + {len(planned)} planned")
+
+
+def build_creatures_page():
+    """Build the Creatures page — Maier's alchemical bestiary with essays on each creature."""
+    creatures_path = BASE_DIR / 'staging' / 'creatures_essays.json'
+    if not creatures_path.exists():
+        print("  creatures.html: skipped (no staging/creatures_essays.json)")
+        return
+
+    creatures = json.loads(creatures_path.read_text(encoding='utf-8'))
+
+    entries_html = ''
+    for c in creatures:
+        slug = c.get('slug', '')
+        title = c.get('title', '')
+        subtitle = c.get('subtitle', '')
+        body = c.get('body_html', '')
+        emblem_nums = c.get('emblems', [])
+
+        # Emblem image badges
+        emblem_imgs = ''
+        for n in emblem_nums[:3]:  # Show up to 3 emblem thumbnails
+            fname = f'emblem-{n:02d}.jpg'
+            link = f'emblems/emblem-{n:02d}.html'
+            emblem_imgs += f'<a href="{link}" style="display:inline-block;margin-right:0.5rem"><img src="images/emblems/{fname}" alt="Emblem {n}" style="width:80px;height:80px;object-fit:cover;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.15)"></a>'
+
+        entries_html += f"""
+        <div class="ref-card" style="margin-bottom:2.5rem;padding:1.5rem" id="{slug}">
+            <h3 style="font-size:1.2rem;color:var(--accent);margin-bottom:0.2rem">{title}</h3>
+            <p style="font-size:0.95rem;font-style:italic;color:var(--text-muted);margin-bottom:1rem">{subtitle}</p>
+            {f'<div style="margin-bottom:1rem">{emblem_imgs}</div>' if emblem_imgs else ''}
+            <div style="font-size:0.95rem;line-height:1.7">{autolink_emblems(body)}</div>
+        </div>"""
+
+    body = f"""
+    <div class="page-content">
+        <h1 style="font-size:1.8rem;margin-bottom:0.3rem">Maier's Alchemical Bestiary</h1>
+        <p style="font-size:1.05rem;color:var(--text-muted);margin-bottom:0.5rem;line-height:1.6">
+            The emblems of <em>Atalanta Fugiens</em> are populated by a menagerie of allegorical creatures —
+            lions, wolves, dragons, eagles, toads, and salamanders — each encoding specific chemical
+            substances and operations within the alchemical tradition. This page collects Maier's bestiary
+            and situates each creature within the broader history of alchemical imagery, drawing on
+            Lyndy Abraham's <em>Dictionary of Alchemical Imagery</em>, De Jong's source identifications,
+            and Lawrence Principe's chemical interpretations.
+        </p>
+        <div class="ai-banner">This content was drafted by an AI language model based on scholarly sources in our corpus. Not reviewed by a human scholar.</div>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:2rem;font-family:var(--font-sans)">{len(creatures)} creatures surveyed</p>
+        {entries_html}
+    </div>"""
+
+    html = page_shell("Maier's Alchemical Bestiary", body, active_nav='Creatures')
+    (SITE_DIR / 'creatures.html').write_text(html, encoding='utf-8')
+    print(f"  creatures.html: {len(creatures)} creatures")
 
 
 def build_maier_page(conn):
@@ -2160,6 +2222,7 @@ def main():
     build_sources(conn)
     # build_essays(conn)  # Replaced by build_essay_pages
     build_maier_page(conn)
+    build_creatures_page()
     build_essay_pages(conn)
     build_works_page()
     build_szulakowska_page()
