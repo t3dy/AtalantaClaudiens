@@ -124,6 +124,15 @@ def page_shell(title, body, active_nav='', depth=0):
 </html>"""
 
 
+def format_paragraphs(text):
+    """Convert \\n\\n-separated text into HTML paragraphs."""
+    if not text:
+        return ''
+    paragraphs = [p.strip() for p in text.split('\n\n') if p.strip()]
+    html = ''.join(f'<p style="font-size:0.95rem;line-height:1.7;margin-bottom:1rem">{p}</p>' for p in paragraphs)
+    return f'<div style="margin-bottom:1.5rem">{html}</div>'
+
+
 def confidence_badge(level):
     if not level: return ''
     cls = f'confidence-{level.lower()}'
@@ -410,6 +419,7 @@ def build_emblem_pages(conn, identity_map):
             <div class="card-body">
                 <div class="card-sig">{display}. {label} {sbadge}</div>
                 <div class="card-desc">{motto[:80]}{'...' if len(motto) > 80 else ''}</div>
+                <div style="margin-top:0.5rem"><span style="font-size:0.8rem;color:var(--accent);font-family:var(--font-sans)">View details &rarr;</span></div>
             </div>
         </a>"""
 
@@ -524,6 +534,7 @@ def build_scholars_pages(conn):
                 <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--text-muted);font-family:var(--font-sans)">
                     {work_count} work{'s' if work_count != 1 else ''} &middot; {ref_count} emblem{'s' if ref_count != 1 else ''} covered
                 </div>
+                <div style="margin-top:0.4rem"><span style="font-size:0.8rem;color:var(--accent);font-family:var(--font-sans)">View profile &rarr;</span></div>
             </div>
         </a>"""
 
@@ -565,7 +576,7 @@ def build_scholars_pages(conn):
             <h1 style="font-size:1.8rem;margin-bottom:0.5rem">{name}</h1>
             <p style="color:var(--text-muted);font-family:var(--font-sans);margin-bottom:1.5rem">{spec or ''}</p>
             {f'<p style="margin-bottom:1rem">{focus}</p>' if focus else ''}
-            {f'<div style="margin-bottom:1.5rem;font-size:0.95rem;line-height:1.7">{overview}</div>' if overview else ''}
+            {format_paragraphs(overview) if overview else ''}
             {f'<h2>Works in Archive</h2>{works_html}' if works_html else '<p style="color:var(--text-muted)"><em>No works linked yet.</em></p>'}
         </div>"""
         html = page_shell(name, body, active_nav='Scholars', depth=1)
@@ -660,6 +671,7 @@ def build_dictionary_pages(conn):
                 </div>
                 {latin_line}
                 <div class="dict-def">{def_short or ""}</div>
+                <div style="margin-top:0.3rem"><span style="font-size:0.75rem;color:var(--accent);font-family:var(--font-sans)">View definition &rarr;</span></div>
             </a>"""
         cat_html += f"""
         <div style="margin-bottom:2rem">
