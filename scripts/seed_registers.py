@@ -360,6 +360,48 @@ REGISTERS = {
         "spiritual": "Divine Sophia: the feminine personification of wisdom who guides the seeker through the labyrinth of the Great Work and reveals the hidden meaning of nature's symbols.",
         "cosmological": "The ordering intelligence pervading the cosmos; the Logos or world-reason that structures the universe according to number, proportion, and harmony."
     },
+    "alembic": {
+        "alchemical": "The distillation apparatus proper: the head or capital fitted onto the cucurbit through which volatile vapors rise and condense into the receiving vessel—the instrument of separation par excellence.",
+        "medical": "The Paracelsian still by which the spagyrist extracts pure tinctures from gross plant or mineral bodies; the iatrochemical workshop where crude matter becomes refined remedy.",
+        "spiritual": "The contemplative discipline that distills essential meaning from the welter of experience; the inner alembic in which spiritual heat lifts pure understanding from the residue of attachment.",
+        "cosmological": "The sky itself as cosmic still: solar heat raises terrestrial moisture, condenses it on the celestial vault, and returns it as purified rain—nature's universal alembic."
+    },
+    "athanor": {
+        "alchemical": "The slow furnace whose constant, gentle heat incubates the sealed vessel through the long phases of the opus; its name (from Arabic al-tannūr) marks alchemy's debt to Islamic adepts.",
+        "medical": "The body's innate heat (calor innatus) that drives digestion, generation, and the slow maturation of vital spirits; physiological warmth as the engine of cure.",
+        "spiritual": "The sustained inner fire of devotion and discipline; the steady, unwavering attention that allows transformation to mature without being scorched by zeal or quenched by neglect.",
+        "cosmological": "The Sun as cosmic athanor: the central hearth whose patient, perpetual fire warms the planetary spheres and sustains generation throughout the sublunary world."
+    },
+    "four-elements": {
+        "alchemical": "Earth, water, air, and fire: the qualitative substrates whose proportions and transmutations underlie every alchemical operation, as Maier's emblems repeatedly stage their interplay.",
+        "medical": "The Galenic basis of humoral physiology: blood (air), phlegm (water), yellow bile (fire), and black bile (earth)—health as their balanced commixture, disease as their disorder.",
+        "spiritual": "The fourfold structure of the soul or psyche; the elemental temperaments through which spiritual aspiration must be tempered into a balanced and integrated character.",
+        "cosmological": "The sublunary cosmos's material constituents arranged in concentric spheres beneath the heavens; the framework through which celestial influences act upon terrestrial bodies."
+    },
+    "mercury-sulphur-theory": {
+        "alchemical": "The medieval Arabic-derived doctrine that all metals are composed of philosophical Mercury (volatile, feminine, lunar) and Sulphur (fixed, masculine, solar) in varying purity and proportion.",
+        "medical": "The basis of iatrochemical pharmacology: medicines understood as rebalancing the patient's mercurial and sulphurous principles; the diagnostic frame Paracelsus extended into Tria Prima.",
+        "spiritual": "The polarity of receptivity and active will within the soul; the inner marriage of feminine reflective intelligence and masculine generative power that the Work brings to perfection.",
+        "cosmological": "The Sun and Moon as the celestial archetypes of Sulphur and Mercury; their conjunction governs generation throughout nature, mirrored in every metal's hidden parentage."
+    },
+    "garden-of-hesperides": {
+        "alchemical": "The hidden orchard guarded by a dragon where the golden apples ripen: a topos for the secret laboratory and the Stone itself, ringed by the protective serpent of mercurial matter.",
+        "medical": "The locus of restored health and longevity; the legendary garden whose fruit confers the vitality the iatrochemist seeks to bottle in the universal medicine.",
+        "spiritual": "The paradisal interior of the awakened soul; the inner garden whose fruits—wisdom, virtue, integration—ripen only when the dragon of unconscious resistance has been overcome.",
+        "cosmological": "The far western edge of the world where the sun sets into the ocean of unmanifest potentiality; the threshold between manifest cosmos and the hidden source from which it issues."
+    },
+    "golden-apple": {
+        "alchemical": "The fruit of Hesperides that Hippomenes drops to slow Atalanta: cipher of the perfected gold or Stone whose apparition arrests the volatile flight of mercurial matter.",
+        "medical": "The aurum potabile in fruit form; the perfected medicinal essence whose ingestion restores incorruptible health, figured as the food of the gods in classical legend.",
+        "spiritual": "The lure that draws the soul out of unconscious flight into conscious encounter; the precious insight whose appearance, though fleeting, redirects the seeker toward the goal.",
+        "cosmological": "The solar fruit ripened by celestial fire at the world's western boundary; the round perfection in which the heavens condense their virtue into edible, bounded form."
+    },
+    "golden-fleece": {
+        "alchemical": "The prize won by Jason from the dragon-guarded grove of Colchis: Maier and his predecessors read it as cipher for the Philosopher's Stone, with the Argonauts' voyage as the opus.",
+        "medical": "The supreme medicament whose acquisition demands a heroic regimen; the panacea hidden behind the dragon of disease, recoverable only by sustained therapeutic discipline.",
+        "spiritual": "The radiant authentic self recovered after the soul's perilous voyage through unfamiliar waters; the integrated personality won from the unconscious by trial and patient cunning.",
+        "cosmological": "The solar ram itself, fixed in the zodiac as Aries: the celestial fleece whose recovery marks the spring equinox, the cosmos's annual rebirth from the dragon of winter darkness."
+    },
 }
 
 
