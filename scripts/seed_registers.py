@@ -214,6 +214,36 @@ REGISTERS = {
         "spiritual": "The partially purified soul: no longer in the blackness of nigredo but not yet fully illuminated; the intermediate stage of spiritual convalescence.",
         "cosmological": "The transition from Saturn (lead) toward Luna (silver); the liminal zone between planetary influences where base matter begins to receive celestial whiteness."
     },
+    "aurum-potabile": {
+        "alchemical": "Drinkable gold: the perfected metal rendered into a liquid tincture, often by repeated dissolution in mercurial water; the convertible form of the Stone for ingestion.",
+        "medical": "The supreme Paracelsian remedy, claimed by iatrochemists from Paracelsus to Maier as a panacea capable of restoring radical heat, prolonging life, and curing the most refractory diseases.",
+        "spiritual": "The internalized solar principle: golden insight that, having been swallowed, transmutes the inner constitution from base reactivity to the radiant equanimity of the realized soul.",
+        "cosmological": "The Sun condensed into liquid form; the celestial gold drawn down through alchemical art so the heavens' incorruptible virtue may circulate through the sublunary body."
+    },
+    "green-lion": {
+        "alchemical": "The vitriolic mineral acid (often green vitriol or its derivatives) figured as a green lion that 'devours the sun': the corrosive solvent that dissolves gold to begin the work.",
+        "medical": "The aggressive purgative whose corrosive virtue scours obstructed humors from the body; the violent remedy whose green color signals its derivation from copper-bearing minerals.",
+        "spiritual": "The hungry, untamed vitality of the unintegrated psyche; the wild green of unprocessed life-force that consumes the sun-king of consciousness before it can be tempered.",
+        "cosmological": "Venus and Mars commixed: the copper-iron complex whose vegetal green marks the earth's productive force, the chthonic appetite at the root of all generation."
+    },
+    "quintessence": {
+        "alchemical": "The fifth essence: the incorruptible substrate distilled out of the four elements, equated by adepts with the Stone's purest form and the perfected matter that grounds all transmutation.",
+        "medical": "The vital pneuma or radical moisture that animates the body; the subtle medium whose extraction and re-administration constitutes the spagyrist's universal medicine.",
+        "spiritual": "The incorruptible kernel of the soul that survives every dissolution; the imperishable witness whose recovery is the goal of contemplative work in the Hermetic tradition.",
+        "cosmological": "Aristotle's aether: the supralunary substance of the celestial spheres, weightless and unchanging, whose downward refraction into terrestrial matter is what alchemy strives to capture."
+    },
+    "vitriol": {
+        "alchemical": "The hydrated metal sulphates (especially copper and iron) whose acronymic motto V.I.T.R.I.O.L.—visita interiora terrae rectificando invenies occultum lapidem—encodes the descent into hidden interior matter.",
+        "medical": "Iatrochemistry's powerful astringent and corrosive: vitriolic preparations were used to cauterize ulcers, dry rheums, and (cautiously) as internal purgatives in Paracelsian dosage.",
+        "spiritual": "The injunction to interiority: 'visit the inner parts of the earth' as the imperative to descend into the unconscious, where rectification of the shadow uncovers the hidden Stone.",
+        "cosmological": "The mineral residue of celestial influence stored in the earth's crystalline depths; the chthonic concentration of solar and venusian virtues solidified into colored salts."
+    },
+    "lac-virginis": {
+        "alchemical": "The Virgin's Milk: a name for the pure, white, mercurial water of the philosophers—the lactescent solvent that nourishes the embryonic Stone within the philosophical egg.",
+        "medical": "Whitened milk-tinctures and lactic preparations used as gentle nutritives for invalids and infants; the fluidum vitae whose purity restores depleted radical moisture.",
+        "spiritual": "The sustaining grace that feeds the newborn spiritual life; the pure, untainted nourishment given by the Sophianic feminine to the soul reborn after nigredo.",
+        "cosmological": "The lunar dew that descends as silver-white moisture in the cool of dawn; the maternal milk of the Moon that fertilizes terrestrial generation in classical natural philosophy."
+    },
 
     # ═══════════════════════════════════════════════════════════════════════════
     # FIGURE TERMS (qualifying — those with alchemical symbolism)
@@ -289,6 +319,36 @@ REGISTERS = {
         "medical": "The paradigmatic melancholic patient: his saturnine excess of black bile must be treated with moist heat (the steam bath) to restore humoral equilibrium.",
         "spiritual": "The soul imprisoned by saturnine depression; the leaden weight of acedia that can only be lifted through the warmth of spiritual practice and purgative ordeal.",
         "cosmological": "Saturn's influence made flesh: the heavy, cold, dry principle that must be warmed and moistened by solar and lunar forces to participate in cosmic harmony."
+    },
+    "atalanta": {
+        "alchemical": "The fugitive virgin of Maier's title: cipher of the volatile philosophical mercury that must be arrested in the sealed vessel before it escapes through heating.",
+        "medical": "The hyperactive vital spirit that exhausts the body when it cannot be fixed; the runaway pulse and febrile heat that the physician must slow without quenching.",
+        "spiritual": "The swift, untamable soul whose flight from contemplation must be redirected by the golden apples of insight; the seeker pursued and pursuing in the same instant.",
+        "cosmological": "The Moon in her swift rotation, outpacing the Sun until the conjunction; the lunar principle whose flight defines the rhythm in which solar gold can finally overtake her."
+    },
+    "hercules": {
+        "alchemical": "The hero whose twelve labors Maier (in Arcana Arcanissima) reads as encoded operations of the opus: each monstrous adversary a stage of matter, each victory a chemical accomplishment.",
+        "medical": "The exemplar of robust sanguine vigor; his strength figures the ideal physiological constitution that has subdued the disordered humors and tamed the body's monsters.",
+        "spiritual": "The labor-bound soul: the heroic ego that must complete a sequence of trials, each one purgative, before earning apotheosis among the stars.",
+        "cosmological": "The solar hero whose twelve labors track the zodiacal year; his cycle of trials is the Sun's annual passage through the houses, mapping the cosmos onto biographical time."
+    },
+    "hermes-trismegistus": {
+        "alchemical": "The thrice-greatest patron of the art and putative author of the Tabula Smaragdina, whose 'as above, so below' is alchemy's foundational axiom and the warrant for every operation.",
+        "medical": "The legendary first physician of the Hermetic tradition; the source from which Galenic and Paracelsian medicine alike claimed pharmacological authority for the mineral arcana.",
+        "spiritual": "The mediator between divine and human realms; the messenger whose Corpus Hermeticum supplied Renaissance Christian Hermetism with its model of the soul's ascent.",
+        "cosmological": "Mercury thrice over—planet, principle, and god; the cosmic intermediary whose triple greatness encompasses the heavens, earth, and underworld unified by the caduceus's intertwined serpents."
+    },
+    "ouroboros": {
+        "alchemical": "The serpent biting its tail: figure of the closed circulatory work in the sealed vessel, where dissolution and coagulation continually feed each other until perfection.",
+        "medical": "The body's self-renewing economy: the cycle of digestion, assimilation, and excretion in which what is consumed becomes substance and what is substance is consumed.",
+        "spiritual": "The eternal return of self-knowledge; the recognition that every ending is also a beginning, that the soul's work is circular rather than linear and admits no final terminus.",
+        "cosmological": "The cosmos as self-contained whole: the great circle of the heavens enclosing all generation and corruption, the All-and-One whose Greek emblem (hen to pan) it inscribes."
+    },
+    "paracelsus": {
+        "alchemical": "Theophrastus von Hohenheim (1493–1541): the iatrochemical reformer whose Tria Prima (Sulphur, Mercury, Salt) restructured alchemical theory and whose authority Maier repeatedly invokes.",
+        "medical": "The founder of iatrochemistry: replacing Galenic humoralism with chemical pharmacology, he prescribed mineral and metallic arcana whose preparation depended on alchemical operations.",
+        "spiritual": "The astrum or inner star: Paracelsus held that each soul carries an inner heaven whose recognition and cultivation is the true work, and Maier extends this to the meditating reader.",
+        "cosmological": "The doctrine of signatures and of macrocosm-microcosm correspondence: Paracelsus's insistence that every terrestrial body bears the signature of its celestial counterpart underwrites Maier's emblematic method."
     },
 
     # ═══════════════════════════════════════════════════════════════════════════
@@ -401,6 +461,24 @@ REGISTERS = {
         "medical": "The supreme medicament whose acquisition demands a heroic regimen; the panacea hidden behind the dragon of disease, recoverable only by sustained therapeutic discipline.",
         "spiritual": "The radiant authentic self recovered after the soul's perilous voyage through unfamiliar waters; the integrated personality won from the unconscious by trial and patient cunning.",
         "cosmological": "The solar ram itself, fixed in the zodiac as Aries: the celestial fleece whose recovery marks the spring equinox, the cosmos's annual rebirth from the dragon of winter darkness."
+    },
+    "eucharist-alchemical": {
+        "alchemical": "The sacramental analogy adepts drew between the consecrated species and the Stone: both are humble matter into which a higher principle has been substantially infused without altering the appearance.",
+        "medical": "The supreme medicine of the soul reread as physical panacea: just as the host nourishes the spiritual body, the alchemical Eucharist nourishes the bodily life with its own concentrated virtue.",
+        "spiritual": "The interiorized sacrament: communion as the daily recapitulation of conjunctio—the union of human and divine substance that the alchemical work models in matter.",
+        "cosmological": "The cosmos as universal Eucharist: the doctrine that all matter participates in divine substance through the descent of celestial influence, making every transformation a sacred ingestion."
+    },
+    "musica-speculativa": {
+        "alchemical": "Speculative music: the Pythagorean–Boethian science of harmonic ratio that grounds Maier's fifty fugues in the same proportional theory that orders matter in the alchemical vessel.",
+        "medical": "Music as therapy in the Ficinian tradition: the audible proportions that retune the listener's spirit and restore humoral balance through resonance with celestial harmony.",
+        "spiritual": "The contemplative ascent through harmonic ratio toward the divine ground; music heard not as pleasant sound but as the audible trace of cosmic order, training the soul in proportion.",
+        "cosmological": "The Boethian music of the spheres: the planetary motions understood as inaudible harmony, of which earthly music (musica instrumentalis) and human harmony (musica humana) are reflections."
+    },
+    "quadrivium": {
+        "alchemical": "The fourfold mathematical curriculum (arithmetic, geometry, music, astronomy) that grounds alchemical proportion: weights, vessel geometry, fugal ratios, and timing of operations all draw on it.",
+        "medical": "The numerical bases of regimen: dosage proportion, geometric models of the body, musical pulse-theory, and astrological timing of treatments—medieval medicine was explicitly quadrivial.",
+        "spiritual": "The disciplined ascent of the mind through the four mathematical sciences toward contemplation of pure intelligible form; the medieval pedagogical path from sensible to spiritual.",
+        "cosmological": "The architecture of the cosmos read as number: the four sciences disclose successively the unities, magnitudes, harmonies, and motions through which God ordered creation."
     },
 }
 
