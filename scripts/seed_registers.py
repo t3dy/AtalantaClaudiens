@@ -350,6 +350,96 @@ REGISTERS = {
         "spiritual": "The astrum or inner star: Paracelsus held that each soul carries an inner heaven whose recognition and cultivation is the true work, and Maier extends this to the meditating reader.",
         "cosmological": "The doctrine of signatures and of macrocosm-microcosm correspondence: Paracelsus's insistence that every terrestrial body bears the signature of its celestial counterpart underwrites Maier's emblematic method."
     },
+    "boreas": {
+        "alchemical": "The North Wind of Emblem I who carries the swaddled infant in his belly: figure of the volatile aerial principle (philosophical air or spirit) that transports the embryonic Stone through gestation in the sealed vessel.",
+        "medical": "The cold, dry north wind of Hippocratic meteorology: bracing and astringent, it figures the constitutional cooling necessary to balance phlegmatic excess and to fix unstable spirits in the body.",
+        "spiritual": "The pneumatic carrier of the nascent soul; the bracing inrush of inspiration whose chill must be endured before its life-giving cargo can be brought to term within the contemplative.",
+        "cosmological": "The Hyperborean wind issuing from the cosmic North Pole: the celestial axis-direction whose cold spiritus, carrying the seed of generation, descends to fertilize the sublunary world."
+    },
+    "hippomenes": {
+        "alchemical": "The suitor of Maier's title who arrests Atalanta with three golden apples: figure of the operative artist who fixes volatile mercury through the timely interposition of solar gold.",
+        "medical": "The therapeutic intelligence that slows runaway vital spirit by interposing nourishing substances at the right intervals; the physician's art of cadence and dosage.",
+        "spiritual": "The contemplative who paces the soul's pursuit of wisdom by deploying compelling images at the right moments; the reader of Atalanta Fugiens as Maier scripts him.",
+        "cosmological": "The Sun overtaking the swift Moon at the conjunction; the solar principle whose three apples (gold) successively brake the lunar flight until they meet at the same celestial degree."
+    },
+    "jason": {
+        "alchemical": "The Argonaut whose Colchian quest De Jong and Maier read as a complete alchemical voyage: the dragon-guarded Fleece is the Stone, the Argo the vessel, Medea's drugs the necessary preparations.",
+        "medical": "The physician-hero who undertakes the long therapeutic journey, mastering exotic remedies and obstacles to retrieve the supreme medicament that ordinary practice cannot reach.",
+        "spiritual": "The disciplined ego embarking on a guided voyage through unconscious waters; the heroic seeker whose success requires both personal courage and a counsellor's secret knowledge.",
+        "cosmological": "The solar hero traversing the eastern horizon to seize the celestial fleece in the dawn of Aries; the annual itinerary of the Sun reread as quest narrative."
+    },
+    "medea": {
+        "alchemical": "The Colchian sorceress whose pharmaka enable Jason to seize the Fleece: figure of the chemical knowledge—the secret tinctures and washes—without which the operative artist accomplishes nothing.",
+        "medical": "The herbalist of dangerous arcana: her ointments anaesthetize the dragon and renew aged Aeson's blood, archetypes of the powerful, ambivalent remedies that iatrochemistry inherits.",
+        "spiritual": "The dark feminine wisdom whose knowledge the seeker must accept on her terms; the unconscious counsellor whose drugs both enable transformation and exact a tragic price.",
+        "cosmological": "The sublunary lunar feminine whose magical waters embody the moon's influence over plants, blood, and tides; the mediating Hecatean intelligence at the threshold of three worlds."
+    },
+    "kronos-saturn": {
+        "alchemical": "The aged king who devours his children: figure of the heavy, cold, fixed lead-principle that must itself be dissolved (castrated, in the myth) before generation can yield purer metals.",
+        "medical": "The patron of the melancholic temperament: black bile, cold and dry, whose excess produces depression, retention, and the saturnine diseases that humoral medicine sought to relieve.",
+        "spiritual": "The weight of acedia and limit-experience; the contemplative descent into depressive interiority whose gravity, properly endured, becomes the foundation for all subsequent uplift.",
+        "cosmological": "The outermost planet of the traditional spheres: slow, cold, and ringed; the chronological boundary between sublunary becoming and the unchanging stars beyond."
+    },
+    "ulysses-odysseus": {
+        "alchemical": "The cunning navigator of Maier's frontispiece: cipher for the wily artist whose homeward voyage—through Circean transformations and Sirenic temptations—models the long return-journey of the opus.",
+        "medical": "The patient who endures protracted convalescence with cunning rather than force; the long regimen whose success depends on intelligent improvisation against shifting symptoms.",
+        "spiritual": "The polytropos soul, much-turning and adaptive; the seeker whose homecoming requires recognizing transformations of self and other, and refusing premature arrivals.",
+        "cosmological": "The wandering planet (planos) personified: the celestial body whose long, looped motions through the zodiac chart a journey home that can be read as both literal and allegorical."
+    },
+    "oedipus": {
+        "alchemical": "The interpreter of the Sphinx's riddle whom Maier (especially in his Arcana Arcanissima) treats as paradigm of the alchemical reader: the one whose decipherment of veiled language is itself the operation.",
+        "medical": "The diagnostician whose riddle-solving epitomizes Hippocratic semiotics: reading occult signs in surface symptoms to name the hidden cause, so that the physician's word itself begins the cure.",
+        "spiritual": "The seeker confronting the riddle of his own being; the soul whose self-recognition is both liberation and tragic burden, anticipating the modern hermeneutic of the unconscious.",
+        "cosmological": "The figure positioned at a cosmological crossroads where the human, the bestial, and the divine meet; the riddle of being-in-the-world that the four-elementary cosmos poses to its inhabitants."
+    },
+    "ceres": {
+        "alchemical": "The grain-goddess Demeter whose fruits Maier invokes for the vegetative fixation of Mercury: the maternal earth-principle that nourishes the embryonic Stone through coagulating humidity.",
+        "medical": "The patroness of nutrition: bread and grain as the staple of bodily renewal; her cult of the Eleusinian Mysteries explicitly linked to the renewal of life through ingestion.",
+        "spiritual": "The Eleusinian initiatrix whose mysteries enacted death and rebirth in the grain; the cyclical mother whose loss and recovery of Persephone models the soul's descent and return.",
+        "cosmological": "The earth-element personified: the receptive feminine ground in which celestial seed is sown, whose fertility tracks the solar year and the cycle of seasons."
+    },
+    "naaman": {
+        "alchemical": "The Syrian commander whose sevenfold immersion in the Jordan cleanses his leprosy: a biblical analogue Maier and earlier adepts read for the seven washings (ablutions) that purify the matter.",
+        "medical": "The paradigmatic case of cure-by-bathing: the therapeutic immersion that humoral and Paracelsian medicine alike inherited from biblical and classical balneology.",
+        "spiritual": "The pride-stricken seeker who must accept a humble remedy; the soul whose healing depends on relinquishing its own scheme and submitting to the prescribed sevenfold work.",
+        "cosmological": "The seven planetary spheres traversed by the soul in its purification, each ablution corresponding to the soul's stripping of one planetary garment in the Hermetic ascent."
+    },
+    "alchemical-eagle": {
+        "alchemical": "The volatile principle in its ascending phase: the eagle that flies up the alembic, distilled spirit rising from the calcined body—paired iconographically with the toad or lion of fixity.",
+        "medical": "The sublimated vital spirit (spiritus animalis) raised from the gross humors; the refined pneuma that medicine seeks to extract and re-administer as quintessential remedy.",
+        "spiritual": "The soul's upward flight in contemplation; the visionary capacity that, lifted on hot drafts, perceives from above what the earthbound understanding cannot.",
+        "cosmological": "The sign of Jupiter's bird and of the air-element; the celestial messenger whose ascent and descent figure the vertical traffic between heaven and earth."
+    },
+    "alchemical-lion": {
+        "alchemical": "The fixed solar Sulphur in animal form: the red lion (perfected gold) and green lion (vitriolic solvent) of the iconographic tradition, marking opposite poles of the work.",
+        "medical": "The sanguine-choleric vigor in its noble form; the fierce vital heat that, properly governed, expresses itself as constitutional strength rather than febrile rage.",
+        "spiritual": "The royal spiritedness of the awakened ego; the sovereign self that has subdued lesser passions and bears its solar nature with dignity rather than violence.",
+        "cosmological": "The zodiacal Leo as the Sun's domicile; the celestial sign whose midsummer fire concentrates solar virtue at its peak terrestrial manifestation."
+    },
+    "salamander": {
+        "alchemical": "The creature reputed to live in fire: figure of the incombustible Sulphur or fixed essence that thrives where common matter is consumed; the irreducible kernel revealed by calcination.",
+        "medical": "The constitutional principle of innate heat (calor innatus) whose flame must be sustained without exhausting it; the radical fire whose preservation is the physician's central task.",
+        "spiritual": "The soul's incombustible witness that survives every purgative ordeal; the inner essence that the trial by fire does not destroy but rather discloses.",
+        "cosmological": "The element fire personified in elemental zoology; the fiery salamander as antitype of the watery undine, marking the active principle of the four-elementary cosmos."
+    },
+    "raven-crow": {
+        "alchemical": "The black bird of nigredo: the corvine sign, often depicted as a crow's head on the dying king, that announces the work's onset and the matter's putrefaction in the sealed vessel.",
+        "medical": "The sign of black bile and saturnine corruption: the corvine prognosis appearing in the patient whose humors have darkened and whose treatment must begin with controlled putrefaction.",
+        "spiritual": "The soul's dark night marked unmistakably; the corvine omen at the entrance of the underworld journey, when ego-light fails and the deeper work begins.",
+        "cosmological": "Saturn's bird in the zodiac of beasts; the black-feathered emissary of the outermost planet whose appearance signals the moment for descent rather than ascent."
+    },
+    "philosophical-bird": {
+        "alchemical": "Generic name for any volatile aerial spirit raised in the alembic: the philosophical bird is whatever rises and must be brought back down—mercury, spirit, or ascending vapor.",
+        "medical": "The body's volatile spirits (spiritus naturalis, vitalis, animalis) whose flight and return in the vessels constitute the very rhythm of life; the breath-soul of physiology.",
+        "spiritual": "The ascending and descending aspect of every spiritual gift: insight that flies up must come down again into embodied life, or it remains a sterile exhalation.",
+        "cosmological": "The aerial messenger between sublunary and supralunary realms; the avian intermediary that classical and Renaissance cosmology placed in the air-element between earth and fire."
+    },
+    "alchemical-wolf": {
+        "alchemical": "The grey wolf of antimony (lupus metallorum) who 'devours the king': the antimonial sulphide used to purge gold of its impurities, after which the wolf itself is consumed in the cupelling fire.",
+        "medical": "The aggressive purgative (antimony preparations were central to Paracelsian medicine) whose violent action removes diseased matter at the cost of considerable risk to the patient.",
+        "spiritual": "The shadow-aspect that consumes the inflated solar ego before being itself dissolved; the dark agent of necessary destruction in the work of integration.",
+        "cosmological": "Mars's bestial avatar: the predatory principle whose role in cosmic economy is to clear the way for renewal by devouring what has overstayed its season."
+    },
 
     # ═══════════════════════════════════════════════════════════════════════════
     # CONCEPT TERMS (qualifying)
