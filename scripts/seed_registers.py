@@ -440,6 +440,72 @@ REGISTERS = {
         "spiritual": "The shadow-aspect that consumes the inflated solar ego before being itself dissolved; the dark agent of necessary destruction in the work of integration.",
         "cosmological": "Mars's bestial avatar: the predatory principle whose role in cosmic economy is to clear the way for renewal by devouring what has overstayed its season."
     },
+    "alchemical-dog": {
+        "alchemical": "The Khorasan dog and Armenian bitch of the Turba and the Rosarium, whose biting union (often paired with the wolf) figures the controlled hostility of two mercurial principles fixing each other in the vessel.",
+        "medical": "The faithful, fierce vigilance of innate heat guarding the body's threshold; the watchdog principle that recognizes corruption and bites it off before infection spreads.",
+        "spiritual": "The threshold-guardian of the inner work; the loyal but biting capacity of self-discipline that defends the contemplative space against the wolf of dispersion.",
+        "cosmological": "Anubis at the underworld gate; the Sirius-dog whose heliacal rising marks seasonal thresholds and whose celestial counterpart guards the boundary between worlds."
+    },
+    "alchemical-toad": {
+        "alchemical": "The earthly counter-pole to the airy eagle: the terra damnata or fixed faecal residue at the bottom of the alembic, whose stubborn weight is what the volatile spirit must return to and animate.",
+        "medical": "The melancholic deposit of the body—black bile sediment, sluggish humor—that resists circulation; the toad-like residue medicine must dissolve and reincorporate rather than discard.",
+        "spiritual": "The repulsive but indispensable shadow-matter of the psyche; the ugly, low, unwanted material that contemplation must befriend, since the eagle without the toad cannot fly home.",
+        "cosmological": "The earth-element in its densest aspect: the chthonic principle whose toad-emblem signals the deep, cool, moist substrate from which all generation proceeds."
+    },
+    "apocalyptic-woman": {
+        "alchemical": "The 'woman clothed with the sun, with the moon under her feet' (Revelation 12) repurposed by alchemy as the perfected matter pregnant with the Stone, encompassing solar and lunar principles in a single radiant figure.",
+        "medical": "The supreme medicine personified as celestial bride: the panacea whose conception and bringing-to-birth requires the conjunction of Sol and Luna within the Paracelsian vessel-as-womb.",
+        "spiritual": "The Sophianic feminine of Christian Hermetism; the wisdom-figure whose appearance signals the soul's apocalyptic transformation and the breaking-in of the new aeon.",
+        "cosmological": "The cosmos as a single luminous bride: sun-clothed, moon-footed, star-crowned—the mediating world-soul whose imminent delivery is the cosmic counterpart of the alchemical work."
+    },
+    "cybele": {
+        "alchemical": "The Phrygian Magna Mater whose lion-drawn chariot and tympanum-rites figure the maternal-vegetative power that gestates the Stone within the sealed vessel.",
+        "medical": "The patroness of fertility-medicine whose ecstatic cult preserved an ancient pharmacology of mineral and herbal remedies tied to the great mother's seasonal rites.",
+        "spiritual": "The terrible Mother whose galli-priests' self-castration figures the radical sacrifice of generative power that the spiritual work demands; the dark counterpart to Sophia.",
+        "cosmological": "Earth as enthroned goddess: the personified terrestrial sphere from which all metals are mined as her milk, attended by the lions of solar fixity and the keys of celestial influx."
+    },
+    "dryad": {
+        "alchemical": "The tree-spirit of the philosophical wood: the indwelling vital principle of the alchemical tree (arbor philosophica) whose fruits are the metals and whose sap is the universal solvent.",
+        "medical": "The vegetal soul (anima vegetativa) whose sap circulates as the body's nutritive principle; the dryadic life-force that herbal medicine extracts from living plants at the right hour.",
+        "spiritual": "The animating presence within nature whose recognition transforms the contemplative's relation to the world; the soul of the world made visible in particular living forms.",
+        "cosmological": "The localized anima mundi resident in each tree as in each star; the principle by which classical and Renaissance natural philosophy populated the cosmos with intermediate intelligences."
+    },
+    "geryon": {
+        "alchemical": "The three-bodied giant of Hercules' tenth labor: figure of the triple matter (or the Tria Prima) that the operative hero must overcome and unify in a single mastered substance.",
+        "medical": "The morbid triplication of one principle—triple imbalance in body, spirit, and soul—that Paracelsian diagnosis would address by restoring proportion among Sulphur, Mercury, and Salt.",
+        "spiritual": "The fragmented self that presents three contradictory faces to the world; the disunified ego that must be slain at the threshold before the integrated personality can be born.",
+        "cosmological": "The far-western boundary of the inhabited world (Geryon dwelt at Erytheia); the threshold-monster guarding the Pillars of Hercules where the cosmos opens onto the unknown."
+    },
+    "screech-owl": {
+        "alchemical": "The night-bird of Saturn whose cry punctuates nigredo: emblematic companion of the dying king and of melancholy contemplation, signaling the long darkness from which the work begins.",
+        "medical": "The prognostic of saturnine illness: the owl as omen of black-bile crisis, the diagnostic sign that the patient has entered the depressive phase requiring patience rather than intervention.",
+        "spiritual": "The wisdom of the dark; the contemplative who, like the owl, sees in night what the daylit mind cannot perceive—a wisdom acquired only by enduring the long sojourn in obscurity.",
+        "cosmological": "Athena's bird in its saturnine aspect: the celestial creature whose habits map onto the cold, slow, outermost planet, perceiving from that elevation what nearer luminaries miss."
+    },
+    "lusus-serius": {
+        "alchemical": "The serious game: Maier's term (and book title, 1616) for the alchemical work understood as ludic discipline—rule-bound, playful, rigorous, where the operations are moves in a long game.",
+        "medical": "The therapeutic regimen as game: the patient and physician as players whose moves (diet, dose, rest, exercise) follow rules and produce outcomes only through sustained, attentive play.",
+        "spiritual": "The contemplative life as serious play; the Renaissance Christian-humanist insistence that joyful engagement with image, riddle, and song is the real work, not its preface.",
+        "cosmological": "The cosmos itself as ludus—a divine play-space whose ordered rules generate the spectacle of becoming; an idea Maier and Andreae share with the broader humanist tradition."
+    },
+    "prisca-sapientia": {
+        "alchemical": "The 'ancient wisdom' Maier and his predecessors locate in Egypt, Greece, and the Hebrew patriarchs: a unified primordial knowledge of nature, broken by time and recoverable only through the alchemical recovery of forgotten meaning.",
+        "medical": "The lost original medicine—Hermetic, Mosaic, or Aesculapian—of which Galenic, Arabic, and Paracelsian medicines are partial heirs; the tradition iatrochemists claimed to be reassembling.",
+        "spiritual": "The single original revelation diffused through diverse traditions; the Renaissance Hermetist's conviction that Plato, Hermes, Zoroaster, and Moses transmit a common interior wisdom.",
+        "cosmological": "The original cosmology before its dispersion into rival systems; the unified knowledge of the macrocosm-microcosm correspondence that Renaissance natural philosophy seeks to restore."
+    },
+    "mytho-alchemy": {
+        "alchemical": "Peter Forshaw's term for Maier's distinctive method (Arcana Arcanissima, Atalanta Fugiens) of reading classical mythology as encoded chemical instruction—every god, hero, and monster a stage of the work.",
+        "medical": "The diagnostic application of myth: reading the mythological grammar of the body's processes (Saturn's heaviness, Mars's heat, Mercury's volatility) as a language for naming and treating illness.",
+        "spiritual": "The hermeneutic posture in which mythological narrative becomes the mirror of inner transformation; reading the labors and journeys of heroes as a script for the soul's work.",
+        "cosmological": "The conviction that ancient myth and natural philosophy describe the same cosmos under different registers; the Renaissance practice of unifying poetic and scientific knowledge through allegorical reading."
+    },
+    "rosicrucian-brotherhood": {
+        "alchemical": "The fraternity announced in the manifestos (1614–1616) and defended by Maier in Silentium post Clamores and Themis Aurea; the imagined community of adepts whose existence underwrites the alchemical-spiritual reform of the age.",
+        "medical": "The brotherhood's promised programme of free healing for the poor: an explicitly iatrochemical mission tying medical practice to spiritual reformation in the Paracelsian lineage.",
+        "spiritual": "The invisible college of the spiritually awakened, defined by interior commitment rather than visible membership; the prototype of the modern esoteric brotherhood as community of inner work.",
+        "cosmological": "The eschatological community gathered for the imminent renewal of the world; the brotherhood understood within a cosmological narrative of decline, restoration, and the return of prisca sapientia."
+    },
 
     # ═══════════════════════════════════════════════════════════════════════════
     # CONCEPT TERMS (qualifying)
