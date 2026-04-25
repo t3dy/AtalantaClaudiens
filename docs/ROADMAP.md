@@ -35,23 +35,23 @@
 | 3A3: Alchemical stage classification | BUILT | 31/50 classified |
 | 3A4: Home page intro + Start Here | BUILT | Introductory paragraph + button |
 
-## Phase 3B: Secondary Sources — READY
+## Phase 3B: Secondary Sources — COMPLETE
 
 | Slice | Status | Notes |
 |-------|--------|-------|
-| 3B1: Tilton extraction (13,881 lines) | READY | Script needed, single-pass LLM read |
-| 3B2: Craven extraction (6,483 lines) | READY | Biographical detail for Maier |
-| 3B3: Other scholars (Wescott, Pagel, Miner) | READY | Smaller files, targeted extraction |
+| 3B1: Tilton extraction | BUILT | 16 scholarly_refs, rendered on emblem pages |
+| 3B2: Craven extraction | BUILT | 17 refs, biographical context for Maier |
+| 3B3: Other scholars (Wescott, Pagel, Miner) | BUILT | Wescott 15, Pagel 12, Miner 7 refs |
 
-## Phase 4: Content Enrichment — READY
+## Phase 4: Content Enrichment — ESSENTIALLY COMPLETE
 
 | Slice | Status | Notes |
 |-------|--------|-------|
-| 4A: Latin mottos (49/50 missing) | READY | Extract from OCR or seed manually |
-| 4B: definition_long (38/38 empty) | READY | Writing swarm for extended definitions |
-| 4C: Multi-register definitions | READY | Schema needs `registers` column |
-| 4D: Visual element descriptions | BLOCKED | Needs image analysis pipeline or manual |
-| 4E: Remaining 19 alchemical stages | READY | Manual/LLM classification |
+| 4A: Latin mottos | BUILT | 50/50 populated |
+| 4B: definition_long | BUILT | All dictionary terms have long definitions |
+| 4C: Multi-register definitions | BUILT (113/140) | 4 batches shipped 2026-04-25; remaining 27 are mostly source-text titles where four-register reading would be forced |
+| 4D: Image descriptions + visual-element dictionary | BUILT | 51/51 emblems have image_description; 12 dedicated visual-element dictionary entries added 2026-04-25 |
+| 4E: Alchemical stages | BUILT | 50/50 classified |
 
 ## Phase 5: Images — MOSTLY COMPLETE
 
