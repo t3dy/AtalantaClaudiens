@@ -1,8 +1,31 @@
 # PHASESTATUS.md — Session Discipline Log
 
-## Current Phase: 3A complete, 5A complete (images), 3B/4 READY
-## Schema Version: 4 (v1 core + v2 phase2-3 + v3 enrichment + v4 identity)
+## Current Phase: 3A/3B complete, 4 essentially complete (4D/4C ongoing), 5A complete (images)
+## Schema Version: 5 (v1 core + v2 phase2-3 + v3 enrichment + v4 identity + v4 enrichment cols)
 ## Document Routing: See `DOCUMENTAIRTRAFFICCONTROL.md` for which file to consult for any task
+
+---
+
+## Session: 2026-04-25 — Dictionary Multi-Register Expansion (Phase 4C)
+
+### What Shipped (4 PRs, all merged + deployed)
+
+- **PR #1** — Phase 4C batch 1: 7 CONCEPT terms (alembic, athanor, four-elements, mercury-sulphur-theory, garden-of-hesperides, golden-apple, golden-fleece) gain four-register treatment (alchemical / medical / spiritual / cosmological).
+- **PR #2** — Phase 4C batch 2: 13 more terms (5 substances, 5 figures, 3 concepts).
+- **PR #3** — Phase 4C batch 3: 15 mythological figures and alchemical creatures tied directly to specific emblems (boreas, hippomenes, jason, medea, kronos-saturn, ulysses-odysseus, oedipus, ceres, naaman, alchemical-eagle/-lion/-wolf, salamander, raven-crow, philosophical-bird).
+- **PR #4** — Phase 4C batch 4: 11 more figures and concepts (alchemical-dog, alchemical-toad, apocalyptic-woman, cybele, dryad, geryon, screech-owl, lusus-serius, prisca-sapientia, mytho-alchemy, rosicrucian-brotherhood).
+- **Visual-elements pass** — added 12 NEW dictionary terms for recurring visual elements depicted across the emblem plates (hesperides, earth-mother, arbor-philosophica, philosophical-child, balneum, celestial-dew, alchemical-rose, hierogamy, wild-boar, pallas-athena, triptolemus, flaming-sword), each with full definition_short / definition_long / significance_to_af / registers, plus 29 term-emblem links. Also populated registers for the two MUSICAL terms (cantus-firmus, fugue).
+
+### Current Database Totals
+- Dictionary terms: **140** (was 128) — 32 CONCEPT, 41 FIGURE, 2 MUSICAL, 18 PROCESS, 25 SOURCE_TEXT, 22 SUBSTANCE
+- Terms with multi-register treatment: **113 / 140** (~81%; remaining 27 are mostly source-text titles where four-register reading would be forced)
+- Term-emblem refs: 141 (was 112)
+
+### Operating Note for Future Sessions
+- `scripts/build_site.py` is currently destructive for `site/essays/*.html` and `site/bibliography.html`: live site holds hand-curated content not in the DB, and a full rebuild silently regresses essays into stub text. After running `build_site.py`, always `git checkout -- site/essays/ site/bibliography.html` before staging, and only stage targeted files. This is a known divergence from the SQLite-as-source-of-truth rule; reconciling essay/bibliography content into the DB is out of current shipping scope.
+
+### Live URL
+- https://t3dy.github.io/AtalantaClaudiens/
 
 ---
 

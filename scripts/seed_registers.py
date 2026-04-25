@@ -506,6 +506,18 @@ REGISTERS = {
         "spiritual": "The invisible college of the spiritually awakened, defined by interior commitment rather than visible membership; the prototype of the modern esoteric brotherhood as community of inner work.",
         "cosmological": "The eschatological community gathered for the imminent renewal of the world; the brotherhood understood within a cosmological narrative of decline, restoration, and the return of prisca sapientia."
     },
+    "cantus-firmus": {
+        "alchemical": "The 'fixed song' of the soprano voice in Maier's three-voice fugues: the unchanging melodic line representing the fixed principle (philosophical Sulphur or the King) around which the volatile voices weave.",
+        "medical": "The body's steady underlying rhythm—pulse, breath, circadian cycle—on which fluctuating symptoms play; the diagnostic baseline against which deviation is measured.",
+        "spiritual": "The unchanging contemplative ground beneath the fluctuations of psychic life; the still center whose constancy enables the seeker to register and integrate the soul's mobile voices.",
+        "cosmological": "The fixed stars of the eighth sphere whose unchanging position anchors the whirling motions of the planets below; the celestial cantus firmus on which the cosmic polyphony sings."
+    },
+    "fugue": {
+        "alchemical": "The contrapuntal form of Maier's fifty musical settings: three voices (Atalanta fleeing, Hippomenes pursuing, golden apple intervening) enact in sound the alchemical chase the emblems narrate visually.",
+        "medical": "The Ficinian therapy of polyphonic music: the sustained imitative voices treat the listener's spirit by entraining its rhythms into healthful proportion across multiple registers simultaneously.",
+        "spiritual": "The disciplined imitation of a single subject across difference; the pattern of contemplative practice in which the same insight returns transposed through varied life-circumstances until fully integrated.",
+        "cosmological": "The three voices as Sun, Moon, and the rotating Earth between them; the cosmos as great fugue in which celestial motions follow imitative rules across distinct registers."
+    },
 
     # ═══════════════════════════════════════════════════════════════════════════
     # CONCEPT TERMS (qualifying)
