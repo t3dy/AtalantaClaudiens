@@ -442,6 +442,67 @@ def build_emblem_pages(conn, identity_map):
         if img_desc:
             visual_html = f'<div class="visual-description" style="margin-bottom:1.5rem;padding:0.8rem 1rem;background:#faf8f4;border-radius:4px"><h3 style="font-size:0.9rem;color:var(--accent);margin-bottom:0.4rem;font-family:var(--font-sans)">What You See</h3><p style="font-size:0.92rem;margin:0">{img_desc}</p></div>'
 
+        # Related emblems: same stage, shared sources, shared dictionary terms
+        related_sections = []
+        if stage:
+            stage_peers = conn.execute(
+                """SELECT number, roman_numeral, canonical_label
+                   FROM emblems
+                   WHERE alchemical_stage = ? AND id != ? AND number > 0
+                   ORDER BY number""",
+                (stage, eid),
+            ).fetchall()
+            if stage_peers:
+                cards = ''.join(
+                    f'<a href="emblem-{p[0]:02d}.html" class="related-emblem-card"><strong>{p[1]}</strong>: {p[2]}</a>'
+                    for p in stage_peers
+                )
+                related_sections.append(
+                    f'<div class="related-section"><div class="related-section-label">Same alchemical stage ({stage})</div><div class="related-grid">{cards}</div></div>'
+                )
+
+        source_peers = conn.execute(
+            """SELECT DISTINCT e2.number, e2.roman_numeral, e2.canonical_label
+               FROM emblem_sources es1
+               JOIN emblem_sources es2 ON es1.authority_id = es2.authority_id AND es2.emblem_id != es1.emblem_id
+               JOIN emblems e2 ON es2.emblem_id = e2.id
+               WHERE es1.emblem_id = ? AND e2.number > 0
+               ORDER BY e2.number""",
+            (eid,),
+        ).fetchall()
+        if source_peers:
+            cards = ''.join(
+                f'<a href="emblem-{p[0]:02d}.html" class="related-emblem-card"><strong>{p[1]}</strong>: {p[2]}</a>'
+                for p in source_peers[:12]
+            )
+            extra = f' <span style="font-size:0.78rem;color:var(--text-muted)">+{len(source_peers)-12} more</span>' if len(source_peers) > 12 else ''
+            related_sections.append(
+                f'<div class="related-section"><div class="related-section-label">Shares a source authority</div><div class="related-grid">{cards}</div>{extra}</div>'
+            )
+
+        term_peers = conn.execute(
+            """SELECT DISTINCT e2.number, e2.roman_numeral, e2.canonical_label
+               FROM term_emblem_refs ter1
+               JOIN term_emblem_refs ter2 ON ter1.term_id = ter2.term_id AND ter2.emblem_id != ter1.emblem_id
+               JOIN emblems e2 ON ter2.emblem_id = e2.id
+               WHERE ter1.emblem_id = ? AND e2.number > 0
+               ORDER BY e2.number""",
+            (eid,),
+        ).fetchall()
+        if term_peers:
+            cards = ''.join(
+                f'<a href="emblem-{p[0]:02d}.html" class="related-emblem-card"><strong>{p[1]}</strong>: {p[2]}</a>'
+                for p in term_peers[:12]
+            )
+            extra = f' <span style="font-size:0.78rem;color:var(--text-muted)">+{len(term_peers)-12} more</span>' if len(term_peers) > 12 else ''
+            related_sections.append(
+                f'<div class="related-section"><div class="related-section-label">Shares a dictionary term</div><div class="related-grid">{cards}</div>{extra}</div>'
+            )
+
+        related_html = ''
+        if related_sections:
+            related_html = f'<div class="related-emblems"><h3>Related Emblems</h3>{"".join(related_sections)}</div>'
+
         body = f"""
     <div class="emblem-detail">
         <div class="emblem-nav">
@@ -470,6 +531,7 @@ def build_emblem_pages(conn, identity_map):
                 {f'<h3 style="font-size:1rem;color:var(--accent);margin-top:1.5rem;margin-bottom:0.5rem">Maier\'s Sources</h3>{sources_html}' if sources_html else ''}
             </div>
         </div>
+        {related_html}
     </div>"""
 
         filename = 'frontispiece.html' if num == 0 else f'emblem-{num:02d}.html'
@@ -779,15 +841,17 @@ def build_dictionary_pages(conn):
             latin_line = f'<div class="dict-latin">{label_latin}</div>' if label_latin and label_latin != label else ''
             search_blob = f'{label} {label_latin or ""} {def_short or ""}'.lower().replace('"', '&quot;')
             cards += f"""
-            <a href="{slug}.html" class="dict-card" data-category="{tcat}" data-search="{search_blob}">
-                <div class="dict-label">{label}
-                    <span class="badge badge-stage">{tcat}</span>
-                    {f'<span class="badge badge-contextual">{ecnt} emblems</span>' if ecnt else ''}
-                </div>
-                {latin_line}
-                <div class="dict-def">{def_short or ""}</div>
-                <div style="margin-top:0.3rem"><span style="font-size:0.75rem;color:var(--accent);font-family:var(--font-sans)">View definition &rarr;</span></div>
-            </a>"""
+            <div class="dict-card-wrap" data-category="{tcat}" data-search="{search_blob}">
+                <a href="{slug}.html" class="dict-card">
+                    <div class="dict-label">{label}
+                        {f'<span class="badge badge-contextual">{ecnt} emblems</span>' if ecnt else ''}
+                    </div>
+                    {latin_line}
+                    <div class="dict-def">{def_short or ""}</div>
+                    <div style="margin-top:0.3rem"><span style="font-size:0.75rem;color:var(--accent);font-family:var(--font-sans)">View definition &rarr;</span></div>
+                </a>
+                <a href="index.html#category={tcat}" class="badge badge-stage dict-card-cat" title="Show only {tcat} terms">{tcat}</a>
+            </div>"""
         cat_html += f"""
         <div class="dict-category-block" data-category="{cat}" style="margin-bottom:2rem">
             <h3 style="font-size:1.1rem;color:var(--accent);margin-bottom:0.75rem">{cat} <span class="badge badge-contextual dict-cat-count" data-cat="{cat}">{len(cat_terms)}</span></h3>
@@ -820,10 +884,23 @@ def build_dictionary_pages(conn):
         let activeCat = '';
         let activeText = '';
 
+        function readHash() {{
+            if (!window.location.hash) return;
+            const hash = window.location.hash.slice(1);
+            hash.split('&').forEach(pair => {{
+                const [k, v] = pair.split('=');
+                if (k === 'category' && v) activeCat = decodeURIComponent(v);
+                if (k === 'q' && v) {{
+                    activeText = decodeURIComponent(v).toLowerCase();
+                    if (search) search.value = decodeURIComponent(v);
+                }}
+            }});
+        }}
+
         function applyDictFilters() {{
             let visible = 0;
             const perCat = {{}};
-            document.querySelectorAll('.dict-card').forEach(card => {{
+            document.querySelectorAll('.dict-card-wrap').forEach(card => {{
                 const cat = card.dataset.category || '';
                 const blob = card.dataset.search || '';
                 const matchCat = !activeCat || cat === activeCat;
@@ -835,7 +912,6 @@ def build_dictionary_pages(conn):
                     perCat[cat] = (perCat[cat] || 0) + 1;
                 }}
             }});
-            // Hide category blocks that have zero visible cards
             document.querySelectorAll('.dict-category-block').forEach(block => {{
                 const cat = block.dataset.category;
                 const cnt = perCat[cat] || 0;
@@ -843,13 +919,11 @@ def build_dictionary_pages(conn):
                 const counter = block.querySelector('.dict-cat-count');
                 if (counter) counter.textContent = cnt;
             }});
-            // Update chip active states
             document.querySelectorAll('.filter-chip[data-filter-type="category"]').forEach(chip => {{
                 const value = chip.dataset.filterValue;
                 const isAll = chip.classList.contains('filter-chip-all');
                 chip.classList.toggle('active', isAll ? !activeCat : activeCat === value);
             }});
-            // Update status
             if (status) {{
                 if (activeCat || activeText) {{
                     const parts = [];
@@ -868,6 +942,9 @@ def build_dictionary_pages(conn):
             activeCat = '';
             activeText = '';
             if (search) search.value = '';
+            if (window.history && window.history.replaceState) {{
+                window.history.replaceState(null, '', window.location.pathname);
+            }}
             applyDictFilters();
         }}
 
@@ -884,6 +961,15 @@ def build_dictionary_pages(conn):
                 applyDictFilters();
             }});
         }}
+        window.addEventListener('hashchange', () => {{
+            activeCat = '';
+            activeText = '';
+            if (search) search.value = '';
+            readHash();
+            applyDictFilters();
+        }});
+        readHash();
+        applyDictFilters();
     }})();
     </script>"""
     html = page_shell('Dictionary', body, active_nav='Dictionary', depth=1)
@@ -922,11 +1008,33 @@ def build_dictionary_pages(conn):
 
         latin_display = f'<div class="term-latin">{label_latin}</div>' if label_latin and label_latin != label else ''
 
+        # Sibling terms: up to 8 alphabetical neighbours in the same category
+        siblings = conn.execute("""
+            SELECT slug, label, label_latin, definition_short
+            FROM dictionary_terms
+            WHERE category = ? AND id != ?
+            ORDER BY label
+        """, (cat, tid)).fetchall()
+        sibling_cards_html = ''
+        if siblings:
+            shown = siblings[:8]
+            card_pieces = []
+            for s in shown:
+                latin = f'<div class="dict-related-latin">{s[2]}</div>' if s[2] and s[2] != s[1] else ''
+                card_pieces.append(f'<a href="{s[0]}.html" class="dict-related-card"><div class="dict-related-label">{s[1]}</div>{latin}</a>')
+            sibling_cards_html = ''.join(card_pieces)
+            extra_link = ''
+            if len(siblings) > 8:
+                extra_link = f'<p style="margin-top:0.5rem;font-size:0.82rem;font-family:var(--font-sans)"><a href="index.html#category={cat}" style="color:var(--accent)">See all {len(siblings) + 1} {cat} terms &rarr;</a></p>'
+            sibling_block = f'<h2>More in <a href="index.html#category={cat}" style="color:inherit">{cat}</a></h2><div class="dict-related">{sibling_cards_html}</div>{extra_link}'
+        else:
+            sibling_block = ''
+
         body = f"""
         <div class="page-content">
             <a href="index.html" class="back-link">&larr; Dictionary of <em>Atalanta Fugiens</em></a>
             <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{label}
-                <span class="badge badge-stage">{cat}</span>
+                <a href="index.html#category={cat}" class="badge badge-stage" title="Show only {cat} terms" style="text-decoration:none">{cat}</a>
             </h1>
             {latin_display}
             {f'<div class="motto-block">{def_short}</div>' if def_short else ''}
@@ -935,6 +1043,7 @@ def build_dictionary_pages(conn):
             {f'<h2>In <em>Atalanta Fugiens</em></h2><p style="font-size:0.95rem;line-height:1.7">{autolink_emblems(sig)}</p>' if sig else ''}
             {f'<h2>Appears in Emblems</h2><div>{emblem_links}</div>' if emblem_links else ''}
             {f'<h2>Related Terms</h2><div>{related_html}</div>' if related_html else ''}
+            {sibling_block}
             {f'<p style="margin-top:1.5rem;font-size:0.8rem;color:var(--text-muted)">Source: {basis}</p>' if basis else ''}
         </div>"""
         html = page_shell(label, body, active_nav='Dictionary', depth=1)

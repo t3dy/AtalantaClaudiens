@@ -117,6 +117,24 @@ header h1 em { font-style: italic; }
 .timeline-year { font-size: 1.5rem; font-weight: 700; color: var(--accent); margin-top: 2rem; margin-bottom: 0.5rem; position: sticky; top: 0; background: var(--bg); padding: 0.3rem 0; z-index: 10; }
 
 /* ===== Dictionary Cards ===== */
+.dict-card-wrap { position: relative; margin-bottom: 0.75rem; }
+.dict-card-wrap .dict-card { margin-bottom: 0; }
+.dict-card-cat { position: absolute; top: 0.85rem; right: 1rem; text-decoration: none; transition: opacity 0.15s; }
+.dict-card-cat:hover { opacity: 0.85; }
+.dict-related { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+.dict-related-card { display: block; padding: 0.5rem 0.75rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 3px; text-decoration: none; color: var(--text); font-size: 0.85rem; transition: all 0.15s; min-width: 0; flex: 1 1 calc(33.33% - 0.4rem); max-width: calc(33.33% - 0.4rem); }
+.dict-related-card:hover { border-color: var(--accent); background: var(--bg); }
+.dict-related-card .dict-related-label { color: var(--accent); font-weight: 600; }
+.dict-related-card .dict-related-latin { font-style: italic; color: var(--text-muted); font-size: 0.78rem; margin-top: 0.1rem; }
+@media (max-width: 768px) { .dict-related-card { flex-basis: 100%; max-width: 100%; } }
+.related-emblems { margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--border); }
+.related-emblems h3 { font-size: 1.05rem; color: var(--accent); margin-bottom: 0.75rem; font-family: var(--font-sans); }
+.related-emblems .related-section { margin-bottom: 1rem; }
+.related-emblems .related-section-label { font-family: var(--font-sans); font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.4rem; }
+.related-emblems .related-grid { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.related-emblems .related-emblem-card { display: inline-block; padding: 0.4rem 0.7rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 3px; text-decoration: none; color: var(--text); font-size: 0.82rem; transition: all 0.15s; }
+.related-emblems .related-emblem-card:hover { border-color: var(--accent); background: var(--bg); }
+.related-emblems .related-emblem-card strong { color: var(--accent); }
 .dict-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; text-decoration: none; color: inherit; display: block; transition: transform 0.15s, box-shadow 0.15s; }
 .dict-card:hover { transform: translateY(-1px); box-shadow: 0 3px 12px var(--shadow); }
 .dict-card .dict-label { font-size: 1rem; font-weight: 600; color: var(--accent); }
