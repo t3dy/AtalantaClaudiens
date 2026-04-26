@@ -192,4 +192,21 @@ window.addEventListener('hashchange', () => {
     applyFilters();
 });
 
-document.addEventListener('DOMContentLoaded', loadData);
+function bindRandomButton() {
+    const btn = document.getElementById('random-emblem');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        const pool = filteredEntries.length > 1 ? filteredEntries : allEntries;
+        if (!pool.length) return;
+        const idx = Math.floor(Math.random() * pool.length);
+        const entry = pool[idx];
+        if (entry && entry.page) {
+            window.location.href = 'emblems/' + entry.page;
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadData();
+    bindRandomButton();
+});

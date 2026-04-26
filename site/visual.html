@@ -165,7 +165,9 @@
             }
             const top = filtered.slice(0, 200);
             container.innerHTML = top.map(im => {
-                const linkOpen = im.link_url ? '<a href="' + im.link_url + '" class="card" style="text-decoration:none;color:inherit">' : '<div class="card" style="cursor:default">';
+                const linkOpen = im.link_url
+                    ? '<a href="' + im.link_url + '"' + (im.is_external ? ' target="_blank" rel="noopener"' : '') + ' class="card" style="text-decoration:none;color:inherit">'
+                    : '<div class="card" style="cursor:default">';
                 const linkClose = im.link_url ? '</a>' : '</div>';
                 const img = im.local_url
                     ? '<img src="' + im.local_url + '" alt="' + escapeHtml(im.title) + '" style="width:100%;display:block;aspect-ratio:auto">'

@@ -297,8 +297,10 @@ def build_gallery(conn):
     body = f"""
     <div style="max-width:700px;margin:2rem auto;padding:0 2rem;text-align:center">
         <p style="font-size:1.05rem;line-height:1.8;color:var(--text)">In 1617, the physician and alchemist Michael Maier published fifty emblems combining engraved plates, Latin mottos, poetic epigrams, philosophical discourses, and three-voice musical fugues &mdash; a work without parallel in the history of the emblem book. In 1969, the Dutch art historian H.M.E. De Jong unlocked these emblems by tracing each one to its ancient and medieval sources. This site presents her findings.</p>
-        <div style="margin-top:1.5rem">
+        <div style="margin-top:1.5rem;display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap">
             <a href="emblems/frontispiece.html" style="display:inline-block;padding:0.6rem 1.5rem;background:var(--accent);color:white;text-decoration:none;border-radius:4px;font-family:var(--font-sans);font-size:0.9rem">Start with the Frontispiece &rarr;</a>
+            <a href="visual.html" style="display:inline-block;padding:0.6rem 1.5rem;background:#16a085;color:white;text-decoration:none;border-radius:4px;font-family:var(--font-sans);font-size:0.9rem">Browse by visual element &rarr;</a>
+            <button type="button" id="random-emblem" style="display:inline-block;padding:0.6rem 1.5rem;background:#7f8c8d;color:white;border:none;border-radius:4px;font-family:var(--font-sans);font-size:0.9rem;cursor:pointer">Surprise me &darr;</button>
         </div>
     </div>
     <div class="stats" id="stats"></div>
@@ -1071,8 +1073,55 @@ def build_dictionary_pages(conn):
             {f'<h2>Appears in Emblems</h2><div>{emblem_links}</div>' if emblem_links else ''}
             {f'<h2>Related Terms</h2><div>{related_html}</div>' if related_html else ''}
             {sibling_block}
+            <div id="depicts-panel" data-slug="{slug}"></div>
             {f'<p style="margin-top:1.5rem;font-size:0.8rem;color:var(--text-muted)">Source: {basis}</p>' if basis else ''}
-        </div>"""
+        </div>
+        <script>
+        (async function() {{
+            const panel = document.getElementById('depicts-panel');
+            if (!panel) return;
+            const slug = panel.dataset.slug;
+            try {{
+                const resp = await fetch('../dictionary-depicts.json');
+                if (!resp.ok) return;
+                const data = await resp.json();
+                const items = data[slug];
+                if (!items || !items.length) return;
+                // Group by source work
+                const byWork = {{}};
+                for (const it of items) {{
+                    (byWork[it.work_title || it.work] = byWork[it.work_title || it.work] || []).push(it);
+                }}
+                const workCount = Object.keys(byWork).length;
+                const total = items.length;
+                const cards = items.slice(0, 24).map(im => {{
+                    const linkOpen = im.link_url
+                        ? '<a href="' + (im.is_external ? im.link_url : '../' + im.link_url) + '"' + (im.is_external ? ' target="_blank" rel="noopener"' : '') + ' class="depicts-card">'
+                        : '<div class="depicts-card" style="cursor:default">';
+                    const linkClose = im.link_url ? '</a>' : '</div>';
+                    const imgSrc = im.local_url
+                        ? (im.is_external ? im.local_url : '../' + im.local_url)
+                        : null;
+                    const img = imgSrc
+                        ? '<img src="' + imgSrc + '" alt="' + (im.work_title || '') + '" loading="lazy">'
+                        : '<div class="depicts-placeholder">' + ((im.folio || '?').replace('plate ', '').toUpperCase()) + '</div>';
+                    return linkOpen + img +
+                        '<div class="depicts-meta">' +
+                            '<div class="depicts-work">' + (im.work_title || '') + '</div>' +
+                            '<div class="depicts-folio">' + (im.folio || '') + '</div>' +
+                        '</div>' + linkClose;
+                }}).join('');
+                const overflow = items.length > 24 ? '<p style="font-size:0.82rem;color:var(--text-muted);font-style:italic">…and ' + (items.length - 24) + ' more in <a href="../visual.html#tag=' + encodeURIComponent(slug.replace(/-/g, '_')) + '">visual browser</a>.</p>' : '';
+                panel.innerHTML =
+                    '<h2>Depicted in <span class="badge badge-contextual">' + total + ' image' + (total !== 1 ? 's' : '') + ' across ' + workCount + ' work' + (workCount !== 1 ? 's' : '') + '</span></h2>' +
+                    '<p style="font-size:0.85rem;color:var(--text-muted);font-family:var(--font-sans);margin-bottom:0.7rem">Cross-corpus matches from the <a href="../visual.html">visual browser</a>.</p>' +
+                    '<div class="depicts-grid">' + cards + '</div>' +
+                    overflow;
+            }} catch (err) {{
+                /* silent — feature is optional */
+            }}
+        }})();
+        </script>"""
         html = page_shell(label, body, active_nav='Dictionary', depth=1)
         (dict_dir / f'{slug}.html').write_text(html, encoding='utf-8')
 
@@ -2956,6 +3005,46 @@ def _autotag_description(description, tags, dict_terms_by_slug):
     return sorted(matched_alch), sorted(matched_dict)
 
 
+# Alchemical stage → suggested process/substance tags (used to lift PROCESS coverage
+# on Atalanta emblems whose visual descriptions don't name the process).
+STAGE_TO_PROCESS_TAGS = {
+    'NIGREDO': ['nigredo', 'putrefaction', 'mortificatio', 'calcination', 'dissolution'],
+    'ALBEDO': ['albedo', 'sublimatio', 'distillatio', 'solutio'],
+    'CITRINITAS': ['citrinitas', 'fermentatio', 'circulatio'],
+    'RUBEDO': ['rubedo', 'coagulation', 'fixatio', 'multiplicatio', 'projectio'],
+}
+
+
+def _wikimedia_thumb_url(source_url, width=400):
+    """Convert a Wikimedia Commons File: URL into an inline-displayable thumbnail URL.
+
+    Returns None if the URL doesn't look like a Wikimedia Commons File: page.
+    """
+    if not source_url:
+        return None
+    import re as _re
+    import urllib.parse as _u
+    m = _re.search(r'/wiki/File:(.+)$', source_url)
+    if not m:
+        return None
+    raw = _u.unquote(m.group(1)).replace(' ', '_')
+    # Wikimedia "Special:FilePath" produces a thumbnail when ?width= is passed
+    return f'https://commons.wikimedia.org/wiki/Special:FilePath/{_u.quote(raw)}?width={width}'
+
+
+def _load_supplemental_scene_summaries():
+    """Read data/visual_scene_summaries.json (curated descriptions for non-Atalanta
+    images) if it exists. Map keys: stringified image_id → {scene, folio?} or string.
+    """
+    path = BASE_DIR / "data" / "visual_scene_summaries.json"
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding='utf-8'))
+    except Exception:
+        return {}
+
+
 def build_visual_browser(conn):
     """Cross-corpus visual element browser — joins AlchemyDB image catalog
     against Claudiens emblem image_descriptions to auto-tag visual elements.
@@ -3014,20 +3103,42 @@ def build_visual_browser(conn):
         if label and label.lower() in dict_label_to_slug:
             tag_to_dict[tag_slug] = dict_label_to_slug[label.lower()]
 
+    supplemental_scenes = _load_supplemental_scene_summaries()
+
+    # Re-pull images with source_url so we can build remote thumbnails
+    alch2 = sqlite3.connect(f"file:{ALCHEMYDB_PATH}?mode=ro", uri=True)
+    img_rows = alch2.execute(
+        "SELECT image_id, work_slug, folio, caption, scene_summary, master_path, web_path, thumbnail_path, source_url FROM images ORDER BY work_slug, folio"
+    ).fetchall()
+    alch2.close()
+    images = img_rows
+
     # Build the JSON entries for the front-end
-    rel_root = '../AlchemyBeatEmUp/'  # Relative path from site/ to alchemy repo
     image_entries = []
     image_tag_count = 0
     images_with_tags = 0
 
     for img in images:
-        image_id, work_slug, folio, caption, scene, master, web, thumb = img
-        # Tag from caption + scene_summary; for Atalanta also from Claudiens image_description
+        image_id, work_slug, folio, caption, scene, master, web, thumb, source_url = img
         text_parts = []
         if caption:
             text_parts.append(caption)
         if scene:
             text_parts.append(scene)
+        # Curated supplemental scene summary keyed by stringified image_id
+        sup_key = str(image_id)
+        sup_entry = supplemental_scenes.get(sup_key)
+        sup_scene = None
+        sup_folio = None
+        if isinstance(sup_entry, dict):
+            sup_scene = sup_entry.get('scene') or sup_entry.get('description')
+            sup_folio = sup_entry.get('folio')
+        elif isinstance(sup_entry, str):
+            sup_scene = sup_entry
+        if sup_scene:
+            text_parts.append(sup_scene)
+        if sup_folio:
+            folio = sup_folio
         emblem_num = None
         if work_slug == 'atalanta_fugiens' and folio:
             try:
@@ -3040,11 +3151,31 @@ def build_visual_browser(conn):
                 text_parts.append(emblem_descs[emblem_num]['label'])
         text = ' '.join(text_parts).strip()
         alch_tags, claudiens_dict_tags = _autotag_description(text, tags, dict_rows) if text else ([], [])
+
+        # Stage→process boost for Atalanta emblems (PROCESS tags rarely appear in
+        # visual descriptions; the alchemical_stage column is a strong proxy).
+        if work_slug == 'atalanta_fugiens' and emblem_num is not None and emblem_num in emblem_descs:
+            stage = emblem_descs[emblem_num].get('stage')
+            if stage and stage in STAGE_TO_PROCESS_TAGS:
+                existing = set(alch_tags)
+                tag_slugs_set = {t[0] for t in tags}
+                for proc_tag in STAGE_TO_PROCESS_TAGS[stage]:
+                    if proc_tag in tag_slugs_set and proc_tag not in existing:
+                        alch_tags.append(proc_tag)
+                        existing.add(proc_tag)
+                alch_tags.sort()
+                # Mirror onto dictionary cross-tags where the slug exists
+                dict_slugs_set = {ds for ds, _, _ in dict_rows}
+                for proc_tag in STAGE_TO_PROCESS_TAGS[stage]:
+                    if proc_tag in dict_slugs_set and proc_tag not in claudiens_dict_tags:
+                        claudiens_dict_tags.append(proc_tag)
+                claudiens_dict_tags.sort()
+
         if alch_tags:
             images_with_tags += 1
         image_tag_count += len(alch_tags)
 
-        # Choose displayable image url
+        # Choose displayable image url + a click-through link
         if work_slug == 'atalanta_fugiens' and emblem_num is not None:
             local_url = f'images/emblems/emblem-{emblem_num:02d}.jpg'
             link_url = (
@@ -3052,9 +3183,8 @@ def build_visual_browser(conn):
                 f'emblems/emblem-{emblem_num:02d}.html'
             )
         else:
-            # Other works don't have images on disk in the Claudiens repo yet
-            local_url = None
-            link_url = None
+            local_url = _wikimedia_thumb_url(source_url, width=320)
+            link_url = source_url or None
 
         title_parts = []
         work_title = works.get(work_slug, {}).get('title') or work_slug
@@ -3064,6 +3194,8 @@ def build_visual_browser(conn):
         title = ' — '.join(title_parts)
 
         snippet = caption or ''
+        if not snippet and sup_scene:
+            snippet = sup_scene[:240]
         if not snippet and emblem_num is not None and emblem_num in emblem_descs:
             snippet = emblem_descs[emblem_num]['label'] or emblem_descs[emblem_num]['motto'] or ''
 
@@ -3076,6 +3208,8 @@ def build_visual_browser(conn):
             'snippet': snippet[:240],
             'local_url': local_url,
             'link_url': link_url,
+            'source_url': source_url,
+            'is_external': not (work_slug == 'atalanta_fugiens'),
             'tags': alch_tags,
             'dict_tags': claudiens_dict_tags,
         })
@@ -3121,6 +3255,29 @@ def build_visual_browser(conn):
         },
     }
     (SITE_DIR / 'visual-data.json').write_text(json.dumps(visual_data, ensure_ascii=False), encoding='utf-8')
+
+    # ── Inverted index: Claudiens dictionary slug → [image entries] ──
+    # This gets consumed by dictionary term pages (Slice 3) to show
+    # "Depicted in N emblem books" panels with cross-corpus thumbnails.
+    depicts_by_slug = {}
+    for ie in image_entries:
+        if not ie['dict_tags']:
+            continue
+        compact = {
+            'work': ie['work'],
+            'work_title': ie['work_title'],
+            'folio': ie['folio'],
+            'snippet': ie['snippet'],
+            'local_url': ie['local_url'],
+            'link_url': ie['link_url'],
+            'source_url': ie['source_url'],
+            'is_external': ie['is_external'],
+        }
+        for dslug in ie['dict_tags']:
+            depicts_by_slug.setdefault(dslug, []).append(compact)
+    (SITE_DIR / 'dictionary-depicts.json').write_text(
+        json.dumps(depicts_by_slug, ensure_ascii=False), encoding='utf-8'
+    )
 
     # The HTML page
     body = """
@@ -3255,7 +3412,9 @@ def build_visual_browser(conn):
             }
             const top = filtered.slice(0, 200);
             container.innerHTML = top.map(im => {
-                const linkOpen = im.link_url ? '<a href="' + im.link_url + '" class="card" style="text-decoration:none;color:inherit">' : '<div class="card" style="cursor:default">';
+                const linkOpen = im.link_url
+                    ? '<a href="' + im.link_url + '"' + (im.is_external ? ' target="_blank" rel="noopener"' : '') + ' class="card" style="text-decoration:none;color:inherit">'
+                    : '<div class="card" style="cursor:default">';
                 const linkClose = im.link_url ? '</a>' : '</div>';
                 const img = im.local_url
                     ? '<img src="' + im.local_url + '" alt="' + escapeHtml(im.title) + '" style="width:100%;display:block;aspect-ratio:auto">'

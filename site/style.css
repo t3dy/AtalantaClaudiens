@@ -156,6 +156,16 @@ header h1 em { font-style: italic; }
 .vis-img-tags { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-top: 0.4rem; }
 .vis-img-tag { font-family: var(--font-sans); font-size: 0.62rem; padding: 0.1rem 0.35rem; color: white; border-radius: 2px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.03em; }
 .vis-img-tag:hover { opacity: 0.85; }
+
+/* ===== Dictionary "Depicted in" cross-corpus panel ===== */
+.depicts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 0.75rem; margin-top: 0.5rem; }
+.depicts-card { display: block; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.15s, box-shadow 0.15s; }
+.depicts-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px var(--shadow); border-color: var(--accent); }
+.depicts-card img { width: 100%; aspect-ratio: 1/1.2; object-fit: cover; display: block; background: var(--bg); }
+.depicts-placeholder { width: 100%; aspect-ratio: 1/1.2; background: linear-gradient(135deg, #e8e0d0 0%, #d4c5a9 100%); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--accent); font-weight: 700; font-family: var(--font-sans); }
+.depicts-meta { padding: 0.5rem 0.6rem; }
+.depicts-meta .depicts-work { font-size: 0.78rem; color: var(--accent); font-weight: 600; line-height: 1.3; }
+.depicts-meta .depicts-folio { font-size: 0.7rem; color: var(--text-muted); font-family: var(--font-sans); margin-top: 0.15rem; }
 .dict-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; text-decoration: none; color: inherit; display: block; transition: transform 0.15s, box-shadow 0.15s; }
 .dict-card:hover { transform: translateY(-1px); box-shadow: 0 3px 12px var(--shadow); }
 .dict-card .dict-label { font-size: 1rem; font-weight: 600; color: var(--accent); }
