@@ -77,6 +77,7 @@ def slugify(text):
 NAV_ITEMS = [
     ('Home', 'index.html'),
     ('Emblems', 'emblems/index.html'),
+    ('Visual', 'visual.html'),
     ('Scholars', 'scholars.html'),
     ('Dictionary', 'dictionary/index.html'),
     ('Timeline', 'timeline.html'),
@@ -2900,6 +2901,471 @@ def build_search(conn):
 
 
 # ============================================================
+# Visual Browser (cross-corpus image-tag explorer)
+# ============================================================
+
+ALCHEMYDB_PATH = Path(r"C:\Dev\AlchemyBeatEmUp\db\alchemical_images.db")
+
+
+def _autotag_description(description, tags, dict_terms_by_slug):
+    """Match icon_tags + Claudiens dictionary terms against the description text.
+
+    Returns: (alchemydb_tag_slugs, dictionary_term_slugs) — both sorted, deduped.
+    Uses word-boundary substring matching on label phrases and slug-as-words.
+    """
+    import re as _re
+    if not description:
+        return [], []
+    desc = description.lower()
+    matched_alch = set()
+    for tag_slug, category, label, _td in tags:
+        patterns = set()
+        label_lower = (label or '').lower().strip()
+        if label_lower:
+            patterns.add(label_lower)
+        slug_words = (tag_slug or '').replace('_', ' ').lower().strip()
+        if slug_words:
+            patterns.add(slug_words)
+        # For single-word, common-noun categories also match the bare word stem
+        if category in ('FIGURE', 'MONSTER', 'SUBSTANCE', 'TOOL', 'FURNITURE', 'PROCESS', 'ACCIDENT'):
+            for word in (label_lower.split() + slug_words.split()):
+                if len(word) >= 5 and word not in {'small', 'large', 'fixed'}:
+                    patterns.add(word)
+        for p in patterns:
+            if not p:
+                continue
+            try:
+                if _re.search(r'\b' + _re.escape(p) + r'\b', desc):
+                    matched_alch.add(tag_slug)
+                    break
+            except _re.error:
+                continue
+
+    matched_dict = set()
+    for slug, label_l, latin_l in dict_terms_by_slug:
+        for cand in filter(None, [label_l, latin_l]):
+            cand_l = cand.lower().strip()
+            if not cand_l:
+                continue
+            try:
+                if _re.search(r'\b' + _re.escape(cand_l) + r'\b', desc):
+                    matched_dict.add(slug)
+                    break
+            except _re.error:
+                continue
+    return sorted(matched_alch), sorted(matched_dict)
+
+
+def build_visual_browser(conn):
+    """Cross-corpus visual element browser — joins AlchemyDB image catalog
+    against Claudiens emblem image_descriptions to auto-tag visual elements.
+    """
+    if not ALCHEMYDB_PATH.exists():
+        print("  visual.html: skipped (AlchemyDB not present)")
+        return
+
+    alch = sqlite3.connect(f"file:{ALCHEMYDB_PATH}?mode=ro", uri=True)
+    a = alch.cursor()
+
+    # Pull all icon_tags
+    a.execute("SELECT tag_slug, category, display_label, description FROM icon_tags ORDER BY category, tag_slug")
+    tags = a.fetchall()
+
+    # Pull source works for display
+    a.execute("SELECT slug, full_title, author, date_text, status FROM source_works ORDER BY full_title")
+    works = {row[0]: {'slug': row[0], 'title': row[1], 'author': row[2], 'date': row[3], 'status': row[4]} for row in a.fetchall()}
+
+    # Pull all images
+    a.execute("""SELECT image_id, work_slug, folio, caption, scene_summary,
+                        master_path, web_path, thumbnail_path
+                 FROM images ORDER BY work_slug, folio""")
+    images = a.fetchall()
+    alch.close()
+
+    # Claudiens dictionary terms for cross-linking
+    dict_rows = conn.execute(
+        "SELECT slug, label, label_latin FROM dictionary_terms ORDER BY label"
+    ).fetchall()
+
+    # Claudiens emblems with image_description (for tagging Atalanta Fugiens images)
+    emblem_descs = {}
+    em_rows = conn.execute(
+        "SELECT number, image_description, motto_english, canonical_label, alchemical_stage FROM emblems"
+    ).fetchall()
+    for r in em_rows:
+        emblem_descs[r[0]] = {
+            'description': r[1] or '',
+            'motto': r[2] or '',
+            'label': r[3] or '',
+            'stage': r[4],
+        }
+
+    # Tag-slug → Claudiens dict slug mapping (for cross-linking)
+    dict_slugs = {ds for ds, _, _ in dict_rows}
+    dict_label_to_slug = {l.lower(): s for s, l, _ in dict_rows if l}
+    tag_to_dict = {}
+    for tag_slug, category, label, _td in tags:
+        # Try direct slug match
+        cand_slug = tag_slug.replace('_', '-')
+        if cand_slug in dict_slugs:
+            tag_to_dict[tag_slug] = cand_slug
+            continue
+        # Try label match
+        if label and label.lower() in dict_label_to_slug:
+            tag_to_dict[tag_slug] = dict_label_to_slug[label.lower()]
+
+    # Build the JSON entries for the front-end
+    rel_root = '../AlchemyBeatEmUp/'  # Relative path from site/ to alchemy repo
+    image_entries = []
+    image_tag_count = 0
+    images_with_tags = 0
+
+    for img in images:
+        image_id, work_slug, folio, caption, scene, master, web, thumb = img
+        # Tag from caption + scene_summary; for Atalanta also from Claudiens image_description
+        text_parts = []
+        if caption:
+            text_parts.append(caption)
+        if scene:
+            text_parts.append(scene)
+        emblem_num = None
+        if work_slug == 'atalanta_fugiens' and folio:
+            try:
+                emblem_num = int(folio.replace('plate', '').strip())
+            except (ValueError, AttributeError):
+                emblem_num = None
+            if emblem_num is not None and emblem_num in emblem_descs:
+                text_parts.append(emblem_descs[emblem_num]['description'])
+                text_parts.append(emblem_descs[emblem_num]['motto'])
+                text_parts.append(emblem_descs[emblem_num]['label'])
+        text = ' '.join(text_parts).strip()
+        alch_tags, claudiens_dict_tags = _autotag_description(text, tags, dict_rows) if text else ([], [])
+        if alch_tags:
+            images_with_tags += 1
+        image_tag_count += len(alch_tags)
+
+        # Choose displayable image url
+        if work_slug == 'atalanta_fugiens' and emblem_num is not None:
+            local_url = f'images/emblems/emblem-{emblem_num:02d}.jpg'
+            link_url = (
+                f'emblems/frontispiece.html' if emblem_num == 0 else
+                f'emblems/emblem-{emblem_num:02d}.html'
+            )
+        else:
+            # Other works don't have images on disk in the Claudiens repo yet
+            local_url = None
+            link_url = None
+
+        title_parts = []
+        work_title = works.get(work_slug, {}).get('title') or work_slug
+        title_parts.append(work_title)
+        if folio:
+            title_parts.append(folio)
+        title = ' — '.join(title_parts)
+
+        snippet = caption or ''
+        if not snippet and emblem_num is not None and emblem_num in emblem_descs:
+            snippet = emblem_descs[emblem_num]['label'] or emblem_descs[emblem_num]['motto'] or ''
+
+        image_entries.append({
+            'id': image_id,
+            'work': work_slug,
+            'work_title': work_title,
+            'folio': folio,
+            'title': title,
+            'snippet': snippet[:240],
+            'local_url': local_url,
+            'link_url': link_url,
+            'tags': alch_tags,
+            'dict_tags': claudiens_dict_tags,
+        })
+
+    # Tag metadata for the front-end (with counts of tagged images)
+    from collections import Counter
+    tag_counts = Counter()
+    for ie in image_entries:
+        for t in ie['tags']:
+            tag_counts[t] += 1
+
+    tag_entries = []
+    for tag_slug, category, label, td in tags:
+        tag_entries.append({
+            'slug': tag_slug,
+            'category': category,
+            'label': label,
+            'description': td,
+            'count': tag_counts.get(tag_slug, 0),
+            'dict_link': tag_to_dict.get(tag_slug),
+        })
+
+    work_entries = list(works.values())
+    work_image_counts = Counter(ie['work'] for ie in image_entries)
+    work_tag_counts = Counter()
+    for ie in image_entries:
+        if ie['tags']:
+            work_tag_counts[ie['work']] += 1
+    for w in work_entries:
+        w['image_count'] = work_image_counts.get(w['slug'], 0)
+        w['tagged_count'] = work_tag_counts.get(w['slug'], 0)
+
+    visual_data = {
+        'images': image_entries,
+        'tags': tag_entries,
+        'works': sorted(work_entries, key=lambda w: -w['image_count']),
+        'stats': {
+            'total_images': len(image_entries),
+            'tagged_images': images_with_tags,
+            'total_tag_links': image_tag_count,
+            'total_tags': len(tag_entries),
+            'total_works': len(work_entries),
+        },
+    }
+    (SITE_DIR / 'visual-data.json').write_text(json.dumps(visual_data, ensure_ascii=False), encoding='utf-8')
+
+    # The HTML page
+    body = """
+    <div class="page-content" style="max-width:1300px">
+        <h2>Visual Element Browser</h2>
+        <p style="font-size:0.95rem">A cross-corpus index of visual elements depicted in alchemical emblem books. Click a tag to see every image (across <span id="vis-work-count">…</span> source works) that depicts it. Atalanta Fugiens emblems link directly into this site's analysis pages.</p>
+
+        <div class="stats" id="vis-stats" style="max-width:900px"></div>
+
+        <div class="filter-bar">
+            <input type="search" id="vis-search" class="filter-search" placeholder="Search tags or images (e.g. dragon, athanor, calcination)&hellip;" autocomplete="off">
+            <div class="filter-row" id="vis-cat-row">
+                <span class="filter-label">Category:</span>
+                <button class="filter-chip filter-chip-all active" data-vis-cat="" type="button">All</button>
+            </div>
+            <div class="filter-row" id="vis-work-row">
+                <span class="filter-label">Source:</span>
+                <button class="filter-chip filter-chip-all active" data-vis-work="" type="button">All</button>
+            </div>
+            <div class="filter-status" id="vis-status"></div>
+        </div>
+
+        <h3 style="font-size:1.05rem;color:var(--accent);font-family:var(--font-sans);margin:1.4rem 0 0.4rem">Tags <span style="font-size:0.78rem;color:var(--text-muted)">click to filter the gallery below</span></h3>
+        <div id="vis-tag-cloud"></div>
+
+        <h3 style="font-size:1.05rem;color:var(--accent);font-family:var(--font-sans);margin:1.5rem 0 0.4rem">Images</h3>
+        <div id="vis-images" class="gallery" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));padding:0"></div>
+    </div>
+
+    <script>
+    (async function() {
+        const resp = await fetch('visual-data.json');
+        const data = await resp.json();
+        const tagBySlug = {};
+        for (const t of data.tags) tagBySlug[t.slug] = t;
+
+        const CATEGORY_COLORS = {
+            'FIGURE': '#8b4513', 'MONSTER': '#c0392b', 'PROCESS': '#16a085',
+            'SUBSTANCE': '#2980b9', 'FURNITURE': '#7f8c8d', 'TOOL': '#8e44ad',
+            'ACCIDENT': '#e67e22', 'BODY_STATE': '#a89880', 'SCENERY': '#27ae60'
+        };
+
+        let activeTag = '';
+        let activeCat = '';
+        let activeWork = '';
+        let activeQuery = '';
+
+        // Stats
+        const statsEl = document.getElementById('vis-stats');
+        statsEl.innerHTML = [
+            ['total_images', 'Images'],
+            ['total_works', 'Source works'],
+            ['total_tags', 'Tags'],
+            ['total_tag_links', 'Tag links'],
+        ].map(([k, label]) => '<div class="stat-card"><span class="stat-number">' + (data.stats[k] || 0) + '</span><span class="stat-label">' + label + '</span></div>').join('');
+        document.getElementById('vis-work-count').textContent = data.stats.total_works;
+
+        // Build category chips
+        const cats = [...new Set(data.tags.map(t => t.category))].sort();
+        const catRow = document.getElementById('vis-cat-row');
+        for (const c of cats) {
+            const btn = document.createElement('button');
+            btn.className = 'filter-chip';
+            btn.type = 'button';
+            btn.dataset.visCat = c;
+            btn.style.background = CATEGORY_COLORS[c] || '#7f8c8d';
+            btn.style.color = 'white';
+            btn.style.border = '1px solid ' + (CATEGORY_COLORS[c] || '#7f8c8d');
+            btn.textContent = c.replace('_', ' ');
+            catRow.appendChild(btn);
+        }
+
+        // Build source-work chips (top 8 by image count)
+        const workRow = document.getElementById('vis-work-row');
+        for (const w of data.works.slice(0, 8)) {
+            if (!w.image_count) continue;
+            const btn = document.createElement('button');
+            btn.className = 'filter-chip';
+            btn.type = 'button';
+            btn.dataset.visWork = w.slug;
+            btn.innerHTML = (w.title || w.slug) + ' <span class="filter-chip-count">' + w.image_count + '</span>';
+            workRow.appendChild(btn);
+        }
+
+        function escapeHtml(s) { return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+        function renderTagCloud() {
+            const cloud = document.getElementById('vis-tag-cloud');
+            const filtered = data.tags.filter(t => {
+                if (activeCat && t.category !== activeCat) return false;
+                if (activeQuery && !(t.slug + ' ' + t.label).toLowerCase().includes(activeQuery)) return false;
+                return true;
+            });
+            // Sort: items with images first, by count desc, then alpha
+            filtered.sort((a, b) => (b.count - a.count) || a.label.localeCompare(b.label));
+            cloud.innerHTML = filtered.map(t => {
+                const color = CATEGORY_COLORS[t.category] || '#7f8c8d';
+                const isActive = activeTag === t.slug;
+                const dim = !t.count ? 'opacity:0.45' : '';
+                const dictLink = t.dict_link ? '<a href="dictionary/' + t.dict_link + '.html" class="vis-tag-dict-link" title="Open ' + escapeHtml(t.label) + ' in the dictionary">↗</a>' : '';
+                return '<button class="vis-tag-chip ' + (isActive ? 'active' : '') + '" data-vis-tag="' + t.slug + '" type="button" style="border-color:' + color + (isActive ? ';background:' + color + ';color:white' : ';color:' + color) + ';' + dim + '">' +
+                    escapeHtml(t.label) + ' <span class="vis-tag-count">' + t.count + '</span>' + dictLink +
+                    '</button>';
+            }).join('');
+        }
+
+        function renderImages() {
+            const container = document.getElementById('vis-images');
+            const status = document.getElementById('vis-status');
+            const filtered = data.images.filter(im => {
+                if (activeTag && !im.tags.includes(activeTag)) return false;
+                if (activeWork && im.work !== activeWork) return false;
+                if (activeCat && !im.tags.some(tg => tagBySlug[tg] && tagBySlug[tg].category === activeCat)) return false;
+                if (activeQuery) {
+                    const hay = (im.title + ' ' + im.snippet + ' ' + im.tags.join(' ')).toLowerCase();
+                    if (!hay.includes(activeQuery)) return false;
+                }
+                return true;
+            });
+            const parts = [];
+            if (activeTag) parts.push('tag <strong>' + activeTag + '</strong>');
+            if (activeCat) parts.push('category <strong>' + activeCat + '</strong>');
+            if (activeWork) parts.push('source <strong>' + activeWork + '</strong>');
+            if (activeQuery) parts.push('text <strong>"' + escapeHtml(activeQuery) + '"</strong>');
+            if (parts.length || filtered.length !== data.images.length) {
+                status.innerHTML = 'Showing <strong>' + filtered.length + '</strong> of ' + data.images.length + ' images' +
+                    (parts.length ? ' — filtered by ' + parts.join(', ') + ' <a href="#" id="vis-clear" class="filter-clear">clear</a>' : '');
+                const clearLink = document.getElementById('vis-clear');
+                if (clearLink) clearLink.addEventListener('click', e => { e.preventDefault(); clearAll(); });
+            } else {
+                status.innerHTML = '';
+            }
+            const top = filtered.slice(0, 200);
+            container.innerHTML = top.map(im => {
+                const linkOpen = im.link_url ? '<a href="' + im.link_url + '" class="card" style="text-decoration:none;color:inherit">' : '<div class="card" style="cursor:default">';
+                const linkClose = im.link_url ? '</a>' : '</div>';
+                const img = im.local_url
+                    ? '<img src="' + im.local_url + '" alt="' + escapeHtml(im.title) + '" style="width:100%;display:block;aspect-ratio:auto">'
+                    : '<div class="card-placeholder">' + escapeHtml((im.folio || '').replace('plate ', '').toUpperCase() || '?') + '</div>';
+                const tagBadges = im.tags.slice(0, 6).map(tg => {
+                    const meta = tagBySlug[tg] || { label: tg, category: '' };
+                    const color = CATEGORY_COLORS[meta.category] || '#7f8c8d';
+                    return '<span class="vis-img-tag" data-vis-tag="' + tg + '" style="background:' + color + '">' + escapeHtml(meta.label) + '</span>';
+                }).join('');
+                return linkOpen +
+                    img +
+                    '<div class="card-body">' +
+                        '<div class="card-sig" style="font-size:0.8rem">' + escapeHtml(im.work_title || '') + '</div>' +
+                        '<div class="card-label" style="font-size:0.78rem;color:var(--text-muted)">' + escapeHtml(im.folio || '') + '</div>' +
+                        (im.snippet ? '<div class="card-desc" style="font-size:0.78rem">' + escapeHtml(im.snippet) + '</div>' : '') +
+                        (tagBadges ? '<div class="vis-img-tags">' + tagBadges + '</div>' : '') +
+                    '</div>' +
+                    linkClose;
+            }).join('') + (filtered.length > top.length ? '<p style="grid-column:1/-1;color:var(--text-muted);font-style:italic;padding:1rem">…and ' + (filtered.length - top.length) + ' more (refine the filters to narrow).</p>' : '');
+        }
+
+        function syncChips() {
+            document.querySelectorAll('[data-vis-cat]').forEach(b => {
+                const v = b.dataset.visCat;
+                const isAll = b.classList.contains('filter-chip-all');
+                b.classList.toggle('active', isAll ? !activeCat : activeCat === v);
+            });
+            document.querySelectorAll('[data-vis-work]').forEach(b => {
+                const v = b.dataset.visWork;
+                const isAll = b.classList.contains('filter-chip-all');
+                b.classList.toggle('active', isAll ? !activeWork : activeWork === v);
+            });
+        }
+
+        function readHash() {
+            if (!window.location.hash) return;
+            const h = window.location.hash.slice(1);
+            h.split('&').forEach(p => {
+                const [k, v] = p.split('=');
+                if (k === 'tag' && v) activeTag = decodeURIComponent(v);
+                if (k === 'cat' && v) activeCat = decodeURIComponent(v);
+                if (k === 'work' && v) activeWork = decodeURIComponent(v);
+                if (k === 'q' && v) {
+                    activeQuery = decodeURIComponent(v).toLowerCase();
+                    document.getElementById('vis-search').value = decodeURIComponent(v);
+                }
+            });
+        }
+
+        function clearAll() {
+            activeTag = ''; activeCat = ''; activeWork = ''; activeQuery = '';
+            document.getElementById('vis-search').value = '';
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState(null, '', window.location.pathname);
+            }
+            renderAll();
+        }
+
+        function renderAll() {
+            syncChips();
+            renderTagCloud();
+            renderImages();
+        }
+
+        // Wire up interactions
+        document.getElementById('vis-search').addEventListener('input', e => {
+            activeQuery = e.target.value.trim().toLowerCase();
+            renderAll();
+        });
+        document.body.addEventListener('click', e => {
+            const catBtn = e.target.closest('[data-vis-cat]');
+            if (catBtn) {
+                const v = catBtn.dataset.visCat;
+                activeCat = (activeCat === v) ? '' : v;
+                if (activeTag && tagBySlug[activeTag] && activeCat && tagBySlug[activeTag].category !== activeCat) activeTag = '';
+                renderAll();
+                return;
+            }
+            const workBtn = e.target.closest('[data-vis-work]');
+            if (workBtn) {
+                const v = workBtn.dataset.visWork;
+                activeWork = (activeWork === v) ? '' : v;
+                renderAll();
+                return;
+            }
+            const tagBtn = e.target.closest('[data-vis-tag]');
+            if (tagBtn && !e.target.closest('.vis-tag-dict-link')) {
+                e.preventDefault();
+                const v = tagBtn.dataset.visTag;
+                activeTag = (activeTag === v) ? '' : v;
+                renderAll();
+                return;
+            }
+        });
+        window.addEventListener('hashchange', () => {
+            activeTag = ''; activeCat = ''; activeWork = ''; activeQuery = '';
+            document.getElementById('vis-search').value = '';
+            readHash();
+            renderAll();
+        });
+        readHash();
+        renderAll();
+    })();
+    </script>"""
+    html = page_shell('Visual Browser', body, active_nav='Visual')
+    (SITE_DIR / 'visual.html').write_text(html, encoding='utf-8')
+    print(f"  visual.html + visual-data.json: {len(image_entries)} images, {len(tag_entries)} tags, {image_tag_count} links")
+
+
+# ============================================================
 # Main
 # ============================================================
 
@@ -2925,6 +3391,7 @@ def main():
     build_music_page()
     build_biography()
     build_about(conn)
+    build_visual_browser(conn)
     build_search(conn)
     conn.close()
     print("Site build complete.")

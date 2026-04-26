@@ -143,6 +143,19 @@ header h1 em { font-style: italic; }
 .search-result-snippet { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
 .search-result mark { background: #fbe8a0; color: var(--text); padding: 0 2px; border-radius: 2px; }
 @media (max-width: 600px) { .search-result-kind { width: 70px; min-width: 70px; font-size: 0.6rem; } }
+
+/* ===== Visual Browser ===== */
+#vis-tag-cloud { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; padding: 0.6rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; }
+.vis-tag-chip { font-family: var(--font-sans); font-size: 0.78rem; padding: 0.25rem 0.55rem; border: 1px solid; background: transparent; border-radius: 3px; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; gap: 0.3rem; }
+.vis-tag-chip:hover { background: var(--bg); }
+.vis-tag-chip.active { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px currentColor; }
+.vis-tag-count { display: inline-block; font-size: 0.7rem; opacity: 0.7; padding: 0 0.3rem; border-radius: 8px; background: rgba(0,0,0,0.06); }
+.vis-tag-chip.active .vis-tag-count { background: rgba(255,255,255,0.25); opacity: 1; }
+.vis-tag-dict-link { color: inherit; opacity: 0.6; text-decoration: none; padding: 0 0.2rem; font-size: 0.85rem; }
+.vis-tag-dict-link:hover { opacity: 1; }
+.vis-img-tags { display: flex; flex-wrap: wrap; gap: 0.2rem; margin-top: 0.4rem; }
+.vis-img-tag { font-family: var(--font-sans); font-size: 0.62rem; padding: 0.1rem 0.35rem; color: white; border-radius: 2px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.03em; }
+.vis-img-tag:hover { opacity: 0.85; }
 .dict-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; text-decoration: none; color: inherit; display: block; transition: transform 0.15s, box-shadow 0.15s; }
 .dict-card:hover { transform: translateY(-1px); box-shadow: 0 3px 12px var(--shadow); }
 .dict-card .dict-label { font-size: 1rem; font-weight: 600; color: var(--accent); }
