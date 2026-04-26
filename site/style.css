@@ -135,6 +135,14 @@ header h1 em { font-style: italic; }
 .related-emblems .related-emblem-card { display: inline-block; padding: 0.4rem 0.7rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 3px; text-decoration: none; color: var(--text); font-size: 0.82rem; transition: all 0.15s; }
 .related-emblems .related-emblem-card:hover { border-color: var(--accent); background: var(--bg); }
 .related-emblems .related-emblem-card strong { color: var(--accent); }
+.search-result { display: flex; align-items: stretch; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 0; margin-bottom: 0.6rem; text-decoration: none; color: var(--text); transition: border-color 0.15s, transform 0.15s; overflow: hidden; }
+.search-result:hover { border-color: var(--accent); transform: translateY(-1px); }
+.search-result-kind { width: 100px; min-width: 100px; padding: 0.7rem 0.5rem; color: white; font-family: var(--font-sans); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: center; text-align: center; }
+.search-result-body { flex: 1; padding: 0.7rem 1rem; min-width: 0; }
+.search-result-title { font-weight: 600; color: var(--accent); margin-bottom: 0.25rem; font-size: 1rem; }
+.search-result-snippet { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+.search-result mark { background: #fbe8a0; color: var(--text); padding: 0 2px; border-radius: 2px; }
+@media (max-width: 600px) { .search-result-kind { width: 70px; min-width: 70px; font-size: 0.6rem; } }
 .dict-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 1rem 1.25rem; margin-bottom: 0.75rem; text-decoration: none; color: inherit; display: block; transition: transform 0.15s, box-shadow 0.15s; }
 .dict-card:hover { transform: translateY(-1px); box-shadow: 0 3px 12px var(--shadow); }
 .dict-card .dict-label { font-size: 1rem; font-weight: 600; color: var(--accent); }

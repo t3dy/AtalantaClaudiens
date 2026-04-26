@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search — Atalanta Fugiens</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><em>Atalanta Fugiens</em></h1>
+            <div class="subtitle">The Scholarship of H.M.E. De Jong on Michael Maier's Alchemical Emblems</div>
+            <nav class="site-nav">
+                <a href="index.html">Home</a>
+            <a href="emblems/index.html">Emblems</a>
+            <a href="scholars.html">Scholars</a>
+            <a href="dictionary/index.html">Dictionary</a>
+            <a href="timeline.html">Timeline</a>
+            <a href="sources.html">Sources</a>
+            <a href="maier.html">Maier</a>
+            <a href="creatures.html">Creatures</a>
+            <a href="music.html">Music</a>
+            <a href="works.html">Works</a>
+            <a href="modern-scholarship.html">21st Century</a>
+            <a href="szulakowska.html">Szulakowska</a>
+            <a href="essays/index.html">Essays</a>
+            <a href="bibliography.html">Bibliography</a>
+            <a href="biography.html">Biography</a>
+            <a href="search.html" class="active">Search</a>
+            <a href="about.html">About</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="page-content" style="max-width:1100px">
+        <h2>Search</h2>
+        <p>Across emblems, dictionary terms, scholars, source traditions, and essays.</p>
+        <div class="filter-bar">
+            <input type="search" id="search-input" class="filter-search" placeholder="Type to search&hellip; (e.g. dragon, salamander, Rosarium, Tilton)" autocomplete="off" autofocus>
+            <div class="filter-row" id="search-type-chips">
+                <span class="filter-label">Type:</span>
+                <button class="filter-chip filter-chip-all active" data-search-type="" type="button">All</button>
+                <button class="filter-chip" data-search-type="emblem" type="button">Emblems</button>
+                <button class="filter-chip" data-search-type="dict" type="button">Dictionary</button>
+                <button class="filter-chip" data-search-type="scholar" type="button">Scholars</button>
+                <button class="filter-chip" data-search-type="source" type="button">Sources</button>
+                <button class="filter-chip" data-search-type="essay" type="button">Essays</button>
+            </div>
+            <div class="filter-status" id="search-status"></div>
+        </div>
+        <div id="search-results" style="margin-top:1rem"></div>
+    </div>
+    <script>
+    (async function() {
+        const resp = await fetch('search-index.json');
+        const entries = await resp.json();
+        const input = document.getElementById('search-input');
+        const status = document.getElementById('search-status');
+        const results = document.getElementById('search-results');
+        let activeType = '';
+        let activeQuery = '';
+
+        const KIND_COLORS = {
+            'emblem': '#8b4513', 'dict': '#7f8c8d', 'scholar': '#2980b9',
+            'source': '#16a085', 'essay': '#8e44ad'
+        };
+
+        function escapeHtml(s) {
+            return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        function highlight(s, q) {
+            if (!q) return escapeHtml(s);
+            const lc = (s || '').toLowerCase();
+            const ql = q.toLowerCase();
+            let out = '', i = 0;
+            while (i < s.length) {
+                const idx = lc.indexOf(ql, i);
+                if (idx < 0) { out += escapeHtml(s.slice(i)); break; }
+                out += escapeHtml(s.slice(i, idx));
+                out += '<mark>' + escapeHtml(s.slice(idx, idx + q.length)) + '</mark>';
+                i = idx + q.length;
+            }
+            return out;
+        }
+
+        function readHash() {
+            if (!window.location.hash) return;
+            const hash = window.location.hash.slice(1);
+            hash.split('&').forEach(pair => {
+                const [k, v] = pair.split('=');
+                if (k === 'q' && v) {
+                    activeQuery = decodeURIComponent(v);
+                    input.value = activeQuery;
+                }
+                if (k === 'type' && v) activeType = decodeURIComponent(v);
+            });
+        }
+
+        function applySearch() {
+            const q = activeQuery.trim().toLowerCase();
+            // Update chip active states
+            document.querySelectorAll('#search-type-chips .filter-chip').forEach(chip => {
+                const t = chip.dataset.searchType;
+                const isAll = chip.classList.contains('filter-chip-all');
+                chip.classList.toggle('active', isAll ? !activeType : activeType === t);
+            });
+            if (!q) {
+                status.innerHTML = '<em>Type at least 2 characters.</em>';
+                results.innerHTML = '';
+                return;
+            }
+            if (q.length < 2) {
+                status.innerHTML = '<em>Type at least 2 characters.</em>';
+                results.innerHTML = '';
+                return;
+            }
+            const matches = [];
+            for (const e of entries) {
+                if (activeType && e.type !== activeType) continue;
+                const hay = (e.title + ' ' + e.snippet + ' ' + (e.tags || []).join(' ')).toLowerCase();
+                if (hay.includes(q)) {
+                    let score = 0;
+                    if (e.title.toLowerCase().includes(q)) score += 10;
+                    if (e.title.toLowerCase().startsWith(q)) score += 5;
+                    score -= matches.length * 0.001; // stable order
+                    matches.push({ e, score });
+                }
+            }
+            matches.sort((a, b) => b.score - a.score);
+            const top = matches.slice(0, 80);
+            status.innerHTML = matches.length
+                ? '<strong>' + matches.length + '</strong> result' + (matches.length !== 1 ? 's' : '') +
+                    (matches.length > top.length ? ' (showing first ' + top.length + ')' : '') +
+                    (activeType ? ' in ' + activeType : '')
+                : 'No results.';
+            results.innerHTML = top.map(({ e }) => {
+                const color = KIND_COLORS[e.type] || '#7f8c8d';
+                return '<a href="' + e.href + '" class="search-result">' +
+                    '<div class="search-result-kind" style="background:' + color + '">' + escapeHtml(e.kind) + '</div>' +
+                    '<div class="search-result-body">' +
+                        '<div class="search-result-title">' + highlight(e.title, q) + '</div>' +
+                        '<div class="search-result-snippet">' + highlight(e.snippet, q) + '</div>' +
+                    '</div>' +
+                '</a>';
+            }).join('');
+        }
+
+        input.addEventListener('input', () => {
+            activeQuery = input.value;
+            applySearch();
+        });
+        document.querySelectorAll('#search-type-chips .filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                const t = chip.dataset.searchType || '';
+                activeType = (activeType === t) ? '' : t;
+                applySearch();
+            });
+        });
+        window.addEventListener('hashchange', () => {
+            activeQuery = '';
+            activeType = '';
+            input.value = '';
+            readHash();
+            applySearch();
+        });
+        readHash();
+        applySearch();
+    })();
+    </script>
+    <footer>
+        <p>AtalantaClaudiens &middot; A digital humanities project &middot;
+        <a href="https://github.com/t3dy/AtalantaClaudiens">GitHub</a></p>
+    </footer>
+</body>
+</html>

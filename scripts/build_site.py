@@ -90,6 +90,7 @@ NAV_ITEMS = [
     ('Essays', 'essays/index.html'),
     ('Bibliography', 'bibliography.html'),
     ('Biography', 'biography.html'),
+    ('Search', 'search.html'),
     ('About', 'about.html'),
 ]
 
@@ -716,6 +717,30 @@ def build_scholars_pages(conn):
                 <p style="font-size:0.8rem;color:var(--text-muted)">{w[3] or w[4] or ''} &middot; {w[6] or ''}</p>
             </div>"""
 
+        # Emblems with this scholar's commentary
+        emblem_refs = conn.execute("""
+            SELECT DISTINCT e.number, e.roman_numeral, e.canonical_label,
+                   e.motto_english, e.alchemical_stage
+            FROM scholarly_refs sr
+            JOIN bibliography b ON sr.bib_id = b.id
+            JOIN scholar_works sw ON sw.bib_id = b.id
+            JOIN emblems e ON sr.emblem_id = e.id
+            WHERE sw.scholar_id = ? AND e.number > 0
+            ORDER BY e.number
+        """, (sid,)).fetchall()
+        coverage_html = ''
+        if emblem_refs:
+            cards = ''
+            for er in emblem_refs:
+                num_, roman_, label_, motto_, stage_ = er
+                stage_chip = f' <span class="badge badge-stage" style="font-size:0.6rem;vertical-align:middle">{stage_}</span>' if stage_ else ''
+                cards += f"""
+                <a href="../emblems/emblem-{num_:02d}.html" class="related-emblem-card" style="display:block">
+                    <strong>Emblem {roman_ or num_}</strong>{stage_chip}
+                    <div style="font-size:0.78rem;color:var(--text-muted);margin-top:0.15rem">{(label_ or '').strip()}</div>
+                </a>"""
+            coverage_html = f'<h2>Emblems Covered <span class="badge badge-contextual">{len(emblem_refs)}</span></h2><div class="related-grid" style="display:flex;flex-wrap:wrap;gap:0.4rem">{cards}</div>'
+
         body = f"""
         <div class="page-content">
             <a href="../scholars.html" class="back-link">&larr; All Scholars</a>
@@ -724,6 +749,7 @@ def build_scholars_pages(conn):
             {f'<p style="margin-bottom:1rem">{focus}</p>' if focus else ''}
             {format_paragraphs(overview) if overview else ''}
             {f'<h2>Works in Archive</h2>{works_html}' if works_html else '<p style="color:var(--text-muted)"><em>No works linked yet.</em></p>'}
+            {coverage_html}
         </div>"""
         html = page_shell(name, body, active_nav='Scholars', depth=1)
         (scholars_dir / f'{slug}.html').write_text(html, encoding='utf-8')
@@ -1097,9 +1123,17 @@ def build_timeline(conn):
 # Sources Page
 # ============================================================
 
-def build_sources(conn):
+def _authority_slug(authority_id):
+    """Convert AUTH_ROSARIUM -> rosarium for use in URL slugs."""
+    s = (authority_id or '').lower()
+    if s.startswith('auth_'):
+        s = s[5:]
+    return s.replace('_', '-')
+
+
+def build_sources(conn, identity_map):
     authorities = conn.execute("""
-        SELECT sa.id, sa.authority_id, sa.name, sa.type, sa.author,
+        SELECT sa.id, sa.authority_id, sa.name, sa.type, sa.author, sa.era,
                sa.relationship_to_maier, sa.description_long,
                COUNT(es.id) as emblem_count
         FROM source_authorities sa
@@ -1128,7 +1162,8 @@ def build_sources(conn):
         auths = by_type[stype]
         cards = ''
         for a in auths:
-            aid, auth_id, name, atype, author, rel, desc_long, count = a
+            aid, auth_id, name, atype, author, era, rel, desc_long, count = a
+            slug = _authority_slug(auth_id)
             # Find which emblems use this authority with numbers for links
             emblem_data = conn.execute("""
                 SELECT e.number, e.roman_numeral FROM emblem_sources es
@@ -1142,9 +1177,10 @@ def build_sources(conn):
             )
             cards += f"""
             <div class="source-card" id="{auth_id}" style="border-left:4px solid {color}">
-                <h4>{name} <span class="badge" style="background:{color};color:white">{count} emblems</span></h4>
+                <h4><a href="source/{slug}.html" style="color:inherit;text-decoration:none">{name}</a> <span class="badge" style="background:{color};color:white">{count} emblems</span></h4>
                 {f'<div class="source-desc">{desc_long}</div>' if desc_long else (f'<p style="font-size:0.9rem">{rel}</p>' if rel else '')}
                 {f'<div class="emblem-links" style="margin-top:0.5rem">{emblem_badges}</div>' if emblem_badges else ''}
+                <p style="margin-top:0.6rem;font-size:0.82rem;font-family:var(--font-sans)"><a href="source/{slug}.html" style="color:var(--accent)">Open authority page &rarr;</a></p>
             </div>"""
         sections_html += f"""
         <h2 style="margin-top:2rem"><span class="badge" style="background:{color};color:white;font-size:0.8rem">{stype}</span> {stype.title()} Sources</h2>
@@ -1158,7 +1194,85 @@ def build_sources(conn):
     </div>"""
     html = page_shell('Sources & Influences', body, active_nav='Sources')
     (SITE_DIR / 'sources.html').write_text(html, encoding='utf-8')
-    print(f"  sources.html: {len(authorities)} authorities")
+
+    # ── Individual authority pages ──
+    source_dir = SITE_DIR / 'source'
+    source_dir.mkdir(exist_ok=True)
+    for a in authorities:
+        aid, auth_id, name, atype, author, era, rel, desc_long, count = a
+        slug = _authority_slug(auth_id)
+        color = TYPE_COLORS.get(atype, '#7f8c8d')
+
+        # Emblems where this authority is cited (with image + motto)
+        emblems_for = conn.execute("""
+            SELECT e.id, e.number, e.roman_numeral, e.canonical_label,
+                   e.motto_english, e.alchemical_stage
+            FROM emblem_sources es
+            JOIN emblems e ON es.emblem_id = e.id
+            WHERE es.authority_id = ? AND e.number > 0
+            ORDER BY e.number
+        """, (aid,)).fetchall()
+        emblem_cards_html = ''
+        for em in emblems_for:
+            eid_, num_, roman_, label_, motto_, stage_ = em
+            img_path, img_exists = resolve_image(identity_map, num_)
+            img_tag = (
+                f'<img src="../{img_path}" alt="Emblem {roman_ or num_}" style="width:100%;display:block;aspect-ratio:auto">'
+                if img_exists else
+                f'<div class="card-placeholder" style="aspect-ratio:1;font-size:1.5rem">{roman_ or num_}</div>'
+            )
+            stage_chip = f' <span class="badge badge-stage" style="font-size:0.6rem;vertical-align:middle">{stage_}</span>' if stage_ else ''
+            emblem_cards_html += f"""
+            <a href="../emblems/emblem-{num_:02d}.html" class="card" style="text-decoration:none;color:inherit">
+                {img_tag}
+                <div class="card-body">
+                    <div class="card-sig">Emblem {roman_ or num_}{stage_chip}</div>
+                    <div class="card-label">{label_ or ''}</div>
+                    <div class="card-desc">{(motto_ or '').strip()}</div>
+                </div>
+            </a>"""
+
+        # Scholars who comment on this tradition: scholarly_refs whose source_texts_referenced mentions this authority
+        scholar_rows = conn.execute("""
+            SELECT DISTINCT b.author, sw.scholar_id, s.name
+            FROM scholarly_refs sr
+            JOIN bibliography b ON sr.bib_id = b.id
+            LEFT JOIN scholar_works sw ON sw.bib_id = b.id
+            LEFT JOIN scholars s ON sw.scholar_id = s.id
+            WHERE sr.source_texts_referenced LIKE ?
+            ORDER BY b.author
+        """, ('%' + (auth_id or '') + '%',)).fetchall()
+        scholar_links = ''
+        seen_scholars = set()
+        for srow in scholar_rows:
+            sname = srow[2] or srow[0]
+            if sname in seen_scholars:
+                continue
+            seen_scholars.add(sname)
+            if srow[2]:
+                scholar_links += f'<a href="../scholar/{slugify(srow[2])}.html" class="source-link">{sname}</a>'
+            else:
+                scholar_links += f'<span class="source-link" style="cursor:default">{sname}</span>'
+
+        emblem_count_for = len(emblems_for)
+        body = f"""
+        <div class="page-content">
+            <a href="../sources.html" class="back-link">&larr; All Sources</a>
+            <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{name}
+                <span class="badge" style="background:{color};color:white;font-size:0.75rem;vertical-align:middle">{atype or ''}</span>
+            </h1>
+            <p style="color:var(--text-muted);font-family:var(--font-sans);margin-bottom:1rem;font-size:0.9rem">
+                {(author + ' · ') if author else ''}{era or ''}{(' · ' if (author or era) and emblem_count_for else '')}{f'cited in {emblem_count_for} emblem{"s" if emblem_count_for != 1 else ""}' if emblem_count_for else ''}
+            </p>
+            {format_paragraphs(autolink_emblems(desc_long, depth=1)) if desc_long else ''}
+            {f'<h2>Relationship to Maier</h2><p style="font-size:0.95rem;line-height:1.7">{rel}</p>' if rel and not desc_long else ''}
+            {f'<h2>Cited in</h2><div class="gallery" style="grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));padding:0">{emblem_cards_html}</div>' if emblem_cards_html else '<p style="color:var(--text-muted)"><em>No emblem citations recorded.</em></p>'}
+            {f'<h2>Scholars who discuss this tradition</h2><div>{scholar_links}</div>' if scholar_links else ''}
+        </div>"""
+        html = page_shell(name, body, active_nav='Sources', depth=1)
+        (source_dir / f'{slug}.html').write_text(html, encoding='utf-8')
+
+    print(f"  sources.html: {len(authorities)} authorities + source/ pages")
 
 
 # ============================================================
@@ -2530,6 +2644,262 @@ def build_biography():
 
 
 # ============================================================
+# Site Search Index + Page
+# ============================================================
+
+def build_search(conn):
+    """Emit search-index.json (emblems + dictionary + essays + scholars + sources)
+    and a search.html page that does client-side substring matching."""
+    entries = []
+
+    # Emblems
+    em_rows = conn.execute("""
+        SELECT number, roman_numeral, canonical_label, motto_english,
+               motto_latin, discourse_summary, alchemical_stage
+        FROM emblems ORDER BY number
+    """).fetchall()
+    for r in em_rows:
+        num, roman, label, motto, motto_lat, discourse, stage = r
+        href = 'emblems/frontispiece.html' if num == 0 else f'emblems/emblem-{num:02d}.html'
+        title = f'Emblem {roman} — {label}' if roman else (label or 'Frontispiece')
+        snippet_parts = [s for s in (motto, motto_lat, (discourse or '')[:280]) if s]
+        entries.append({
+            'type': 'emblem',
+            'kind': 'Emblem',
+            'title': title,
+            'href': href,
+            'tags': [stage] if stage else [],
+            'snippet': ' · '.join(snippet_parts)[:340],
+        })
+
+    # Dictionary terms
+    dict_rows = conn.execute("""
+        SELECT slug, label, label_latin, category, definition_short, definition_long
+        FROM dictionary_terms ORDER BY label
+    """).fetchall()
+    for r in dict_rows:
+        slug, label, lat, cat, dshort, dlong = r
+        title = label
+        if lat and lat != label:
+            title = f'{label} ({lat})'
+        snippet = (dshort or '')[:300]
+        if not snippet and dlong:
+            snippet = dlong[:300]
+        entries.append({
+            'type': 'dict',
+            'kind': cat or 'Term',
+            'title': title,
+            'href': f'dictionary/{slug}.html',
+            'tags': [cat] if cat else [],
+            'snippet': snippet,
+        })
+
+    # Scholars
+    sch_rows = conn.execute("""
+        SELECT name, specialization, af_focus, overview FROM scholars ORDER BY name
+    """).fetchall()
+    for r in sch_rows:
+        name, spec, focus, overview = r
+        snippet = ' · '.join(filter(None, [spec, focus, (overview or '')[:240]]))[:340]
+        entries.append({
+            'type': 'scholar',
+            'kind': 'Scholar',
+            'title': name,
+            'href': f'scholar/{slugify(name)}.html',
+            'tags': [],
+            'snippet': snippet,
+        })
+
+    # Sources / authorities
+    src_rows = conn.execute("""
+        SELECT authority_id, name, type, era, description_long, relationship_to_maier
+        FROM source_authorities ORDER BY name
+    """).fetchall()
+    for r in src_rows:
+        auth_id, name, atype, era, dlong, rel = r
+        slug = _authority_slug(auth_id)
+        snippet = ' · '.join(filter(None, [atype, era, (dlong or rel or '')[:260]]))[:340]
+        entries.append({
+            'type': 'source',
+            'kind': atype or 'Source',
+            'title': name,
+            'href': f'source/{slug}.html',
+            'tags': [atype] if atype else [],
+            'snippet': snippet,
+        })
+
+    # Essays — read the existing HTML files and harvest title + first paragraph
+    essays_dir = SITE_DIR / 'essays'
+    if essays_dir.exists():
+        import re as _re
+        for html_path in sorted(essays_dir.glob('*.html')):
+            if html_path.name == 'index.html':
+                continue
+            try:
+                text = html_path.read_text(encoding='utf-8')
+            except Exception:
+                continue
+            title_m = _re.search(r'<h1[^>]*>(.*?)</h1>', text, _re.S)
+            title = _re.sub(r'<[^>]+>', '', title_m.group(1)).strip() if title_m else html_path.stem.replace('-', ' ').title()
+            # First paragraph in the body
+            para_m = _re.search(r'<p[^>]*>(.*?)</p>', text, _re.S)
+            snippet = _re.sub(r'<[^>]+>', '', para_m.group(1)).strip() if para_m else ''
+            entries.append({
+                'type': 'essay',
+                'kind': 'Essay',
+                'title': title,
+                'href': f'essays/{html_path.name}',
+                'tags': [],
+                'snippet': snippet[:340],
+            })
+
+    out_path = SITE_DIR / 'search-index.json'
+    out_path.write_text(json.dumps(entries, ensure_ascii=False), encoding='utf-8')
+
+    # Search page
+    body = """
+    <div class="page-content" style="max-width:1100px">
+        <h2>Search</h2>
+        <p>Across emblems, dictionary terms, scholars, source traditions, and essays.</p>
+        <div class="filter-bar">
+            <input type="search" id="search-input" class="filter-search" placeholder="Type to search&hellip; (e.g. dragon, salamander, Rosarium, Tilton)" autocomplete="off" autofocus>
+            <div class="filter-row" id="search-type-chips">
+                <span class="filter-label">Type:</span>
+                <button class="filter-chip filter-chip-all active" data-search-type="" type="button">All</button>
+                <button class="filter-chip" data-search-type="emblem" type="button">Emblems</button>
+                <button class="filter-chip" data-search-type="dict" type="button">Dictionary</button>
+                <button class="filter-chip" data-search-type="scholar" type="button">Scholars</button>
+                <button class="filter-chip" data-search-type="source" type="button">Sources</button>
+                <button class="filter-chip" data-search-type="essay" type="button">Essays</button>
+            </div>
+            <div class="filter-status" id="search-status"></div>
+        </div>
+        <div id="search-results" style="margin-top:1rem"></div>
+    </div>
+    <script>
+    (async function() {
+        const resp = await fetch('search-index.json');
+        const entries = await resp.json();
+        const input = document.getElementById('search-input');
+        const status = document.getElementById('search-status');
+        const results = document.getElementById('search-results');
+        let activeType = '';
+        let activeQuery = '';
+
+        const KIND_COLORS = {
+            'emblem': '#8b4513', 'dict': '#7f8c8d', 'scholar': '#2980b9',
+            'source': '#16a085', 'essay': '#8e44ad'
+        };
+
+        function escapeHtml(s) {
+            return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        }
+
+        function highlight(s, q) {
+            if (!q) return escapeHtml(s);
+            const lc = (s || '').toLowerCase();
+            const ql = q.toLowerCase();
+            let out = '', i = 0;
+            while (i < s.length) {
+                const idx = lc.indexOf(ql, i);
+                if (idx < 0) { out += escapeHtml(s.slice(i)); break; }
+                out += escapeHtml(s.slice(i, idx));
+                out += '<mark>' + escapeHtml(s.slice(idx, idx + q.length)) + '</mark>';
+                i = idx + q.length;
+            }
+            return out;
+        }
+
+        function readHash() {
+            if (!window.location.hash) return;
+            const hash = window.location.hash.slice(1);
+            hash.split('&').forEach(pair => {
+                const [k, v] = pair.split('=');
+                if (k === 'q' && v) {
+                    activeQuery = decodeURIComponent(v);
+                    input.value = activeQuery;
+                }
+                if (k === 'type' && v) activeType = decodeURIComponent(v);
+            });
+        }
+
+        function applySearch() {
+            const q = activeQuery.trim().toLowerCase();
+            // Update chip active states
+            document.querySelectorAll('#search-type-chips .filter-chip').forEach(chip => {
+                const t = chip.dataset.searchType;
+                const isAll = chip.classList.contains('filter-chip-all');
+                chip.classList.toggle('active', isAll ? !activeType : activeType === t);
+            });
+            if (!q) {
+                status.innerHTML = '<em>Type at least 2 characters.</em>';
+                results.innerHTML = '';
+                return;
+            }
+            if (q.length < 2) {
+                status.innerHTML = '<em>Type at least 2 characters.</em>';
+                results.innerHTML = '';
+                return;
+            }
+            const matches = [];
+            for (const e of entries) {
+                if (activeType && e.type !== activeType) continue;
+                const hay = (e.title + ' ' + e.snippet + ' ' + (e.tags || []).join(' ')).toLowerCase();
+                if (hay.includes(q)) {
+                    let score = 0;
+                    if (e.title.toLowerCase().includes(q)) score += 10;
+                    if (e.title.toLowerCase().startsWith(q)) score += 5;
+                    score -= matches.length * 0.001; // stable order
+                    matches.push({ e, score });
+                }
+            }
+            matches.sort((a, b) => b.score - a.score);
+            const top = matches.slice(0, 80);
+            status.innerHTML = matches.length
+                ? '<strong>' + matches.length + '</strong> result' + (matches.length !== 1 ? 's' : '') +
+                    (matches.length > top.length ? ' (showing first ' + top.length + ')' : '') +
+                    (activeType ? ' in ' + activeType : '')
+                : 'No results.';
+            results.innerHTML = top.map(({ e }) => {
+                const color = KIND_COLORS[e.type] || '#7f8c8d';
+                return '<a href="' + e.href + '" class="search-result">' +
+                    '<div class="search-result-kind" style="background:' + color + '">' + escapeHtml(e.kind) + '</div>' +
+                    '<div class="search-result-body">' +
+                        '<div class="search-result-title">' + highlight(e.title, q) + '</div>' +
+                        '<div class="search-result-snippet">' + highlight(e.snippet, q) + '</div>' +
+                    '</div>' +
+                '</a>';
+            }).join('');
+        }
+
+        input.addEventListener('input', () => {
+            activeQuery = input.value;
+            applySearch();
+        });
+        document.querySelectorAll('#search-type-chips .filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                const t = chip.dataset.searchType || '';
+                activeType = (activeType === t) ? '' : t;
+                applySearch();
+            });
+        });
+        window.addEventListener('hashchange', () => {
+            activeQuery = '';
+            activeType = '';
+            input.value = '';
+            readHash();
+            applySearch();
+        });
+        readHash();
+        applySearch();
+    })();
+    </script>"""
+    html = page_shell('Search', body, active_nav='Search')
+    (SITE_DIR / 'search.html').write_text(html, encoding='utf-8')
+    print(f"  search.html + search-index.json: {len(entries)} entries")
+
+
+# ============================================================
 # Main
 # ============================================================
 
@@ -2544,7 +2914,7 @@ def main():
     build_bibliography(conn)
     build_dictionary_pages(conn)
     build_timeline(conn)
-    build_sources(conn)
+    build_sources(conn, identity_map)
     # build_essays(conn)  # Replaced by build_essay_pages
     build_modern_scholarship(conn)
     build_maier_page(conn)
@@ -2555,6 +2925,7 @@ def main():
     build_music_page()
     build_biography()
     build_about(conn)
+    build_search(conn)
     conn.close()
     print("Site build complete.")
     return 0
