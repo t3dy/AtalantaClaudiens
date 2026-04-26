@@ -70,8 +70,55 @@
             <h2>Appears in Emblems</h2><div><a href="../emblems/emblem-43.html" class="source-link">Emblem XLIII: Emblem XLIII</a></div>
             
             <h2>More in <a href="index.html#category=FIGURE" style="color:inherit">FIGURE</a></h2><div class="dict-related"><a href="adonis.html" class="dict-related-card"><div class="dict-related-label">Adonis</div></a><a href="alchemical-dog.html" class="dict-related-card"><div class="dict-related-label">Alchemical Dog</div><div class="dict-related-latin">Canis</div></a><a href="alchemical-eagle.html" class="dict-related-card"><div class="dict-related-label">Alchemical Eagle</div><div class="dict-related-latin">Aquila</div></a><a href="alchemical-lion.html" class="dict-related-card"><div class="dict-related-label">Alchemical Lion</div><div class="dict-related-latin">Leo</div></a><a href="alchemical-toad.html" class="dict-related-card"><div class="dict-related-label">Alchemical Toad</div><div class="dict-related-latin">Bufo</div></a><a href="alchemical-wolf.html" class="dict-related-card"><div class="dict-related-label">Alchemical Wolf</div><div class="dict-related-latin">Lupus</div></a><a href="apocalyptic-woman.html" class="dict-related-card"><div class="dict-related-label">Apocalyptic Woman / Turkish Madonna</div><div class="dict-related-latin">Mulier Apocalyptica</div></a><a href="atalanta.html" class="dict-related-card"><div class="dict-related-label">Atalanta</div></a></div><p style="margin-top:0.5rem;font-size:0.82rem;font-family:var(--font-sans)"><a href="index.html#category=FIGURE" style="color:var(--accent)">See all 45 FIGURE terms &rarr;</a></p>
+            <div id="depicts-panel" data-slug="screech-owl"></div>
             
         </div>
+        <script>
+        (async function() {
+            const panel = document.getElementById('depicts-panel');
+            if (!panel) return;
+            const slug = panel.dataset.slug;
+            try {
+                const resp = await fetch('../dictionary-depicts.json');
+                if (!resp.ok) return;
+                const data = await resp.json();
+                const items = data[slug];
+                if (!items || !items.length) return;
+                // Group by source work
+                const byWork = {};
+                for (const it of items) {
+                    (byWork[it.work_title || it.work] = byWork[it.work_title || it.work] || []).push(it);
+                }
+                const workCount = Object.keys(byWork).length;
+                const total = items.length;
+                const cards = items.slice(0, 24).map(im => {
+                    const linkOpen = im.link_url
+                        ? '<a href="' + (im.is_external ? im.link_url : '../' + im.link_url) + '"' + (im.is_external ? ' target="_blank" rel="noopener"' : '') + ' class="depicts-card">'
+                        : '<div class="depicts-card" style="cursor:default">';
+                    const linkClose = im.link_url ? '</a>' : '</div>';
+                    const imgSrc = im.local_url
+                        ? (im.is_external ? im.local_url : '../' + im.local_url)
+                        : null;
+                    const img = imgSrc
+                        ? '<img src="' + imgSrc + '" alt="' + (im.work_title || '') + '" loading="lazy">'
+                        : '<div class="depicts-placeholder">' + ((im.folio || '?').replace('plate ', '').toUpperCase()) + '</div>';
+                    return linkOpen + img +
+                        '<div class="depicts-meta">' +
+                            '<div class="depicts-work">' + (im.work_title || '') + '</div>' +
+                            '<div class="depicts-folio">' + (im.folio || '') + '</div>' +
+                        '</div>' + linkClose;
+                }).join('');
+                const overflow = items.length > 24 ? '<p style="font-size:0.82rem;color:var(--text-muted);font-style:italic">…and ' + (items.length - 24) + ' more in <a href="../visual.html#tag=' + encodeURIComponent(slug.replace(/-/g, '_')) + '">visual browser</a>.</p>' : '';
+                panel.innerHTML =
+                    '<h2>Depicted in <span class="badge badge-contextual">' + total + ' image' + (total !== 1 ? 's' : '') + ' across ' + workCount + ' work' + (workCount !== 1 ? 's' : '') + '</span></h2>' +
+                    '<p style="font-size:0.85rem;color:var(--text-muted);font-family:var(--font-sans);margin-bottom:0.7rem">Cross-corpus matches from the <a href="../visual.html">visual browser</a>.</p>' +
+                    '<div class="depicts-grid">' + cards + '</div>' +
+                    overflow;
+            } catch (err) {
+                /* silent — feature is optional */
+            }
+        })();
+        </script>
     <footer>
         <p>AtalantaClaudiens &middot; A digital humanities project &middot;
         <a href="https://github.com/t3dy/AtalantaClaudiens">GitHub</a></p>
