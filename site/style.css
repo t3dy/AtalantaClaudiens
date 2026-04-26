@@ -124,6 +124,24 @@ header h1 em { font-style: italic; }
 .dict-card .dict-def { font-size: 0.85rem; color: var(--text); margin-top: 0.4rem; line-height: 1.5; }
 .term-latin { font-style: italic; font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.25rem; }
 
+/* ===== Filter Bar (gallery + dictionary) ===== */
+.filter-bar { max-width: 1100px; margin: 0 auto 1rem; padding: 1rem 2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; }
+.filter-bar .filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; }
+.filter-bar .filter-row:last-of-type { margin-bottom: 0; }
+.filter-label { font-family: var(--font-sans); font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-right: 0.4rem; min-width: 3.5rem; }
+.filter-chip { font-family: var(--font-sans); font-size: 0.78rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 3px; cursor: pointer; transition: all 0.15s; }
+.filter-chip:hover { border-color: var(--accent); color: var(--accent); }
+.filter-chip.active { background: var(--accent); color: white; border-color: var(--accent); }
+.filter-chip.active.filter-chip-stage { box-shadow: inset 0 0 0 2px rgba(255,255,255,0.5); }
+.filter-chip-count { display: inline-block; background: rgba(0,0,0,0.12); padding: 0.05rem 0.35rem; margin-left: 0.3rem; border-radius: 8px; font-size: 0.68rem; }
+.filter-chip.active .filter-chip-count { background: rgba(255,255,255,0.25); }
+.filter-search { width: 100%; padding: 0.55rem 0.8rem; border: 1px solid var(--border); border-radius: 3px; font-family: var(--font-sans); font-size: 0.9rem; background: var(--bg); color: var(--text); margin-bottom: 0.6rem; }
+.filter-search:focus { outline: none; border-color: var(--accent); }
+.filter-status { font-family: var(--font-sans); font-size: 0.82rem; color: var(--text-muted); margin-top: 0.4rem; }
+.filter-status strong { color: var(--accent); }
+.filter-clear { color: var(--accent); text-decoration: underline; margin-left: 0.4rem; }
+.filter-empty { display: none; }
+
 /* ===== Cross-Links ===== */
 .emblem-link-badge { display: inline-block; padding: 0.15rem 0.45rem; background: var(--bg); border: 1px solid var(--border); border-radius: 2px; font-size: 0.72rem; font-weight: 600; font-family: var(--font-sans); color: var(--accent); text-decoration: none; transition: all 0.15s; }
 .emblem-link-badge:hover { background: var(--accent); color: white; border-color: var(--accent); }

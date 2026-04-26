@@ -1,9 +1,9 @@
-// AtalantaClaudiens — Gallery & Lightbox
-// Adapted from HPMarginalia script.js
+// AtalantaClaudiens — Gallery, Filters & Lightbox
 
 let allEntries = [];
 let filteredEntries = [];
 let currentIndex = 0;
+const activeFilters = { stage: '', source: '', search: '' };
 
 async function loadData() {
     const resp = await fetch('data.json');
@@ -11,7 +11,9 @@ async function loadData() {
     allEntries = data.entries || [];
     filteredEntries = [...allEntries];
     renderStats(data.stats || {});
-    renderGallery();
+    bindFilterUI();
+    applyHashFilter();
+    applyFilters();
 }
 
 function renderStats(stats) {
@@ -32,16 +34,115 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+function bindFilterUI() {
+    const bar = document.getElementById('filter-bar');
+    if (!bar) return;
+    bar.addEventListener('click', (e) => {
+        const chip = e.target.closest('.filter-chip');
+        if (!chip) return;
+        const type = chip.dataset.filterType;
+        const value = chip.dataset.filterValue;
+        if (activeFilters[type] === value) {
+            activeFilters[type] = '';
+        } else {
+            activeFilters[type] = value;
+        }
+        applyFilters();
+    });
+    const search = document.getElementById('gallery-search');
+    if (search) {
+        search.addEventListener('input', (e) => {
+            activeFilters.search = e.target.value.trim().toLowerCase();
+            applyFilters();
+        });
+    }
+}
+
+function applyHashFilter() {
+    if (!window.location.hash) return;
+    const hash = window.location.hash.slice(1);
+    hash.split('&').forEach(pair => {
+        const [k, v] = pair.split('=');
+        if (k && v && Object.prototype.hasOwnProperty.call(activeFilters, k)) {
+            activeFilters[k] = decodeURIComponent(v);
+        }
+    });
+}
+
+function applyFilters() {
+    const { stage, source, search } = activeFilters;
+    filteredEntries = allEntries.filter(entry => {
+        if (stage && entry.stage !== stage) return false;
+        if (source && !(entry.sources || []).includes(source)) return false;
+        if (search) {
+            const haystack = [
+                entry.label || '',
+                entry.motto || '',
+                entry.discourse || '',
+                entry.roman || '',
+            ].join(' ').toLowerCase();
+            if (!haystack.includes(search)) return false;
+        }
+        return true;
+    });
+    document.querySelectorAll('.filter-chip').forEach(chip => {
+        const type = chip.dataset.filterType;
+        const value = chip.dataset.filterValue;
+        const isAll = chip.classList.contains('filter-chip-all');
+        const isActive = isAll
+            ? !activeFilters[type]
+            : activeFilters[type] === value;
+        chip.classList.toggle('active', isActive);
+    });
+    const status = document.getElementById('filter-status');
+    if (status) {
+        const parts = [];
+        if (stage) parts.push(`stage <strong>${stage}</strong>`);
+        if (source) parts.push(`source <strong>${escapeHtml(source)}</strong>`);
+        if (search) parts.push(`text <strong>"${escapeHtml(search)}"</strong>`);
+        if (parts.length || filteredEntries.length !== allEntries.length) {
+            status.innerHTML = `Showing <strong>${filteredEntries.length}</strong> of ${allEntries.length} emblems` +
+                (parts.length ? ' — filtered by ' + parts.join(', ') + ' <a href="#" class="filter-clear" id="filter-clear">clear all</a>' : '');
+            const clearLink = document.getElementById('filter-clear');
+            if (clearLink) {
+                clearLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    clearFilters();
+                });
+            }
+        } else {
+            status.innerHTML = '';
+        }
+    }
+    renderGallery();
+}
+
+function clearFilters() {
+    activeFilters.stage = '';
+    activeFilters.source = '';
+    activeFilters.search = '';
+    const search = document.getElementById('gallery-search');
+    if (search) search.value = '';
+    if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', window.location.pathname);
+    }
+    applyFilters();
+}
+
 function renderGallery() {
     const gallery = document.getElementById('gallery');
     if (!gallery) return;
+    if (!filteredEntries.length) {
+        gallery.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--text-muted);padding:3rem 1rem">No emblems match these filters.</p>';
+        return;
+    }
     gallery.innerHTML = filteredEntries.map((entry, i) => `
         <div class="card" onclick="openLightbox(${i})">
             ${entry.image
                 ? `<img src="${entry.image}" alt="Emblem ${entry.roman || 'F'}" style="width:100%;display:block">`
                 : `<div class="card-placeholder">${entry.roman || 'F'}</div>`}
             <div class="card-body">
-                <div class="card-sig">${entry.roman ? 'Emblem ' + entry.roman : 'Frontispiece'}</div>
+                <div class="card-sig">${entry.roman ? 'Emblem ' + entry.roman : 'Frontispiece'}${entry.stage ? ' <span class="badge badge-stage" style="font-size:0.6rem;vertical-align:middle">' + entry.stage + '</span>' : ''}</div>
                 <div class="card-label">${escapeHtml(entry.label)}</div>
                 <div class="card-desc">${escapeHtml(entry.motto || '')}</div>
             </div>
@@ -82,6 +183,13 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') navigateLightbox(-1);
     if (e.key === 'ArrowRight') navigateLightbox(1);
+});
+
+window.addEventListener('hashchange', () => {
+    activeFilters.stage = '';
+    activeFilters.source = '';
+    applyHashFilter();
+    applyFilters();
 });
 
 document.addEventListener('DOMContentLoaded', loadData);

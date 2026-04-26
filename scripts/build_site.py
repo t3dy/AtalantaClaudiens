@@ -222,23 +222,37 @@ def build_registers_html(registers_json):
 
 def export_data_json(conn, identity_map):
     rows = conn.execute("""
-        SELECT e.number, e.roman_numeral, e.canonical_label,
-               e.motto_english, e.discourse_summary, e.confidence
+        SELECT e.id, e.number, e.roman_numeral, e.canonical_label,
+               e.motto_english, e.discourse_summary, e.confidence,
+               e.alchemical_stage
         FROM emblems e ORDER BY e.number
     """).fetchall()
 
+    # Build source-authority map: emblem_id -> [authority_id, ...]
+    source_rows = conn.execute("""
+        SELECT es.emblem_id, sa.authority_id
+        FROM emblem_sources es
+        JOIN source_authorities sa ON es.authority_id = sa.id
+        ORDER BY es.emblem_id, sa.authority_id
+    """).fetchall()
+    sources_by_emblem = {}
+    for eid, code in source_rows:
+        sources_by_emblem.setdefault(eid, []).append(code)
+
     entries = []
     for r in rows:
-        num = r[0]
+        eid, num = r[0], r[1]
         page = 'frontispiece.html' if num == 0 else f'emblem-{num:02d}.html'
         img_path, img_exists = resolve_image(identity_map, num)
         entries.append({
             'number': num,
-            'roman': r[1],
-            'label': r[2],
-            'motto': r[3],
-            'discourse': r[4],
-            'confidence': r[5],
+            'roman': r[2],
+            'label': r[3],
+            'motto': r[4],
+            'discourse': r[5],
+            'confidence': r[6],
+            'stage': r[7],
+            'sources': sources_by_emblem.get(eid, []),
             'page': page,
             'image': img_path if img_exists else None,
         })
@@ -264,6 +278,20 @@ def build_gallery(conn):
     stats = conn.execute("SELECT COUNT(*) FROM emblems WHERE number > 0").fetchone()[0]
     terms = conn.execute("SELECT COUNT(*) FROM dictionary_terms").fetchone()[0]
     sources = conn.execute("SELECT COUNT(*) FROM source_authorities").fetchone()[0]
+
+    # Top source authorities for filter chips
+    top_sources = conn.execute("""
+        SELECT sa.authority_id, sa.name, COUNT(es.id) AS n
+        FROM source_authorities sa
+        JOIN emblem_sources es ON es.authority_id = sa.id
+        GROUP BY sa.id
+        ORDER BY n DESC LIMIT 6
+    """).fetchall()
+    source_chips = ''.join(
+        f'<button class="filter-chip" data-filter-type="source" data-filter-value="{aid}" type="button">{name} <span class="filter-chip-count">{n}</span></button>'
+        for aid, name, n in top_sources
+    )
+
     body = f"""
     <div style="max-width:700px;margin:2rem auto;padding:0 2rem;text-align:center">
         <p style="font-size:1.05rem;line-height:1.8;color:var(--text)">In 1617, the physician and alchemist Michael Maier published fifty emblems combining engraved plates, Latin mottos, poetic epigrams, philosophical discourses, and three-voice musical fugues &mdash; a work without parallel in the history of the emblem book. In 1969, the Dutch art historian H.M.E. De Jong unlocked these emblems by tracing each one to its ancient and medieval sources. This site presents her findings.</p>
@@ -272,6 +300,22 @@ def build_gallery(conn):
         </div>
     </div>
     <div class="stats" id="stats"></div>
+    <div class="filter-bar" id="filter-bar">
+        <input type="search" id="gallery-search" class="filter-search" placeholder="Search emblems by motto, label, or text&hellip;" autocomplete="off">
+        <div class="filter-row">
+            <span class="filter-label">Stage:</span>
+            <button class="filter-chip filter-chip-all active" data-filter-type="stage" data-filter-value="" type="button">All</button>
+            <button class="filter-chip filter-chip-stage" data-filter-type="stage" data-filter-value="NIGREDO" type="button" style="background:#2c2418;color:#f5f0e8">Nigredo</button>
+            <button class="filter-chip filter-chip-stage" data-filter-type="stage" data-filter-value="ALBEDO" type="button" style="background:#a89880;color:#2c2418">Albedo</button>
+            <button class="filter-chip filter-chip-stage" data-filter-type="stage" data-filter-value="CITRINITAS" type="button" style="background:#b8860b;color:#2c2418">Citrinitas</button>
+            <button class="filter-chip filter-chip-stage" data-filter-type="stage" data-filter-value="RUBEDO" type="button" style="background:#c0392b;color:#f5f0e8">Rubedo</button>
+        </div>
+        <div class="filter-row">
+            <span class="filter-label">Source:</span>
+            {source_chips}
+        </div>
+        <div class="filter-status" id="filter-status"></div>
+    </div>
     <div class="gallery" id="gallery"></div>
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
@@ -374,7 +418,7 @@ def build_emblem_pages(conn, identity_map):
         if stage:
             bg = stage_colors.get(stage, '#7f8c8d')
             fg = stage_text.get(stage, '#fff')
-            stage_badge_html = f'<span class="badge" style="background:{bg};color:{fg};font-size:0.85rem;padding:0.3rem 0.8rem;border-radius:3px">{stage}</span>'
+            stage_badge_html = f'<a href="../index.html#stage={stage}" class="badge" title="See all {stage} emblems" style="background:{bg};color:{fg};font-size:0.85rem;padding:0.3rem 0.8rem;border-radius:3px;text-decoration:none">{stage}</a>'
 
         # Bilingual motto block
         motto_html = ''
@@ -733,8 +777,9 @@ def build_dictionary_pages(conn):
             label_latin = t[9]
             ecnt = emblem_counts.get(tid, 0)
             latin_line = f'<div class="dict-latin">{label_latin}</div>' if label_latin and label_latin != label else ''
+            search_blob = f'{label} {label_latin or ""} {def_short or ""}'.lower().replace('"', '&quot;')
             cards += f"""
-            <a href="{slug}.html" class="dict-card">
+            <a href="{slug}.html" class="dict-card" data-category="{tcat}" data-search="{search_blob}">
                 <div class="dict-label">{label}
                     <span class="badge badge-stage">{tcat}</span>
                     {f'<span class="badge badge-contextual">{ecnt} emblems</span>' if ecnt else ''}
@@ -744,17 +789,103 @@ def build_dictionary_pages(conn):
                 <div style="margin-top:0.3rem"><span style="font-size:0.75rem;color:var(--accent);font-family:var(--font-sans)">View definition &rarr;</span></div>
             </a>"""
         cat_html += f"""
-        <div style="margin-bottom:2rem">
-            <h3 style="font-size:1.1rem;color:var(--accent);margin-bottom:0.75rem">{cat} <span class="badge badge-contextual">{len(cat_terms)}</span></h3>
+        <div class="dict-category-block" data-category="{cat}" style="margin-bottom:2rem">
+            <h3 style="font-size:1.1rem;color:var(--accent);margin-bottom:0.75rem">{cat} <span class="badge badge-contextual dict-cat-count" data-cat="{cat}">{len(cat_terms)}</span></h3>
             {cards}
         </div>"""
+
+    cat_chips = '<button class="filter-chip filter-chip-all active" data-filter-type="category" data-filter-value="" type="button">All</button>'
+    for cat in sorted(categories.keys()):
+        cat_chips += f'<button class="filter-chip" data-filter-type="category" data-filter-value="{cat}" type="button">{cat} <span class="filter-chip-count">{len(categories[cat])}</span></button>'
 
     body = f"""
     <div class="page-content">
         <h2>Dictionary of <em>Atalanta Fugiens</em></h2>
-        <p>Key alchemical terms as they appear in Maier's text, with Latin originals. {len(terms)} terms across {len(categories)} categories.</p>
+        <p>Key alchemical terms as they appear in Maier's text, with Latin originals. <span id="dict-total">{len(terms)}</span> terms across {len(categories)} categories.</p>
+        <div class="filter-bar">
+            <input type="search" id="dict-search" class="filter-search" placeholder="Search terms by label, Latin, or definition&hellip;" autocomplete="off">
+            <div class="filter-row">
+                <span class="filter-label">Category:</span>
+                {cat_chips}
+            </div>
+            <div class="filter-status" id="dict-filter-status"></div>
+        </div>
         {cat_html}
-    </div>"""
+    </div>
+    <script>
+    (function() {{
+        const search = document.getElementById('dict-search');
+        const status = document.getElementById('dict-filter-status');
+        const total = {len(terms)};
+        let activeCat = '';
+        let activeText = '';
+
+        function applyDictFilters() {{
+            let visible = 0;
+            const perCat = {{}};
+            document.querySelectorAll('.dict-card').forEach(card => {{
+                const cat = card.dataset.category || '';
+                const blob = card.dataset.search || '';
+                const matchCat = !activeCat || cat === activeCat;
+                const matchText = !activeText || blob.includes(activeText);
+                const show = matchCat && matchText;
+                card.style.display = show ? '' : 'none';
+                if (show) {{
+                    visible++;
+                    perCat[cat] = (perCat[cat] || 0) + 1;
+                }}
+            }});
+            // Hide category blocks that have zero visible cards
+            document.querySelectorAll('.dict-category-block').forEach(block => {{
+                const cat = block.dataset.category;
+                const cnt = perCat[cat] || 0;
+                block.style.display = cnt > 0 ? '' : 'none';
+                const counter = block.querySelector('.dict-cat-count');
+                if (counter) counter.textContent = cnt;
+            }});
+            // Update chip active states
+            document.querySelectorAll('.filter-chip[data-filter-type="category"]').forEach(chip => {{
+                const value = chip.dataset.filterValue;
+                const isAll = chip.classList.contains('filter-chip-all');
+                chip.classList.toggle('active', isAll ? !activeCat : activeCat === value);
+            }});
+            // Update status
+            if (status) {{
+                if (activeCat || activeText) {{
+                    const parts = [];
+                    if (activeCat) parts.push('category <strong>' + activeCat + '</strong>');
+                    if (activeText) parts.push('text <strong>"' + activeText.replace(/[<>&"]/g, c => ({{'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}}[c])) + '"</strong>');
+                    status.innerHTML = 'Showing <strong>' + visible + '</strong> of ' + total + ' terms — filtered by ' + parts.join(', ') + ' <a href="#" id="dict-filter-clear" class="filter-clear">clear all</a>';
+                    const clearLink = document.getElementById('dict-filter-clear');
+                    if (clearLink) clearLink.addEventListener('click', e => {{ e.preventDefault(); clearDictFilters(); }});
+                }} else {{
+                    status.innerHTML = '';
+                }}
+            }}
+        }}
+
+        function clearDictFilters() {{
+            activeCat = '';
+            activeText = '';
+            if (search) search.value = '';
+            applyDictFilters();
+        }}
+
+        document.querySelectorAll('.filter-chip[data-filter-type="category"]').forEach(chip => {{
+            chip.addEventListener('click', () => {{
+                const v = chip.dataset.filterValue;
+                activeCat = (activeCat === v) ? '' : v;
+                applyDictFilters();
+            }});
+        }});
+        if (search) {{
+            search.addEventListener('input', e => {{
+                activeText = e.target.value.trim().toLowerCase();
+                applyDictFilters();
+            }});
+        }}
+    }})();
+    </script>"""
     html = page_shell('Dictionary', body, active_nav='Dictionary', depth=1)
     (dict_dir / 'index.html').write_text(html, encoding='utf-8')
 
