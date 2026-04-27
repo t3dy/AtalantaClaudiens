@@ -77,10 +77,34 @@
 <span class="source-link">Jodocus Greverus, Secretum Nobilissimorum (DISCOURSE_CITATION)</span>
 <span class="source-link">Ovid, Metamorphoses X.560-704 (NARRATIVE_SOURCE)</span>
 
+
+                <div id="emblem-timeline-panel" data-emblem-num="0"></div>
             </div>
         </div>
         <div class="related-emblems"><h3>Related Emblems</h3><div class="related-section"><div class="related-section-label">Shares a source authority</div><div class="related-grid"><a href="emblem-05.html" class="related-emblem-card"><strong>V</strong>: Woman suckling the toad</a><a href="emblem-06.html" class="related-emblem-card"><strong>VI</strong>: Sow your gold in the white foliated earth</a><a href="emblem-07.html" class="related-emblem-card"><strong>VII</strong>: Young bird flying from nest and falling back</a><a href="emblem-08.html" class="related-emblem-card"><strong>VIII</strong>: Emblem VIII</a><a href="emblem-12.html" class="related-emblem-card"><strong>XII</strong>: Emblem XII</a><a href="emblem-23.html" class="related-emblem-card"><strong>XXIII</strong>: Emblem XXIII</a><a href="emblem-24.html" class="related-emblem-card"><strong>XXIV</strong>: Alchemical King (garbed)</a><a href="emblem-26.html" class="related-emblem-card"><strong>XXVI</strong>: Lady Sapientia / Tree of Life</a><a href="emblem-27.html" class="related-emblem-card"><strong>XXVII</strong>: Companion to Sapientia sequence</a><a href="emblem-31.html" class="related-emblem-card"><strong>XXXI</strong>: King transformation continued</a><a href="emblem-41.html" class="related-emblem-card"><strong>XLI</strong>: Emblem XLI</a><a href="emblem-42.html" class="related-emblem-card"><strong>XLII</strong>: Emblem XLII</a></div> <span style="font-size:0.78rem;color:var(--text-muted)">+3 more</span></div><div class="related-section"><div class="related-section-label">Shares a dictionary term</div><div class="related-grid"><a href="emblem-01.html" class="related-emblem-card"><strong>I</strong>: His nurse is the Earth</a><a href="emblem-04.html" class="related-emblem-card"><strong>IV</strong>: Join brother and sister</a><a href="emblem-09.html" class="related-emblem-card"><strong>IX</strong>: Emblem IX</a><a href="emblem-21.html" class="related-emblem-card"><strong>XXI</strong>: Circle-square-triangle-circle formula</a><a href="emblem-24.html" class="related-emblem-card"><strong>XXIV</strong>: Alchemical King (garbed)</a><a href="emblem-25.html" class="related-emblem-card"><strong>XXV</strong>: Emblem XXV</a><a href="emblem-26.html" class="related-emblem-card"><strong>XXVI</strong>: Lady Sapientia / Tree of Life</a><a href="emblem-39.html" class="related-emblem-card"><strong>XXXIX</strong>: Emblem XXXIX</a><a href="emblem-42.html" class="related-emblem-card"><strong>XLII</strong>: Emblem XLII</a><a href="emblem-44.html" class="related-emblem-card"><strong>XLIV</strong>: Osiris killed and resurrected</a><a href="emblem-45.html" class="related-emblem-card"><strong>XLV</strong>: Emblem XLV</a><a href="emblem-49.html" class="related-emblem-card"><strong>XLIX</strong>: Emblem XLIX</a></div> <span style="font-size:0.78rem;color:var(--text-muted)">+1 more</span></div></div>
     </div>
+    <script>
+    (async function() {
+        const panel = document.getElementById('emblem-timeline-panel');
+        if (!panel) return;
+        const n = panel.dataset.emblemNum;
+        try {
+            const resp = await fetch('../timeline-by-emblem.json');
+            if (!resp.ok) return;
+            const data = await resp.json();
+            const events = data[n];
+            if (!events || !events.length) return;
+            const items = events.map(ev => {
+                const yr = ev.year_end && ev.year_end !== ev.year ? ev.year + '-' + ev.year_end : ev.year;
+                return '<li style="margin-bottom:0.5rem;font-size:0.88rem"><strong>' + yr + '</strong> · <span class="badge badge-contextual" style="font-size:0.65rem">' + (ev.type || '') + '</span> ' + ev.title + '</li>';
+            }).join('');
+            panel.innerHTML =
+                '<h3 style="font-size:1rem;color:var(--accent);margin-top:1.5rem;margin-bottom:0.5rem">Timeline references <span class="badge badge-contextual">' + events.length + '</span></h3>' +
+                '<ul style="padding-left:1.2rem;margin:0">' + items + '</ul>' +
+                '<p style="font-size:0.78rem;font-family:var(--font-sans);margin-top:0.4rem"><a href="../timeline.html#q=Emblem%200" style="color:var(--accent)">Show in full timeline →</a></p>';
+        } catch (err) { /* silent */ }
+    })();
+    </script>
     <footer>
         <p>AtalantaClaudiens &middot; A digital humanities project &middot;
         <a href="https://github.com/t3dy/AtalantaClaudiens">GitHub</a></p>

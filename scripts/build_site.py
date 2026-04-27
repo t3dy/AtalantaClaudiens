@@ -533,10 +533,34 @@ def build_emblem_pages(conn, identity_map):
                 {refs_html if refs_html else '<p style="color:var(--text-muted)"><em>No scholarly references extracted yet.</em></p>'}
 
                 {f'<h3 style="font-size:1rem;color:var(--accent);margin-top:1.5rem;margin-bottom:0.5rem">Maier\'s Sources</h3>{sources_html}' if sources_html else ''}
+
+                <div id="emblem-timeline-panel" data-emblem-num="{num}"></div>
             </div>
         </div>
         {related_html}
-    </div>"""
+    </div>
+    <script>
+    (async function() {{
+        const panel = document.getElementById('emblem-timeline-panel');
+        if (!panel) return;
+        const n = panel.dataset.emblemNum;
+        try {{
+            const resp = await fetch('../timeline-by-emblem.json');
+            if (!resp.ok) return;
+            const data = await resp.json();
+            const events = data[n];
+            if (!events || !events.length) return;
+            const items = events.map(ev => {{
+                const yr = ev.year_end && ev.year_end !== ev.year ? ev.year + '-' + ev.year_end : ev.year;
+                return '<li style="margin-bottom:0.5rem;font-size:0.88rem"><strong>' + yr + '</strong> · <span class="badge badge-contextual" style="font-size:0.65rem">' + (ev.type || '') + '</span> ' + ev.title + '</li>';
+            }}).join('');
+            panel.innerHTML =
+                '<h3 style="font-size:1rem;color:var(--accent);margin-top:1.5rem;margin-bottom:0.5rem">Timeline references <span class="badge badge-contextual">' + events.length + '</span></h3>' +
+                '<ul style="padding-left:1.2rem;margin:0">' + items + '</ul>' +
+                '<p style="font-size:0.78rem;font-family:var(--font-sans);margin-top:0.4rem"><a href="../timeline.html#q=Emblem%20{roman or num}" style="color:var(--accent)">Show in full timeline →</a></p>';
+        }} catch (err) {{ /* silent */ }}
+    }})();
+    </script>"""
 
         filename = 'frontispiece.html' if num == 0 else f'emblem-{num:02d}.html'
         html = page_shell(f'{title} — {label}', body, active_nav='Emblems', depth=1)
@@ -1132,41 +1156,245 @@ def build_dictionary_pages(conn):
 # Timeline Page
 # ============================================================
 
+def _extract_emblem_refs(text):
+    """Return sorted list of unique emblem numbers referenced in text (Roman + Arabic)."""
+    if not text:
+        return []
+    import re as _re
+    found = set()
+    roman_map = {'I':1,'II':2,'III':3,'IV':4,'V':5,'VI':6,'VII':7,'VIII':8,'IX':9,'X':10,
+                 'XI':11,'XII':12,'XIII':13,'XIV':14,'XV':15,'XVI':16,'XVII':17,'XVIII':18,
+                 'XIX':19,'XX':20,'XXI':21,'XXII':22,'XXIII':23,'XXIV':24,'XXV':25,'XXVI':26,
+                 'XXVII':27,'XXVIII':28,'XXIX':29,'XXX':30,'XXXI':31,'XXXII':32,'XXXIII':33,
+                 'XXXIV':34,'XXXV':35,'XXXVI':36,'XXXVII':37,'XXXVIII':38,'XXXIX':39,'XL':40,
+                 'XLI':41,'XLII':42,'XLIII':43,'XLIV':44,'XLV':45,'XLVI':46,'XLVII':47,
+                 'XLVIII':48,'XLIX':49,'L':50}
+    rx_roman = _re.compile(
+        r'Emblem\s+(XLVIII|XXXVIII|XXXIII|XXVIII|XXIII|XVIII|XLVII|XXXVII|XXXIV|XXXII|XXVII|XXXIX|XXXVI|XXXV|XXVI|XXIV|XXII|XVII|XLVI|XLIV|XLIII|XLII|XIII|XXXI|XXIX|XVI|XLV|XLI|XII|XXX|XIV|XXV|XIX|XV|XXI|XX|XI|IX|XL|IV|VI|II|VIII|VII|III|XLIX|I|V|X|L)'
+    )
+    for m in rx_roman.finditer(text):
+        n = roman_map.get(m.group(1))
+        if n is not None:
+            found.add(n)
+    for m in _re.finditer(r'Emblem\s+(\d{1,2})(?=[^0-9]|$)', text):
+        n = int(m.group(1))
+        if 0 <= n <= 50:
+            found.add(n)
+    return sorted(found)
+
+
 def build_timeline(conn):
     events = conn.execute("""
-        SELECT year, year_end, event_type, title, description, confidence,
+        SELECT id, year, year_end, event_type, title, description, confidence,
                description_long
-        FROM timeline_events ORDER BY year
+        FROM timeline_events ORDER BY year, id
     """).fetchall()
 
     TYPE_COLORS = {
         'PUBLICATION': '#27ae60', 'EDITION': '#2980b9', 'SCHOLARSHIP': '#8e44ad',
         'BIOGRAPHY': '#e67e22', 'DIGITAL': '#16a085', 'FACSIMILE': '#795548',
+        'CONTEXT': '#795548', 'TRANSLATION': '#2980b9',
     }
+
+    # Emblem labels for badge tooltips
+    emblem_meta = {
+        e[0]: {'roman': e[1], 'label': e[2]}
+        for e in conn.execute("SELECT number, roman_numeral, canonical_label FROM emblems").fetchall()
+    }
+
+    events_by_emblem = {}  # emblem_number -> [event records]
+    type_set = set()
+    decade_set = set()
+    events_data = []  # rich list for inline JS
 
     events_html = ''
     prev_year = None
     for e in events:
-        year, year_end, etype, title, desc, conf, desc_long = e
+        eid, year, year_end, etype, title, desc, conf, desc_long = e
         color = TYPE_COLORS.get(etype, '#7f8c8d')
+        type_set.add(etype or '')
+        if year:
+            decade_set.add((year // 10) * 10)
         year_header = f'<div class="timeline-year">{year}</div>' if year != prev_year else ''
         display_desc = desc_long or desc or ''
+        # Detect emblem references and render badges
+        emb_refs = _extract_emblem_refs(title + ' ' + display_desc)
+        emb_badges = ''
+        for n in emb_refs:
+            meta = emblem_meta.get(n)
+            href = 'emblems/frontispiece.html' if n == 0 else f'emblems/emblem-{n:02d}.html'
+            roman = (meta or {}).get('roman') or str(n)
+            label = (meta or {}).get('label') or ''
+            emb_badges += f'<a href="{href}" class="related-emblem-card" title="{label}"><strong>{roman}</strong></a>'
+            events_by_emblem.setdefault(n, []).append({
+                'year': year,
+                'year_end': year_end,
+                'type': etype,
+                'title': title,
+            })
+        emb_block = f'<div class="related-grid" style="margin-top:0.4rem;display:flex;flex-wrap:wrap;gap:0.3rem">{emb_badges}</div>' if emb_badges else ''
+
+        # Search blob for filtering
+        search_blob = (title + ' ' + display_desc).lower().replace('"', '&quot;')
+        decade = (year // 10) * 10 if year else 0
+        events_data.append({
+            'year': year, 'type': etype or '', 'decade': decade,
+        })
+
         events_html += f"""{year_header}
-        <div class="timeline-card" style="border-left:4px solid {color}">
+        <div class="timeline-card" data-event-type="{etype or ''}" data-decade="{decade}" data-search="{search_blob}" style="border-left:4px solid {color}">
             <h4><span class="badge" style="background:{color};color:white">{etype}</span> {title}</h4>
-            <div class="event-desc">{display_desc}</div>
+            <div class="event-desc">{autolink_emblems(display_desc, depth=0)}</div>
+            {emb_block}
         </div>"""
         prev_year = year
+
+    # Persist events_by_emblem as JSON for emblem pages to consume
+    (SITE_DIR / 'timeline-by-emblem.json').write_text(
+        json.dumps(events_by_emblem, ensure_ascii=False), encoding='utf-8'
+    )
+
+    type_chips = ''.join(
+        f'<button class="filter-chip" type="button" data-tl-type="{t}" style="background:{TYPE_COLORS.get(t, "#7f8c8d")};color:white;border:1px solid {TYPE_COLORS.get(t, "#7f8c8d")}">{t}</button>'
+        for t in sorted(type_set) if t
+    )
+    decade_chips = ''.join(
+        f'<button class="filter-chip" type="button" data-tl-decade="{d}">{d}s</button>'
+        for d in sorted(decade_set)
+    )
 
     body = f"""
     <div class="page-content">
         <h2>Timeline of Atalanta Fugiens</h2>
-        <p>Reception and scholarship from 1568 to the present. {len(events)} events.</p>
-        {events_html}
-    </div>"""
+        <p>Reception and scholarship from 1568 to the present. {len(events)} events; events that reference specific emblems link directly.</p>
+        <div class="filter-bar">
+            <input type="search" id="tl-search" class="filter-search" placeholder="Search timeline (e.g. Tilton, Rosicrucian, Emblem XLVIII)&hellip;" autocomplete="off">
+            <div class="filter-row">
+                <span class="filter-label">Type:</span>
+                <button class="filter-chip filter-chip-all active" data-tl-type="" type="button">All</button>
+                {type_chips}
+            </div>
+            <div class="filter-row">
+                <span class="filter-label">Decade:</span>
+                <button class="filter-chip filter-chip-all active" data-tl-decade="" type="button">All</button>
+                {decade_chips}
+            </div>
+            <div class="filter-status" id="tl-status"></div>
+        </div>
+        <div id="tl-events">{events_html}</div>
+    </div>
+    <script>
+    (function() {{
+        const cards = Array.from(document.querySelectorAll('.timeline-card'));
+        const yearHeaders = Array.from(document.querySelectorAll('.timeline-year'));
+        const search = document.getElementById('tl-search');
+        const status = document.getElementById('tl-status');
+        let activeType = '';
+        let activeDecade = '';
+        let activeQuery = '';
+
+        function readHash() {{
+            if (!window.location.hash) return;
+            window.location.hash.slice(1).split('&').forEach(p => {{
+                const [k, v] = p.split('=');
+                if (k === 'type' && v) activeType = decodeURIComponent(v);
+                if (k === 'decade' && v) activeDecade = decodeURIComponent(v);
+                if (k === 'q' && v) {{ activeQuery = decodeURIComponent(v).toLowerCase(); search.value = decodeURIComponent(v); }}
+            }});
+        }}
+
+        function applyFilters() {{
+            let visible = 0;
+            cards.forEach(c => {{
+                const t = c.dataset.eventType || '';
+                const d = c.dataset.decade || '0';
+                const blob = c.dataset.search || '';
+                const matchT = !activeType || t === activeType;
+                const matchD = !activeDecade || d === activeDecade;
+                const matchQ = !activeQuery || blob.includes(activeQuery);
+                const show = matchT && matchD && matchQ;
+                c.style.display = show ? '' : 'none';
+                if (show) visible++;
+            }});
+            // Hide year-headers whose group has no visible cards
+            const groups = {{}};
+            cards.forEach(c => {{
+                const y = c.previousElementSibling;
+                let header = c.previousElementSibling;
+                while (header && !header.classList.contains('timeline-year')) header = header.previousElementSibling;
+                if (header) {{
+                    const yk = header.textContent;
+                    if (!(yk in groups)) groups[yk] = false;
+                    if (c.style.display !== 'none') groups[yk] = true;
+                }}
+            }});
+            yearHeaders.forEach(h => {{
+                h.style.display = groups[h.textContent] ? '' : 'none';
+            }});
+            // Chip active states
+            document.querySelectorAll('[data-tl-type]').forEach(b => {{
+                const v = b.dataset.tlType;
+                const isAll = b.classList.contains('filter-chip-all');
+                b.classList.toggle('active', isAll ? !activeType : activeType === v);
+            }});
+            document.querySelectorAll('[data-tl-decade]').forEach(b => {{
+                const v = b.dataset.tlDecade;
+                const isAll = b.classList.contains('filter-chip-all');
+                b.classList.toggle('active', isAll ? !activeDecade : activeDecade === v);
+            }});
+            // Status
+            if (activeType || activeDecade || activeQuery) {{
+                const parts = [];
+                if (activeType) parts.push('type <strong>' + activeType + '</strong>');
+                if (activeDecade) parts.push('decade <strong>' + activeDecade + 's</strong>');
+                if (activeQuery) parts.push('text <strong>"' + activeQuery.replace(/[<>&"]/g, c => ({{'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}}[c])) + '"</strong>');
+                status.innerHTML = 'Showing <strong>' + visible + '</strong> of {len(events)} events — filtered by ' + parts.join(', ') + ' <a href="#" id="tl-clear" class="filter-clear">clear all</a>';
+                const cl = document.getElementById('tl-clear');
+                if (cl) cl.addEventListener('click', e => {{ e.preventDefault(); clearAll(); }});
+            }} else {{
+                status.innerHTML = '';
+            }}
+        }}
+
+        function clearAll() {{
+            activeType = ''; activeDecade = ''; activeQuery = '';
+            search.value = '';
+            if (window.history && window.history.replaceState) {{
+                window.history.replaceState(null, '', window.location.pathname);
+            }}
+            applyFilters();
+        }}
+
+        document.body.addEventListener('click', e => {{
+            const tBtn = e.target.closest('[data-tl-type]');
+            if (tBtn) {{
+                const v = tBtn.dataset.tlType;
+                activeType = (activeType === v) ? '' : v;
+                applyFilters();
+                return;
+            }}
+            const dBtn = e.target.closest('[data-tl-decade]');
+            if (dBtn) {{
+                const v = dBtn.dataset.tlDecade;
+                activeDecade = (activeDecade === v) ? '' : v;
+                applyFilters();
+                return;
+            }}
+        }});
+        search.addEventListener('input', e => {{ activeQuery = e.target.value.trim().toLowerCase(); applyFilters(); }});
+        window.addEventListener('hashchange', () => {{
+            activeType = ''; activeDecade = ''; activeQuery = '';
+            search.value = '';
+            readHash();
+            applyFilters();
+        }});
+        readHash();
+        applyFilters();
+    }})();
+    </script>"""
     html = page_shell('Timeline', body, active_nav='Timeline')
     (SITE_DIR / 'timeline.html').write_text(html, encoding='utf-8')
-    print(f"  timeline.html: {len(events)} events")
+    print(f"  timeline.html: {len(events)} events, {len(events_by_emblem)} emblems referenced")
 
 
 # ============================================================
