@@ -78,6 +78,7 @@ NAV_ITEMS = [
     ('Home', 'index.html'),
     ('Emblems', 'emblems/index.html'),
     ('Stages', 'stage/index.html'),
+    ('Galleries', 'galleries/index.html'),
     ('Visual', 'visual.html'),
     ('Scholars', 'scholars.html'),
     ('Dictionary', 'dictionary/index.html'),
@@ -3183,6 +3184,30 @@ def build_search(conn):
 # ============================================================
 
 ALCHEMYDB_PATH = Path(r"C:\Dev\AlchemyBeatEmUp\db\alchemical_images.db")
+ALCHEMYBEATEMUP_DATA_PATH = Path(r"C:\Dev\AlchemyBeatEmUp\data.json")
+ALCHEMYBEATEMUP_SITE_URL = "https://t3dy.github.io/AlchemyBeatEmUp/"
+
+
+def _load_alchemybeatemup_raw_urls():
+    """Read AlchemyBeatEmUp data.json and return {image_id: raw_image_url}.
+
+    Only the ORIGINAL engravings (raw_url) are surfaced here — the pixelated
+    sprites belong to the game-asset pipeline and are never shown on Claudiens.
+    """
+    if not ALCHEMYBEATEMUP_DATA_PATH.exists():
+        return {}
+    try:
+        data = json.loads(ALCHEMYBEATEMUP_DATA_PATH.read_text(encoding='utf-8'))
+    except Exception:
+        return {}
+    out = {}
+    for img in data.get('images', []):
+        iid = img.get('image_id')
+        raw = img.get('raw_url')
+        if iid is None or not raw:
+            continue
+        out[iid] = ALCHEMYBEATEMUP_SITE_URL + raw.replace('\\', '/')
+    return out
 
 
 def _autotag_description(description, tags, dict_terms_by_slug):
@@ -3333,6 +3358,7 @@ def build_visual_browser(conn):
             tag_to_dict[tag_slug] = dict_label_to_slug[label.lower()]
 
     supplemental_scenes = _load_supplemental_scene_summaries()
+    abe_raw_urls = _load_alchemybeatemup_raw_urls()
 
     # Re-pull images with source_url so we can build remote thumbnails
     alch2 = sqlite3.connect(f"file:{ALCHEMYDB_PATH}?mode=ro", uri=True)
@@ -3412,7 +3438,9 @@ def build_visual_browser(conn):
                 f'emblems/emblem-{emblem_num:02d}.html'
             )
         else:
-            local_url = _wikimedia_thumb_url(source_url, width=320)
+            # Prefer the original-quality engraving from the sister AlchemyBeatEmUp
+            # repo (cross-served from its GitHub Pages); fall back to Wikimedia.
+            local_url = abe_raw_urls.get(image_id) or _wikimedia_thumb_url(source_url, width=480)
             link_url = source_url or None
 
         title_parts = []
@@ -3574,6 +3602,87 @@ def build_visual_browser(conn):
         (work_dir / f'{page_slug}.html').write_text(html, encoding='utf-8')
 
     print(f"  work/: {len(work_entries)} per-source-work pages")
+
+    # ── /galleries/index.html — landing tab for all alchemical emblem-book galleries ──
+    galleries_dir = SITE_DIR / 'galleries'
+    galleries_dir.mkdir(exist_ok=True)
+
+    # Hand-curated capsule descriptions — explains what each work is and why it matters
+    WORK_CAPSULES = {
+        'atalanta_fugiens': "Maier's own 1617 emblem book — fifty engravings, mottos, epigrams, and three-voice fugues. The deepest gallery on this site (full scholarly apparatus on every plate).",
+        'symbola_aureae_mensae': "Maier's 1617 companion to Atalanta Fugiens: twelve patriarchs of alchemy across twelve nations, from Hermes Trismegistus to Maier himself.",
+        'splendor_solis': "The 1532 Berlin codex — twenty-two of the most luxurious miniatures in the alchemical canon, attributed to Salomon Trismosin.",
+        'mutus_liber': "The 'silent book' (1677) — fifteen engravings narrating the work without text. An alchemical couple gathers celestial dew, distils, and completes the opus in pictures alone.",
+        'rosarium_philosophorum': "The Rosary of the Philosophers (1550) — twenty foundational woodcuts of the chemical wedding. Every alchemical emblem book that follows quotes from this sequence.",
+        'aurora_consurgens': "Late-medieval treatise (attributed to pseudo-Aquinas) — the Zürich manuscript carries a remarkable cycle of monsters, dragons, and biblical-alchemical hybrids.",
+        'crowning_of_nature': "Sixty-seven plates of pure visual sequence — one of the longest emblematic narratives of the work, depicting the Stone's gestation in detail.",
+        'khunrath_amphitheatrum': "Khunrath's Amphitheatre of Eternal Wisdom (1595/1609) — Christian-cabalistic-alchemical engravings combining laboratory, oratory, and mystical symbolism.",
+        'lambsprinck': "De Lapide Philosophico (Lambsprinck, c. 1599) — fifteen animal-emblems including the unicorn-and-stag, the two fishes, and the father-and-son embrace.",
+        'geber_summa': "Pseudo-Geber's Summa Perfectionis (13th c.) — the Latin alchemical corpus that medieval and Renaissance practitioners called 'Geber'; foundational distillation iconography.",
+        'libavius_alchymia': "Andreas Libavius (1597) — the first systematic textbook of alchemy, including the famous diagram of the ideal alchemical laboratory.",
+        'biringuccio_pirotechnia': "Vannoccio Biringuccio (1540) — the first printed treatise on metallurgy. Smelting, casting, assaying — the practical art alchemy theorizes.",
+        'agricola_de_re_metallica': "Georgius Agricola (1556) — the great compendium of mining and metallurgy, with engravings of furnaces, water-wheels, and the descent into matter.",
+        'glauber_furni_novi': "Johann Rudolf Glauber's Furni Novi Philosophici (1646–49) — 'New Philosophical Furnaces' that lifted the iatrochemical art toward modern chemistry.",
+        'ripley_scrolls': "The Ripley Scrolls (15th–16th c. England) — vertical pictorial allegories of the entire opus, descended from George Ripley's Compound of Alchymy.",
+    }
+
+    sorted_works = sorted(work_entries, key=lambda w: -w['image_count'])
+    cover_image_for = {}
+    for ie in image_entries:
+        wslug = ie['work']
+        if wslug not in cover_image_for and ie.get('local_url'):
+            cover_image_for[wslug] = ie
+
+    cards_html = ''
+    for w in sorted_works:
+        wslug = w['slug']
+        page_slug = w['page_slug']
+        capsule = WORK_CAPSULES.get(wslug, '')
+        cover = cover_image_for.get(wslug)
+        if cover and cover.get('local_url'):
+            raw = cover['local_url']
+            # AlchemyBeatEmUp URLs are absolute https, Atalanta paths are repo-root-relative
+            src = raw if raw.startswith('http') else ('../' + raw)
+            img_tag = f'<img src="{src}" alt="{w.get("title", wslug)}" loading="lazy" style="width:100%;height:240px;object-fit:cover;display:block;background:var(--bg)">'
+        else:
+            img_tag = f'<div class="card-placeholder" style="height:240px;display:flex;align-items:center;justify-content:center;font-size:1.4rem">{w.get("title", wslug)[:30]}</div>'
+
+        meta_parts = []
+        if w.get('author'): meta_parts.append(w['author'])
+        if w.get('date'): meta_parts.append(w['date'])
+        meta_line = ' &middot; '.join(meta_parts)
+
+        is_atalanta = wslug == 'atalanta_fugiens'
+        primary_link = 'emblems/index.html' if is_atalanta else f'work/{page_slug}.html'
+        link_path = '../' + primary_link
+
+        cards_html += f"""
+        <a href="{link_path}" class="gallery-tile" style="display:flex;flex-direction:column;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.15s, box-shadow 0.15s">
+            {img_tag}
+            <div style="padding:1rem 1.1rem;flex:1;display:flex;flex-direction:column">
+                <h3 style="font-size:1.1rem;color:var(--accent);margin:0 0 0.2rem;font-family:var(--font-serif)">{w.get('title', wslug)}{(' <span class="badge badge-primary" style="font-size:0.65rem;vertical-align:middle">primary work</span>' if is_atalanta else '')}</h3>
+                <div style="font-family:var(--font-sans);font-size:0.75rem;color:var(--text-muted);margin-bottom:0.4rem">{meta_line}</div>
+                <div style="font-size:0.88rem;line-height:1.55;flex:1">{capsule}</div>
+                <div style="font-family:var(--font-sans);font-size:0.78rem;color:var(--text-muted);margin-top:0.6rem;display:flex;justify-content:space-between;align-items:center">
+                    <span>{w.get('image_count', 0)} plate{'s' if w.get('image_count', 0) != 1 else ''} · {w.get('tagged_count', 0)} tagged</span>
+                    <span style="color:var(--accent)">Browse →</span>
+                </div>
+            </div>
+        </a>"""
+
+    galleries_body = f"""
+    <div class="page-content" style="max-width:1300px">
+        <h2>Alchemical Emblem Galleries</h2>
+        <p style="font-size:0.95rem;line-height:1.7;max-width:780px">Browse the visual record of alchemy across {len(sorted_works)} source works ({sum(w['image_count'] for w in sorted_works)} plates total). Atalanta Fugiens is the centre of this site's scholarly apparatus — the other galleries surround it as comparison material. Click any tile to open that gallery; from inside each work-page you can drill into the visual element browser to see how its imagery overlaps with the rest of the corpus.</p>
+
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;margin:1rem 0 1.5rem;font-size:0.88rem">
+            <strong style="color:var(--accent);font-family:var(--font-sans)">How to compare</strong> — every plate is auto-tagged with its visual elements (dragons, lions, athanors, calcinations …). On the <a href="../visual.html" style="color:var(--accent)">Visual Browser</a> you can pin a tag and watch every emblem book light up; on the <a href="../stage/index.html" style="color:var(--accent)">Stages</a> pages you can compare nigredo plates from Atalanta against nigredo plates from Splendor Solis and Aurora Consurgens. Most non-Atalanta images are served via the sister project <a href="{ALCHEMYBEATEMUP_SITE_URL}" target="_blank" rel="noopener" style="color:var(--accent)">AlchemyBeatEmUp</a> (the original engravings, never the pixelated game-asset versions).</div>
+
+        <div class="gallery-tile-grid" style="display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:1.2rem">{cards_html}</div>
+    </div>"""
+    html = page_shell('Alchemical Emblem Galleries', galleries_body, active_nav='Galleries', depth=1)
+    (galleries_dir / 'index.html').write_text(html, encoding='utf-8')
+    print(f"  galleries/index.html: {len(sorted_works)} gallery tiles")
 
     # ── Inverted index: Claudiens dictionary slug → [image entries] ──
     # This gets consumed by dictionary term pages (Slice 3) to show
