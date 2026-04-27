@@ -77,6 +77,7 @@ def slugify(text):
 NAV_ITEMS = [
     ('Home', 'index.html'),
     ('Emblems', 'emblems/index.html'),
+    ('Stages', 'stage/index.html'),
     ('Visual', 'visual.html'),
     ('Scholars', 'scholars.html'),
     ('Dictionary', 'dictionary/index.html'),
@@ -3864,6 +3865,229 @@ def build_visual_browser(conn):
 
 
 # ============================================================
+# Per-Stage Gallery Pages
+# ============================================================
+
+STAGE_DEFINITIONS = {
+    'NIGREDO': {
+        'name': 'Nigredo',
+        'subtitle': 'The Blackening',
+        'bg': '#2c2418',
+        'fg': '#f5f0e8',
+        'accent': '#8b4513',
+        'epigraph': '"Putrefaction is the death of bodies and the cause of generation." — pseudo-Geber, Summa Perfectionis',
+        'description': 'The first stage of the Great Work: putrefaction, blackening, and the death of the prima materia. Saturn presides; black bile and melancholy mark the body. The matter must die before it can be reborn. In Atalanta Fugiens this is the work of dragons devouring their tails (XIV), the king drowning (XXXI), the dragon-and-woman mortal embrace (L), the slaying of Osiris (XLIV).',
+        'related_terms': ['nigredo', 'putrefaction', 'mortificatio', 'calcination', 'dissolution', 'prima-materia', 'kronos-saturn', 'raven-crow', 'screech-owl'],
+    },
+    'ALBEDO': {
+        'name': 'Albedo',
+        'subtitle': 'The Whitening',
+        'bg': '#a89880',
+        'fg': '#2c2418',
+        'accent': '#8b4513',
+        'epigraph': '"Make Latona white and tear up the books." — Atalanta Fugiens, motto of Emblem XI',
+        'description': 'The second stage: purification by washing, sublimation, and distillation. The Moon presides; phlegmatic constitution restored; matter purified to lunar silver. In Atalanta Fugiens this is the washerwoman of Emblem III, the whitening of Latona (XI–XII), the white-lead cooking of Emblem XXII, the sowing of gold in white earth (VI).',
+        'related_terms': ['albedo', 'sublimatio', 'distillatio', 'solutio', 'luna', 'lac-virginis', 'white-lead'],
+    },
+    'CITRINITAS': {
+        'name': 'Citrinitas',
+        'subtitle': 'The Yellowing',
+        'bg': '#b8860b',
+        'fg': '#2c2418',
+        'accent': '#c0392b',
+        'epigraph': '"As white silver yields to yellowing gold, so the soul moves from clarity into wisdom." — composite alchemical commonplace',
+        'description': 'The transitional third stage between albedo and rubedo: the matter takes on a golden hue as solar virtue infiltrates the lunar substance. Yellow bile, choleric vigor, dawn light, the rising sun. Often elided in later texts as Jung favored a triadic schema, but historically attested by Maier, Mylius, and the Rosarium tradition.',
+        'related_terms': ['citrinitas', 'fermentatio', 'circulatio', 'aurum-philosophicum', 'sol'],
+    },
+    'RUBEDO': {
+        'name': 'Rubedo',
+        'subtitle': 'The Reddening',
+        'bg': '#c0392b',
+        'fg': '#f5f0e8',
+        'accent': '#fbe8a0',
+        'epigraph': '"The Stone is red as blood, soft as wax, heavy as gold." — pseudo-Lull, Testamentum',
+        'description': 'The fourth and final stage: the white stone is reddened by fermentation with gold to produce the Philosopher\'s Stone or Red Tincture. Sol presides; sanguine vitality perfected; the chemical wedding consummated; the Rebis-hermaphrodite achieved. In Atalanta Fugiens this is the staining of white roses by Adonis\'s blood (XLI), the standing hermaphrodite (XXXVIII), the multiplication of the Stone.',
+        'related_terms': ['rubedo', 'coagulation', 'fixatio', 'multiplicatio', 'projectio', 'philosopher-s-stone', 'lapis', 'rebis', 'sol', 'hermaphrodite', 'alchemical-rose'],
+    },
+}
+
+
+def build_stage_pages(conn):
+    """One landing page + four per-stage deep pages combining:
+    - Atalanta emblems classified to this stage
+    - Cross-corpus images tagged with this stage's processes (from visual-data.json)
+    - Dictionary terms in this stage's register cluster
+    """
+    stage_dir = SITE_DIR / 'stage'
+    stage_dir.mkdir(exist_ok=True)
+
+    # Load visual-data for cross-corpus images
+    visual_data_path = SITE_DIR / 'visual-data.json'
+    cross_corpus_images = []
+    if visual_data_path.exists():
+        try:
+            cross_corpus_images = json.loads(visual_data_path.read_text(encoding='utf-8')).get('images', [])
+        except Exception:
+            cross_corpus_images = []
+
+    # Identity map for emblem images
+    identity_map = load_identity_map(conn)
+
+    # Stage emblem counts for the index
+    stage_counts = dict(conn.execute(
+        "SELECT alchemical_stage, COUNT(*) FROM emblems WHERE alchemical_stage IS NOT NULL AND alchemical_stage != '' GROUP BY alchemical_stage"
+    ).fetchall())
+
+    # ── Index page ──
+    cards_html = ''
+    for stage_key in ['NIGREDO', 'ALBEDO', 'CITRINITAS', 'RUBEDO']:
+        stage = STAGE_DEFINITIONS[stage_key]
+        n = stage_counts.get(stage_key, 0)
+        cards_html += f"""
+        <a href="{stage_key.lower()}.html" class="card stage-card" style="text-decoration:none;color:inherit;background:{stage['bg']};color:{stage['fg']}">
+            <div class="card-body" style="padding:1.5rem">
+                <div style="font-family:var(--font-serif);font-size:2rem;line-height:1;margin-bottom:0.4rem">{stage['name']}</div>
+                <div style="font-family:var(--font-sans);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em;opacity:0.8;margin-bottom:0.6rem">{stage['subtitle']}</div>
+                <div style="font-size:0.92rem;line-height:1.55">{stage['description'][:220]}…</div>
+                <div style="margin-top:0.8rem;font-size:0.78rem;opacity:0.75;font-family:var(--font-sans)">{n} Atalanta emblem{'s' if n != 1 else ''} · related dictionary terms · cross-corpus images</div>
+            </div>
+        </a>"""
+    index_body = f"""
+    <div class="page-content" style="max-width:1100px">
+        <h2>The Four Stages of the Great Work</h2>
+        <p style="font-size:0.95rem">Alchemy traditionally distinguishes four colour-coded phases of the opus: nigredo (blackening), albedo (whitening), citrinitas (yellowing), and rubedo (reddening). Each stage gathers its own characteristic imagery, processes, and emblem subjects. Browse them as relational tours through Atalanta Fugiens and the wider alchemical corpus.</p>
+        <div class="gallery" style="grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));padding:0;margin-top:1.5rem">{cards_html}</div>
+    </div>"""
+    html = page_shell('Stages of the Great Work', index_body, active_nav='Stages', depth=1)
+    (stage_dir / 'index.html').write_text(html, encoding='utf-8')
+
+    # ── Per-stage deep pages ──
+    # Pre-fetch all dictionary terms once
+    dict_terms = {
+        r[0]: {'label': r[1], 'cat': r[2], 'def_short': r[3]}
+        for r in conn.execute(
+            "SELECT slug, label, category, definition_short FROM dictionary_terms"
+        ).fetchall()
+    }
+
+    for stage_key in ['NIGREDO', 'ALBEDO', 'CITRINITAS', 'RUBEDO']:
+        stage = STAGE_DEFINITIONS[stage_key]
+
+        # Atalanta emblems for this stage
+        emblems_for = conn.execute(
+            """SELECT id, number, roman_numeral, canonical_label, motto_english
+               FROM emblems
+               WHERE alchemical_stage = ? AND number > 0
+               ORDER BY number""",
+            (stage_key,)
+        ).fetchall()
+        emblem_cards_html = ''
+        for em in emblems_for:
+            _eid, num_, roman_, label_, motto_ = em
+            img_path, img_exists = resolve_image(identity_map, num_)
+            img_tag = (
+                f'<img src="../{img_path}" alt="Emblem {roman_ or num_}" loading="lazy" style="width:100%;display:block;aspect-ratio:auto">'
+                if img_exists else
+                f'<div class="card-placeholder" style="aspect-ratio:1;font-size:1.6rem">{roman_ or num_}</div>'
+            )
+            emblem_cards_html += f"""
+            <a href="../emblems/emblem-{num_:02d}.html" class="card" style="text-decoration:none;color:inherit">
+                {img_tag}
+                <div class="card-body">
+                    <div class="card-sig">Emblem {roman_ or num_}</div>
+                    <div class="card-label">{label_ or ''}</div>
+                    <div class="card-desc">{(motto_ or '').strip()}</div>
+                </div>
+            </a>"""
+
+        # Cross-corpus images tagged with any of this stage's process tags
+        stage_process_tags = set(STAGE_TO_PROCESS_TAGS.get(stage_key, []))
+        cross_imgs = []
+        for ie in cross_corpus_images:
+            if not ie.get('tags'):
+                continue
+            if stage_process_tags & set(ie['tags']):
+                # Skip Atalanta — already shown above
+                if ie['work'] == 'atalanta_fugiens':
+                    continue
+                cross_imgs.append(ie)
+
+        cross_cards_html = ''
+        for ie in cross_imgs[:30]:
+            link_attrs = ''
+            if ie['link_url']:
+                href = ie['link_url'] if ie['is_external'] else ('../' + ie['link_url'])
+                link_attrs = f'href="{href}"' + (' target="_blank" rel="noopener"' if ie['is_external'] else '')
+                tag_open = f'<a {link_attrs} class="card" style="text-decoration:none;color:inherit">'
+                tag_close = '</a>'
+            else:
+                tag_open = '<div class="card" style="cursor:default">'
+                tag_close = '</div>'
+            if ie['local_url']:
+                src = ie['local_url'] if ie['is_external'] else ('../' + ie['local_url'])
+                img_tag = f'<img src="{src}" alt="" loading="lazy" style="width:100%;display:block;aspect-ratio:auto">'
+            else:
+                folio_label = (ie['folio'] or '').replace('plate ', '').upper() or '?'
+                img_tag = f'<div class="card-placeholder" style="aspect-ratio:1;font-size:1.4rem">{folio_label}</div>'
+            cross_cards_html += (
+                tag_open + img_tag + '<div class="card-body">'
+                f'<div class="card-sig" style="font-size:0.78rem">{ie.get("work_title", "")}</div>'
+                f'<div class="card-desc" style="font-size:0.78rem">{(ie.get("snippet") or "")[:120]}</div>'
+                + '</div>' + tag_close
+            )
+        cross_overflow = ''
+        if len(cross_imgs) > 30:
+            # Build a visual-browser hash that filters for any process tag of this stage
+            tag_param = STAGE_TO_PROCESS_TAGS.get(stage_key, [stage_key.lower()])[0]
+            cross_overflow = f'<p style="grid-column:1/-1;color:var(--text-muted);font-style:italic;padding:1rem;font-size:0.88rem">…and {len(cross_imgs) - 30} more — open <a href="../visual.html#tag={tag_param}">all {tag_param} images</a> in the visual browser.</p>'
+
+        # Related dictionary terms
+        term_cards_html = ''
+        for slug in stage['related_terms']:
+            term = dict_terms.get(slug)
+            if not term:
+                continue
+            term_cards_html += f"""
+            <a href="../dictionary/{slug}.html" class="dict-related-card">
+                <div class="dict-related-label">{term['label']}</div>
+                <div class="dict-related-latin" style="text-transform:uppercase;letter-spacing:0.04em">{term['cat']}</div>
+            </a>"""
+
+        # Process tag jump links to visual browser
+        proc_chip_html = ''
+        for proc_tag in STAGE_TO_PROCESS_TAGS.get(stage_key, []):
+            proc_chip_html += f'<a href="../visual.html#tag={proc_tag}" class="vis-tag-chip" style="border-color:#16a085;color:#16a085;text-decoration:none">{proc_tag}</a> '
+
+        body = f"""
+        <div class="page-content" style="max-width:1200px">
+            <a href="index.html" class="back-link">&larr; All Stages</a>
+            <div class="stage-banner" style="background:{stage['bg']};color:{stage['fg']};padding:2rem 1.5rem;border-radius:6px;margin-bottom:1.5rem">
+                <div style="font-family:var(--font-sans);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.1em;opacity:0.7;margin-bottom:0.3rem">Stage of the Great Work</div>
+                <h1 style="font-size:2.4rem;margin:0 0 0.4rem">{stage['name']}</h1>
+                <div style="font-family:var(--font-sans);font-size:1.05rem;opacity:0.85">{stage['subtitle']}</div>
+                <p style="font-style:italic;font-size:0.9rem;opacity:0.85;margin-top:1rem;border-left:2px solid currentColor;padding-left:0.8rem">{stage['epigraph']}</p>
+            </div>
+            <p style="font-size:0.95rem;line-height:1.7;margin-bottom:1.5rem">{stage['description']}</p>
+
+            <h2>Atalanta Fugiens emblems classified to {stage['name']} <span class="badge badge-contextual">{len(emblems_for)}</span></h2>
+            <p style="font-size:0.85rem;color:var(--text-muted)"><a href="../index.html#stage={stage_key}">Open the gallery filtered to {stage['name']} →</a></p>
+            <div class="gallery" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));padding:0;margin-bottom:1.5rem">{emblem_cards_html}</div>
+
+            {f'<h2>Across the broader corpus <span class="badge badge-contextual">{len(cross_imgs)}</span></h2>' if cross_imgs else ''}
+            {f'<p style="font-size:0.85rem;color:var(--text-muted)">Plates from other emblem books tagged with {stage["name"].lower()}-phase processes.</p>' if cross_imgs else ''}
+            {f'<div class="gallery" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));padding:0;margin-bottom:1.5rem">{cross_cards_html}{cross_overflow}</div>' if cross_imgs else ''}
+
+            {f'<h2>Process tags <span class="badge badge-contextual">{len(STAGE_TO_PROCESS_TAGS.get(stage_key, []))}</span></h2><p style="font-size:0.85rem;color:var(--text-muted)">Click to see all images of each process across every emblem book.</p><div style="display:flex;flex-wrap:wrap;gap:0.4rem;padding:0.6rem;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;margin-bottom:1.5rem">{proc_chip_html}</div>' if proc_chip_html else ''}
+
+            {f'<h2>Related dictionary terms <span class="badge badge-contextual">{sum(1 for s in stage["related_terms"] if s in dict_terms)}</span></h2><div class="dict-related" style="margin-bottom:1.5rem">{term_cards_html}</div>' if term_cards_html else ''}
+        </div>"""
+        html = page_shell(f"{stage['name']} — Stages of the Great Work", body, active_nav='Stages', depth=1)
+        (stage_dir / f"{stage_key.lower()}.html").write_text(html, encoding='utf-8')
+
+    print(f"  stage/: 4 stage pages + index")
+
+
+# ============================================================
 # Main
 # ============================================================
 
@@ -3890,6 +4114,7 @@ def main():
     build_biography()
     build_about(conn)
     build_visual_browser(conn)
+    build_stage_pages(conn)
     build_search(conn)
     conn.close()
     print("Site build complete.")
