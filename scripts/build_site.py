@@ -3242,6 +3242,10 @@ def build_visual_browser(conn):
         w['image_count'] = work_image_counts.get(w['slug'], 0)
         w['tagged_count'] = work_tag_counts.get(w['slug'], 0)
 
+    # Annotate each work with a slug-friendly key for the per-work page link
+    for w in work_entries:
+        w['page_slug'] = w['slug'].replace('_', '-')
+
     visual_data = {
         'images': image_entries,
         'tags': tag_entries,
@@ -3255,6 +3259,92 @@ def build_visual_browser(conn):
         },
     }
     (SITE_DIR / 'visual-data.json').write_text(json.dumps(visual_data, ensure_ascii=False), encoding='utf-8')
+
+    # ── Per-source-work landing pages /work/<slug>.html ──
+    work_dir = SITE_DIR / 'work'
+    work_dir.mkdir(exist_ok=True)
+    tag_meta_by_slug = {t['slug']: t for t in tag_entries}
+    images_by_work = {}
+    for ie in image_entries:
+        images_by_work.setdefault(ie['work'], []).append(ie)
+
+    CATEGORY_COLORS_PY = {
+        'FIGURE': '#8b4513', 'MONSTER': '#c0392b', 'PROCESS': '#16a085',
+        'SUBSTANCE': '#2980b9', 'FURNITURE': '#7f8c8d', 'TOOL': '#8e44ad',
+        'ACCIDENT': '#e67e22', 'BODY_STATE': '#a89880', 'SCENERY': '#27ae60',
+    }
+
+    for w in work_entries:
+        wslug = w['slug']
+        page_slug = w['page_slug']
+        work_imgs = images_by_work.get(wslug, [])
+        # Tag-frequency for this work
+        local_counts = {}
+        for ie in work_imgs:
+            for t in ie['tags']:
+                local_counts[t] = local_counts.get(t, 0) + 1
+        sorted_tags = sorted(local_counts.items(), key=lambda kv: -kv[1])
+        tag_chips_html = ''
+        for tag_slug, n in sorted_tags[:30]:
+            meta = tag_meta_by_slug.get(tag_slug, {})
+            color = CATEGORY_COLORS_PY.get(meta.get('category', ''), '#7f8c8d')
+            label = meta.get('label', tag_slug)
+            tag_chips_html += (
+                f'<a href="../visual.html#tag={tag_slug}&work={wslug}" class="vis-tag-chip" '
+                f'style="border-color:{color};color:{color};text-decoration:none">'
+                f'{label} <span class="vis-tag-count">{n}</span></a>'
+            )
+
+        # Cards for the images in this work (capped at 60)
+        card_html_parts = []
+        for ie in work_imgs[:60]:
+            link_attrs = ''
+            if ie['link_url']:
+                link_attrs = f'href="{("../" + ie["link_url"]) if not ie["is_external"] else ie["link_url"]}"'
+                if ie['is_external']:
+                    link_attrs += ' target="_blank" rel="noopener"'
+                tag_open = f'<a {link_attrs} class="card" style="text-decoration:none;color:inherit">'
+                tag_close = '</a>'
+            else:
+                tag_open = '<div class="card" style="cursor:default">'
+                tag_close = '</div>'
+            if ie['local_url']:
+                src = ie['local_url'] if ie['is_external'] else ('../' + ie['local_url'])
+                img_tag = f'<img src="{src}" alt="" loading="lazy" style="width:100%;display:block;aspect-ratio:auto">'
+            else:
+                folio_label = (ie['folio'] or '').replace('plate ', '').upper() or '?'
+                img_tag = f'<div class="card-placeholder" style="aspect-ratio:1;font-size:1.4rem">{folio_label}</div>'
+            card_html_parts.append(
+                tag_open + img_tag + '<div class="card-body">'
+                f'<div class="card-sig" style="font-size:0.78rem">{(ie["folio"] or "")}</div>'
+                f'<div class="card-desc" style="font-size:0.78rem">{(ie["snippet"] or "")[:120]}</div>'
+                + '</div>' + tag_close
+            )
+        cards_html = ''.join(card_html_parts)
+        overflow = ''
+        if len(work_imgs) > 60:
+            overflow = f'<p style="grid-column:1/-1;color:var(--text-muted);font-style:italic;padding:1rem">…and {len(work_imgs) - 60} more in <a href="../visual.html#work={wslug}">the visual browser</a>.</p>'
+
+        meta_line_parts = []
+        if w.get('author'): meta_line_parts.append(w['author'])
+        if w.get('date'): meta_line_parts.append(w['date'])
+        if w.get('region'): meta_line_parts.append(w['region'])
+        meta_line = ' &middot; '.join(meta_line_parts)
+
+        body = f"""
+        <div class="page-content" style="max-width:1200px">
+            <a href="../visual.html" class="back-link">&larr; Visual Browser</a>
+            <h1 style="font-size:1.8rem;margin-bottom:0.3rem">{w.get('title') or wslug}</h1>
+            <p style="color:var(--text-muted);font-family:var(--font-sans);margin-bottom:1rem;font-size:0.9rem">{meta_line}</p>
+            <p style="font-size:0.95rem">{w.get('image_count', 0)} image{'s' if w.get('image_count', 0) != 1 else ''} indexed; {w.get('tagged_count', 0)} carry visual-element tags.</p>
+            {f'<h2>Visual elements depicted</h2><p style="font-size:0.85rem;color:var(--text-muted);font-family:var(--font-sans);margin-bottom:0.5rem">Click a tag to see all images of it across every emblem book.</p><div id="vis-tag-cloud" style="background:var(--bg-card);padding:0.6rem;border:1px solid var(--border);border-radius:4px;margin-bottom:1.2rem">{tag_chips_html}</div>' if tag_chips_html else '<p style="color:var(--text-muted);font-style:italic;margin-top:1rem">No visual-element tags applied yet for this work — captions and scene-summaries are still being curated.</p>'}
+            <h2>Images</h2>
+            <div class="gallery" style="grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));padding:0">{cards_html}{overflow}</div>
+        </div>"""
+        html = page_shell(w.get('title') or wslug, body, active_nav='Visual', depth=1)
+        (work_dir / f'{page_slug}.html').write_text(html, encoding='utf-8')
+
+    print(f"  work/: {len(work_entries)} per-source-work pages")
 
     # ── Inverted index: Claudiens dictionary slug → [image entries] ──
     # This gets consumed by dictionary term pages (Slice 3) to show
@@ -3358,9 +3448,15 @@ def build_visual_browser(conn):
             btn.className = 'filter-chip';
             btn.type = 'button';
             btn.dataset.visWork = w.slug;
+            btn.title = (w.author || '') + (w.date ? ' · ' + w.date : '');
             btn.innerHTML = (w.title || w.slug) + ' <span class="filter-chip-count">' + w.image_count + '</span>';
             workRow.appendChild(btn);
         }
+        // "Open as page" jump-link for the active source filter
+        const workOpen = document.createElement('a');
+        workOpen.id = 'vis-work-open';
+        workOpen.style.cssText = 'margin-left:0.5rem;font-size:0.78rem;font-family:var(--font-sans);color:var(--accent);display:none';
+        workRow.appendChild(workOpen);
 
         function escapeHtml(s) { return (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
@@ -3447,6 +3543,21 @@ def build_visual_browser(conn):
                 const isAll = b.classList.contains('filter-chip-all');
                 b.classList.toggle('active', isAll ? !activeWork : activeWork === v);
             });
+            const openLink = document.getElementById('vis-work-open');
+            if (openLink) {
+                if (activeWork) {
+                    const w = data.works.find(x => x.slug === activeWork);
+                    if (w && w.page_slug) {
+                        openLink.href = 'work/' + w.page_slug + '.html';
+                        openLink.textContent = 'Open ' + (w.title || activeWork) + ' page →';
+                        openLink.style.display = '';
+                    } else {
+                        openLink.style.display = 'none';
+                    }
+                } else {
+                    openLink.style.display = 'none';
+                }
+            }
         }
 
         function readHash() {
